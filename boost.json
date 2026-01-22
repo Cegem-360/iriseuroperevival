@@ -1,0 +1,14 @@
+{
+    "agents": [
+        "claude_code"
+    ],
+    "editors": [
+        "claude_code",
+        "vscode"
+    ],
+    "guidelines": [
+        "laravel/fortify",
+        "filament/blueprint"
+    ],
+    "herd_mcp": true
+}
