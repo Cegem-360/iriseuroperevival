@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Override;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Database\Factories\OrderItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderItem extends Model
 {
-    /** @use HasFactory<\Database\Factories\OrderItemFactory> */
+    /** @use HasFactory<OrderItemFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -31,13 +34,14 @@ class OrderItem extends Model
         ];
     }
 
+    #[Override]
     protected static function booted(): void
     {
-        static::creating(function (OrderItem $item) {
+        static::creating(function (OrderItem $item): void {
             $item->total = $item->unit_price * $item->quantity;
         });
 
-        static::updating(function (OrderItem $item) {
+        static::updating(function (OrderItem $item): void {
             $item->total = $item->unit_price * $item->quantity;
         });
     }
@@ -52,13 +56,13 @@ class OrderItem extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function getUnitPriceInEurosAttribute(): float
+    protected function unitPriceInEuros(): Attribute
     {
-        return $this->unit_price / 100;
+        return Attribute::make(get: fn(): int|float => $this->unit_price / 100);
     }
 
-    public function getTotalInEurosAttribute(): float
+    protected function totalInEuros(): Attribute
     {
-        return $this->total / 100;
+        return Attribute::make(get: fn(): int|float => $this->total / 100);
     }
 }

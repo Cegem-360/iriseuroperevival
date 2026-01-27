@@ -1,9 +1,4 @@
-{{-- resources/views/pages/register-success.blade.php --}}
-@extends('layouts.app')
-
-@section('title', 'Registration Successful | Europe Revival 2026')
-
-@section('content')
+<div>
 <div class="min-h-screen bg-stone-950 flex items-center justify-center px-4 py-20">
     <div class="max-w-lg w-full text-center">
         {{-- Success Animation --}}
@@ -172,4 +167,4 @@
         </div>
     </div>
 </div>
-@endsection
+</div>

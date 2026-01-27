@@ -2,6 +2,10 @@
 
 namespace App\Livewire\Shop;
 
+use Illuminate\Support\Collection;
+use App\Models\PromotionCode;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Services\CartService;
@@ -52,7 +56,7 @@ class CheckoutForm extends Component
     }
 
     #[Computed]
-    public function items()
+    public function items(): Collection
     {
         return $this->cartService->getItems();
     }
@@ -76,7 +80,7 @@ class CheckoutForm extends Component
     }
 
     #[Computed]
-    public function promotionCode()
+    public function promotionCode(): ?PromotionCode
     {
         return $this->cartService->getPromotionCode();
     }
@@ -93,7 +97,7 @@ class CheckoutForm extends Component
         }
 
         // Create the order
-        $order = Order::create([
+        $order = Order::query()->create([
             'customer_name' => $this->customerName,
             'email' => $this->email,
             'phone' => $this->phone,
@@ -108,7 +112,7 @@ class CheckoutForm extends Component
 
         // Create order items
         foreach ($this->items as $item) {
-            OrderItem::create([
+            OrderItem::query()->create([
                 'order_id' => $order->id,
                 'product_id' => $item['product']->id,
                 'product_name' => $item['product']->name,
@@ -124,19 +128,17 @@ class CheckoutForm extends Component
         // Create Stripe checkout session
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $lineItems = $this->items->map(function ($item) {
-            return [
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => [
-                        'name' => $item['product']->name,
-                        'description' => $item['product']->description ?? null,
-                    ],
-                    'unit_amount' => $item['product']->price,
+        $lineItems = $this->items->map(fn($item) => [
+            'price_data' => [
+                'currency' => 'eur',
+                'product_data' => [
+                    'name' => $item['product']->name,
+                    'description' => $item['product']->description ?? null,
                 ],
-                'quantity' => $item['quantity'],
-            ];
-        })->toArray();
+                'unit_amount' => $item['product']->price,
+            ],
+            'quantity' => $item['quantity'],
+        ])->toArray();
 
         // Add discount as a negative line item if applicable
         if ($this->discount > 0) {
@@ -178,7 +180,7 @@ class CheckoutForm extends Component
         $this->redirect($session->url);
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         return view('livewire.shop.checkout-form');
     }

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Shop;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\Product;
 use App\Services\CartService;
 use Livewire\Attributes\Computed;
@@ -15,7 +17,7 @@ class ProductCatalog extends Component
 
     public function addToCart(int $productId): void
     {
-        $product = Product::find($productId);
+        $product = Product::query()->find($productId);
 
         if (! $product || ! $product->is_active || ! $product->isInStock()) {
             session()->flash('error', 'Product is not available.');
@@ -47,7 +49,7 @@ class ProductCatalog extends Component
         return app(CartService::class)->count();
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         return view('livewire.shop.product-catalog');
     }

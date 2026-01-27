@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ $title ?? config('app.name') }}</title>
+
+        <link rel="icon" href="/favicon.ico" sizes="any">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
+        @fluxAppearance
+    </head>
+    <body class="min-h-screen bg-stone-950 text-white font-sans antialiased">
+        <div class="flex min-h-screen flex-col items-center justify-center p-6 md:p-10">
+            <div class="w-full max-w-md">
+                {{-- Logo --}}
+                <a href="{{ route('home') }}" class="flex justify-center mb-8" wire:navigate>
+                    <img src="{{ asset('images/europe-revival-logo.svg') }}"
+                         alt="{{ config('app.name') }}"
+                         class="h-12">
+                </a>
+
+                {{-- Card --}}
+                <div class="bg-stone-900 border border-stone-800 rounded-2xl p-8">
+                    {{ $slot }}
+                </div>
+
+                {{-- Back to home link --}}
+                <div class="mt-6 text-center">
+                    <a href="{{ route('home') }}" class="text-sm text-stone-400 hover:text-white transition-colors" wire:navigate>
+                        ← {{ __('Back to home') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @livewireScripts
+        @fluxScripts
+    </body>
+</html>

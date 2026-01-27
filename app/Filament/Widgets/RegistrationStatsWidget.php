@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Widgets;
 
+use Override;
 use App\Models\Registration;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -12,15 +13,16 @@ class RegistrationStatsWidget extends StatsOverviewWidget
 {
     protected static ?int $sort = 1;
 
+    #[Override]
     protected function getStats(): array
     {
-        $totalRegistrations = Registration::count();
-        $attendees = Registration::where('type', 'attendee')->count();
-        $ministryTeam = Registration::where('type', 'ministry')->count();
-        $volunteers = Registration::where('type', 'volunteer')->count();
-        $pendingApprovals = Registration::where('status', 'pending_approval')->count();
-        $paidRegistrations = Registration::whereNotNull('paid_at')->count();
-        $totalRevenue = Registration::whereNotNull('paid_at')->sum('amount');
+        $totalRegistrations = Registration::query()->count();
+        $attendees = Registration::query()->where('type', 'attendee')->count();
+        $ministryTeam = Registration::query()->where('type', 'ministry')->count();
+        $volunteers = Registration::query()->where('type', 'volunteer')->count();
+        $pendingApprovals = Registration::query()->where('status', 'pending_approval')->count();
+        $paidRegistrations = Registration::query()->whereNotNull('paid_at')->count();
+        $totalRevenue = Registration::query()->whereNotNull('paid_at')->sum('amount');
 
         return [
             Stat::make('Total Registrations', $totalRegistrations)

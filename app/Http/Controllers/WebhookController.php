@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Stripe\Webhook;
+use Exception;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -18,21 +20,18 @@ class WebhookController extends Controller
         $endpointSecret = config('services.stripe.webhook_secret');
 
         try {
-            $event = \Stripe\Webhook::constructEvent(
+            $event = Webhook::constructEvent(
                 $payload,
                 $sigHeader,
                 $endpointSecret
             );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response('Webhook Error: ' . $e->getMessage(), 400);
         }
 
-        // Handle the event
-        switch ($event->type) {
-            case 'checkout.session.completed':
-                $session = $event->data->object;
-                app(StripeService::class)->handlePaymentSuccess($session->id);
-                break;
+        if ($event->type === 'checkout.session.completed') {
+            $session = $event->data->object;
+            app(StripeService::class)->handlePaymentSuccess($session->id);
         }
 
         return response('', 200);

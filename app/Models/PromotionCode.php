@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Database\Factories\PromotionCodeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PromotionCode extends Model
 {
-    /** @use HasFactory<\Database\Factories\PromotionCodeFactory> */
+    /** @use HasFactory<PromotionCodeFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -86,32 +89,35 @@ class PromotionCode extends Model
         $this->increment('used_count');
     }
 
-    public function getFormattedValueAttribute(): string
+    protected function formattedValue(): Attribute
     {
-        if ($this->type === 'percentage') {
-            return $this->value.'%';
-        }
-
-        return number_format($this->value / 100, 2).' €';
+        return Attribute::make(get: function (): string {
+            if ($this->type === 'percentage') {
+                return $this->value.'%';
+            }
+            return number_format($this->value / 100, 2).' €';
+        });
     }
 
-    public function scopeActive($query)
+    #[Scope]
+    protected function active($query)
     {
         return $query->where('is_active', true);
     }
 
-    public function scopeValid($query)
+    #[Scope]
+    protected function valid($query)
     {
         return $query->active()
-            ->where(function ($q) {
+            ->where(function ($q): void {
                 $q->whereNull('valid_from')
                     ->orWhere('valid_from', '<=', now());
             })
-            ->where(function ($q) {
+            ->where(function ($q): void {
                 $q->whereNull('valid_until')
                     ->orWhere('valid_until', '>=', now());
             })
-            ->where(function ($q) {
+            ->where(function ($q): void {
                 $q->whereNull('max_uses')
                     ->orWhereColumn('used_count', '<', 'max_uses');
             });

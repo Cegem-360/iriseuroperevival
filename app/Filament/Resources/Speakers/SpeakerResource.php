@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Speakers;
 
+use Override;
 use App\Filament\Resources\Speakers\Pages\CreateSpeaker;
 use App\Filament\Resources\Speakers\Pages\EditSpeaker;
 use App\Filament\Resources\Speakers\Pages\ListSpeakers;
@@ -23,16 +24,19 @@ class SpeakerResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Content';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return SpeakerForm::configure($schema);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return SpeakersTable::configure($table);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [

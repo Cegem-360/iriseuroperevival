@@ -16,12 +16,12 @@
     <div class="flex justify-center gap-2 mb-8">
         @for($i = 1; $i <= $totalSteps; $i++)
             <button wire:click="goToStep({{ $i }})"
-                    @if($i > $currentStep) disabled @endif
+                    {{ $i > $currentStep ? 'disabled' : '' }}
                     class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all
-                           {{ $i === $currentStep 
-                              ? 'bg-amber-500 text-stone-900' 
-                              : ($i < $currentStep 
-                                  ? 'bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 cursor-pointer' 
+                           {{ $i === $currentStep
+                              ? 'bg-amber-500 text-stone-900'
+                              : ($i < $currentStep
+                                  ? 'bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 cursor-pointer'
                                   : 'bg-stone-800 text-white/40 cursor-not-allowed') }}">
                 @if($i < $currentStep)
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -228,7 +228,7 @@
                 <div>
                     <label for="ticket_quantity" class="form-label">Number of Tickets *</label>
                     <div class="flex items-center gap-4">
-                        <button type="button" wire:click="$set('ticket_quantity', Math.max(1, {{ $ticket_quantity }} - 1))"
+                        <button type="button" wire:click="$set('ticket_quantity', {{ max(1, $ticket_quantity - 1) }})"
                                 class="w-12 h-12 bg-stone-800 hover:bg-stone-700 rounded-xl flex items-center justify-center text-white transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
@@ -237,7 +237,7 @@
                         <input type="number" id="ticket_quantity" wire:model.live="ticket_quantity"
                                min="1" max="50"
                                class="w-24 text-center form-input text-xl font-bold">
-                        <button type="button" wire:click="$set('ticket_quantity', Math.min(50, {{ $ticket_quantity }} + 1))"
+                        <button type="button" wire:click="$set('ticket_quantity', {{ min(50, $ticket_quantity + 1) }})"
                                 class="w-12 h-12 bg-stone-800 hover:bg-stone-700 rounded-xl flex items-center justify-center text-white transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>

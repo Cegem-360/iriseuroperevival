@@ -1,9 +1,3 @@
-@extends('layouts.app')
-
-@section('title', 'Shop - Europe Revival 2026')
-@section('description', 'Get your Europe Revival 2026 merchandise, tickets, and more.')
-
-@section('content')
 <div class="min-h-screen bg-zinc-900 py-12">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mb-8 text-center">
@@ -14,4 +8,3 @@
         <livewire:shop.product-catalog />
     </div>
 </div>
-@endsection

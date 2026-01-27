@@ -1,9 +1,4 @@
-{{-- resources/views/pages/register.blade.php --}}
-@extends('layouts.app')
-
-@section('title', $title . ' | Europe Revival 2026')
-
-@section('content')
+<div>
 <div class="min-h-screen bg-stone-950">
     {{-- Hero Header --}}
     <div class="relative pt-32 pb-16 overflow-hidden">
@@ -113,4 +108,4 @@
         </div>
     </div>
 </div>
-@endsection
+</div>

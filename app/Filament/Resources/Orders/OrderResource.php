@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Orders;
 
+use Override;
 use App\Filament\Resources\Orders\Pages\CreateOrder;
 use App\Filament\Resources\Orders\Pages\EditOrder;
 use App\Filament\Resources\Orders\Pages\ListOrders;
@@ -35,16 +36,19 @@ class OrderResource extends Resource
         return 'warning';
     }
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return OrderForm::configure($schema);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return OrdersTable::configure($table);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [

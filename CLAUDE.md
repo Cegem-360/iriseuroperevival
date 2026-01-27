@@ -257,6 +257,90 @@ avatar, badge, brand, breadcrumbs, button, callout, checkbox, dropdown, field, h
     ->assertSeeLivewire(CreatePost::class);
 </code-snippet>
 
+=== livewire/v4-agents rules ===
+
+## Livewire v4 Component Code Examples
+
+All component examples should use **single-file anonymous class format**:
+
+```php
+<?php // resources/views/components/post/create.blade.php
+
+use Livewire\Component;
+use App\Models\Post;
+
+new class extends Component {
+    public $title = '';
+
+    public function save()
+    {
+        Post::create(['title' => $this->title]);
+        $this->redirect('/posts');
+    }
+};
+?>
+
+<form wire:submit="save">
+    <input type="text" wire:model="title">
+    <button type="submit">Save</button>
+</form>
+```
+
+### Key Points for Livewire v4
+
+- Start with file path comment: `<?php // resources/views/components/name.blade.php`
+- Use `new class extends Component` (anonymous class)
+- End with `};` (or `};?>` if Blade follows in same block)
+- No `render()` method unless demonstrating lifecycle hooks
+- Use `#[Computed]` properties for view data
+- Blade accesses computed properties via `$this->`
+- Imports ordered by line length descending
+
+### Component Naming
+
+**RESTful (CRUD operations):**
+- `post.create`, `post.edit`, `post.show`, `posts.index`
+
+**Simple (utilities/one-offs):**
+- `todos`, `counter`, `dashboard`, `cart`
+
+### Classes That Stay Traditional
+
+Do NOT use anonymous classes for:
+- Form objects (`App\Livewire\Forms\*`)
+- Test files (`Tests\*`)
+- Service providers, middleware, traits (definitions only)
+
+### JavaScript in Livewire Components
+
+**Single-file components** use bare `<script>` tags:
+
+```blade
+<script>
+    $wire.on('post-created', () => {
+        // Handle event
+    });
+</script>
+```
+
+**Class-based components** need the `@script` directive:
+
+```blade
+@script
+<script>
+    $wire.on('post-created', () => {
+        // Handle event
+    });
+</script>
+@endscript
+```
+
+### Terminology
+
+- Use "messages" not "commits" when referring to Livewire requests
+- Use "memoize" for single-request persistence (computed properties)
+- Use "cache" for cross-request persistence (session, database)
+
 === pint/core rules ===
 
 ## Laravel Pint Code Formatter

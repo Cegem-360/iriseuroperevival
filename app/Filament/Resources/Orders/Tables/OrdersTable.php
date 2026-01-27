@@ -41,7 +41,7 @@ class OrdersTable
                         default => 'gray',
                     }),
                 TextColumn::make('total')
-                    ->formatStateUsing(fn ($state) => number_format($state / 100, 2).' €')
+                    ->formatStateUsing(fn ($state): string => number_format($state / 100, 2).' €')
                     ->sortable(),
                 TextColumn::make('promotionCode.code')
                     ->label('Promo Code')

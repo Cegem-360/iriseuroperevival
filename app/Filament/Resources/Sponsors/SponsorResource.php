@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Sponsors;
 
+use Override;
 use App\Filament\Resources\Sponsors\Pages\CreateSponsor;
 use App\Filament\Resources\Sponsors\Pages\EditSponsor;
 use App\Filament\Resources\Sponsors\Pages\ListSponsors;
@@ -23,16 +24,19 @@ class SponsorResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Content';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return SponsorForm::configure($schema);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return SponsorsTable::configure($table);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [

@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use Stripe\Customer;
+use Exception;
+use Illuminate\Support\Facades\Date;
 use App\Models\Registration;
-use Stripe\StripeClient;
 use Stripe\Checkout\Session;
-use Illuminate\Support\Carbon;
+use Stripe\StripeClient;
 
 class StripeService
 {
@@ -23,13 +25,16 @@ class StripeService
     {
         $lineItems = $this->buildLineItems($registration);
 
+        // Create or retrieve Stripe Customer with billing details
+        $customer = $this->findOrCreateCustomer($registration);
+
         $session = $this->stripe->checkout->sessions->create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('register.success', ['uuid' => $registration->uuid]) . '?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => route('register.success', ['uuid' => $registration->uuid]).'?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('register.cancel', ['uuid' => $registration->uuid]),
-            'customer_email' => $registration->email,
+            'customer' => $customer->id,
             'metadata' => [
                 'registration_id' => $registration->id,
                 'registration_uuid' => $registration->uuid,
@@ -39,10 +44,67 @@ class StripeService
             'allow_promotion_codes' => true,
         ]);
 
-        // Save the session ID
-        $registration->update(['stripe_session_id' => $session->id]);
+        // Save the session ID and customer ID
+        $registration->update([
+            'stripe_session_id' => $session->id,
+            'stripe_customer_id' => $customer->id,
+        ]);
 
         return $session->url;
+    }
+
+    /**
+     * Find or create a Stripe Customer for the registration.
+     */
+    protected function findOrCreateCustomer(Registration $registration): Customer
+    {
+        // If registration already has a customer ID, retrieve it
+        if ($registration->stripe_customer_id) {
+            try {
+                return $this->stripe->customers->retrieve($registration->stripe_customer_id);
+            } catch (Exception) {
+                // Customer doesn't exist, create a new one
+            }
+        }
+
+        // Search for existing customer by email
+        $existingCustomers = $this->stripe->customers->search([
+            'query' => "email:'{$registration->email}'",
+            'limit' => 1,
+        ]);
+
+        if ($existingCustomers->data) {
+            $customer = $existingCustomers->data[0];
+
+            // Update customer with latest billing details
+            return $this->stripe->customers->update($customer->id, [
+                'name' => $registration->full_name,
+                'phone' => $registration->phone,
+                'address' => $this->buildAddress($registration),
+            ]);
+        }
+
+        // Create new customer
+        return $this->stripe->customers->create([
+            'email' => $registration->email,
+            'name' => $registration->full_name,
+            'phone' => $registration->phone,
+            'address' => $this->buildAddress($registration),
+            'metadata' => [
+                'registration_uuid' => $registration->uuid,
+            ],
+        ]);
+    }
+
+    /**
+     * Build address array for Stripe.
+     */
+    protected function buildAddress(Registration $registration): array
+    {
+        return array_filter([
+            'city' => $registration->city,
+            'country' => $registration->country,
+        ]);
     }
 
     /**
@@ -52,11 +114,11 @@ class StripeService
     {
         $tier = $this->getCurrentPricingTier();
         $pricePerTicket = $this->getTicketPrice($registration->ticket_type, $tier);
-        
-        $ticketName = $registration->ticket_type === 'team' 
-            ? 'Europe Revival 2026 - Team Pass' 
+
+        $ticketName = $registration->ticket_type === 'team'
+            ? 'Europe Revival 2026 - Team Pass'
             : 'Europe Revival 2026 - Individual Ticket';
-        
+
         $description = "October 23-25, 2026 | Budapest, Hungary | {$tier} pricing";
 
         return [
@@ -105,22 +167,22 @@ class StripeService
      */
     public function getCurrentPricingTier(): string
     {
-        $now = Carbon::now();
-        
+        $now = Date::now();
+
         // Early Bird: Until June 30, 2026
-        $earlyBirdEnd = Carbon::create(2026, 6, 30, 23, 59, 59);
-        
+        $earlyBirdEnd = Date::create(2026, 6, 30, 23, 59, 59);
+
         // Regular: July 1 - August 31, 2026
-        $regularEnd = Carbon::create(2026, 8, 31, 23, 59, 59);
-        
+        $regularEnd = Date::create(2026, 8, 31, 23, 59, 59);
+
         if ($now->lte($earlyBirdEnd)) {
             return 'early';
         }
-        
+
         if ($now->lte($regularEnd)) {
             return 'regular';
         }
-        
+
         return 'late';
     }
 
@@ -130,14 +192,14 @@ class StripeService
     public function handlePaymentSuccess(string $sessionId): bool
     {
         $session = $this->stripe->checkout->sessions->retrieve($sessionId);
-        
+
         if ($session->payment_status !== 'paid') {
             return false;
         }
 
-        $registration = Registration::where('stripe_session_id', $sessionId)->first();
-        
-        if (!$registration) {
+        $registration = Registration::query()->where('stripe_session_id', $sessionId)->first();
+
+        if (! $registration) {
             return false;
         }
 
@@ -157,21 +219,23 @@ class StripeService
      */
     public function refund(Registration $registration, ?int $amount = null): bool
     {
-        if (!$registration->stripe_payment_intent) {
+        if (! $registration->stripe_payment_intent) {
             return false;
         }
 
         $params = ['payment_intent' => $registration->stripe_payment_intent];
-        
+
         if ($amount) {
             $params['amount'] = $amount;
         }
 
         try {
             $this->stripe->refunds->create($params);
+
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             report($e);
+
             return false;
         }
     }

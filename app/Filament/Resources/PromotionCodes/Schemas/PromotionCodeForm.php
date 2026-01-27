@@ -43,7 +43,7 @@ class PromotionCodeForm
                             ->required()
                             ->numeric()
                             ->minValue(1)
-                            ->helperText(fn ($get) => $get('type') === 'percentage' ? 'Percentage (1-100)' : 'Amount in cents'),
+                            ->helperText(fn ($get): string => $get('type') === 'percentage' ? 'Percentage (1-100)' : 'Amount in cents'),
                         TextInput::make('min_order_amount')
                             ->numeric()
                             ->minValue(0)

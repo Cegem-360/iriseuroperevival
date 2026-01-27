@@ -1,12 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Settings;
 
 use App\Concerns\PasswordValidationRules;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Layout('components.layouts.auth.simple')]
+#[Title('Password Settings - Europe Revival 2026')]
 class Password extends Component
 {
     use PasswordValidationRules;
@@ -17,9 +24,6 @@ class Password extends Component
 
     public string $password_confirmation = '';
 
-    /**
-     * Update the password for the currently authenticated user.
-     */
     public function updatePassword(): void
     {
         try {
@@ -40,5 +44,10 @@ class Password extends Component
         $this->reset('current_password', 'password', 'password_confirmation');
 
         $this->dispatch('password-updated');
+    }
+
+    public function render(): View
+    {
+        return view('livewire.settings.password');
     }
 }

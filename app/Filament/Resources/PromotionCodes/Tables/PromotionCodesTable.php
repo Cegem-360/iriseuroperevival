@@ -37,7 +37,7 @@ class PromotionCodesTable
                     ->sortable(),
                 TextColumn::make('used_count')
                     ->label('Usage')
-                    ->formatStateUsing(fn ($record) => $record->max_uses
+                    ->formatStateUsing(fn ($record): string => $record->max_uses
                         ? "{$record->used_count}/{$record->max_uses}"
                         : "{$record->used_count}/∞"),
                 TextColumn::make('valid_until')

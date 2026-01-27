@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Mail\MinistryApplicationApproved;
 use App\Mail\MinistryApplicationReceived;
 use App\Mail\MinistryApplicationRejected;
@@ -10,7 +11,7 @@ use App\Mail\RegistrationConfirmation;
 use App\Models\Order;
 use App\Models\Registration;
 
-it('renders registration confirmation email', function () {
+it('renders registration confirmation email', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'attendee',
         'first_name' => 'John',
@@ -27,7 +28,7 @@ it('renders registration confirmation email', function () {
     $mailable->assertSeeInHtml($registration->email);
 });
 
-it('renders ministry application received email', function () {
+it('renders ministry application received email', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'ministry',
         'first_name' => 'Jane',
@@ -41,7 +42,7 @@ it('renders ministry application received email', function () {
     $mailable->assertSeeInHtml('Test Church');
 });
 
-it('renders ministry application approved email', function () {
+it('renders ministry application approved email', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'ministry',
         'first_name' => 'Jane',
@@ -54,7 +55,7 @@ it('renders ministry application approved email', function () {
     $mailable->assertSeeInHtml('Approved');
 });
 
-it('renders ministry application rejected email with reason', function () {
+it('renders ministry application rejected email with reason', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'ministry',
         'first_name' => 'Jane',
@@ -68,7 +69,7 @@ it('renders ministry application rejected email with reason', function () {
     $mailable->assertSeeInHtml('Incomplete application');
 });
 
-it('renders payment confirmation email', function () {
+it('renders payment confirmation email', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'attendee',
         'first_name' => 'John',
@@ -83,7 +84,7 @@ it('renders payment confirmation email', function () {
     $mailable->assertSeeInHtml($registration->uuid);
 });
 
-it('renders refund processed email', function () {
+it('renders refund processed email', function (): void {
     $registration = Registration::factory()->create([
         'first_name' => 'John',
         'amount' => 25000,
@@ -95,7 +96,7 @@ it('renders refund processed email', function () {
     $mailable->assertSeeInHtml($registration->uuid);
 });
 
-it('renders order confirmation email', function () {
+it('renders order confirmation email', function (): void {
     $order = Order::factory()->create([
         'customer_name' => 'Test Customer',
         'total' => 5000,
@@ -107,14 +108,14 @@ it('renders order confirmation email', function () {
     $mailable->assertSeeInHtml($order->uuid);
 });
 
-it('queues registration confirmation email', function () {
+it('queues registration confirmation email', function (): void {
     $mailable = new RegistrationConfirmation(Registration::factory()->create());
 
-    expect($mailable)->toBeInstanceOf(Illuminate\Contracts\Queue\ShouldQueue::class);
+    expect($mailable)->toBeInstanceOf(ShouldQueue::class);
 });
 
-it('queues order confirmation email', function () {
+it('queues order confirmation email', function (): void {
     $mailable = new OrderConfirmation(Order::factory()->create());
 
-    expect($mailable)->toBeInstanceOf(Illuminate\Contracts\Queue\ShouldQueue::class);
+    expect($mailable)->toBeInstanceOf(ShouldQueue::class);
 });

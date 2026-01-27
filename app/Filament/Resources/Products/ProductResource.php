@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products;
 
+use Override;
 use App\Filament\Resources\Products\Pages\CreateProduct;
 use App\Filament\Resources\Products\Pages\EditProduct;
 use App\Filament\Resources\Products\Pages\ListProducts;
@@ -23,16 +24,19 @@ class ProductResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Shop';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return ProductForm::configure($schema);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return ProductsTable::configure($table);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [

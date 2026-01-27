@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use Override;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +14,7 @@ use Illuminate\Support\Str;
 
 class Order extends Model
 {
-    /** @use HasFactory<\Database\Factories\OrderFactory> */
+    /** @use HasFactory<OrderFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -41,9 +45,10 @@ class Order extends Model
         ];
     }
 
+    #[Override]
     protected static function booted(): void
     {
-        static::creating(function (Order $order) {
+        static::creating(function (Order $order): void {
             $order->uuid = $order->uuid ?? (string) Str::uuid();
         });
     }
@@ -58,24 +63,24 @@ class Order extends Model
         return $this->belongsTo(PromotionCode::class);
     }
 
-    public function getTotalInEurosAttribute(): float
+    protected function totalInEuros(): Attribute
     {
-        return $this->total / 100;
+        return Attribute::make(get: fn(): int|float => $this->total / 100);
     }
 
-    public function getFormattedTotalAttribute(): string
+    protected function formattedTotal(): Attribute
     {
-        return number_format($this->total_in_euros, 2).' €';
+        return Attribute::make(get: fn(): string => number_format($this->total_in_euros, 2).' €');
     }
 
-    public function getSubtotalInEurosAttribute(): float
+    protected function subtotalInEuros(): Attribute
     {
-        return $this->subtotal / 100;
+        return Attribute::make(get: fn(): int|float => $this->subtotal / 100);
     }
 
-    public function getDiscountInEurosAttribute(): float
+    protected function discountInEuros(): Attribute
     {
-        return $this->discount / 100;
+        return Attribute::make(get: fn(): int|float => $this->discount / 100);
     }
 
     public function isPaid(): bool
@@ -107,17 +112,20 @@ class Order extends Model
         return $this->promotionCode->calculateDiscount($this->subtotal);
     }
 
-    public function scopeOfStatus($query, string $status)
+    #[Scope]
+    protected function ofStatus($query, string $status)
     {
         return $query->where('status', $status);
     }
 
-    public function scopePaid($query)
+    #[Scope]
+    protected function paid($query)
     {
         return $query->whereNotNull('paid_at');
     }
 
-    public function scopePending($query)
+    #[Scope]
+    protected function pending($query)
     {
         return $query->where('status', 'pending');
     }

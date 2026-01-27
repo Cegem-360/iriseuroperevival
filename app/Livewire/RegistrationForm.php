@@ -2,6 +2,9 @@
 
 namespace App\Livewire;
 
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use App\Models\Registration;
 use App\Services\StripeService;
@@ -59,7 +62,7 @@ class RegistrationForm extends Component
     
     protected $listeners = ['resetForm'];
     
-    public function mount(string $type = 'attendee')
+    public function mount(string $type = 'attendee'): void
     {
         $this->type = $type;
         
@@ -277,9 +280,9 @@ class RegistrationForm extends Component
             }
             
             // For ministry/volunteer - redirect to success page
-            return redirect()->route('register.success', ['uuid' => $registration->uuid]);
+            return to_route('register.success', ['uuid' => $registration->uuid]);
             
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error = 'An error occurred. Please try again or contact support.';
             $this->processing = false;
             
@@ -333,7 +336,7 @@ class RegistrationForm extends Component
             $data['languages'] = $this->languages;
         }
         
-        return Registration::create($data);
+        return Registration::query()->create($data);
     }
     
     protected function calculateAmount(): int
@@ -362,7 +365,7 @@ class RegistrationForm extends Component
         $this->currentStep = 1;
     }
     
-    public function render()
+    public function render(): Factory|View
     {
         return view('livewire.registration-form');
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Registrations;
 
+use Override;
 use App\Filament\Resources\Registrations\Pages\CreateRegistration;
 use App\Filament\Resources\Registrations\Pages\EditRegistration;
 use App\Filament\Resources\Registrations\Pages\ListRegistrations;
@@ -39,16 +40,19 @@ class RegistrationResource extends Resource
         return 'warning';
     }
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return RegistrationForm::configure($schema);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return RegistrationsTable::configure($table);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [

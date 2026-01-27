@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Widgets;
 
+use Override;
+use Illuminate\Support\Facades\Date;
 use App\Models\Registration;
 use Filament\Widgets\ChartWidget;
-use Illuminate\Support\Carbon;
 
 class RevenueChartWidget extends ChartWidget
 {
@@ -16,6 +17,7 @@ class RevenueChartWidget extends ChartWidget
 
     protected int|string|array $columnSpan = 'full';
 
+    #[Override]
     protected function getData(): array
     {
         $data = $this->getRevenuePerMonth();
@@ -49,10 +51,10 @@ class RevenueChartWidget extends ChartWidget
 
         // Get data for the last 6 months
         for ($i = 5; $i >= 0; $i--) {
-            $date = Carbon::now()->subMonths($i);
+            $date = Date::now()->subMonths($i);
             $months->push($date->format('M Y'));
 
-            $monthlyData = Registration::whereNotNull('paid_at')
+            $monthlyData = Registration::query()->whereNotNull('paid_at')
                 ->whereYear('paid_at', $date->year)
                 ->whereMonth('paid_at', $date->month)
                 ->selectRaw('SUM(amount) as total, COUNT(*) as count')

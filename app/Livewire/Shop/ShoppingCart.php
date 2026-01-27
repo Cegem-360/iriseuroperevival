@@ -2,6 +2,10 @@
 
 namespace App\Livewire\Shop;
 
+use Illuminate\Support\Collection;
+use App\Models\PromotionCode;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Services\CartService;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -58,7 +62,7 @@ class ShoppingCart extends Component
     }
 
     #[Computed]
-    public function items()
+    public function items(): Collection
     {
         return $this->cartService->getItems();
     }
@@ -82,7 +86,7 @@ class ShoppingCart extends Component
     }
 
     #[Computed]
-    public function promotionCode()
+    public function promotionCode(): ?PromotionCode
     {
         return $this->cartService->getPromotionCode();
     }
@@ -99,7 +103,7 @@ class ShoppingCart extends Component
         // Computed properties will automatically refresh
     }
 
-    public function render()
+    public function render(): Factory|View
     {
         return view('livewire.shop.shopping-cart');
     }

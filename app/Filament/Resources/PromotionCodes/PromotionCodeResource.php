@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\PromotionCodes;
 
+use Override;
 use App\Filament\Resources\PromotionCodes\Pages\CreatePromotionCode;
 use App\Filament\Resources\PromotionCodes\Pages\EditPromotionCode;
 use App\Filament\Resources\PromotionCodes\Pages\ListPromotionCodes;
@@ -27,16 +28,19 @@ class PromotionCodeResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Shop';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return PromotionCodeForm::configure($schema);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return PromotionCodesTable::configure($table);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [

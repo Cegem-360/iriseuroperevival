@@ -16,8 +16,8 @@ class CartService
     {
         $items = session(self::SESSION_KEY, []);
 
-        return collect($items)->map(function ($item) {
-            $product = Product::find($item['product_id']);
+        return collect($items)->map(function (array $item): ?array {
+            $product = Product::query()->find($item['product_id']);
 
             if (! $product) {
                 return null;
@@ -88,7 +88,7 @@ class CartService
     {
         $promoCode = $this->getPromotionCode();
 
-        if (! $promoCode) {
+        if (!$promoCode instanceof PromotionCode) {
             return 0;
         }
 
@@ -102,7 +102,7 @@ class CartService
 
     public function applyPromotionCode(string $code): bool
     {
-        $promoCode = PromotionCode::where('code', $code)->first();
+        $promoCode = PromotionCode::query()->where('code', $code)->first();
 
         if (! $promoCode || ! $promoCode->isValid($this->subtotal())) {
             return false;
@@ -126,7 +126,7 @@ class CartService
             return null;
         }
 
-        return PromotionCode::find($promoCodeId);
+        return PromotionCode::query()->find($promoCodeId);
     }
 
     public function isEmpty(): bool

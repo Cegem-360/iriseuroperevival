@@ -32,11 +32,11 @@ class ProductsTable
                         default => 'gray',
                     }),
                 TextColumn::make('price')
-                    ->formatStateUsing(fn ($state) => number_format($state / 100, 2).' €')
+                    ->formatStateUsing(fn ($state): string => number_format($state / 100, 2).' €')
                     ->sortable(),
                 TextColumn::make('stock_quantity')
                     ->label('Stock')
-                    ->formatStateUsing(fn ($state) => $state === null ? '∞' : $state)
+                    ->formatStateUsing(fn ($state) => $state ?? '∞')
                     ->sortable(),
                 IconColumn::make('is_active')
                     ->boolean()

@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Database\Factories\FaqFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-    /** @use HasFactory<\Database\Factories\FaqFactory> */
+    /** @use HasFactory<FaqFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -27,25 +30,29 @@ class Faq extends Model
         ];
     }
 
-    public function getTranslatedAttribute(string $attribute, ?string $locale = null): ?string
+    protected function translated(): Attribute
     {
-        $locale = $locale ?? app()->getLocale();
-        $translations = $this->translations ?? [];
-
-        return $translations[$locale][$attribute] ?? $this->$attribute;
+        return Attribute::make(get: function (string $attribute, ?string $locale = null) {
+            $locale = $locale ?? app()->getLocale();
+            $translations = $this->translations ?? [];
+            return $translations[$locale][$attribute] ?? $this->$attribute;
+        });
     }
 
-    public function scopePublished($query)
+    #[Scope]
+    protected function published($query)
     {
         return $query->where('is_published', true);
     }
 
-    public function scopeOfCategory($query, string $category)
+    #[Scope]
+    protected function ofCategory($query, string $category)
     {
         return $query->where('category', $category);
     }
 
-    public function scopeOrdered($query)
+    #[Scope]
+    protected function ordered($query)
     {
         return $query->orderBy('sort_order');
     }

@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use Override;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,7 +13,7 @@ use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    /** @use HasFactory<\Database\Factories\ProductFactory> */
+    /** @use HasFactory<ProductFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -36,9 +40,10 @@ class Product extends Model
         ];
     }
 
+    #[Override]
     protected static function booted(): void
     {
-        static::creating(function (Product $product) {
+        static::creating(function (Product $product): void {
             $product->uuid = $product->uuid ?? (string) Str::uuid();
             $product->slug = $product->slug ?? Str::slug($product->name);
         });
@@ -49,14 +54,14 @@ class Product extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    public function getPriceInEurosAttribute(): float
+    protected function priceInEuros(): Attribute
     {
-        return $this->price / 100;
+        return Attribute::make(get: fn(): int|float => $this->price / 100);
     }
 
-    public function getFormattedPriceAttribute(): string
+    protected function formattedPrice(): Attribute
     {
-        return number_format($this->price_in_euros, 2).' €';
+        return Attribute::make(get: fn(): string => number_format($this->price_in_euros, 2).' €');
     }
 
     public function isInStock(): bool
@@ -75,25 +80,29 @@ class Product extends Model
         }
     }
 
-    public function scopeActive($query)
+    #[Scope]
+    protected function active($query)
     {
         return $query->where('is_active', true);
     }
 
-    public function scopeInStock($query)
+    #[Scope]
+    protected function inStock($query)
     {
-        return $query->where(function ($q) {
+        return $query->where(function ($q): void {
             $q->whereNull('stock_quantity')
                 ->orWhere('stock_quantity', '>', 0);
         });
     }
 
-    public function scopeOfType($query, string $type)
+    #[Scope]
+    protected function ofType($query, string $type)
     {
         return $query->where('type', $type);
     }
 
-    public function scopeOrdered($query)
+    #[Scope]
+    protected function ordered($query)
     {
         return $query->orderBy('sort_order');
     }

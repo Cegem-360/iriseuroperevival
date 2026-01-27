@@ -1,10 +1,4 @@
-{{-- resources/views/home.blade.php --}}
-@extends('layouts.app')
-
-@section('title', 'Europe Revival 2026 - Encounter Jesus. Catch on Fire.')
-
-@section('content')
-
+<div>
 {{-- ============================================
     HERO SECTION
 ============================================= --}}
@@ -1022,5 +1016,4 @@
         </p>
     </div>
 </section>
-
-@endsection
+</div>

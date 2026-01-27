@@ -1,9 +1,3 @@
-@extends('layouts.app')
-
-@section('title', 'Order Confirmed - Europe Revival 2026')
-@section('description', 'Thank you for your order!')
-
-@section('content')
 <div class="min-h-screen bg-zinc-900 py-12">
     <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div class="rounded-2xl border border-zinc-700 bg-zinc-800 p-8 text-center">
@@ -64,4 +58,3 @@
         </div>
     </div>
 </div>
-@endsection

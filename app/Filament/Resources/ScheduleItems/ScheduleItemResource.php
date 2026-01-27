@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ScheduleItems;
 
+use Override;
 use App\Filament\Resources\ScheduleItems\Pages\CreateScheduleItem;
 use App\Filament\Resources\ScheduleItems\Pages\EditScheduleItem;
 use App\Filament\Resources\ScheduleItems\Pages\ListScheduleItems;
@@ -27,16 +28,19 @@ class ScheduleItemResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Content';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
         return ScheduleItemForm::configure($schema);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
         return ScheduleItemsTable::configure($table);
     }
 
+    #[Override]
     public static function getRelations(): array
     {
         return [
