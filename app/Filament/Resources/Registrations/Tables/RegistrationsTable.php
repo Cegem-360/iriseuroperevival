@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Registrations\Tables;
 
+use App\Mail\ReferenceRequest;
 use App\Models\Registration;
 use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -19,6 +21,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationsTable
 {
@@ -155,6 +158,105 @@ class RegistrationsTable
                             ->success()
                             ->send();
                     }),
+                ActionGroup::make([
+                    Action::make('contact_reference_1')
+                        ->label('Contact Reference 1')
+                        ->icon('heroicon-o-envelope')
+                        ->color('info')
+                        ->requiresConfirmation()
+                        ->modalHeading('Contact Reference 1')
+                        ->modalDescription(fn (Registration $record): string => "Send reference request email to {$record->reference_1_name} ({$record->reference_1_email})?")
+                        ->visible(fn (Registration $record): bool => $record->type === 'ministry'
+                            && $record->reference_1_email
+                            && $record->reference_1_status !== 'contacted'
+                            && $record->reference_1_status !== 'responded')
+                        ->action(function (Registration $record): void {
+                            Mail::to($record->reference_1_email)->queue(
+                                new ReferenceRequest($record, 1, $record->reference_1_name),
+                            );
+
+                            $record->update([
+                                'reference_1_status' => 'contacted',
+                                'reference_1_contacted_at' => now(),
+                            ]);
+
+                            Notification::make()
+                                ->title('Reference request sent')
+                                ->body("Email sent to {$record->reference_1_name}")
+                                ->success()
+                                ->send();
+                        }),
+                    Action::make('contact_reference_2')
+                        ->label('Contact Reference 2')
+                        ->icon('heroicon-o-envelope')
+                        ->color('info')
+                        ->requiresConfirmation()
+                        ->modalHeading('Contact Reference 2')
+                        ->modalDescription(fn (Registration $record): string => "Send reference request email to {$record->reference_2_name} ({$record->reference_2_email})?")
+                        ->visible(fn (Registration $record): bool => $record->type === 'ministry'
+                            && $record->reference_2_email
+                            && $record->reference_2_status !== 'contacted'
+                            && $record->reference_2_status !== 'responded')
+                        ->action(function (Registration $record): void {
+                            Mail::to($record->reference_2_email)->queue(
+                                new ReferenceRequest($record, 2, $record->reference_2_name),
+                            );
+
+                            $record->update([
+                                'reference_2_status' => 'contacted',
+                                'reference_2_contacted_at' => now(),
+                            ]);
+
+                            Notification::make()
+                                ->title('Reference request sent')
+                                ->body("Email sent to {$record->reference_2_name}")
+                                ->success()
+                                ->send();
+                        }),
+                    Action::make('contact_all_references')
+                        ->label('Contact Both References')
+                        ->icon('heroicon-o-envelope-open')
+                        ->color('warning')
+                        ->requiresConfirmation()
+                        ->modalHeading('Contact Both References')
+                        ->modalDescription('Send reference request emails to both references?')
+                        ->visible(fn (Registration $record): bool => $record->type === 'ministry'
+                            && $record->reference_1_email
+                            && $record->reference_2_email
+                            && ($record->reference_1_status === 'pending' || $record->reference_2_status === 'pending'))
+                        ->action(function (Registration $record): void {
+                            $contacted = 0;
+
+                            if ($record->reference_1_status === 'pending' && $record->reference_1_email) {
+                                Mail::to($record->reference_1_email)->queue(
+                                    new ReferenceRequest($record, 1, $record->reference_1_name),
+                                );
+                                $record->reference_1_status = 'contacted';
+                                $record->reference_1_contacted_at = now();
+                                $contacted++;
+                            }
+
+                            if ($record->reference_2_status === 'pending' && $record->reference_2_email) {
+                                Mail::to($record->reference_2_email)->queue(
+                                    new ReferenceRequest($record, 2, $record->reference_2_name),
+                                );
+                                $record->reference_2_status = 'contacted';
+                                $record->reference_2_contacted_at = now();
+                                $contacted++;
+                            }
+
+                            $record->save();
+
+                            Notification::make()
+                                ->title('Reference requests sent')
+                                ->body("Sent {$contacted} reference request(s)")
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                    ->label('References')
+                    ->icon('heroicon-o-user-group')
+                    ->visible(fn (Registration $record): bool => $record->type === 'ministry'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

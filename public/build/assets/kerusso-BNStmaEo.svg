@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Kerusso Logo -->
+  <rect width="200" height="60" fill="#000000"/>
+
+  <!-- KERUSSO text with stylized E -->
+  <text x="100" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="white" font-weight="bold" letter-spacing="2">KERUSSO</text>
+
+  <!-- Stylized line through E -->
+  <line x1="38" y1="30" x2="52" y2="30" stroke="white" stroke-width="3"/>
+</svg>

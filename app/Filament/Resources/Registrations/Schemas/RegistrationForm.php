@@ -74,6 +74,7 @@ class RegistrationForm
                             ->options([
                                 'individual' => 'Individual',
                                 'team' => 'Team',
+                                'volunteer' => 'Volunteer',
                             ]),
                         TextInput::make('ticket_quantity')
                             ->label('Quantity')
@@ -144,6 +145,22 @@ class RegistrationForm
                             ->label('Reference 1 Email')
                             ->email()
                             ->maxLength(255),
+                        Select::make('reference_1_status')
+                            ->label('Reference 1 Status')
+                            ->options([
+                                'pending' => 'Pending',
+                                'contacted' => 'Contacted',
+                                'responded' => 'Responded',
+                                'approved' => 'Approved',
+                                'rejected' => 'Rejected',
+                            ]),
+                        DateTimePicker::make('reference_1_contacted_at')
+                            ->label('Reference 1 Contacted At'),
+                        Textarea::make('reference_1_response')
+                            ->label('Reference 1 Response')
+                            ->rows(3)
+                            ->columnSpanFull(),
+
                         TextInput::make('reference_2_name')
                             ->label('Reference 2 Name')
                             ->maxLength(200),
@@ -151,6 +168,26 @@ class RegistrationForm
                             ->label('Reference 2 Email')
                             ->email()
                             ->maxLength(255),
+                        Select::make('reference_2_status')
+                            ->label('Reference 2 Status')
+                            ->options([
+                                'pending' => 'Pending',
+                                'contacted' => 'Contacted',
+                                'responded' => 'Responded',
+                                'approved' => 'Approved',
+                                'rejected' => 'Rejected',
+                            ]),
+                        DateTimePicker::make('reference_2_contacted_at')
+                            ->label('Reference 2 Contacted At'),
+                        Textarea::make('reference_2_response')
+                            ->label('Reference 2 Response')
+                            ->rows(3)
+                            ->columnSpanFull(),
+
+                        TextInput::make('invited_by')
+                            ->label('Invited By')
+                            ->maxLength(200)
+                            ->columnSpanFull(),
                     ])
                     ->columns(2)
                     ->collapsible()

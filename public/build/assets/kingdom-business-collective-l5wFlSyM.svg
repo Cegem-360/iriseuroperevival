@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Kingdom Business Collective Logo -->
+  <circle cx="100" cy="100" r="95" fill="#F472B6"/>
+
+  <!-- KBC Text -->
+  <text x="100" y="95" text-anchor="middle" font-family="Times New Roman, Times, serif" font-size="58" fill="white" font-weight="400">KBC</text>
+
+  <!-- Kingdom Business Collective text -->
+  <text x="100" y="125" text-anchor="middle" font-family="Times New Roman, Times, serif" font-size="14" fill="white">Kingdom Business Collective</text>
+</svg>

@@ -1,12 +1,28 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CUSjkO6a.css",
+    "file": "assets/app-LJ57OpGy.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
     "names": [
       "app.css"
     ]
+  },
+  "resources/images/sponsors/iris-global-uk.svg": {
+    "file": "assets/iris-global-uk-BpzEsppr.svg",
+    "src": "resources/images/sponsors/iris-global-uk.svg"
+  },
+  "resources/images/sponsors/kerusso.svg": {
+    "file": "assets/kerusso-BNStmaEo.svg",
+    "src": "resources/images/sponsors/kerusso.svg"
+  },
+  "resources/images/sponsors/kingdom-business-collective.svg": {
+    "file": "assets/kingdom-business-collective-l5wFlSyM.svg",
+    "src": "resources/images/sponsors/kingdom-business-collective.svg"
+  },
+  "resources/images/sponsors/mighty-warrior-international.svg": {
+    "file": "assets/mighty-warrior-international-BxA-bwDI.svg",
+    "src": "resources/images/sponsors/mighty-warrior-international.svg"
   },
   "resources/js/app.js": {
     "file": "assets/app-Bi6NvaTD.js",

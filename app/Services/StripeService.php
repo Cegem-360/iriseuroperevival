@@ -115,13 +115,16 @@ class StripeService
     protected function buildLineItems(Registration $registration): array
     {
         $tier = $this->getCurrentPricingTier();
-        $pricePerTicket = $this->getTicketPrice($registration->ticket_type, $tier);
+        $ticketType = $registration->type === 'volunteer' ? 'volunteer' : $registration->ticket_type;
+        $pricePerTicket = $this->getTicketPrice($ticketType, $tier);
 
-        $ticketName = $registration->ticket_type === 'team'
-            ? 'Europe Revival 2026 - Team Pass'
-            : 'Europe Revival 2026 - Individual Ticket';
+        $ticketName = match ($ticketType) {
+            'team' => 'Europe Revival 2026 - Team Pass',
+            'volunteer' => 'Europe Revival 2026 - Volunteer Pass',
+            default => 'Europe Revival 2026 - Individual Ticket',
+        };
 
-        $description = "October 23-25, 2026 | Budapest, Hungary | {$tier} pricing";
+        $description = "August 6-9, 2026 | Budapest, Hungary | {$tier} pricing";
 
         return [
             [
@@ -136,7 +139,7 @@ class StripeService
                     ],
                     'unit_amount' => $pricePerTicket, // Amount in cents
                 ],
-                'quantity' => $registration->ticket_quantity,
+                'quantity' => $registration->ticket_quantity ?? 1,
             ],
         ];
     }
@@ -148,20 +151,31 @@ class StripeService
     {
         $prices = [
             'early' => [
-                'individual' => 4900, // €49
-                'team' => 3900,       // €39
+                'individual' => 4900,   // €49
+                'team' => 3900,         // €39
+                'volunteer' => 2900,    // €29 - Volunteer discounted rate
             ],
             'regular' => [
-                'individual' => 5900, // €59
-                'team' => 4900,       // €49
+                'individual' => 5900,   // €59
+                'team' => 4900,         // €49
+                'volunteer' => 3900,    // €39 - Volunteer discounted rate
             ],
             'late' => [
-                'individual' => 6900, // €69
-                'team' => 5900,       // €59
+                'individual' => 6900,   // €69
+                'team' => 5900,         // €59
+                'volunteer' => 4900,    // €49 - Volunteer discounted rate
             ],
         ];
 
-        return $prices[$tier][$ticketType] ?? $prices['late'][$ticketType];
+        return $prices[$tier][$ticketType] ?? $prices['late']['individual'];
+    }
+
+    /**
+     * Get volunteer ticket price for the current tier.
+     */
+    public function getVolunteerPrice(): int
+    {
+        return $this->getTicketPrice('volunteer', $this->getCurrentPricingTier());
     }
 
     /**

@@ -52,6 +52,18 @@ class Registration extends Model
         'reference_1_email',
         'reference_2_name',
         'reference_2_email',
+        'invited_by',
+
+        // Reference Tracking
+        'reference_1_contacted_at',
+        'reference_1_status',
+        'reference_1_response',
+        'reference_2_contacted_at',
+        'reference_2_status',
+        'reference_2_response',
+
+        // Email Tracking
+        'confirmation_email_sent_at',
 
         // Payment Info
         'stripe_customer_id',
@@ -262,6 +274,9 @@ class Registration extends Model
             'paid_at' => 'datetime',
             'approved_at' => 'datetime',
             'rejected_at' => 'datetime',
+            'reference_1_contacted_at' => 'datetime',
+            'reference_2_contacted_at' => 'datetime',
+            'confirmation_email_sent_at' => 'datetime',
         ];
     }
 }

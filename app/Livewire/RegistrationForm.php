@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Mail\MinistryApplicationReceived;
+use App\Mail\RegistrationConfirmation;
 use App\Models\Registration;
 use App\Services\StripeService;
 use Exception;
@@ -23,6 +25,7 @@ use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -305,6 +308,16 @@ class RegistrationForm extends Component implements HasSchemas
                                     ->placeholder('Email address'),
                             ]),
                     ]),
+
+                Section::make('Invitation')
+                    ->collapsed()
+                    ->schema([
+                        TextInput::make('invited_by')
+                            ->label('Who invited you? (Optional)')
+                            ->maxLength(200)
+                            ->placeholder('Name of the person who invited you')
+                            ->helperText('If someone from our team invited you to apply, please enter their name.'),
+                    ]),
             ]);
     }
 
@@ -371,6 +384,12 @@ class RegistrationForm extends Component implements HasSchemas
                     ])
                     ->columns(3)
                     ->gridDirection('row'),
+
+                Section::make('Volunteer Pass')
+                    ->description('As a volunteer, you receive a discounted conference pass.')
+                    ->schema([
+                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.volunteer-pricing'),
+                    ]),
             ]);
     }
 
@@ -422,13 +441,15 @@ class RegistrationForm extends Component implements HasSchemas
         try {
             $registration = $this->createRegistration($data);
 
-            if ($this->type === 'attendee') {
+            // Attendees and volunteers go through Stripe payment
+            if (in_array($this->type, ['attendee', 'volunteer'])) {
                 $stripeService = app(StripeService::class);
                 $checkoutUrl = $stripeService->createCheckoutSession($registration);
 
                 return redirect($checkoutUrl);
             }
 
+            // Ministry team doesn't pay - just submits application
             Notification::make()
                 ->title('Application Submitted!')
                 ->success()
@@ -459,13 +480,19 @@ class RegistrationForm extends Component implements HasSchemas
             'phone' => $data['phone'],
             'country' => $data['country'],
             'city' => $data['city'],
-            'status' => $this->type === 'attendee' ? 'pending_payment' : 'pending_approval',
+            'status' => $this->type === 'ministry' ? 'pending_approval' : 'pending_payment',
         ];
 
         if ($this->type === 'attendee') {
             $registrationData['ticket_type'] = $data['ticket_type'];
             $registrationData['ticket_quantity'] = $data['ticket_quantity'];
             $registrationData['amount'] = $this->calculateAmount($data);
+        }
+
+        if ($this->type === 'volunteer') {
+            $registrationData['ticket_type'] = 'volunteer';
+            $registrationData['ticket_quantity'] = 1;
+            $registrationData['amount'] = app(StripeService::class)->getVolunteerPrice();
         }
 
         if ($this->type === 'ministry') {
@@ -485,13 +512,32 @@ class RegistrationForm extends Component implements HasSchemas
             $registrationData['reference_1_email'] = $data['reference_1_email'];
             $registrationData['reference_2_name'] = $data['reference_2_name'];
             $registrationData['reference_2_email'] = $data['reference_2_email'];
+            $registrationData['invited_by'] = $data['invited_by'] ?? null;
+            $registrationData['reference_1_status'] = 'pending';
+            $registrationData['reference_2_status'] = 'pending';
         }
 
         if ($this->type === 'volunteer') {
             $registrationData['languages'] = $data['languages'];
         }
 
-        return Registration::query()->create($registrationData);
+        $registration = Registration::query()->create($registrationData);
+
+        // Send confirmation email
+        $this->sendConfirmationEmail($registration);
+
+        return $registration;
+    }
+
+    protected function sendConfirmationEmail(Registration $registration): void
+    {
+        if ($registration->type === 'ministry') {
+            Mail::to($registration->email)->queue(new MinistryApplicationReceived($registration));
+        } elseif ($registration->type === 'volunteer') {
+            Mail::to($registration->email)->queue(new RegistrationConfirmation($registration));
+        }
+
+        $registration->update(['confirmation_email_sent_at' => now()]);
     }
 
     protected function calculateAmount(array $data): int
