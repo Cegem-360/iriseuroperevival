@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Registration;
@@ -52,7 +54,7 @@ class RegistrationFactory extends Factory
             'citizenship' => fake()->country(),
             'languages' => [fake()->languageCode(), fake()->languageCode()],
             'occupation' => fake()->jobTitle(),
-            'church_name' => fake()->company().' Church',
+            'church_name' => fake()->company() . ' Church',
             'church_city' => fake()->city(),
             'pastor_name' => fake()->name(),
             'pastor_email' => fake()->safeEmail(),
@@ -81,7 +83,7 @@ class RegistrationFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'status' => 'paid',
-            'stripe_payment_intent' => 'pi_'.fake()->uuid(),
+            'stripe_payment_intent' => 'pi_' . fake()->uuid(),
             'paid_at' => now(),
         ]);
     }

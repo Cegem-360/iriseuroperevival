@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -180,7 +182,7 @@ class Registration extends Model
 
     protected function formattedAmount(): Attribute
     {
-        return Attribute::make(get: fn (): string => '€'.number_format($this->amount / 100, 2));
+        return Attribute::make(get: fn (): string => '€' . number_format($this->amount / 100, 2));
     }
 
     protected function statusBadge(): Attribute

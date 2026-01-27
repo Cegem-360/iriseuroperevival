@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\ScheduleItems;
 
 use App\Filament\Resources\ScheduleItems\Pages\CreateScheduleItem;

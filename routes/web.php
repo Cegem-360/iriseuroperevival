@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\WebhookController;
 use App\Livewire\Pages\Dashboard;
 use App\Livewire\Pages\Home;

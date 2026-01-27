@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Shop;
 
 use App\Models\Order;
@@ -146,7 +148,7 @@ class CheckoutForm extends Component
                 'price_data' => [
                     'currency' => 'eur',
                     'product_data' => [
-                        'name' => 'Discount ('.$this->promotionCode->code.')',
+                        'name' => 'Discount (' . $this->promotionCode->code . ')',
                     ],
                     'unit_amount' => -$this->discount,
                 ],
@@ -158,7 +160,7 @@ class CheckoutForm extends Component
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('shop.success', ['uuid' => $order->uuid]).'?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => route('shop.success', ['uuid' => $order->uuid]) . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('shop.checkout'),
             'customer_email' => $this->email,
             'metadata' => [

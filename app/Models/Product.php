@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\ProductFactory;
@@ -61,7 +63,7 @@ class Product extends Model
 
     protected function formattedPrice(): Attribute
     {
-        return Attribute::make(get: fn (): string => number_format($this->price_in_euros, 2).' €');
+        return Attribute::make(get: fn (): string => number_format($this->price_in_euros, 2) . ' €');
     }
 
     public function isInStock(): bool

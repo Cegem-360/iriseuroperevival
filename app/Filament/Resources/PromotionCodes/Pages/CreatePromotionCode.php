@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\PromotionCodes\Pages;
 
 use App\Filament\Resources\PromotionCodes\PromotionCodeResource;

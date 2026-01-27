@@ -50,8 +50,8 @@ class RegistrationStatsWidget extends StatsOverviewWidget
                 ->descriptionIcon('heroicon-o-clock')
                 ->color($pendingApprovals > 0 ? 'warning' : 'success'),
 
-            Stat::make('Total Revenue', '€'.number_format($totalRevenue / 100, 2))
-                ->description($paidRegistrations.' paid registrations')
+            Stat::make('Total Revenue', '€' . number_format($totalRevenue / 100, 2))
+                ->description($paidRegistrations . ' paid registrations')
                 ->descriptionIcon('heroicon-o-currency-euro')
                 ->color('success'),
         ];

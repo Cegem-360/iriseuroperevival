@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Products\Tables;
 
 use Filament\Actions\BulkActionGroup;
@@ -32,7 +34,7 @@ class ProductsTable
                         default => 'gray',
                     }),
                 TextColumn::make('price')
-                    ->formatStateUsing(fn ($state): string => number_format($state / 100, 2).' €')
+                    ->formatStateUsing(fn ($state): string => number_format($state / 100, 2) . ' €')
                     ->sortable(),
                 TextColumn::make('stock_quantity')
                     ->label('Stock')

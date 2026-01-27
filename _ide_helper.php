@@ -27362,6 +27362,87 @@ namespace Illuminate\View {
             }
     }
 
+namespace App\Livewire\Pages {
+    /**
+     */
+    class Home extends \Livewire\Component {
+            }
+    /**
+     */
+    class Program extends \Livewire\Component {
+            }
+    /**
+     */
+    class Workshops extends \Livewire\Component {
+            }
+    /**
+     */
+    class Speakers extends \Livewire\Component {
+            }
+    /**
+     */
+    class Register extends \Livewire\Component {
+            }
+    /**
+     */
+    class RegisterSuccess extends \Livewire\Component {
+            }
+    /**
+     */
+    class RegisterCancel extends \Livewire\Component {
+            }
+    /**
+     */
+    class Privacy extends \Livewire\Component {
+            }
+    /**
+     */
+    class Terms extends \Livewire\Component {
+            }
+    /**
+     */
+    class Dashboard extends \Livewire\Component {
+            }
+    }
+
+namespace App\Livewire\Pages\Shop {
+    /**
+     */
+    class Index extends \Livewire\Component {
+            }
+    /**
+     */
+    class Cart extends \Livewire\Component {
+            }
+    /**
+     */
+    class Checkout extends \Livewire\Component {
+            }
+    /**
+     */
+    class Success extends \Livewire\Component {
+            }
+    }
+
+namespace App\Livewire\Settings {
+    /**
+     */
+    class Profile extends \Livewire\Component {
+            }
+    /**
+     */
+    class Password extends \Livewire\Component {
+            }
+    /**
+     */
+    class Appearance extends \Livewire\Component {
+            }
+    /**
+     */
+    class TwoFactor extends \Livewire\Component {
+            }
+    }
+
 
 namespace  {
     class App extends \Illuminate\Support\Facades\App {}

@@ -6,6 +6,7 @@ namespace App\Livewire\Pages;
 
 use App\Models\Registration;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -16,7 +17,7 @@ class Dashboard extends Component
 {
     public function render(): View
     {
-        $registrations = Registration::forUser(auth()->user())
+        $registrations = Registration::forUser(Auth::user())
             ->latest()
             ->get();
 

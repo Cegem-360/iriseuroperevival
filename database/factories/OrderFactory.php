@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -43,7 +45,7 @@ class OrderFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'status' => 'paid',
             'paid_at' => now(),
-            'stripe_payment_intent' => 'pi_'.Str::random(24),
+            'stripe_payment_intent' => 'pi_' . Str::random(24),
         ]);
     }
 

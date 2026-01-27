@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Models\Registration;
@@ -32,7 +34,7 @@ class StripeService
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('register.success', ['uuid' => $registration->uuid]).'?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => route('register.success', ['uuid' => $registration->uuid]) . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('register.cancel', ['uuid' => $registration->uuid]),
             'customer' => $customer->id,
             'metadata' => [

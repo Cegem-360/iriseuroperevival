@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\OrderFactory;
@@ -70,7 +72,7 @@ class Order extends Model
 
     protected function formattedTotal(): Attribute
     {
-        return Attribute::make(get: fn (): string => number_format($this->total_in_euros, 2).' €');
+        return Attribute::make(get: fn (): string => number_format($this->total_in_euros, 2) . ' €');
     }
 
     protected function subtotalInEuros(): Attribute

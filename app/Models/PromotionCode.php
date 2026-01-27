@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\PromotionCodeFactory;
@@ -93,10 +95,10 @@ class PromotionCode extends Model
     {
         return Attribute::make(get: function (): string {
             if ($this->type === 'percentage') {
-                return $this->value.'%';
+                return $this->value . '%';
             }
 
-            return number_format($this->value / 100, 2).' €';
+            return number_format($this->value / 100, 2) . ' €';
         });
     }
 

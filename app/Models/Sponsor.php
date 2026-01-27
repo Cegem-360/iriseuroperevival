@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\SponsorFactory;
@@ -49,11 +51,11 @@ class Sponsor extends Model
     #[Scope]
     protected function byTierPriority($query)
     {
-        return $query->orderByRaw("CASE tier
-            WHEN 'platinum' THEN 1
-            WHEN 'gold' THEN 2
-            WHEN 'silver' THEN 3
-            WHEN 'bronze' THEN 4
-            ELSE 5 END");
+        return $query->orderByRaw('CASE tier
+            WHEN \'platinum\' THEN 1
+            WHEN \'gold\' THEN 2
+            WHEN \'silver\' THEN 3
+            WHEN \'bronze\' THEN 4
+            ELSE 5 END');
     }
 }

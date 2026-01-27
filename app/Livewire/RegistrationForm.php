@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire;
 
 use App\Models\Registration;
@@ -305,7 +307,6 @@ class RegistrationForm extends Component
 
             // For ministry/volunteer - redirect to success page
             return to_route('register.success', ['uuid' => $registration->uuid]);
-
         } catch (Exception $e) {
             $this->error = 'An error occurred. Please try again or contact support.';
             $this->processing = false;
@@ -381,7 +382,7 @@ class RegistrationForm extends Component
     {
         $amount = $this->calculateAmount();
 
-        return '€'.number_format($amount / 100, 2);
+        return '€' . number_format($amount / 100, 2);
     }
 
     public function resetForm(): void

@@ -21,7 +21,7 @@ class OrderConfirmation extends Mailable implements ShouldQueue
      * Create a new message instance.
      */
     public function __construct(
-        public Order $order
+        public Order $order,
     ) {}
 
     /**

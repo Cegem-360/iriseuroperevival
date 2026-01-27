@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -17,7 +19,7 @@ class FaqFactory extends Factory
     public function definition(): array
     {
         return [
-            'question' => fake()->sentence().'?',
+            'question' => fake()->sentence() . '?',
             'answer' => fake()->paragraphs(2, true),
             'category' => fake()->randomElement(['general', 'registration', 'accommodation', 'travel']),
             'sort_order' => fake()->numberBetween(0, 100),

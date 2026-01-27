@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Services\StripeService;
@@ -23,10 +25,10 @@ class WebhookController extends Controller
             $event = Webhook::constructEvent(
                 $payload,
                 $sigHeader,
-                $endpointSecret
+                $endpointSecret,
             );
         } catch (Exception $e) {
-            return response('Webhook Error: '.$e->getMessage(), 400);
+            return response('Webhook Error: ' . $e->getMessage(), 400);
         }
 
         if ($event->type === 'checkout.session.completed') {

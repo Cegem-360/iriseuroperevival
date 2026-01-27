@@ -29,7 +29,7 @@ class PendingApprovalsWidget extends TableWidget
                 fn (): Builder => Registration::query()
                     ->where('type', 'ministry')
                     ->where('status', 'pending_approval')
-                    ->latest()
+                    ->latest(),
             )
             ->columns([
                 TextColumn::make('full_name')

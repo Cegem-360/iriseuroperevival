@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Mail\MinistryApplicationApproved;
 use App\Mail\MinistryApplicationReceived;
 use App\Mail\MinistryApplicationRejected;

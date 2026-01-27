@@ -22,7 +22,7 @@ class RefundProcessed extends Mailable implements ShouldQueue
      */
     public function __construct(
         public Registration $registration,
-        public int $refundAmount
+        public int $refundAmount,
     ) {}
 
     /**

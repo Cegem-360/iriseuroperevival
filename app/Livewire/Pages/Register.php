@@ -37,6 +37,6 @@ class Register extends Component
     public function render(): View
     {
         return view('livewire.pages.register')
-            ->title($this->title.' - Europe Revival 2026');
+            ->title($this->title . ' - Europe Revival 2026');
     }
 }
