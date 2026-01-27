@@ -27050,11 +27050,11 @@ namespace Filament\Pages {
             }
     /**
      */
-    class Dashboard extends \Filament\Pages\Page {
+    class SimplePage extends \Filament\Pages\BasePage {
             }
     /**
      */
-    class SimplePage extends \Filament\Pages\BasePage {
+    class Dashboard extends \Filament\Pages\Page {
             }
     }
 
@@ -27178,6 +27178,23 @@ namespace App\Filament\Resources\Workshops\Pages {
             }
     }
 
+namespace App\Filament\Pages\Auth {
+    /**
+     */
+    class Login extends \Filament\Auth\Pages\Login {
+            }
+    }
+
+namespace Filament\Auth\Pages {
+    /**
+     * @property-read Action $registerAction
+     * @property-read Schema $form
+     * @property-read Schema $multiFactorChallengeForm
+     */
+    class Login extends \Filament\Pages\SimplePage {
+            }
+    }
+
 namespace App\Filament\Widgets {
     /**
      */
@@ -27209,16 +27226,6 @@ namespace Filament\Widgets {
     /**
      */
     class ChartWidget extends \Filament\Widgets\Widget {
-            }
-    }
-
-namespace Filament\Auth\Pages {
-    /**
-     * @property-read Action $registerAction
-     * @property-read Schema $form
-     * @property-read Schema $multiFactorChallengeForm
-     */
-    class Login extends \Filament\Pages\SimplePage {
             }
     }
 
