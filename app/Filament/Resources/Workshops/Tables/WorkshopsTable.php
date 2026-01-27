@@ -2,50 +2,48 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\ScheduleItems\Tables;
+namespace App\Filament\Resources\Workshops\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
-class ScheduleItemsTable
+class WorkshopsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('day')
-                    ->date('D, M j')
-                    ->sortable(),
-                TextColumn::make('start_time')
-                    ->time('H:i')
-                    ->sortable(),
-                TextColumn::make('end_time')
-                    ->time('H:i'),
+                ImageColumn::make('image_path')
+                    ->label('Image')
+                    ->circular(),
                 TextColumn::make('title')
                     ->searchable()
+                    ->sortable()
                     ->limit(40),
-                TextColumn::make('type')
+                TextColumn::make('speaker.name')
+                    ->label('Leader')
+                    ->searchable()
+                    ->toggleable(),
+                TextColumn::make('difficulty_level')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
-                        'session' => 'info',
-                        'worship' => 'success',
-                        'break' => 'gray',
-                        'meal' => 'warning',
-                        'special' => 'danger',
+                        'beginner' => 'success',
+                        'intermediate' => 'warning',
+                        'advanced' => 'danger',
                         default => 'gray',
                     }),
-                TextColumn::make('speaker.name')
-                    ->label('Speaker')
-                    ->toggleable(),
-                TextColumn::make('location')
+                TextColumn::make('formatted_duration')
+                    ->label('Duration'),
+                TextColumn::make('capacity')
+                    ->numeric()
+                    ->placeholder('Unlimited')
                     ->toggleable(),
                 IconColumn::make('is_published')
                     ->boolean()
@@ -55,25 +53,18 @@ class ScheduleItemsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('day')
+            ->defaultSort('sort_order')
             ->reorderable('sort_order')
-            ->groups([
-                'day',
-            ])
             ->filters([
-                SelectFilter::make('type')
+                SelectFilter::make('difficulty_level')
                     ->options([
-                        'session' => 'Session',
-                        'worship' => 'Worship',
-                        'break' => 'Break',
-                        'meal' => 'Meal',
-                        'special' => 'Special Event',
+                        'all' => 'All Levels',
+                        'beginner' => 'Beginner',
+                        'intermediate' => 'Intermediate',
+                        'advanced' => 'Advanced',
                     ]),
                 TernaryFilter::make('is_published')
                     ->label('Published'),
-                Filter::make('has_speaker')
-                    ->query(fn (Builder $query): Builder => $query->whereNotNull('speaker_id'))
-                    ->label('Has Speaker'),
             ])
             ->recordActions([
                 EditAction::make(),

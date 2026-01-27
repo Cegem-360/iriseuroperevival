@@ -11,6 +11,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class ScheduleItemForm
@@ -61,6 +62,17 @@ class ScheduleItemForm
                         TextInput::make('location')
                             ->maxLength(255)
                             ->placeholder('e.g., Main Hall'),
+                    ]),
+                Section::make('Settings')
+                    ->columns(2)
+                    ->schema([
+                        Toggle::make('is_published')
+                            ->label('Published')
+                            ->default(true),
+                        TextInput::make('sort_order')
+                            ->numeric()
+                            ->default(0)
+                            ->minValue(0),
                     ]),
             ]);
     }

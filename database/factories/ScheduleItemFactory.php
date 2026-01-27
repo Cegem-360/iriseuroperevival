@@ -25,14 +25,23 @@ class ScheduleItemFactory extends Factory
         return [
             'title' => fake()->sentence(4),
             'description' => fake()->paragraph(),
-            'day' => fake()->dateTimeBetween('2026-07-15', '2026-07-19'),
+            'day' => fake()->dateTimeBetween('2026-08-06', '2026-08-09'),
             'start_time' => $startTime,
             'end_time' => $endTime,
             'type' => fake()->randomElement(['session', 'worship', 'break', 'meal', 'special']),
             'speaker_id' => null,
             'location' => fake()->randomElement(['Main Hall', 'Chapel', 'Conference Room A', 'Outdoor Area']),
             'translations' => null,
+            'is_published' => true,
+            'sort_order' => 0,
         ];
+    }
+
+    public function unpublished(): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'is_published' => false,
+        ]);
     }
 
     public function withSpeaker(?Speaker $speaker = null): static

@@ -27381,6 +27381,10 @@ namespace App\Livewire\Pages {
             }
     /**
      */
+    class SpeakerShow extends \Livewire\Component {
+            }
+    /**
+     */
     class Register extends \Livewire\Component {
             }
     /**

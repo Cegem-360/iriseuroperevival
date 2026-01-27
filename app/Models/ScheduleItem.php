@@ -26,6 +26,8 @@ class ScheduleItem extends Model
         'speaker_id',
         'location',
         'translations',
+        'is_published',
+        'sort_order',
     ];
 
     protected function casts(): array
@@ -35,6 +37,7 @@ class ScheduleItem extends Model
             'start_time' => 'datetime:H:i',
             'end_time' => 'datetime:H:i',
             'translations' => 'array',
+            'is_published' => 'boolean',
         ];
     }
 
@@ -69,5 +72,11 @@ class ScheduleItem extends Model
     protected function ordered($query)
     {
         return $query->orderBy('day')->orderBy('start_time');
+    }
+
+    #[Scope]
+    protected function published($query)
+    {
+        return $query->where('is_published', true);
     }
 }
