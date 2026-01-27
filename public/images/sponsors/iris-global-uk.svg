@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 100" fill="none">
+  <!-- IRIS Global UK Logo -->
+  <defs>
+    <style>
+      .iris-blue { fill: #6BAED6; }
+      .iris-text { font-family: 'Times New Roman', Times, serif; fill: #6BAED6; }
+    </style>
+  </defs>
+
+  <!-- Dove silhouette -->
+  <path class="iris-blue" d="M35 85 C25 75, 20 65, 25 55 C28 48, 35 42, 45 40 C50 39, 55 40, 60 43 C65 38, 72 35, 80 35 C88 35, 95 40, 95 48 C95 52, 92 56, 88 58 C85 60, 80 60, 75 58 L70 55 C68 58, 65 62, 60 65 C55 68, 48 70, 40 72 C35 74, 32 78, 35 85 Z"/>
+
+  <!-- Wing detail -->
+  <path class="iris-blue" d="M42 50 C48 45, 55 42, 62 42 C58 48, 52 52, 45 55 C42 56, 40 54, 42 50 Z"/>
+
+  <!-- Rainbow arcs -->
+  <path class="iris-blue" fill="none" stroke="#6BAED6" stroke-width="3" d="M25 55 C25 30, 55 10, 85 30"/>
+  <path class="iris-blue" fill="none" stroke="#6BAED6" stroke-width="3" d="M30 50 C30 30, 55 15, 80 30"/>
+  <path class="iris-blue" fill="none" stroke="#6BAED6" stroke-width="3" d="M35 45 C35 30, 55 20, 75 32"/>
+
+  <!-- IRIS text -->
+  <text x="110" y="55" class="iris-text" font-size="42" font-weight="400" letter-spacing="2">IRIS</text>
+  <text x="218" y="42" class="iris-text" font-size="12">&#174;</text>
+
+  <!-- GLOBAL UK text -->
+  <text x="110" y="78" class="iris-text" font-size="22" font-weight="400" letter-spacing="8">GLOBAL UK</text>
+</svg>
