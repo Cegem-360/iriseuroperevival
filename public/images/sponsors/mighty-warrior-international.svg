@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" fill="none">
+  <!-- Mighty Warrior International Logo -->
+  <defs>
+    <style>
+      .mw-black { fill: #1a1a1a; }
+      .mw-text { font-family: Arial, sans-serif; fill: #1a1a1a; }
+    </style>
+  </defs>
+
+  <!-- MW Letters forming mountain shape -->
+  <path class="mw-black" d="M30 110 L70 30 L90 70 L110 30 L130 70 L150 30 L190 110 L170 110 L150 65 L130 105 L110 65 L90 105 L70 65 L50 110 Z"/>
+
+  <!-- Warrior silhouette -->
+  <g transform="translate(95, 25)">
+    <!-- Head -->
+    <ellipse cx="15" cy="8" rx="8" ry="9" class="mw-black"/>
+    <!-- Hair flowing -->
+    <path class="mw-black" d="M20 5 C25 8, 28 15, 25 22 C22 18, 20 12, 20 5"/>
+    <!-- Body -->
+    <path class="mw-black" d="M10 16 L8 45 L5 75 L12 75 L15 50 L18 75 L25 75 L22 45 L20 16 Z"/>
+    <!-- Arms -->
+    <path class="mw-black" d="M8 20 L-5 40 L-8 38 L5 18"/>
+    <path class="mw-black" d="M22 20 L35 35 L37 33 L25 18"/>
+    <!-- Sword -->
+    <path class="mw-black" d="M-8 38 L-35 70 L-32 73 L-5 41"/>
+    <rect x="-38" y="68" width="8" height="3" class="mw-black" transform="rotate(-45 -34 70)"/>
+  </g>
+
+  <!-- MIGHTY WARRIOR text -->
+  <text x="110" y="135" text-anchor="middle" class="mw-text" font-size="20" font-weight="bold" letter-spacing="3">MIGHTY WARRIOR</text>
+
+  <!-- INTERNATIONAL text with lines -->
+  <line x1="40" y1="152" x2="75" y2="152" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="110" y="157" text-anchor="middle" class="mw-text" font-size="12" letter-spacing="5">INTERNATIONAL</text>
+  <line x1="145" y1="152" x2="180" y2="152" stroke="#1a1a1a" stroke-width="1"/>
+</svg>
