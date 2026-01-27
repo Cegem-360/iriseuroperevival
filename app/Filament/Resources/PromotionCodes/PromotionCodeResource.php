@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\PromotionCodes;
 
-use Override;
 use App\Filament\Resources\PromotionCodes\Pages\CreatePromotionCode;
 use App\Filament\Resources\PromotionCodes\Pages\EditPromotionCode;
 use App\Filament\Resources\PromotionCodes\Pages\ListPromotionCodes;
@@ -14,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Override;
 use UnitEnum;
 
 class PromotionCodeResource extends Resource

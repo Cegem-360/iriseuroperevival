@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\ScheduleItems;
 
-use Override;
 use App\Filament\Resources\ScheduleItems\Pages\CreateScheduleItem;
 use App\Filament\Resources\ScheduleItems\Pages\EditScheduleItem;
 use App\Filament\Resources\ScheduleItems\Pages\ListScheduleItems;
@@ -14,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Override;
 use UnitEnum;
 
 class ScheduleItemResource extends Resource

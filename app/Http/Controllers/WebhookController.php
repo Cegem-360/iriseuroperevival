@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Stripe\Webhook;
-use Exception;
 use App\Services\StripeService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Stripe\Webhook;
 
 class WebhookController extends Controller
 {
@@ -26,7 +26,7 @@ class WebhookController extends Controller
                 $endpointSecret
             );
         } catch (Exception $e) {
-            return response('Webhook Error: ' . $e->getMessage(), 400);
+            return response('Webhook Error: '.$e->getMessage(), 400);
         }
 
         if ($event->type === 'checkout.session.completed') {

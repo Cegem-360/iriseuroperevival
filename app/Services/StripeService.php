@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use Stripe\Customer;
+use App\Models\Registration;
 use Exception;
 use Illuminate\Support\Facades\Date;
-use App\Models\Registration;
 use Stripe\Checkout\Session;
+use Stripe\Customer;
 use Stripe\StripeClient;
 
 class StripeService

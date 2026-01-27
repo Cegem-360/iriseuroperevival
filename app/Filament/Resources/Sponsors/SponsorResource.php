@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Sponsors;
 
-use Override;
 use App\Filament\Resources\Sponsors\Pages\CreateSponsor;
 use App\Filament\Resources\Sponsors\Pages\EditSponsor;
 use App\Filament\Resources\Sponsors\Pages\ListSponsors;
@@ -14,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Override;
 use UnitEnum;
 
 class SponsorResource extends Resource

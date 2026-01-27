@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Override;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use Override;
 
 class Registration extends Model
 {
@@ -155,37 +155,37 @@ class Registration extends Model
 
     protected function fullName(): Attribute
     {
-        return Attribute::make(get: fn(): string => "{$this->first_name} {$this->last_name}");
+        return Attribute::make(get: fn (): string => "{$this->first_name} {$this->last_name}");
     }
 
     protected function isPaid(): Attribute
     {
-        return Attribute::make(get: fn(): bool => ! is_null($this->paid_at));
+        return Attribute::make(get: fn (): bool => ! is_null($this->paid_at));
     }
 
     protected function isApproved(): Attribute
     {
-        return Attribute::make(get: fn(): bool => $this->status === 'approved');
+        return Attribute::make(get: fn (): bool => $this->status === 'approved');
     }
 
     protected function isPending(): Attribute
     {
-        return Attribute::make(get: fn(): bool => in_array($this->status, ['pending_payment', 'pending_approval']));
+        return Attribute::make(get: fn (): bool => in_array($this->status, ['pending_payment', 'pending_approval']));
     }
 
     protected function isRejected(): Attribute
     {
-        return Attribute::make(get: fn(): bool => $this->status === 'rejected');
+        return Attribute::make(get: fn (): bool => $this->status === 'rejected');
     }
 
     protected function formattedAmount(): Attribute
     {
-        return Attribute::make(get: fn(): string => '€'.number_format($this->amount / 100, 2));
+        return Attribute::make(get: fn (): string => '€'.number_format($this->amount / 100, 2));
     }
 
     protected function statusBadge(): Attribute
     {
-        return Attribute::make(get: fn(): string => match ($this->status) {
+        return Attribute::make(get: fn (): string => match ($this->status) {
             'pending_payment' => '<span class="badge badge-amber">Pending Payment</span>',
             'pending_approval' => '<span class="badge badge-amber">Pending Approval</span>',
             'approved' => '<span class="badge badge-success">Approved</span>',
@@ -248,6 +248,7 @@ class Registration extends Model
     {
         return 'uuid';
     }
+
     protected function casts(): array
     {
         return [

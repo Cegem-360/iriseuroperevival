@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\WebhookController;
 use App\Livewire\Pages\Dashboard;
 use App\Livewire\Pages\Home;
@@ -20,6 +19,7 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
 /*

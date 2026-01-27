@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Speakers;
 
-use Override;
 use App\Filament\Resources\Speakers\Pages\CreateSpeaker;
 use App\Filament\Resources\Speakers\Pages\EditSpeaker;
 use App\Filament\Resources\Speakers\Pages\ListSpeakers;
@@ -14,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Override;
 use UnitEnum;
 
 class SpeakerResource extends Resource

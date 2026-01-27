@@ -88,7 +88,7 @@ class CartService
     {
         $promoCode = $this->getPromotionCode();
 
-        if (!$promoCode instanceof PromotionCode) {
+        if (! $promoCode instanceof PromotionCode) {
             return 0;
         }
 

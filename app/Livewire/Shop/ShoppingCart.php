@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Shop;
 
-use Illuminate\Support\Collection;
 use App\Models\PromotionCode;
+use App\Services\CartService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use App\Services\CartService;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;

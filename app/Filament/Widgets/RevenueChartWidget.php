@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Widgets;
 
-use Override;
-use Illuminate\Support\Facades\Date;
 use App\Models\Registration;
 use Filament\Widgets\ChartWidget;
+use Illuminate\Support\Facades\Date;
+use Override;
 
 class RevenueChartWidget extends ChartWidget
 {

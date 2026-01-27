@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Override;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Database\Factories\SpeakerFactory;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use Override;
 
 class Speaker extends Model
 {
@@ -60,6 +60,7 @@ class Speaker extends Model
         return Attribute::make(get: function (string $attribute, ?string $locale = null) {
             $locale = $locale ?? app()->getLocale();
             $translations = $this->translations ?? [];
+
             return $translations[$locale][$attribute] ?? $this->$attribute;
         });
     }

@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Shop;
 
-use Illuminate\Support\Collection;
-use App\Models\PromotionCode;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\PromotionCode;
 use App\Services\CartService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -128,7 +128,7 @@ class CheckoutForm extends Component
         // Create Stripe checkout session
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $lineItems = $this->items->map(fn($item) => [
+        $lineItems = $this->items->map(fn ($item): array => [
             'price_data' => [
                 'currency' => 'eur',
                 'product_data' => [

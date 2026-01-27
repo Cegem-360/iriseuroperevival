@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Shop;
 
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use App\Models\Product;
 use App\Services\CartService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 

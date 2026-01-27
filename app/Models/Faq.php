@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Database\Factories\FaqFactory;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,6 +35,7 @@ class Faq extends Model
         return Attribute::make(get: function (string $attribute, ?string $locale = null) {
             $locale = $locale ?? app()->getLocale();
             $translations = $this->translations ?? [];
+
             return $translations[$locale][$attribute] ?? $this->$attribute;
         });
     }

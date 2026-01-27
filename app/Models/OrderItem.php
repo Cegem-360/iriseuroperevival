@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Override;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Database\Factories\OrderItemFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Override;
 
 class OrderItem extends Model
 {
@@ -58,11 +58,11 @@ class OrderItem extends Model
 
     protected function unitPriceInEuros(): Attribute
     {
-        return Attribute::make(get: fn(): int|float => $this->unit_price / 100);
+        return Attribute::make(get: fn (): int|float => $this->unit_price / 100);
     }
 
     protected function totalInEuros(): Attribute
     {
-        return Attribute::make(get: fn(): int|float => $this->total / 100);
+        return Attribute::make(get: fn (): int|float => $this->total / 100);
     }
 }

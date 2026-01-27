@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Mail\MinistryApplicationApproved;
 use App\Mail\MinistryApplicationReceived;
 use App\Mail\MinistryApplicationRejected;
@@ -10,6 +9,7 @@ use App\Mail\RefundProcessed;
 use App\Mail\RegistrationConfirmation;
 use App\Models\Order;
 use App\Models\Registration;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 it('renders registration confirmation email', function (): void {
     $registration = Registration::factory()->create([
