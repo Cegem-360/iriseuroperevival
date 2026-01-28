@@ -253,177 +253,152 @@
             </p>
         </div>
 
-        {{-- Tab Buttons --}}
-        <div class="flex justify-center gap-2 mb-12">
-            <button @click="activeTab = 'training'" 
-                    :class="activeTab === 'training' ? 'bg-amber-500 text-stone-900' : 'bg-stone-800 text-white/70 hover:text-white'"
-                    class="px-6 py-3 rounded-full font-semibold transition-all">
-                Training Day (Oct 22)
-            </button>
-            <button @click="activeTab = 'main'" 
-                    :class="activeTab === 'main' ? 'bg-amber-500 text-stone-900' : 'bg-stone-800 text-white/70 hover:text-white'"
-                    class="px-6 py-3 rounded-full font-semibold transition-all">
-                Main Conference (Oct 23-25)
-            </button>
-        </div>
+        @if($scheduleDays->isNotEmpty())
+            @php
+                $trainingDay = $scheduleDays->first(fn($day) => $day['is_training_day']);
+                $mainDays = $scheduleDays->filter(fn($day) => !$day['is_training_day']);
+            @endphp
 
-        {{-- Training Day Schedule --}}
-        <div x-show="activeTab === 'training'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-stone-800/50 border border-stone-700 rounded-2xl p-8">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 bg-amber-500/20 rounded-xl flex items-center justify-center">
-                            <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Ministry Team Training</h3>
-                            <p class="text-white/50">Wednesday, October 22nd</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="flex gap-4 p-4 bg-stone-700/30 rounded-xl">
-                            <span class="text-amber-400 font-mono font-semibold w-24 flex-shrink-0">10:00</span>
-                            <div>
-                                <h4 class="text-white font-medium">Registration & Welcome</h4>
-                                <p class="text-white/50 text-sm">Check-in and team introductions</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-4 bg-stone-700/30 rounded-xl">
-                            <span class="text-amber-400 font-mono font-semibold w-24 flex-shrink-0">11:00</span>
-                            <div>
-                                <h4 class="text-white font-medium">Vision & Guidelines</h4>
-                                <p class="text-white/50 text-sm">Conference vision and ministry protocols</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-4 bg-stone-700/30 rounded-xl">
-                            <span class="text-amber-400 font-mono font-semibold w-24 flex-shrink-0">13:00</span>
-                            <div>
-                                <h4 class="text-white font-medium">Lunch Break</h4>
-                                <p class="text-white/50 text-sm">Fellowship and networking</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-4 bg-stone-700/30 rounded-xl">
-                            <span class="text-amber-400 font-mono font-semibold w-24 flex-shrink-0">14:00</span>
-                            <div>
-                                <h4 class="text-white font-medium">Healing & Prophetic Training</h4>
-                                <p class="text-white/50 text-sm">Practical ministry training with Heidi Baker</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-4 bg-stone-700/30 rounded-xl">
-                            <span class="text-amber-400 font-mono font-semibold w-24 flex-shrink-0">17:00</span>
-                            <div>
-                                <h4 class="text-white font-medium">Prayer & Commissioning</h4>
-                                <p class="text-white/50 text-sm">Team prayer and impartation</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl">
-                        <p class="text-amber-400 text-sm">
-                            <strong>Note:</strong> Training day is mandatory for all ministry team members. 
-                            <a href="{{ route('register.ministry') }}" class="underline hover:no-underline">Apply to join the team →</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- Main Conference Schedule --}}
-        <div x-show="activeTab === 'main'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
-            <div class="grid md:grid-cols-3 gap-6">
-                {{-- Day 1 --}}
-                <div class="bg-stone-800/50 border border-stone-700 rounded-2xl overflow-hidden">
-                    <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
-                        <span class="text-stone-900/70 text-sm font-medium">Day 1</span>
-                        <h3 class="text-stone-900 text-xl font-bold">Thursday, Oct 23</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="border-l-2 border-blue-500 pl-4">
-                            <span class="text-blue-400 text-sm font-semibold">11:00 - 14:00</span>
-                            <h4 class="text-white font-medium">Pastors & Leaders Session</h4>
-                            <p class="text-white/50 text-sm">Special session for church leaders</p>
-                        </div>
-                        <div class="border-l-2 border-amber-500 pl-4">
-                            <span class="text-amber-400 text-sm font-semibold">18:30 - 22:00</span>
-                            <h4 class="text-white font-medium">Opening Night</h4>
-                            <p class="text-white/50 text-sm">Worship & Heidi Baker</p>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Day 2 --}}
-                <div class="bg-stone-800/50 border border-stone-700 rounded-2xl overflow-hidden">
-                    <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
-                        <span class="text-stone-900/70 text-sm font-medium">Day 2</span>
-                        <h3 class="text-stone-900 text-xl font-bold">Friday, Oct 24</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="border-l-2 border-amber-500 pl-4">
-                            <span class="text-amber-400 text-sm font-semibold">10:00 - 12:30</span>
-                            <h4 class="text-white font-medium">Morning Session</h4>
-                            <p class="text-white/50 text-sm">Worship & David Gava</p>
-                        </div>
-                        <div class="border-l-2 border-green-500 pl-4">
-                            <span class="text-green-400 text-sm font-semibold">14:00 - 16:00</span>
-                            <h4 class="text-white font-medium">Healing & Prophetic Rooms</h4>
-                            <p class="text-white/50 text-sm">Personal ministry available</p>
-                        </div>
-                        <div class="border-l-2 border-purple-500 pl-4">
-                            <span class="text-purple-400 text-sm font-semibold">14:00 - 16:00</span>
-                            <h4 class="text-white font-medium">Workshops</h4>
-                            <p class="text-white/50 text-sm">Choose from 4 workshops</p>
-                        </div>
-                        <div class="border-l-2 border-amber-500 pl-4">
-                            <span class="text-amber-400 text-sm font-semibold">18:30 - 22:00</span>
-                            <h4 class="text-white font-medium">Evening Session</h4>
-                            <p class="text-white/50 text-sm">Worship & Mel Tari</p>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Day 3 --}}
-                <div class="bg-stone-800/50 border border-stone-700 rounded-2xl overflow-hidden">
-                    <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
-                        <span class="text-stone-900/70 text-sm font-medium">Day 3</span>
-                        <h3 class="text-stone-900 text-xl font-bold">Saturday, Oct 25</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="border-l-2 border-amber-500 pl-4">
-                            <span class="text-amber-400 text-sm font-semibold">10:00 - 12:30</span>
-                            <h4 class="text-white font-medium">Morning Session</h4>
-                            <p class="text-white/50 text-sm">Worship & Pastor Josef</p>
-                        </div>
-                        <div class="border-l-2 border-cyan-500 pl-4">
-                            <span class="text-cyan-400 text-sm font-semibold">14:00 - 16:00</span>
-                            <h4 class="text-white font-medium">Iris Missionaries</h4>
-                            <p class="text-white/50 text-sm">Stories from the field</p>
-                        </div>
-                        <div class="border-l-2 border-purple-500 pl-4">
-                            <span class="text-purple-400 text-sm font-semibold">14:00 - 16:00</span>
-                            <h4 class="text-white font-medium">Workshops</h4>
-                            <p class="text-white/50 text-sm">Choose from 4 workshops</p>
-                        </div>
-                        <div class="border-l-2 border-amber-500 pl-4">
-                            <span class="text-amber-400 text-sm font-semibold">18:30 - 22:00</span>
-                            <h4 class="text-white font-medium">Closing Night</h4>
-                            <p class="text-white/50 text-sm">Worship & Heidi Baker</p>
-                        </div>
-                    </div>
-                </div>
+            {{-- Tab Buttons --}}
+            <div class="flex justify-center gap-2 mb-12 flex-wrap">
+                @if($trainingDay)
+                    <button @click="activeTab = 'training'"
+                            :class="activeTab === 'training' ? 'bg-amber-500 text-stone-900' : 'bg-stone-800 text-white/70 hover:text-white'"
+                            class="px-6 py-3 rounded-full font-semibold transition-all">
+                        Training Day ({{ \Carbon\Carbon::parse($trainingDay['date'])->format('M j') }})
+                    </button>
+                @endif
+                <button @click="activeTab = 'main'"
+                        :class="activeTab === 'main' ? 'bg-amber-500 text-stone-900' : 'bg-stone-800 text-white/70 hover:text-white'"
+                        class="px-6 py-3 rounded-full font-semibold transition-all">
+                    Main Conference (Oct 23-25)
+                </button>
             </div>
 
-            <div class="mt-8 text-center">
-                <a href="{{ route('program') }}" class="btn-secondary">
-                    View Full Program
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            {{-- Training Day Schedule --}}
+            @if($trainingDay)
+                <div x-show="activeTab === 'training'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                    <div class="max-w-3xl mx-auto">
+                        <div class="bg-stone-800/50 border border-stone-700 rounded-2xl p-8">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 bg-amber-500/20 rounded-xl flex items-center justify-center">
+                                    <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Ministry Team Training</h3>
+                                    <p class="text-white/50">{{ $trainingDay['formatted_date'] }}</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                @foreach($trainingDay['items'] as $item)
+                                    <div class="flex gap-4 p-4 bg-stone-700/30 rounded-xl">
+                                        <span class="text-amber-400 font-mono font-semibold w-24 flex-shrink-0">
+                                            {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }}
+                                        </span>
+                                        <div>
+                                            <h4 class="text-white font-medium">{{ $item->title }}</h4>
+                                            @if($item->description)
+                                                <p class="text-white/50 text-sm">{{ Str::limit($item->description, 60) }}</p>
+                                            @endif
+                                            @if($item->speaker)
+                                                <p class="text-amber-400/70 text-sm mt-1">with {{ $item->speaker->name }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div class="mt-6 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+                                <p class="text-amber-400 text-sm">
+                                    <strong>Note:</strong> Training day is mandatory for all ministry team members.
+                                    <a href="{{ route('register.ministry') }}" class="underline hover:no-underline">Apply to join the team</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            {{-- Main Conference Schedule --}}
+            <div x-show="activeTab === 'main'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                <div class="grid md:grid-cols-3 gap-6">
+                    @foreach($mainDays->take(3) as $day)
+                        <div class="bg-stone-800/50 border border-stone-700 rounded-2xl overflow-hidden">
+                            <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
+                                <span class="text-stone-900/70 text-sm font-medium">Day {{ $loop->iteration }}</span>
+                                <h3 class="text-stone-900 text-xl font-bold">{{ $day['formatted_date'] }}</h3>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                @foreach($day['items']->take(5) as $item)
+                                    @php
+                                        $borderColor = match($item->type) {
+                                            'worship' => 'border-amber-500',
+                                            'session' => 'border-blue-500',
+                                            'meal' => 'border-green-500',
+                                            'break' => 'border-stone-500',
+                                            'special' => 'border-purple-500',
+                                            default => 'border-amber-500',
+                                        };
+                                        $textColor = match($item->type) {
+                                            'worship' => 'text-amber-400',
+                                            'session' => 'text-blue-400',
+                                            'meal' => 'text-green-400',
+                                            'break' => 'text-stone-400',
+                                            'special' => 'text-purple-400',
+                                            default => 'text-amber-400',
+                                        };
+                                    @endphp
+                                    <div class="border-l-2 {{ $borderColor }} pl-4">
+                                        <span class="{{ $textColor }} text-sm font-semibold">
+                                            {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($item->end_time)->format('H:i') }}
+                                        </span>
+                                        <h4 class="text-white font-medium">{{ $item->title }}</h4>
+                                        @if($item->speaker)
+                                            <p class="text-white/50 text-sm">{{ $item->speaker->name }}</p>
+                                        @elseif($item->description)
+                                            <p class="text-white/50 text-sm">{{ Str::limit($item->description, 40) }}</p>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="mt-8 text-center">
+                    <a href="{{ route('program') }}" class="btn-secondary">
+                        View Full Program
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        @else
+            {{-- Empty State - No Schedule Yet --}}
+            <div class="text-center py-12">
+                <div class="w-20 h-20 bg-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
-                </a>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3">Full Schedule Coming Soon</h3>
+                <p class="text-white/50 max-w-md mx-auto mb-8">
+                    We're finalizing the conference program. Subscribe to our newsletter to be the first to know when it's released.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="{{ route('register') }}" class="btn-primary">
+                        Register Now
+                    </a>
+                    <a href="{{ route('program') }}" class="btn-secondary">
+                        Check Program Page
+                    </a>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 </section>
 
