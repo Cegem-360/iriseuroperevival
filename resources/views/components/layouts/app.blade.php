@@ -35,7 +35,7 @@
 
     @stack('styles')
 </head>
-<body class="bg-stone-950 text-white font-sans antialiased">
+<body class="bg-navy-950 text-white font-sans antialiased">
     {{-- Navigation --}}
     <x-layouts.partials.navigation />
 

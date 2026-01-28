@@ -32,41 +32,54 @@
 @source "../../resources/**/*.vue";
 
 /* ================================================
-   THEME CONFIGURATION (from tailwind.config.js)
+   THEME CONFIGURATION (Europe Revival Palette)
    ================================================ */
 @theme {
     /* Font Family */
     --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 
-    /* Primary amber/gold accent colors */
-    --color-primary-50: #FFFBEB;
-    --color-primary-100: #FEF3C7;
-    --color-primary-200: #FDE68A;
-    --color-primary-300: #FCD34D;
-    --color-primary-400: #FBBF24;
-    --color-primary-500: #F59E0B;
-    --color-primary-600: #D97706;
-    --color-primary-700: #B45309;
-    --color-primary-800: #92400E;
-    --color-primary-900: #78350F;
+    /* Primary gold accent colors (based on #F7A31D) */
+    --color-primary-50: #FEF3D6;
+    --color-primary-100: #FDEABD;
+    --color-primary-200: #FBD88A;
+    --color-primary-300: #F9C657;
+    --color-primary-400: #F7A31D;
+    --color-primary-500: #F7A31D;
+    --color-primary-600: #D88A12;
+    --color-primary-700: #B4710D;
+    --color-primary-800: #8F5A0A;
+    --color-primary-900: #6B4308;
 
-    /* Orange for gradients */
-    --color-accent-400: #FB923C;
-    --color-accent-500: #F97316;
-    --color-accent-600: #EA580C;
+    /* Accent colors for gradients (gold to deeper orange) */
+    --color-accent-400: #F7A31D;
+    --color-accent-500: #D88A12;
+    --color-accent-600: #B4710D;
 
-    /* Dark stone/zinc tones */
-    --color-dark-50: #FAFAF9;
-    --color-dark-100: #F5F5F4;
-    --color-dark-200: #E7E5E4;
-    --color-dark-300: #D6D3D1;
-    --color-dark-400: #A8A29E;
-    --color-dark-500: #78716C;
-    --color-dark-600: #57534E;
-    --color-dark-700: #44403C;
-    --color-dark-800: #292524;
-    --color-dark-900: #1C1917;
-    --color-dark-950: #0C0A09;
+    /* Navy blue tones (based on #1E2D4C) */
+    --color-navy-50: #E8EBF0;
+    --color-navy-100: #C5CCD8;
+    --color-navy-200: #9FADBF;
+    --color-navy-300: #798EA7;
+    --color-navy-400: #5C7694;
+    --color-navy-500: #3F5E81;
+    --color-navy-600: #2A3D5E;
+    --color-navy-700: #1E2D4C;
+    --color-navy-800: #141F35;
+    --color-navy-900: #0F1826;
+    --color-navy-950: #0A1019;
+
+    /* Palette accent colors */
+    --color-sky-400: #A5D8F0;
+    --color-sky-500: #7EC8EB;
+    --color-sky-600: #55B4E5;
+    --color-sky-700: #2DA0DF;
+    --color-sky-800: #1581B8;
+    --color-sky-900: #0A6699;
+    --color-ocean-500: #0E8BBF;
+    --color-ocean-600: #0A6A94;
+    --color-ocean-700: #074B6A;
+    --color-maroon-600: #851B1D;
+    --color-crimson-500: #BB331B;
 
     /* Animations */
     --animate-fade-in: fadeIn 0.6s ease-out forwards;
@@ -112,8 +125,8 @@
     }
 
     @keyframes glow {
-        0% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
-        100% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.5), 0 0 60px rgba(245, 158, 11, 0.2); }
+        0% { box-shadow: 0 0 20px rgba(247, 163, 29, 0.3); }
+        100% { box-shadow: 0 0 30px rgba(247, 163, 29, 0.5), 0 0 60px rgba(247, 163, 29, 0.2); }
     }
 
     @keyframes float {
@@ -121,10 +134,10 @@
         50% { transform: translateY(-10px); }
     }
 
-    /* Box Shadows */
-    --shadow-glow-amber: 0 0 20px rgba(245, 158, 11, 0.3), 0 0 40px rgba(245, 158, 11, 0.1);
-    --shadow-glow-amber-lg: 0 0 30px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.2);
-    --shadow-inner-glow: inset 0 0 20px rgba(245, 158, 11, 0.1);
+    /* Box Shadows (using gold #F7A31D) */
+    --shadow-glow-gold: 0 0 20px rgba(247, 163, 29, 0.3), 0 0 40px rgba(247, 163, 29, 0.1);
+    --shadow-glow-gold-lg: 0 0 30px rgba(247, 163, 29, 0.4), 0 0 60px rgba(247, 163, 29, 0.2);
+    --shadow-inner-glow: inset 0 0 20px rgba(247, 163, 29, 0.1);
 
     /* Backdrop Blur */
     --backdrop-blur-xs: 2px;
@@ -150,13 +163,13 @@
     }
 
     body {
-        @apply bg-stone-950 text-white antialiased;
+        @apply bg-navy-950 text-white antialiased;
         font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
 
     /* Custom Selection */
     ::selection {
-        @apply bg-amber-500/30 text-white;
+        @apply bg-primary-500/30 text-white;
     }
 
     /* Custom Scrollbar */
@@ -165,20 +178,20 @@
     }
 
     ::-webkit-scrollbar-track {
-        @apply bg-stone-900;
+        @apply bg-navy-900;
     }
 
     ::-webkit-scrollbar-thumb {
-        @apply bg-stone-700 rounded-full;
+        @apply bg-navy-600 rounded-full;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        @apply bg-stone-600;
+        @apply bg-navy-500;
     }
 
     /* Focus styles */
     *:focus-visible {
-        @apply outline-none ring-2 ring-amber-500 ring-offset-2 ring-offset-stone-950;
+        @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-navy-950;
     }
 }
 
@@ -189,31 +202,31 @@
     /* Primary Button - Gradient with glow */
     .btn-primary {
         @apply inline-flex items-center justify-center gap-2 px-8 py-4
-               bg-gradient-to-r from-amber-500 to-orange-500
-               hover:from-amber-400 hover:to-orange-400
-               text-stone-900 font-bold rounded-full
+               bg-gradient-to-r from-primary-400 to-primary-600
+               hover:from-primary-500 hover:to-primary-700
+               text-navy-900 font-bold rounded-full
                transition-all duration-300
-               shadow-lg shadow-amber-500/25
-               hover:shadow-amber-500/40 hover:scale-[1.02]
+               shadow-lg shadow-primary-500/25
+               hover:shadow-primary-500/40 hover:scale-[1.02]
                active:scale-[0.98];
     }
 
     .btn-primary-sm {
         @apply inline-flex items-center justify-center gap-2 px-6 py-2.5
-               bg-gradient-to-r from-amber-500 to-orange-500
-               hover:from-amber-400 hover:to-orange-400
-               text-stone-900 font-bold text-sm rounded-full
+               bg-gradient-to-r from-primary-400 to-primary-600
+               hover:from-primary-500 hover:to-primary-700
+               text-navy-900 font-bold text-sm rounded-full
                transition-all duration-300
-               shadow-lg shadow-amber-500/25
-               hover:shadow-amber-500/40 hover:scale-[1.02]
+               shadow-lg shadow-primary-500/25
+               hover:shadow-primary-500/40 hover:scale-[1.02]
                active:scale-[0.98];
     }
 
     /* Secondary Button - Outline */
     .btn-secondary {
         @apply inline-flex items-center justify-center gap-2 px-8 py-4
-               bg-transparent border-2 border-white/20
-               hover:border-white/40 hover:bg-white/5
+               bg-transparent border-2 border-sky-400/30
+               hover:border-sky-400/60 hover:bg-sky-400/5
                text-white font-semibold rounded-full
                transition-all duration-300;
     }
@@ -229,21 +242,21 @@
 
     /* Card Styles */
     .card {
-        @apply bg-stone-900/50 border border-stone-800 rounded-2xl
+        @apply bg-navy-800/50 border border-navy-600 rounded-2xl
                transition-all duration-300
-               hover:border-stone-700;
+               hover:border-navy-500;
     }
 
     .card-elevated {
-        @apply bg-stone-900/50 border border-stone-800 rounded-2xl
+        @apply bg-navy-800/50 border border-navy-600 rounded-2xl
                transition-all duration-300
-               hover:border-stone-700 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1;
+               hover:border-navy-500 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1;
     }
 
     .card-interactive {
-        @apply bg-stone-900/50 border border-stone-800 rounded-2xl
+        @apply bg-navy-800/50 border border-navy-600 rounded-2xl
                transition-all duration-300 cursor-pointer
-               hover:border-amber-500/30 hover:bg-stone-900/80;
+               hover:border-primary-500/30 hover:bg-navy-800/80;
     }
 
     /* Glass Effect */
@@ -257,25 +270,25 @@
 
     /* Form Inputs */
     .form-input {
-        @apply w-full px-4 py-3 bg-stone-900 border border-stone-700
+        @apply w-full px-4 py-3 bg-navy-800 border border-navy-600
                rounded-xl text-white placeholder-white/40
-               focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500
+               focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500
                transition-all duration-200;
     }
 
     .form-select {
-        @apply w-full px-4 py-3 bg-stone-900 border border-stone-700
+        @apply w-full px-4 py-3 bg-navy-800 border border-navy-600
                rounded-xl text-white placeholder-white/40
-               focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500
+               focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500
                transition-all duration-200 appearance-none cursor-pointer
-               bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%23a8a29e%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E')]
+               bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%23798EA7%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E')]
                bg-[length:1.25rem] bg-[right_0.75rem_center] bg-no-repeat pr-10;
     }
 
     .form-checkbox {
-        @apply w-5 h-5 bg-stone-900 border-2 border-stone-600
-               rounded text-amber-500
-               focus:ring-amber-500 focus:ring-offset-stone-950
+        @apply w-5 h-5 bg-navy-800 border-2 border-navy-500
+               rounded text-primary-500
+               focus:ring-primary-500 focus:ring-offset-navy-950
                cursor-pointer;
     }
 
@@ -284,12 +297,12 @@
     }
 
     .form-error {
-        @apply text-red-400 text-sm mt-1;
+        @apply text-crimson-500 text-sm mt-1;
     }
 
     /* Speaker Card */
     .speaker-card {
-        @apply relative overflow-hidden rounded-2xl bg-stone-900 cursor-pointer;
+        @apply relative overflow-hidden rounded-2xl bg-navy-800 cursor-pointer;
         aspect-ratio: 3 / 4;
     }
 
@@ -304,7 +317,7 @@
 
     .speaker-card::after {
         content: '';
-        @apply absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent;
+        @apply absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-transparent;
     }
 
     .speaker-card-content {
@@ -318,32 +331,32 @@
 
     /* Timeline Item */
     .timeline-item {
-        @apply relative pl-8 pb-6 border-l-2 border-stone-700;
+        @apply relative pl-8 pb-6 border-l-2 border-navy-600;
     }
 
     .timeline-item::before {
         content: '';
-        @apply absolute -left-[9px] top-0 w-4 h-4 bg-stone-600 rounded-full
-               border-4 border-stone-900;
+        @apply absolute -left-[9px] top-0 w-4 h-4 bg-navy-500 rounded-full
+               border-4 border-navy-800;
     }
 
     .timeline-item.active::before {
-        @apply bg-amber-500;
+        @apply bg-primary-500;
     }
 
     /* Accordion Item */
     .accordion-item {
-        @apply border border-stone-700 rounded-xl overflow-hidden;
+        @apply border border-navy-600 rounded-xl overflow-hidden;
     }
 
     .accordion-trigger {
         @apply w-full px-6 py-5 flex items-center justify-between text-left
-               bg-stone-800/50 hover:bg-stone-800
+               bg-navy-700/50 hover:bg-navy-700
                transition-colors cursor-pointer;
     }
 
     .accordion-content {
-        @apply px-6 py-5 bg-stone-800/30;
+        @apply px-6 py-5 bg-navy-700/30;
     }
 
     /* Badge */
@@ -354,7 +367,7 @@
 
     .badge-amber {
         @apply inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full
-               bg-amber-500/20 text-amber-400 border border-amber-500/30;
+               bg-primary-500/20 text-primary-400 border border-primary-500/30;
     }
 
     .badge-success {
@@ -364,7 +377,7 @@
 
     .badge-info {
         @apply inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full
-               bg-blue-500/20 text-blue-400 border border-blue-500/30;
+               bg-sky-400/20 text-sky-400 border border-sky-400/30;
     }
 
     /* Section Styles */
@@ -392,11 +405,11 @@
 @layer utilities {
     /* Text Gradient */
     .text-gradient {
-        @apply text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500;
+        @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600;
     }
 
     .text-gradient-gold {
-        @apply text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-orange-400;
+        @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-500 to-primary-700;
     }
 
     /* Animated Underline */
@@ -406,7 +419,7 @@
 
     .animated-underline::after {
         content: '';
-        @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500
+        @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500
                transition-all duration-300;
     }
 
@@ -455,19 +468,19 @@
     }
 
     /* Glow Effects */
-    .glow-amber {
-        box-shadow: var(--shadow-glow-amber);
+    .glow-gold {
+        box-shadow: var(--shadow-glow-gold);
     }
 
-    .glow-amber-lg {
-        box-shadow: var(--shadow-glow-amber-lg);
+    .glow-gold-lg {
+        box-shadow: var(--shadow-glow-gold-lg);
     }
 
     /* Border gradient */
     .border-gradient {
         @apply relative;
-        background: linear-gradient(var(--color-stone-900), var(--color-stone-900)) padding-box,
-                    linear-gradient(135deg, var(--color-amber-500), var(--color-orange-500)) border-box;
+        background: linear-gradient(var(--color-navy-800), var(--color-navy-800)) padding-box,
+                    linear-gradient(135deg, var(--color-primary-500), var(--color-primary-400)) border-box;
         border: 2px solid transparent;
     }
 

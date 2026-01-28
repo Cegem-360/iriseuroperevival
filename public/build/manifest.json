@@ -1,12 +1,36 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DVAyWAEY.css",
+    "file": "assets/app-Ci9ZUYoa.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
     "names": [
       "app.css"
     ]
+  },
+  "resources/images/ER-colours.jpg": {
+    "file": "assets/ER-colours-ChCmU5s8.jpg",
+    "src": "resources/images/ER-colours.jpg"
+  },
+  "resources/images/iris-logo.webp": {
+    "file": "assets/iris-logo-ZTjscbN6.webp",
+    "src": "resources/images/iris-logo.webp"
+  },
+  "resources/images/partner-logos/KBC-Logo.png": {
+    "file": "assets/KBC-Logo-DARXFaxH.png",
+    "src": "resources/images/partner-logos/KBC-Logo.png"
+  },
+  "resources/images/partner-logos/Kerusso.png": {
+    "file": "assets/Kerusso-Bba9schI.png",
+    "src": "resources/images/partner-logos/Kerusso.png"
+  },
+  "resources/images/partner-logos/MWI-Logo.png": {
+    "file": "assets/MWI-Logo-BMMSSBK5.png",
+    "src": "resources/images/partner-logos/MWI-Logo.png"
+  },
+  "resources/images/partner-logos/iris-global.png": {
+    "file": "assets/iris-global-vBXXd2Xc.png",
+    "src": "resources/images/partner-logos/iris-global.png"
   },
   "resources/images/sponsors/iris-global-uk.svg": {
     "file": "assets/iris-global-uk-BpzEsppr.svg",
