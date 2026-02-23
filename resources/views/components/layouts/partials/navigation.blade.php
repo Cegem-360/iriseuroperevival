@@ -17,8 +17,8 @@
             <a href="{{ route('home') }}" class="shrink-0">
                 <img src="{{ Vite::asset('resources/images/europe-revival-2026-logo.webp') }}"
                      alt="Europe Revival 2026"
-                     class="h-10 md:h-12 transition-all duration-300"
-                     :class="scrolled ? 'h-9 md:h-10' : 'h-10 md:h-12'">
+                     class="h-14 md:h-16 transition-all duration-300"
+                     :class="scrolled ? 'h-11 md:h-12' : 'h-14 md:h-16'"
             </a>
 
             {{-- Desktop Navigation --}}
