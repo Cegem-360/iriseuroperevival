@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CcZkPi_B.css",
+    "file": "assets/app-CcQwl8dZ.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -40,6 +40,14 @@
     "file": "assets/encounter-jesus-tagline-BPtEwDv6.webp",
     "src": "resources/images/encounter-jesus-tagline.webp"
   },
+  "resources/images/encounter-jesus.webp": {
+    "file": "assets/encounter-jesus-DChRppMR.webp",
+    "src": "resources/images/encounter-jesus.webp"
+  },
+  "resources/images/europe-revival-2026-logo.webp": {
+    "file": "assets/europe-revival-2026-logo-D_0TAz9O.webp",
+    "src": "resources/images/europe-revival-2026-logo.webp"
+  },
   "resources/images/europe-revival-logo.svg": {
     "file": "assets/europe-revival-logo-GAVWU6Tj.svg",
     "src": "resources/images/europe-revival-logo.svg"
@@ -51,6 +59,10 @@
   "resources/images/iris-budapest-2026.png": {
     "file": "assets/iris-budapest-2026-CuiscS1J.png",
     "src": "resources/images/iris-budapest-2026.png"
+  },
+  "resources/images/iris-krakow-logo.webp": {
+    "file": "assets/iris-krakow-logo-DB4GZThO.webp",
+    "src": "resources/images/iris-krakow-logo.webp"
   },
   "resources/images/iris-logo.webp": {
     "file": "assets/iris-logo-ZTjscbN6.webp",
@@ -83,6 +95,10 @@
   "resources/images/speakers/Mel-Tari-1.webp": {
     "file": "assets/Mel-Tari-1-Clcv0Cr-.webp",
     "src": "resources/images/speakers/Mel-Tari-1.webp"
+  },
+  "resources/images/speakers/awakening-music.webp": {
+    "file": "assets/awakening-music-CkujOTC8.webp",
+    "src": "resources/images/speakers/awakening-music.webp"
   },
   "resources/images/speakers/baoyan-lam.webp": {
     "file": "assets/baoyan-lam-CI2LMghP.webp",
