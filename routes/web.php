@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\WebhookController;
+use App\Livewire\Pages\ActivitySignup;
 use App\Livewire\Pages\Dashboard;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\MinistryTeam;
@@ -66,6 +67,14 @@ Route::prefix('shop')->group(function (): void {
     Route::get('/cart', ShopCart::class)->name('shop.cart');
     Route::get('/checkout', ShopCheckout::class)->name('shop.checkout');
     Route::get('/order/{uuid}/success', ShopSuccess::class)->name('shop.success');
+});
+
+// Activity Sign-Ups
+Route::prefix('signup')->group(function (): void {
+    Route::get('/workshops', ActivitySignup::class)->defaults('activity', 'workshop')->name('signup.workshops');
+    Route::get('/healing-rooms', ActivitySignup::class)->defaults('activity', 'healing_room')->name('signup.healing-rooms');
+    Route::get('/prophetic-rooms', ActivitySignup::class)->defaults('activity', 'prophetic_room')->name('signup.prophetic-rooms');
+    Route::get('/street-evangelism', ActivitySignup::class)->defaults('activity', 'street_evangelism')->name('signup.street-evangelism');
 });
 
 // Newsletter Subscription

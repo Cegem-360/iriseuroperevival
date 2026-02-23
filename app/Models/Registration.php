@@ -37,6 +37,11 @@ class Registration extends Model
         'ticket_quantity',
         'amount',
 
+        // Volunteer Service Fields
+        'service_areas',
+        'has_served_before',
+        'previous_service_description',
+
         // Ministry Team Fields
         'citizenship',
         'languages',
@@ -224,7 +229,13 @@ class Registration extends Model
         $this->approved_at = now();
         $this->approved_by = $adminId;
 
-        return $this->save();
+        $saved = $this->save();
+
+        if ($saved) {
+            $this->sendApprovalEmail();
+        }
+
+        return $saved;
     }
 
     public function reject(?int $adminId = null, ?string $reason = null): bool
@@ -234,7 +245,39 @@ class Registration extends Model
         $this->rejected_by = $adminId;
         $this->rejection_reason = $reason;
 
-        return $this->save();
+        $saved = $this->save();
+
+        if ($saved) {
+            $this->sendRejectionEmail();
+        }
+
+        return $saved;
+    }
+
+    protected function sendApprovalEmail(): void
+    {
+        $mailable = match ($this->type) {
+            'volunteer' => new \App\Mail\VolunteerApplicationApproved($this),
+            'ministry' => new \App\Mail\MinistryApplicationApproved($this),
+            default => null,
+        };
+
+        if ($mailable) {
+            Mail::to($this->email)->queue($mailable);
+        }
+    }
+
+    protected function sendRejectionEmail(): void
+    {
+        $mailable = match ($this->type) {
+            'volunteer' => new \App\Mail\VolunteerApplicationRejected($this),
+            'ministry' => new \App\Mail\MinistryApplicationRejected($this),
+            default => null,
+        };
+
+        if ($mailable) {
+            Mail::to($this->email)->queue($mailable);
+        }
     }
 
     public function markAsPaid(string $paymentIntent): bool
@@ -275,6 +318,8 @@ class Registration extends Model
     {
         return [
             'languages' => 'array',
+            'service_areas' => 'array',
+            'has_served_before' => 'boolean',
             'is_born_again' => 'boolean',
             'is_spirit_filled' => 'boolean',
             'attended_ministry_school' => 'boolean',

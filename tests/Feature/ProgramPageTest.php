@@ -41,8 +41,8 @@ describe('program page', function () {
         Livewire::test(Program::class)
             ->assertSee('Morning Worship')
             ->assertSee('Afternoon Session')
-            ->assertSee('09:00')
-            ->assertSee('14:00');
+            ->assertSee('9:00am')
+            ->assertSee('2:00pm');
     });
 
     it('displays different schedule types with badges', function () {

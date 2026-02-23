@@ -26,6 +26,11 @@ class Home extends Component
             ->ordered()
             ->get();
 
+        $worshipTeams = Speaker::query()
+            ->ofType('worship_team')
+            ->ordered()
+            ->get();
+
         $workshopLeaders = Speaker::query()
             ->ofType('workshop_leader')
             ->ordered()
@@ -77,13 +82,14 @@ class Home extends Component
 
         $ticketPrices = TicketPrice::query()
             ->active()
-            ->whereIn('ticket_type', ['individual', 'team'])
+            ->whereIn('ticket_type', ['1day', '3day', 'group'])
             ->get()
             ->groupBy('pricing_tier')
             ->map(fn ($tierPrices) => $tierPrices->pluck('price_in_euros', 'ticket_type'));
 
         return view('livewire.pages.home', [
             'featuredSpeakers' => $featuredSpeakers,
+            'worshipTeams' => $worshipTeams,
             'workshopLeaders' => $workshopLeaders,
             'mainSponsor' => $mainSponsor,
             'partnerSponsors' => $partnerSponsors,

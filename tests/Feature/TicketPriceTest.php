@@ -12,6 +12,7 @@ use Livewire\Livewire;
 
 beforeEach(function () {
     $this->actingAs(User::factory()->create());
+    TicketPrice::query()->delete();
 });
 
 it('has correct computed attributes', function () {

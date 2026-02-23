@@ -15,7 +15,7 @@
         <nav class="flex items-center justify-between h-20">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="shrink-0">
-                <img src="{{ Vite::asset('resources/images/europe-revival-logo.svg') }}"
+                <img src="{{ Vite::asset('resources/images/europe-revival-2026-logo.webp') }}"
                      alt="Europe Revival 2026"
                      class="h-10 md:h-12 transition-all duration-300"
                      :class="scrolled ? 'h-9 md:h-10' : 'h-10 md:h-12'">
@@ -27,24 +27,20 @@
                     {{ __('Speakers') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="#theme" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    {{ __('Theme') }}
+                <a href="{{ route('workshops') }}" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
+                    {{ __('Workshops') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="#schedule" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    {{ __('Schedule') }}
+                    {{ __('Program') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
                 <a href="#pricing" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
                     {{ __('Pricing') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="{{ route('workshops') }}" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    {{ __('Workshops') }}
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="{{ route('program') }}" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    {{ __('Program') }}
+                <a href="{{ route('volunteer') }}" class="text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
+                    {{ __('Join as a Volunteer') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
             </div>
@@ -89,11 +85,10 @@
          style="display: none;">
         <div class="max-w-7xl mx-auto px-4 py-6 space-y-4">
             <a href="#speakers" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Speakers') }}</a>
-            <a href="#theme" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Theme') }}</a>
-            <a href="#schedule" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Schedule') }}</a>
-            <a href="#pricing" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Pricing') }}</a>
             <a href="{{ route('workshops') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
-            <a href="{{ route('program') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
+            <a href="#schedule" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
+            <a href="#pricing" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Pricing') }}</a>
+            <a href="{{ route('volunteer') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Join as a Volunteer') }}</a>
 
             {{-- Language Options --}}
             <div class="py-3 border-b border-white/5">

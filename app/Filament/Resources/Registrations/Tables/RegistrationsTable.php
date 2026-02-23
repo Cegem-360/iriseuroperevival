@@ -181,8 +181,8 @@ class RegistrationsTable
                     ->color('success')
                     ->requiresConfirmation()
                     ->modalHeading('Approve Registration')
-                    ->modalDescription('Are you sure you want to approve this ministry team application?')
-                    ->visible(fn (Registration $record): bool => $record->type === 'ministry' && $record->status === 'pending_approval')
+                    ->modalDescription(fn (Registration $record): string => "Are you sure you want to approve this {$record->type} application?")
+                    ->visible(fn (Registration $record): bool => in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval')
                     ->action(function (Registration $record): void {
                         $record->approve(Auth::id());
 
@@ -203,7 +203,7 @@ class RegistrationsTable
                             ->required()
                             ->placeholder('Please provide a reason for rejection...'),
                     ])
-                    ->visible(fn (Registration $record): bool => $record->type === 'ministry' && $record->status === 'pending_approval')
+                    ->visible(fn (Registration $record): bool => in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval')
                     ->action(function (Registration $record, array $data): void {
                         $record->reject(Auth::id(), $data['reason']);
 
@@ -382,7 +382,7 @@ class RegistrationsTable
                         ->action(function (Collection $records): void {
                             $count = 0;
                             $records->each(function (Registration $record) use (&$count): void {
-                                if ($record->type === 'ministry' && $record->status === 'pending_approval') {
+                                if (in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval') {
                                     $record->approve(Auth::id());
                                     $count++;
                                 }

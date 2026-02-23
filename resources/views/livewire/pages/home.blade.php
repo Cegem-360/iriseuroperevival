@@ -24,14 +24,14 @@
         <div class="relative z-10 max-w-5xl mx-auto px-4 text-center pt-32 pb-20">
             {{-- Conference Badge --}}
             <div
-                class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-8 animate-fade-in">
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-8 animate-fade-in">
                 <span class="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></span>
-                <span class="text-white/80 text-sm font-medium">October 23-25, 2026 • Budapest, Hungary</span>
+                <span class="text-white text-base md:text-lg font-semibold">October 23-25, 2026 • BOK Csarnok, Budapest</span>
             </div>
 
             {{-- Main Logo/Title --}}
             <div class="mb-8 animate-fade-in-up">
-                <img src="{{ Vite::asset('resources/images/europe-revival-logo.svg') }}" alt="Europe Revival 2026"
+                <img src="{{ Vite::asset('resources/images/europe-revival-2026-logo.webp') }}" alt="Europe Revival 2026"
                     class="h-20 md:h-28 mx-auto mb-6">
             </div>
 
@@ -44,11 +44,9 @@
             </div>
 
             {{-- Description --}}
-            <p class="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-10 animate-fade-in-up"
+            <p class="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-10 animate-fade-in-up"
                 style="animation-delay: 0.2s;">
-                A 3-day conference for everyone seeking <span class="text-sky-400">revival</span>,
-                <span class="text-sky-400">healing</span>, and a fresh <span class="text-sky-400">encounter</span> with
-                Jesus.
+                A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.
             </p>
 
             {{-- CTA Buttons --}}
@@ -63,41 +61,59 @@
                             d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </a>
-                <button @click="$dispatch('open-video-modal')"
+                <button @click="$dispatch('open-vision-modal')"
                     class="group inline-flex items-center gap-3 px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white font-semibold text-lg rounded-full transition-all duration-300">
                     <span
                         class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                        <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                     </span>
-                    Watch Program
+                    See the Vision
                 </button>
             </div>
 
-            {{-- Video Thumbnail Preview --}}
+            {{-- Promo Video - Coming Soon (replace with video player when ready) --}}
+            <div class="relative max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+                    <img src="{{ Vite::asset('resources/images/close-up-of-podium-with-speake.webp') }}"
+                        alt="Europe Revival 2026"
+                        class="w-full aspect-video object-cover">
+                    <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
+                        {{-- Inactive play button --}}
+                        <div class="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/20 mb-5">
+                            <svg class="w-8 h-8 text-white/30 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                        {{-- Coming Soon label --}}
+                        <div class="px-5 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full">
+                            <p class="text-white font-semibold text-sm tracking-wider uppercase">Coming Soon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Original video thumbnail (restore when promo video is ready):
             <div class="relative max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 cursor-pointer group"
                     @click="$dispatch('open-video-modal')">
                     <img src="{{ Vite::asset('resources/images/close-up-of-podium-with-speake.webp') }}"
                         alt="Europe Revival 2026 Highlights"
                         class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105">
-                    {{-- Play Button Overlay --}}
-                    <div
-                        class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
-                        <div
-                            class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/40 group-hover:scale-110 transition-transform">
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
+                        <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/40 group-hover:scale-110 transition-transform">
                             <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </div>
                     </div>
-                    {{-- Caption --}}
                     <div class="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black/80 to-transparent">
                         <p class="text-white/80 text-sm">Watch highlights from Europe Revival 2026</p>
                     </div>
                 </div>
             </div>
+            --}}
 
         </div>
     </section>
@@ -126,7 +142,7 @@
                 </span>
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Speakers</h2>
                 <p class="text-white/50 text-lg max-w-2xl mx-auto">
-                    Anointed ministers from around the world sharing powerful messages of revival and transformation
+                    Missionaries & ministers who carry revival in different nations around the world, sharing deep messages of love, hope and power of God.
                 </p>
             </div>
 
@@ -140,10 +156,26 @@
                 <x-home.more-speakers-card />
             </div>
 
+            {{-- Worship Teams --}}
+            @if ($worshipTeams->isNotEmpty())
+                <div class="mt-24">
+                    <h3 class="text-4xl md:text-5xl font-bold text-white text-center mb-8">Worship Teams</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                        @foreach ($worshipTeams as $speaker)
+                            <x-home.speaker-card :speaker="$speaker" :showArrow="false" wire:key="worship-{{ $speaker->id }}" />
+                        @endforeach
+                        <x-home.more-speakers-card />
+                    </div>
+                </div>
+            @endif
+
             {{-- Workshop Leaders --}}
             @if ($workshopLeaders->isNotEmpty())
-                <div class="mt-16">
-                    <h3 class="text-2xl font-bold text-white text-center mb-8">Workshop Leaders</h3>
+                <div class="mt-24">
+                    <h3 class="text-4xl md:text-5xl font-bold text-white text-center mb-4">Workshop Leaders</h3>
+                    <p class="text-white/50 text-lg text-center max-w-2xl mx-auto mb-8">
+                        Reserve your spot at the workshops! Inspiring talks and hands-on experiences await you.
+                    </p>
                     <div class="relative md:-mr-40">
                         <div class="overflow-x-auto md:pr-40 snap-x snap-mandatory scrollbar-hide pb-4 -mb-4">
                             <div class="flex gap-4 md:gap-6">
@@ -163,6 +195,17 @@
                             class="absolute right-0 top-0 bottom-4 w-16 md:w-20 bg-linear-to-l from-navy-800 to-transparent pointer-events-none z-10">
                         </div>
                     </div>
+
+                    {{-- Workshop Sign-up CTA --}}
+                    <div class="mt-10 text-center">
+                        <a href="{{ route('workshops') }}"
+                           class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg rounded-full">
+                            Sign up now to secure your spot!
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             @endif
         </div>
@@ -174,7 +217,7 @@
     <section id="theme" class="py-24 bg-navy-900 relative overflow-hidden">
         {{-- Background Artwork --}}
         <div class="absolute right-0 top-0 w-1/2 h-full opacity-20">
-            <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}" alt=""
+            <img src="{{ Vite::asset('resources/images/encounter-jesus.webp') }}" alt=""
                 class="w-full h-full object-cover object-left">
             <div class="absolute inset-0 bg-linear-to-r from-navy-950 to-transparent"></div>
         </div>
@@ -184,37 +227,23 @@
                 {{-- Left: Artwork --}}
                 <div class="relative">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ Vite::asset('resources/images/crowd-1.webp') }}" alt="Encounter Jesus"
+                        <img src="{{ Vite::asset('resources/images/encounter-jesus.webp') }}" alt="Encounter Jesus"
                             class="w-full aspect-4/5 object-cover">
                         {{-- Glow Effect --}}
                         <div class="absolute -inset-4 bg-primary-500/20 blur-3xl -z-10"></div>
-                    </div>
-                    {{-- Floating Badge --}}
-                    <div
-                        class="absolute -bottom-6 -right-6 bg-linear-to-br from-primary-500 to-primary-600 text-navy-800 px-6 py-4 rounded-2xl shadow-xl">
-                        <span class="text-4xl font-bold">2026</span>
-                        <span class="block text-sm font-medium opacity-80">Conference Theme</span>
                     </div>
                 </div>
 
                 {{-- Right: Content --}}
                 <div>
-                    <span
-                        class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-6">
-                        This Year's Theme
-                    </span>
                     <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
                         Encounter Jesus.<br>
                         <span class="text-gradient">Catch on Fire.</span>
                     </h2>
                     <p class="text-white/60 text-lg mb-8 leading-relaxed">
-                        Europe Revival 2026 is organized by <strong class="text-white/80">Iris Europe</strong>, a
-                        revival movement led by full-time missionaries
-                        <strong class="text-white/80">Siyabonga and Dominika Mofele</strong>, pioneers of the Iris
-                        Krakow base within the Iris Global family.
-                        Rooted in prayer, worship, and obedience to the Holy Spirit, Iris Europe is committed to seeing
-                        Europe encounter Jesus
-                        and live a laid-down life of love for the Gospel.
+                        We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe.
+                        We burn with passion for Jesus and carry the Gospel to the lost — a message of redemption, restoration, love, and
+                        power. Be part of what God is doing in Europe through <strong class="text-white/80">Europe Revival 2026</strong>!
                     </p>
 
                     {{-- Theme Points --}}
@@ -224,13 +253,12 @@
                                 <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">Born from Iris Europe Camp</h4>
-                                <p class="text-white/50 text-sm">An extension of the gathering known for deep worship,
-                                    uncompromised teaching, and encounters with God that ignite hearts</p>
+                                <h4 class="text-white font-semibold mb-1">Deep Worship & Prayer</h4>
+                                <p class="text-white/50 text-sm">Join powerful worship and prayer sessions creating space for deep encounters with God and hearing His voice.</p>
                             </div>
                         </div>
 
@@ -245,10 +273,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">Stadium Gathering in Hungary</h4>
-                                <p class="text-white/50 text-sm">The same atmosphere of intimacy, joy, and spiritual
-                                    fire
-                                    expanded to create space for thousands to experience God's presence together</p>
+                                <h4 class="text-white font-semibold mb-1">Ministry & Inspiration</h4>
+                                <p class="text-white/50 text-sm">Hear from amazing speakers walking closely with God and receive fresh anointing and breakthrough for your personal walk with Lord Jesus.</p>
                             </div>
                         </div>
 
@@ -261,19 +287,16 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold mb-1">A Vision for Europe</h4>
-                                <p class="text-white/50 text-sm">Europe is not spiritually dead but hungry for the
-                                    living God—
-                                    we invite believers to encounter Jesus and catch on fire for His glory</p>
+                                <h4 class="text-white font-semibold mb-1">Outreaches & Missions</h4>
+                                <p class="text-white/50 text-sm">Be commissioned to live for the gospel and join the worldwide missions movement that seeks to bring love, hope and power of Jesus to the lost and the broken.</p>
                             </div>
                         </div>
                     </div>
 
                     {{-- Scripture --}}
-                    <blockquote class="bg-primary-500/15 border border-primary-500/30 rounded-xl px-6 py-5">
-                        <p class="text-white italic text-lg mb-2">"I have come to bring fire on the earth, and how I
-                            wish it were already kindled!"</p>
-                        <cite class="text-primary-400 text-sm font-medium">— Luke 12:49</cite>
+                    <blockquote class="bg-primary-500/5 border border-primary-500/20 rounded-xl px-6 py-5">
+                        <p class="text-white italic text-lg mb-2">"What no eye has seen, what no ear has heard, and what no human mind has conceived — the things God has prepared for those who love him."</p>
+                        <cite class="text-primary-400 text-sm font-medium">— 1 Corinthians 2:9</cite>
                     </blockquote>
                 </div>
             </div>
@@ -289,11 +312,11 @@
             <div class="text-center mb-16">
                 <span
                     class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
-                    Conference Schedule
+                    Event Schedule
                 </span>
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">3 Days of Encounter</h2>
                 <p class="text-white/50 text-lg max-w-2xl mx-auto">
-                    Powerful sessions, workshops, healing rooms, and supernatural encounters await
+                    Powerful sessions, inspirational workshops, healing & prophetic rooms, time of fellowship and divine appointments for the Kingdom of God to grow in Europe!
                 </p>
             </div>
 
@@ -346,7 +369,7 @@
                                     @foreach ($trainingDay['items'] as $item)
                                         <div class="flex gap-4 p-4 bg-navy-600/30 rounded-xl">
                                             <span class="text-sky-400 font-mono font-semibold w-24 shrink-0">
-                                                {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }}
+                                                {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }}
                                             </span>
                                             <div>
                                                 <h4 class="text-white font-medium">{{ $item->title }}</h4>
@@ -363,11 +386,12 @@
                                     @endforeach
                                 </div>
 
-                                <div class="mt-6 p-4 bg-sky-400/10 border border-sky-400/30 rounded-xl">
+                                <div class="mt-6 p-4 bg-sky-400/10 border border-sky-400/30 rounded-xl space-y-2">
                                     <p class="text-sky-400 text-sm">
-                                        <strong>Note:</strong> Training day is mandatory for all ministry team members.
-                                        <a href="{{ route('ministry-team') }}"
-                                            class="underline hover:no-underline">Apply to join the team</a>
+                                        <strong>Who can attend:</strong> The Training Day is exclusively for registered volunteers who have received an acceptance confirmation, and approved Ministry Team members.
+                                    </p>
+                                    <p class="text-sky-400 text-sm">
+                                        <strong>Venue:</strong> The Training Day is NOT held at BOK Csarnok. Participants will receive the exact venue details by email.
                                     </p>
                                 </div>
                             </div>
@@ -409,8 +433,8 @@
                                         @endphp
                                         <div class="border-l-2 {{ $borderColor }} pl-4">
                                             <span class="{{ $textColor }} text-sm font-semibold">
-                                                {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }} -
-                                                {{ \Carbon\Carbon::parse($item->end_time)->format('H:i') }}
+                                                {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }} -
+                                                {{ \Carbon\Carbon::parse($item->end_time)->format('g:ia') }}
                                             </span>
                                             <h4 class="text-white font-medium">{{ $item->title }}</h4>
                                             @if ($item->speaker)
@@ -428,7 +452,7 @@
 
                     <div class="mt-8 text-center">
                         <a href="{{ route('program') }}" class="btn-secondary">
-                            View Full Program
+                            View Event Program
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 5l7 7-7 7" />
@@ -470,21 +494,19 @@
     @php
         $prices = [
             'early' => [
-                'individual' => $ticketPrices['early']['individual'] ?? 49,
-                'team' => $ticketPrices['early']['team'] ?? 39,
+                '1day' => $ticketPrices['early']['1day'] ?? 29,
+                '3day' => $ticketPrices['early']['3day'] ?? 49,
+                'group' => $ticketPrices['early']['group'] ?? 39,
             ],
             'regular' => [
-                'individual' => $ticketPrices['regular']['individual'] ?? 69,
-                'team' => $ticketPrices['regular']['team'] ?? 59,
+                '1day' => $ticketPrices['regular']['1day'] ?? 39,
+                '3day' => $ticketPrices['regular']['3day'] ?? 69,
+                'group' => $ticketPrices['regular']['group'] ?? 59,
             ],
         ];
     @endphp
     <section id="pricing" class="py-24 bg-navy-900 relative" x-data="{
         activeTier: 'early',
-        {{-- prices: {
-            early: { individual: 49, team: 39 },
-            regular: { individual: 69, team: 59 }
-        } --}}
         prices: {{ Js::from($prices) }}
     }">
         <div class="max-w-7xl mx-auto px-4">
@@ -492,9 +514,9 @@
             <div class="text-center mb-6">
                 <span
                     class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
-                    Pricing
+                    Tickets now available
                 </span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Secure Your Spot</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Save Your Place</h2>
             </div>
 
             {{-- Early Bird Deadline Highlight --}}
@@ -505,7 +527,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Early Bird pricing available until June 30, 2026
+                    Early Bird price available until June 30, 2026
                 </span>
             </div>
 
@@ -532,60 +554,25 @@
             </div>
 
             {{-- Pricing Cards --}}
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {{-- Individual Ticket --}}
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {{-- 1-Day Pass --}}
                 <div
                     class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="text-2xl font-bold text-white mb-2">Individual</h3>
-                    <p class="text-white/50 mb-6">Single attendee registration</p>
+                    <h3 class="text-2xl font-bold text-white mb-2">1-Day Pass</h3>
+                    <p class="text-white/50 mb-6">Single day access</p>
 
-                    <div class="mb-8">
+                    <div class="mb-8 grow">
                         <span class="text-5xl font-bold text-white">€<span
-                                x-text="prices[activeTier].individual">{{ $prices['early']['individual'] }}</span></span>
+                                x-text="prices[activeTier]['1day']">{{ $prices['early']['1day'] }}</span></span>
                         <span class="text-white/50">/person</span>
                     </div>
 
-                    <ul class="space-y-3 mb-8 grow">
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Access to all main sessions
-                        </li>
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Workshop participation
-                        </li>
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Healing & Prophetic room access
-                        </li>
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Conference materials
-                        </li>
-                    </ul>
-
-                    <a href="{{ route('register') }}" class="btn-primary w-full justify-center">
+                    <a href="{{ route('register') }}?ticket=1day" class="btn-primary w-full justify-center">
                         Register Now
                     </a>
                 </div>
 
-                {{-- Team Pass --}}
+                {{-- 3-Day Pass --}}
                 <div
                     class="bg-linear-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden flex flex-col">
                     {{-- Best Value Badge --}}
@@ -596,59 +583,94 @@
                         </div>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-white mb-2">Team Pass</h3>
-                    <p class="text-white/50 mb-6">Groups of 10+ attendees</p>
+                    <h3 class="text-2xl font-bold text-white mb-2">3-Day Pass</h3>
+                    <p class="text-white/50 mb-6">Full event access</p>
 
-                    <div class="mb-8">
+                    <div class="mb-8 grow">
                         <span class="text-5xl font-bold text-primary-400">€<span
-                                x-text="prices[activeTier].team">{{ $prices['early']['team'] }}</span></span>
+                                x-text="prices[activeTier]['3day']">{{ $prices['early']['3day'] }}</span></span>
                         <span class="text-white/50">/person</span>
-                        <span class="block text-green-400 text-sm mt-1">Save 20% per person</span>
                     </div>
 
-                    <ul class="space-y-3 mb-8 grow">
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Everything in Individual
-                        </li>
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Group seating area
-                        </li>
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Team leader badge
-                        </li>
-                        <li class="flex items-center gap-3 text-white/70">
-                            <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                            Priority check-in
-                        </li>
-                    </ul>
+                    <a href="{{ route('register') }}?ticket=3day" class="btn-primary w-full justify-center">
+                        Register Now
+                    </a>
+                </div>
 
-                    <a href="{{ route('register') }}?type=team" class="btn-primary w-full justify-center">
-                        Register Team
+                {{-- Group Ticket --}}
+                <div
+                    class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                    <h3 class="text-2xl font-bold text-white mb-2">Group Ticket</h3>
+                    <p class="text-white/50 mb-6">Groups of 10+ attendees</p>
+
+                    <div class="mb-8 grow">
+                        <span class="text-5xl font-bold text-white">€<span
+                                x-text="prices[activeTier]['group']">{{ $prices['early']['group'] }}</span></span>
+                        <span class="text-white/50">/person</span>
+                    </div>
+
+                    <a href="{{ route('register') }}?ticket=group" class="btn-primary w-full justify-center">
+                        Register Now
                     </a>
                 </div>
             </div>
 
+            {{-- Coupon Code Note --}}
+            <div class="text-center mt-8">
+                <p class="text-white/40 text-sm">
+                    If you are attending as a volunteer, enter the coupon code from your email during registration.
+                </p>
+            </div>
 
+        </div>
+    </section>
 
+    {{-- ============================================
+    VOLUNTEER CTA SECTION
+============================================= --}}
+    <section class="py-20 bg-navy-900 relative overflow-hidden">
+        {{-- Background --}}
+        <div class="absolute inset-0">
+            <img src="{{ Vite::asset('resources/images/crowd-3.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover opacity-15">
+            <div class="absolute inset-0 bg-linear-to-r from-primary-600/20 to-navy-900/95"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4">
+            <div class="text-center">
+                <div
+                    class="w-20 h-20 bg-primary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-primary-500/30">
+                    <svg class="w-10 h-10 text-primary-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Serve with us!</h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto mb-4">
+                    Be a part of what God is doing in Hungary and in Europe &amp; sign up to volunteer at the event.
+                    You can choose to serve in:
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 mb-6 max-w-2xl mx-auto">
+                    @foreach (['Childcare', 'Ushers', 'Registration', 'Merch', 'Hospitality', 'Tech & Media', 'Street Evangelism', 'Kids Ministry'] as $role)
+                        <span
+                            class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm">{{ $role }}</span>
+                    @endforeach
+                </div>
+
+                <p class="text-primary-400 font-semibold text-lg mb-8">All volunteers receive a 20% discount on the ticket and a free event t-shirt.</p>
+
+                <a href="{{ route('volunteer') }}"
+                    class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
+                    Apply to Volunteer
+                    <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -681,55 +703,6 @@
     </section>
 
     {{-- ============================================
-    VOLUNTEER CTA SECTION
-============================================= --}}
-    <section class="py-20 bg-navy-900 relative overflow-hidden">
-        {{-- Background --}}
-        <div class="absolute inset-0">
-            <img src="{{ Vite::asset('resources/images/crowd-3.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover opacity-15">
-            <div class="absolute inset-0 bg-linear-to-r from-primary-600/20 to-navy-900/95"></div>
-        </div>
-
-        <div class="relative z-10 max-w-5xl mx-auto px-4">
-            <div class="text-center">
-                <div
-                    class="w-20 h-20 bg-primary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-primary-500/30">
-                    <svg class="w-10 h-10 text-primary-400" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Want to Serve?</h2>
-                <p class="text-white/60 text-lg max-w-2xl mx-auto mb-4">
-                    We are looking for volunteers to join our ministry team! Serve in healing rooms, prophetic ministry,
-                    worship, hospitality, and more.
-                </p>
-                <p class="text-primary-400 font-semibold text-lg mb-8">Free conference access for approved team members
-                </p>
-
-                <div class="flex flex-wrap items-center justify-center gap-3 mb-10 max-w-2xl mx-auto">
-                    @foreach (['Healing Rooms', 'Prophetic Ministry', 'Worship Team', 'Hospitality', 'Prayer Team', 'Street Evangelism', 'Kids Ministry', 'Tech & Media'] as $role)
-                        <span
-                            class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm">{{ $role }}</span>
-                    @endforeach
-                </div>
-
-                <a href="{{ route('volunteer') }}"
-                    class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
-                    Apply to Volunteer
-                    <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    {{-- ============================================
     FAQ SECTION
 ============================================= --}}
     <section id="faq" class="py-24 bg-navy-800" x-data="{ openFaq: null }">
@@ -748,8 +721,8 @@
             <div class="space-y-4">
                 @foreach ($faqs as $index => $faq)
                     <x-home.faq-item :faq="$faq" :index="$index + 1" wire:key="faq-{{ $faq->id }}">
-                        @if ($faq->category === 'registration')
-                            <a href="{{ route('ministry-team') }}"
+                        @if ($faq->category === 'volunteer')
+                            <a href="{{ route('volunteer') }}"
                                 class="inline-flex items-center gap-2 text-primary-400 mt-4 hover:underline">
                                 Apply Now
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -757,6 +730,15 @@
                                         d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
+                        @endif
+                        @if ($faq->question === 'Where is the conference held?')
+                            <div class="mt-4 rounded-lg overflow-hidden border border-navy-600">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5390.850295325713!2d19.09821737667788!3d47.50111099525572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741dc907f7887b7%3A0x9617556691dcd6c2!2sBOK%20Sportcsarnok!5e0!3m2!1shu!2sus!4v1771601563751!5m2!1shu!2sus"
+                                    width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    class="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></iframe>
+                            </div>
                         @endif
                     </x-home.faq-item>
                 @endforeach
@@ -793,18 +775,21 @@
                     alt="Encounter Jesus. Catch on Fire." class="h-16 md:h-20 mx-auto opacity-80">
             </div>
 
-            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
-                Your encounter awaits.
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-4">
+                Encounter Jesus.<br>
+                <span class="text-gradient">Catch on Fire.</span>
             </h2>
-            <p class="text-xl text-white/60 mb-10 max-w-2xl mx-auto">
-                Don't miss this divine appointment. Join thousands of believers from across Europe
-                for three days that could change your life forever.
+            <p class="text-xl md:text-2xl text-white/70 mb-4 max-w-2xl mx-auto font-medium">
+                Revival awaits. Be a part of what God is doing in Europe!
+            </p>
+            <p class="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
+                Don't miss out! Join thousands of believers from across Europe for three days that could change your life forever.
             </p>
 
             {{-- CTA --}}
             <a href="{{ route('register') }}"
                 class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
-                Register Now — Starting at €49
+                Register Now
                 <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"

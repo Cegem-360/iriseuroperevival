@@ -6,7 +6,7 @@
             <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                 {{ __('October 22-25, 2026') }}
             </span>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ __('Conference Program') }}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ __('Event Program') }}</h1>
             <p class="text-xl text-white/50 max-w-2xl mx-auto">{{ __('Four days of powerful worship, teaching, and encounters with God.') }}</p>
         </div>
 
@@ -110,7 +110,7 @@
                                     <!-- Time (Mobile: inline, Desktop: side) -->
                                     <div class="hidden md:block w-1/2 {{ $isEven ? 'pl-12 text-left' : 'pr-12 text-right' }}">
                                         <span class="{{ $textColor }} font-medium">
-                                            {{ $item->start_time->format('H:i') }} - {{ $item->end_time->format('H:i') }}
+                                            {{ $item->start_time->format('g:ia') }} - {{ $item->end_time->format('g:ia') }}
                                         </span>
                                     </div>
 
@@ -119,7 +119,7 @@
                                         <div class="bg-navy-700/50 rounded-xl border border-navy-600 p-6 hover:border-sky-400/30 transition-colors">
                                             <!-- Mobile Time -->
                                             <span class="md:hidden {{ $textColor }} font-medium text-sm block mb-2">
-                                                {{ $item->start_time->format('H:i') }} - {{ $item->end_time->format('H:i') }}
+                                                {{ $item->start_time->format('g:ia') }} - {{ $item->end_time->format('g:ia') }}
                                             </span>
 
                                             <!-- Type Badge & Title -->

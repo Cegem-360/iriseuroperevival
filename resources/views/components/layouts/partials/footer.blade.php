@@ -5,11 +5,10 @@
             {{-- Logo & Description --}}
             <div class="md:col-span-2">
                 <a href="{{ route('home') }}" class="inline-block mb-6">
-                    <img src="{{ Vite::asset('resources/images/iris-budapest-2026.png') }}" alt="Iris Global" class="h-14">
+                    <img src="{{ Vite::asset('resources/images/iris-krakow-logo.webp') }}" alt="Iris Krakow" class="h-14">
                 </a>
                 <p class="text-white/50 text-sm leading-relaxed max-w-md mb-6">
-                    Europe Revival 2026 is brought to you by Iris Global, a ministry dedicated to bringing
-                    the love of Jesus to the nations through revival, healing, and supernatural encounters.
+                    Europe Revival 2026 is brought to you by Iris Krakow, part of Iris Global, a Christ-centred missions organization bringing light to the darkness, healing to the broken and love to the unloved. One person at a time.
                 </p>
                 {{-- Social Links --}}
                 <div class="flex items-center gap-4">

@@ -404,7 +404,7 @@ class RegistrationForm extends Component implements HasSchemas
     protected function getVolunteerDetailsStep(): Step
     {
         return Step::make('Volunteer Details')
-            ->description('Tell us about your skills')
+            ->description('Tell us how you would like to serve')
             ->icon('heroicon-o-hand-raised')
             ->visible(fn (Get $get): bool => $get('registration_type') === 'volunteer')
             ->schema([
@@ -425,11 +425,34 @@ class RegistrationForm extends Component implements HasSchemas
                     ->columns(3)
                     ->gridDirection('row'),
 
-                Section::make('Volunteer Pass')
-                    ->description('As a volunteer, you receive a discounted conference pass.')
-                    ->schema([
-                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.volunteer-pricing'),
-                    ]),
+                CheckboxList::make('service_areas')
+                    ->label('Service Areas')
+                    ->helperText('Select the areas where you would like to serve (you can choose more than one)')
+                    ->required()
+                    ->options([
+                        'Childcare' => 'Childcare',
+                        'Ushers' => 'Ushers',
+                        'Registration' => 'Registration',
+                        'Merch' => 'Merch',
+                        'Hospitality' => 'Hospitality',
+                        'Tech & Media' => 'Tech & Media',
+                        'Street Evangelism' => 'Street Evangelism',
+                        'Kids Ministry' => 'Kids Ministry',
+                    ])
+                    ->columns(2)
+                    ->gridDirection('row'),
+
+                Radio::make('has_served_before')
+                    ->label('Have you served in the selected area before?')
+                    ->required()
+                    ->boolean()
+                    ->live(),
+
+                TextInput::make('previous_service_description')
+                    ->label('What area have you served in?')
+                    ->maxLength(500)
+                    ->placeholder('Briefly describe your previous service experience')
+                    ->visible(fn (Get $get): bool => (bool) $get('has_served_before')),
             ]);
     }
 
@@ -480,15 +503,15 @@ class RegistrationForm extends Component implements HasSchemas
         try {
             $registration = $this->createRegistration($data);
 
-            // Attendees and volunteers go through Stripe payment
-            if (in_array($this->type, ['attendee', 'volunteer'])) {
+            // Attendees go through Stripe payment
+            if ($this->type === 'attendee') {
                 $stripeService = app(StripeService::class);
                 $checkoutUrl = $stripeService->createCheckoutSession($registration);
 
                 return redirect($checkoutUrl);
             }
 
-            // Ministry team doesn't pay - just submits application
+            // Volunteers and ministry team submit applications for approval
             Notification::make()
                 ->title('Application Submitted!')
                 ->success()
@@ -519,7 +542,7 @@ class RegistrationForm extends Component implements HasSchemas
             'phone' => $data['phone'],
             'country' => $data['country'],
             'city' => $data['city'],
-            'status' => $this->type === 'ministry' ? 'pending_approval' : 'pending_payment',
+            'status' => in_array($this->type, ['ministry', 'volunteer']) ? 'pending_approval' : 'pending_payment',
         ];
 
         if ($this->type === 'attendee') {
@@ -529,9 +552,9 @@ class RegistrationForm extends Component implements HasSchemas
         }
 
         if ($this->type === 'volunteer') {
-            $registrationData['ticket_type'] = 'volunteer';
-            $registrationData['ticket_quantity'] = 1;
-            $registrationData['amount'] = app(StripeService::class)->getVolunteerPrice();
+            $registrationData['service_areas'] = $data['service_areas'] ?? [];
+            $registrationData['has_served_before'] = $data['has_served_before'] ?? false;
+            $registrationData['previous_service_description'] = $data['previous_service_description'] ?? null;
         }
 
         if ($this->type === 'ministry') {
