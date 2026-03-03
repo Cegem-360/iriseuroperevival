@@ -1,11 +1,13 @@
-@props(['speaker', 'showArrow' => true])
+@props(['speaker', 'showArrow' => true, 'workshopTopic' => null])
 
 <div class="relative group/card block">
     <a href="{{ route('speaker.show', $speaker->slug) }}" class="speaker-card group block">
         <img src="{{ $speaker->photo_path ? Vite::asset('resources/' . $speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
             alt="{{ $speaker->name }}">
         <div class="speaker-card-content">
-            @if ($speaker->title)
+            @if ($workshopTopic)
+                <span class="badge-amber mb-2">{{ $workshopTopic }}</span>
+            @elseif ($speaker->title)
                 <span class="badge-{{ $speaker->is_featured ? 'amber' : 'info' }} mb-2">{{ $speaker->title }}</span>
             @endif
             <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-bold text-white">{{ $speaker->name }}</h3>

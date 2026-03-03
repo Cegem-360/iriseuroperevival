@@ -633,7 +633,7 @@
                     </svg>
                     Jelentkezem most
                 </a>
-                <a href="mailto:ministry@europerevival.org" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-navy-600 hover:border-sky-400/50 text-white/70 hover:text-white font-semibold transition-all duration-300">
+                <a href="mailto:ministry@iriseuroperevival.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-navy-600 hover:border-sky-400/50 text-white/70 hover:text-white font-semibold transition-all duration-300">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>

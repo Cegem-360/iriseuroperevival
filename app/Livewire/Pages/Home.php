@@ -33,6 +33,7 @@ class Home extends Component
 
         $workshopLeaders = Speaker::query()
             ->ofType('workshop_leader')
+            ->with('workshops')
             ->ordered()
             ->get();
 

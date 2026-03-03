@@ -75,6 +75,9 @@
                                         <a href="{{ route('speaker.show', $workshop->speaker->slug) }}" class="text-white font-medium hover:text-sky-400 transition-colors">
                                             {{ $workshop->leader_name }}
                                         </a>
+                                        @if($workshop->speaker->title)
+                                            <p class="text-primary-400 text-xs font-medium">{{ $workshop->speaker->title }}</p>
+                                        @endif
                                     @else
                                         <p class="text-white font-medium">{{ $workshop->leader_name }}</p>
                                     @endif
@@ -87,12 +90,12 @@
 
             <!-- Call to Action -->
             <div class="mt-16 text-center">
-                <div class="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-navy-700/50 rounded-2xl border border-navy-600">
+                <div class="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-orange-500/15 rounded-2xl border border-orange-500/30">
                     <div class="text-left">
                         <h3 class="text-lg font-semibold text-white">{{ __('Ready to join?') }}</h3>
-                        <p class="text-white/50 text-sm">{{ __('Register now to secure your spot in these transformative workshops.') }}</p>
+                        <p class="text-white/60 text-sm">{{ __('Register now to secure your spot in these transformative workshops.') }}</p>
                     </div>
-                    <a href="{{ route('register') }}" class="inline-flex items-center px-6 py-3 bg-sky-400 text-navy-800 font-semibold rounded-full hover:bg-sky-300 transition-colors whitespace-nowrap">
+                    <a href="{{ route('register') }}" class="btn-primary whitespace-nowrap">
                         {{ __('Register Now') }}
                         <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

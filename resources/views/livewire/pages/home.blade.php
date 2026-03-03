@@ -26,7 +26,7 @@
             <div
                 class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-8 animate-fade-in">
                 <span class="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></span>
-                <span class="text-white text-base md:text-lg font-semibold">October 23-25, 2026 • BOK Csarnok, Budapest</span>
+                <span class="text-white text-base md:text-lg font-semibold">October 23-25, 2026 • Budapest, {{ app()->getLocale() === 'hu' ? 'BOK Csarnok' : 'BOK Hall' }}</span>
             </div>
 
             {{-- Main Logo/Title --}}
@@ -182,7 +182,7 @@
                                 @foreach ($workshopLeaders as $speaker)
                                     <div class="w-[calc(50%-8px)] md:w-[calc(25%-18px)] shrink-0 snap-start"
                                         wire:key="workshop-{{ $speaker->id }}">
-                                        <x-home.speaker-card :speaker="$speaker" :showArrow="false" />
+                                        <x-home.speaker-card :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
                                     </div>
                                 @endforeach
                                 <div class="w-[calc(50%-8px)] md:w-[calc(25%-18px)] shrink-0 snap-start">
@@ -360,22 +360,22 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-2xl font-bold text-white">Ministry Team Training</h3>
-                                        <p class="text-white/50">{{ $trainingDay['formatted_date'] }}</p>
+                                        <h3 class="text-2xl font-bold text-white">Ministry Team Training Day</h3>
+                                        <p class="text-white/50">{{ $trainingDay['formatted_date'] }} · 10:00am–5:00pm</p>
+                                        <p class="text-white/40 text-sm">Speaker: David Gava & Ministry team leaders</p>
                                     </div>
                                 </div>
 
                                 <div class="space-y-4">
                                     @foreach ($trainingDay['items'] as $item)
                                         <div class="flex gap-4 p-4 bg-navy-600/30 rounded-xl">
-                                            <span class="text-sky-400 font-mono font-semibold w-24 shrink-0">
-                                                {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }}
+                                            <span class="text-sky-400 font-semibold w-28 shrink-0">
+                                                {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }}–{{ \Carbon\Carbon::parse($item->end_time)->format('g:ia') }}
                                             </span>
                                             <div>
                                                 <h4 class="text-white font-medium">{{ $item->title }}</h4>
                                                 @if ($item->description)
-                                                    <p class="text-white/50 text-sm">
-                                                        {{ Str::limit($item->description, 60) }}</p>
+                                                    <p class="text-white/50 text-sm">{{ $item->description }}</p>
                                                 @endif
                                                 @if ($item->speaker)
                                                     <p class="text-sky-400/70 text-sm mt-1">with
@@ -386,13 +386,13 @@
                                     @endforeach
                                 </div>
 
-                                <div class="mt-6 p-4 bg-sky-400/10 border border-sky-400/30 rounded-xl space-y-2">
-                                    <p class="text-sky-400 text-sm">
+                                <div class="mt-6 p-4 bg-orange-500/15 border border-orange-500/30 rounded-xl space-y-2">
+                                    <p class="text-orange-400 text-sm">
                                         <strong>Who can attend:</strong> The Training Day is exclusively for registered volunteers who have received an acceptance confirmation, and approved Ministry Team members.
                                     </p>
-                                    <p class="text-sky-400 text-sm">
+                                    {{-- <p class="text-orange-400 text-sm">
                                         <strong>Venue:</strong> The Training Day is NOT held at BOK Csarnok. Participants will receive the exact venue details by email.
-                                    </p>
+                                    </p> --}}
                                 </div>
                             </div>
                         </div>
@@ -440,8 +440,7 @@
                                             @if ($item->speaker)
                                                 <p class="text-white/50 text-sm">{{ $item->speaker->name }}</p>
                                             @elseif($item->description)
-                                                <p class="text-white/50 text-sm">
-                                                    {{ Str::limit($item->description, 40) }}</p>
+                                                <p class="text-white/50 text-sm">{{ $item->description }}</p>
                                             @endif
                                         </div>
                                     @endforeach
@@ -747,9 +746,9 @@
             {{-- Contact CTA --}}
             <div class="mt-12 text-center">
                 <p class="text-white/50 mb-4">Still have questions?</p>
-                <a href="mailto:info@europerevival.org"
+                <a href="mailto:info@iriseuroperevival.com"
                     class="text-primary-400 hover:text-primary-300 font-medium transition-colors">
-                    Contact us at info@europerevival.org
+                    Contact us at info@iriseuroperevival.com
                 </a>
             </div>
         </div>

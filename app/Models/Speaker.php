@@ -57,6 +57,11 @@ class Speaker extends Model
         return $this->hasMany(ScheduleItem::class);
     }
 
+    public function workshops(): HasMany
+    {
+        return $this->hasMany(Workshop::class);
+    }
+
     protected function translated(): Attribute
     {
         return Attribute::make(get: function (string $attribute, ?string $locale = null) {

@@ -178,12 +178,21 @@
                                                     </div>
                                                 </div>
                                             @endif
+
+                                            @if($item->title === 'Ministry Team Training Day')
+                                                <div class="mt-4 p-3 bg-orange-500/15 border border-orange-500/30 rounded-lg">
+                                                    <p class="text-orange-400 text-sm">
+                                                        <strong>{{ __('Who can attend:') }}</strong> {{ __('The Training Day is exclusively for registered volunteers who have received an acceptance confirmation, and approved Ministry Team members.') }}
+                                                    </p>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
                     </div>
+
                 </div>
             @endforeach
 
