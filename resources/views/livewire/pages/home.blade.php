@@ -147,7 +147,7 @@
             </div>
 
             {{-- Speakers Grid --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 @foreach ($featuredSpeakers as $speaker)
                     <x-home.speaker-card :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
                 @endforeach
@@ -160,7 +160,7 @@
             @if ($worshipTeams->isNotEmpty())
                 <div class="mt-24">
                     <h3 class="text-4xl md:text-5xl font-bold text-white text-center mb-8">Worship Teams</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                         @foreach ($worshipTeams as $speaker)
                             <x-home.speaker-card :speaker="$speaker" :showArrow="false" wire:key="worship-{{ $speaker->id }}" />
                         @endforeach
@@ -176,6 +176,25 @@
                     <p class="text-white/50 text-lg text-center max-w-2xl mx-auto mb-8">
                         Reserve your spot at the workshops! Inspiring talks and hands-on experiences await you.
                     </p>
+                    {{-- Workshop Leaders grid with inline "more" link --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-4 md:gap-6">
+                        @foreach ($workshopLeaders as $speaker)
+                            <div wire:key="workshop-{{ $speaker->id }}">
+                                <x-home.speaker-card :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
+                            </div>
+                        @endforeach
+                        <a href="{{ route('workshops') }}" class="sm:col-span-2 md:col-span-1 md:w-36 aspect-auto md:aspect-3/4 flex flex-col items-center justify-center group py-6 md:py-0">
+                            <div class="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg class="w-8 h-8 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                            </div>
+                            <span class="text-primary-400 font-semibold">More Coming</span>
+                            <span class="text-white/50 text-sm mt-1">View All</span>
+                        </a>
+                    </div>
+
+                    {{-- Original carousel version
                     <div class="relative md:-mr-40">
                         <div class="overflow-x-auto md:pr-40 snap-x snap-mandatory scrollbar-hide pb-4 -mb-4">
                             <div class="flex gap-4 md:gap-6">
@@ -190,11 +209,11 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- Right fade gradient (outside scroll container so it stays fixed) --}}
                         <div
                             class="absolute right-0 top-0 bottom-4 w-16 md:w-20 bg-linear-to-l from-navy-800 to-transparent pointer-events-none z-10">
                         </div>
                     </div>
+                    --}}
 
                     {{-- Workshop Sign-up CTA --}}
                     <div class="mt-10 text-center">
