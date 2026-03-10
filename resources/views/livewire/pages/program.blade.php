@@ -186,6 +186,14 @@
                                                     </p>
                                                 </div>
                                             @endif
+
+                                            @if($item->title === 'Pastors & Leaders Session')
+                                                <div class="mt-4 p-3 bg-amber-500/15 border border-amber-500/30 rounded-lg">
+                                                    <p class="text-amber-400 text-sm font-semibold">
+                                                        {{ __('Participation in this presentation is possible only with an invitation.') }}
+                                                    </p>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

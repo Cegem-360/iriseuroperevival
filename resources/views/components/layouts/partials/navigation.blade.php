@@ -39,7 +39,7 @@
                     {{ __('Pricing') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="{{ route('volunteer') }}" class="text-white/70 hover:text-white font-medium text-base transition-colors relative group">
+                <a href="{{ route('home') }}#volunteer" class="text-white/70 hover:text-white font-medium text-base transition-colors relative group">
                     {{ __('Join as a Volunteer') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
@@ -88,7 +88,7 @@
             <a href="{{ route('workshops') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
             <a href="{{ route('home') }}#schedule" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
             <a href="{{ route('home') }}#pricing" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Pricing') }}</a>
-            <a href="{{ route('volunteer') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Join as a Volunteer') }}</a>
+            <a href="{{ route('home') }}#volunteer" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Join as a Volunteer') }}</a>
 
             {{-- Language Options --}}
             <div class="py-3 border-b border-white/5">

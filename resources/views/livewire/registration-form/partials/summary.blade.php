@@ -7,6 +7,7 @@
     $firstName = $data['first_name'] ?? '';
     $lastName = $data['last_name'] ?? '';
     $email = $data['email'] ?? '';
+    $phone = $data['phone'] ?? '';
     $city = $data['city'] ?? '';
     $country = $data['country'] ?? '';
     $ticketType = $data['ticket_type'] ?? 'individual';
@@ -27,6 +28,12 @@
         <dt class="text-white/60">Email</dt>
         <dd class="text-white font-medium">{{ $email }}</dd>
     </div>
+    @if($phone)
+        <div class="flex justify-between">
+            <dt class="text-white/60">Phone</dt>
+            <dd class="text-white font-medium">{{ $phone }}</dd>
+        </div>
+    @endif
     <div class="flex justify-between">
         <dt class="text-white/60">Location</dt>
         <dd class="text-white font-medium">{{ $city }}, {{ $country }}</dd>

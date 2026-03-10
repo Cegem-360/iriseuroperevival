@@ -176,22 +176,13 @@
                     <p class="text-white/50 text-lg text-center max-w-2xl mx-auto mb-8">
                         Reserve your spot at the workshops! Inspiring talks and hands-on experiences await you.
                     </p>
-                    {{-- Workshop Leaders grid with inline "more" link --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-4 md:gap-6">
+                    {{-- Workshop Leaders grid --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                         @foreach ($workshopLeaders as $speaker)
                             <div wire:key="workshop-{{ $speaker->id }}">
                                 <x-home.speaker-card :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
                             </div>
                         @endforeach
-                        <a href="{{ route('workshops') }}" class="sm:col-span-2 md:col-span-1 md:w-36 flex flex-col items-center justify-center group py-6 md:py-0">
-                            <div class="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-500/30 transition-colors">
-                                <svg class="w-8 h-8 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                                </svg>
-                            </div>
-                            <span class="text-primary-400 font-semibold">More Coming</span>
-                            <span class="text-white/50 text-sm mt-1">View All</span>
-                        </a>
                     </div>
 
                     {{-- Original carousel version
@@ -409,9 +400,9 @@
                                     <p class="text-orange-400 text-sm">
                                         <strong>Who can attend:</strong> The Training Day is exclusively for registered volunteers who have received an acceptance confirmation, and approved Ministry Team members.
                                     </p>
-                                    {{-- <p class="text-orange-400 text-sm">
+                                    <p class="text-orange-400 text-sm">
                                         <strong>Venue:</strong> The Training Day is NOT held at BOK Csarnok. Participants will receive the exact venue details by email.
-                                    </p> --}}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -646,7 +637,7 @@
     {{-- ============================================
     VOLUNTEER CTA SECTION
 ============================================= --}}
-    <section class="py-20 bg-navy-900 relative overflow-hidden">
+    <section id="volunteer" class="py-20 bg-navy-900 relative overflow-hidden">
         {{-- Background --}}
         <div class="absolute inset-0">
             <img src="{{ Vite::asset('resources/images/crowd-3.webp') }}" alt=""
@@ -677,7 +668,7 @@
                     @endforeach
                 </div>
 
-                <p class="text-primary-400 font-semibold text-lg mb-8">All volunteers receive a 20% discount on the ticket and a free event t-shirt.</p>
+                <p class="text-primary-400 font-semibold text-lg mb-8">Every volunteer can participate with a discounted supporter ticket and will receive a complimentary event t-shirt.</p>
 
                 <a href="{{ route('volunteer') }}"
                     class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-bold text-xl rounded-full transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105">
@@ -689,34 +680,6 @@
                     </svg>
                 </a>
             </div>
-        </div>
-    </section>
-
-    {{-- ============================================
-    SPONSORS SECTION
-============================================= --}}
-    <section class="py-24 bg-navy-800">
-        <div class="max-w-7xl mx-auto px-4">
-            {{-- Main Partner --}}
-            @if ($mainSponsor)
-                <div class="text-center mb-16">
-                    <span class="text-white/40 text-sm uppercase tracking-wider mb-4 block">Presented by</span>
-                    <x-home.sponsor-logo :sponsor="$mainSponsor" size="main" />
-                </div>
-            @endif
-
-            {{-- Partners Grid --}}
-            @if ($partnerSponsors->isNotEmpty())
-                <div class="text-center mb-8">
-                    <span class="text-white/40 text-sm uppercase tracking-wider">Partner Organizations</span>
-                </div>
-                <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
-                    @foreach ($partnerSponsors as $sponsor)
-                        <x-home.sponsor-logo :sponsor="$sponsor" wire:key="sponsor-{{ $sponsor->id }}" />
-                    @endforeach
-                </div>
-            @endif
-
         </div>
     </section>
 
@@ -823,6 +786,34 @@
                 </svg>
                 October 23-25, 2026 • Budapest, Hungary
             </p>
+        </div>
+    </section>
+
+    {{-- ============================================
+    SPONSORS SECTION
+============================================= --}}
+    <section class="py-24 bg-navy-800">
+        <div class="max-w-7xl mx-auto px-4">
+            {{-- Main Partner --}}
+            @if ($mainSponsor)
+                <div class="text-center mb-16">
+                    <span class="text-white/40 text-sm uppercase tracking-wider mb-4 block">Presented by</span>
+                    <x-home.sponsor-logo :sponsor="$mainSponsor" size="main" />
+                </div>
+            @endif
+
+            {{-- Partners Grid --}}
+            @if ($partnerSponsors->isNotEmpty())
+                <div class="text-center mb-8">
+                    <span class="text-white/40 text-sm uppercase tracking-wider">Partner Organizations</span>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
+                    @foreach ($partnerSponsors as $sponsor)
+                        <x-home.sponsor-logo :sponsor="$sponsor" wire:key="sponsor-{{ $sponsor->id }}" />
+                    @endforeach
+                </div>
+            @endif
+
         </div>
     </section>
 </div>
