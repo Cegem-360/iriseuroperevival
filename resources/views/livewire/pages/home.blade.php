@@ -148,7 +148,7 @@
 
             {{-- Speakers Grid --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                @foreach ($featuredSpeakers as $speaker)
+                @foreach ($this->featuredSpeakers as $speaker)
                     <x-home.speaker-card :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
                 @endforeach
 
@@ -157,11 +157,11 @@
             </div>
 
             {{-- Worship Teams --}}
-            @if ($worshipTeams->isNotEmpty())
+            @if ($this->worshipTeams->isNotEmpty())
                 <div class="mt-24">
                     <h3 class="text-4xl md:text-5xl font-bold text-white text-center mb-8">Worship Teams</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                        @foreach ($worshipTeams as $speaker)
+                        @foreach ($this->worshipTeams as $speaker)
                             <x-home.speaker-card :speaker="$speaker" :showArrow="false" wire:key="worship-{{ $speaker->id }}" />
                         @endforeach
                         <x-home.more-speakers-card />
@@ -170,7 +170,7 @@
             @endif
 
             {{-- Workshop Leaders --}}
-            @if ($workshopLeaders->isNotEmpty())
+            @if ($this->workshopLeaders->isNotEmpty())
                 <div class="mt-24">
                     <h3 class="text-4xl md:text-5xl font-bold text-white text-center mb-4">Workshop Leaders</h3>
                     <p class="text-white/50 text-lg text-center max-w-2xl mx-auto mb-8">
@@ -178,7 +178,7 @@
                     </p>
                     {{-- Workshop Leaders grid --}}
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                        @foreach ($workshopLeaders as $speaker)
+                        @foreach ($this->workshopLeaders as $speaker)
                             <div wire:key="workshop-{{ $speaker->id }}">
                                 <x-home.speaker-card :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
                             </div>
@@ -189,7 +189,7 @@
                     <div class="relative md:-mr-40">
                         <div class="overflow-x-auto md:pr-40 snap-x snap-mandatory scrollbar-hide pb-4 -mb-4">
                             <div class="flex gap-4 md:gap-6">
-                                @foreach ($workshopLeaders as $speaker)
+                                @foreach ($this->workshopLeaders as $speaker)
                                     <div class="w-[calc(50%-8px)] md:w-[calc(25%-18px)] shrink-0 snap-start"
                                         wire:key="workshop-{{ $speaker->id }}">
                                         <x-home.speaker-card :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
@@ -330,10 +330,10 @@
                 </p>
             </div>
 
-            @if ($scheduleDays->isNotEmpty())
+            @if ($this->scheduleDays->isNotEmpty())
                 @php
-                    $trainingDay = $scheduleDays->first(fn($day) => $day['is_training_day']);
-                    $mainDays = $scheduleDays->filter(fn($day) => !$day['is_training_day']);
+                    $trainingDay = $this->scheduleDays->first(fn($day) => $day['is_training_day']);
+                    $mainDays = $this->scheduleDays->filter(fn($day) => !$day['is_training_day']);
                 @endphp
 
                 {{-- Tab Buttons --}}
@@ -503,14 +503,14 @@
     @php
         $prices = [
             'early' => [
-                '1day' => $ticketPrices['early']['1day'] ?? 29,
-                '3day' => $ticketPrices['early']['3day'] ?? 49,
-                'group' => $ticketPrices['early']['group'] ?? 39,
+                '1day' => $this->ticketPrices['early']['1day'] ?? 29,
+                '3day' => $this->ticketPrices['early']['3day'] ?? 49,
+                'group' => $this->ticketPrices['early']['group'] ?? 39,
             ],
             'regular' => [
-                '1day' => $ticketPrices['regular']['1day'] ?? 39,
-                '3day' => $ticketPrices['regular']['3day'] ?? 69,
-                'group' => $ticketPrices['regular']['group'] ?? 59,
+                '1day' => $this->ticketPrices['regular']['1day'] ?? 39,
+                '3day' => $this->ticketPrices['regular']['3day'] ?? 69,
+                'group' => $this->ticketPrices['regular']['group'] ?? 59,
             ],
         ];
     @endphp
@@ -700,7 +700,7 @@
 
             {{-- FAQ Accordion --}}
             <div class="space-y-4">
-                @foreach ($faqs as $index => $faq)
+                @foreach ($this->faqs as $index => $faq)
                     <x-home.faq-item :faq="$faq" :index="$index + 1" wire:key="faq-{{ $faq->id }}">
                         @if ($faq->category === 'volunteer')
                             <a href="{{ route('volunteer') }}"
@@ -795,20 +795,20 @@
     <section class="py-24 bg-navy-800">
         <div class="max-w-7xl mx-auto px-4">
             {{-- Main Partner --}}
-            @if ($mainSponsor)
+            @if ($this->mainSponsor)
                 <div class="text-center mb-16">
                     <span class="text-white/40 text-sm uppercase tracking-wider mb-4 block">Presented by</span>
-                    <x-home.sponsor-logo :sponsor="$mainSponsor" size="main" />
+                    <x-home.sponsor-logo :sponsor="$this->mainSponsor" size="main" />
                 </div>
             @endif
 
             {{-- Partners Grid --}}
-            @if ($partnerSponsors->isNotEmpty())
+            @if ($this->partnerSponsors->isNotEmpty())
                 <div class="text-center mb-8">
                     <span class="text-white/40 text-sm uppercase tracking-wider">Partner Organizations</span>
                 </div>
                 <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
-                    @foreach ($partnerSponsors as $sponsor)
+                    @foreach ($this->partnerSponsors as $sponsor)
                         <x-home.sponsor-logo :sponsor="$sponsor" wire:key="sponsor-{{ $sponsor->id }}" />
                     @endforeach
                 </div>

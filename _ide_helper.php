@@ -28534,6 +28534,10 @@ namespace App\Livewire\Pages {
             }
     /**
      */
+    class ActivitySignup extends \Livewire\Component {
+            }
+    /**
+     */
     class Privacy extends \Livewire\Component {
             }
     /**

@@ -10,7 +10,10 @@ use App\Models\Speaker;
 use App\Models\Sponsor;
 use App\Models\TicketPrice;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection as SupportCollection;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -19,43 +22,67 @@ use Livewire\Component;
 #[Title('Europe Revival 2026 - Encounter Jesus. Catch on Fire.')]
 class Home extends Component
 {
-    public function render(): View
+    #[Computed]
+    public function featuredSpeakers(): Collection
     {
-        $featuredSpeakers = Speaker::query()
+        return Speaker::query()
             ->featured()
             ->ordered()
             ->get();
+    }
 
-        $worshipTeams = Speaker::query()
+    #[Computed]
+    public function worshipTeams(): Collection
+    {
+        return Speaker::query()
             ->ofType('worship_team')
             ->ordered()
             ->get();
+    }
 
-        $workshopLeaders = Speaker::query()
+    #[Computed]
+    public function workshopLeaders(): Collection
+    {
+        return Speaker::query()
             ->ofType('workshop_leader')
             ->with('workshops')
             ->ordered()
             ->get();
+    }
 
-        $mainSponsor = Sponsor::query()
+    #[Computed]
+    public function mainSponsor(): ?Sponsor
+    {
+        return Sponsor::query()
             ->active()
             ->ofTier('platinum')
             ->ordered()
             ->first();
+    }
 
-        $partnerSponsors = Sponsor::query()
+    #[Computed]
+    public function partnerSponsors(): Collection
+    {
+        return Sponsor::query()
             ->active()
             ->whereNot('tier', 'platinum')
             ->byTierPriority()
             ->ordered()
             ->get();
+    }
 
-        $faqs = Faq::query()
+    #[Computed]
+    public function faqs(): Collection
+    {
+        return Faq::query()
             ->published()
             ->ordered()
             ->get();
+    }
 
-        // Fetch schedule items grouped by day
+    #[Computed]
+    public function scheduleDays(): SupportCollection
+    {
         $scheduleItems = ScheduleItem::query()
             ->published()
             ->with('speaker')
@@ -63,12 +90,9 @@ class Home extends Component
             ->orderBy('start_time')
             ->orderBy('sort_order')
             ->get()
-            ->groupBy(function (ScheduleItem $item) {
-                return Carbon::parse($item->day)->format('Y-m-d');
-            });
+            ->groupBy(fn (ScheduleItem $item) => Carbon::parse($item->day)->format('Y-m-d'));
 
-        // Prepare schedule days with metadata
-        $scheduleDays = $scheduleItems->map(function ($items, $day) {
+        return $scheduleItems->map(function ($items, $day) {
             $date = Carbon::parse($day);
 
             return [
@@ -80,23 +104,21 @@ class Home extends Component
                 'items' => $items,
             ];
         });
+    }
 
-        $ticketPrices = TicketPrice::query()
+    #[Computed]
+    public function ticketPrices(): SupportCollection
+    {
+        return TicketPrice::query()
             ->active()
             ->whereIn('ticket_type', ['1day', '3day', 'group'])
             ->get()
             ->groupBy('pricing_tier')
             ->map(fn ($tierPrices) => $tierPrices->pluck('price_in_euros', 'ticket_type'));
+    }
 
-        return view('livewire.pages.home', [
-            'featuredSpeakers' => $featuredSpeakers,
-            'worshipTeams' => $worshipTeams,
-            'workshopLeaders' => $workshopLeaders,
-            'mainSponsor' => $mainSponsor,
-            'partnerSponsors' => $partnerSponsors,
-            'faqs' => $faqs,
-            'scheduleDays' => $scheduleDays,
-            'ticketPrices' => $ticketPrices,
-        ]);
+    public function render(): View
+    {
+        return view('livewire.pages.home');
     }
 }
