@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DduEDaEB.css",
+    "file": "assets/app-BrymddPH.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -11,6 +11,102 @@
   "resources/images/ER-colours.jpg": {
     "file": "assets/ER-colours-ChCmU5s8.jpg",
     "src": "resources/images/ER-colours.jpg"
+  },
+  "resources/images/alt-style/backgrounds/15258.webp": {
+    "file": "assets/15258-DggC1fS8.webp",
+    "src": "resources/images/alt-style/backgrounds/15258.webp"
+  },
+  "resources/images/alt-style/backgrounds/baker-background.webp": {
+    "file": "assets/baker-background-CH5zQtjQ.webp",
+    "src": "resources/images/alt-style/backgrounds/baker-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/budapest.webp": {
+    "file": "assets/budapest-OmzFeCGT.webp",
+    "src": "resources/images/alt-style/backgrounds/budapest.webp"
+  },
+  "resources/images/alt-style/backgrounds/catch-on-fire-flare.webp": {
+    "file": "assets/catch-on-fire-flare-BrHNxqyZ.webp",
+    "src": "resources/images/alt-style/backgrounds/catch-on-fire-flare.webp"
+  },
+  "resources/images/alt-style/backgrounds/catch-on-fire.webp": {
+    "file": "assets/catch-on-fire-BpcMZyhp.webp",
+    "src": "resources/images/alt-style/backgrounds/catch-on-fire.webp"
+  },
+  "resources/images/alt-style/backgrounds/consuming_worship.webp": {
+    "file": "assets/consuming_worship-BbLmm7-X.webp",
+    "src": "resources/images/alt-style/backgrounds/consuming_worship.webp"
+  },
+  "resources/images/alt-style/backgrounds/crowd-ai.webp": {
+    "file": "assets/crowd-ai-BC6l-RPT.webp",
+    "src": "resources/images/alt-style/backgrounds/crowd-ai.webp"
+  },
+  "resources/images/alt-style/backgrounds/deep-worship-background.webp": {
+    "file": "assets/deep-worship-background-B477hksw.webp",
+    "src": "resources/images/alt-style/backgrounds/deep-worship-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/film-grain-background-text.webp": {
+    "file": "assets/film-grain-background-text-Hl8hcdRv.webp",
+    "src": "resources/images/alt-style/backgrounds/film-grain-background-text.webp"
+  },
+  "resources/images/alt-style/backgrounds/film-grain-background.webp": {
+    "file": "assets/film-grain-background-D8sugpF-.webp",
+    "src": "resources/images/alt-style/backgrounds/film-grain-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/open-up.webp": {
+    "file": "assets/open-up-75p4RMbd.webp",
+    "src": "resources/images/alt-style/backgrounds/open-up.webp"
+  },
+  "resources/images/alt-style/backgrounds/stadium-background-3.webp": {
+    "file": "assets/stadium-background-3-CN_MewPU.webp",
+    "src": "resources/images/alt-style/backgrounds/stadium-background-3.webp"
+  },
+  "resources/images/alt-style/backgrounds/stadium-background.webp": {
+    "file": "assets/stadium-background-BmQpIna3.webp",
+    "src": "resources/images/alt-style/backgrounds/stadium-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/world-map.webp": {
+    "file": "assets/world-map-t7o2_-Ny.webp",
+    "src": "resources/images/alt-style/backgrounds/world-map.webp"
+  },
+  "resources/images/alt-style/backgrounds/worship-unsplash.webp": {
+    "file": "assets/worship-unsplash-sv24s9M7.webp",
+    "src": "resources/images/alt-style/backgrounds/worship-unsplash.webp"
+  },
+  "resources/images/alt-style/image.webp": {
+    "file": "assets/image-C_mSIH4_.webp",
+    "src": "resources/images/alt-style/image.webp"
+  },
+  "resources/images/alt-style/speakers/speaker-gava.webp": {
+    "file": "assets/speaker-gava-CfPuWDHF.webp",
+    "src": "resources/images/alt-style/speakers/speaker-gava.webp"
+  },
+  "resources/images/alt-style/speakers/speaker-heidi.webp": {
+    "file": "assets/speaker-heidi-CtfNjWa9.webp",
+    "src": "resources/images/alt-style/speakers/speaker-heidi.webp"
+  },
+  "resources/images/alt-style/speakers/speaker-mel.webp": {
+    "file": "assets/speaker-mel-BbIeq61B.webp",
+    "src": "resources/images/alt-style/speakers/speaker-mel.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/baoyan.webp": {
+    "file": "assets/baoyan-xk83PAHo.webp",
+    "src": "resources/images/alt-style/workshop-leaders/baoyan.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/gokee.webp": {
+    "file": "assets/gokee-CqFT-mTj.webp",
+    "src": "resources/images/alt-style/workshop-leaders/gokee.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/katey.webp": {
+    "file": "assets/katey-CEnG_tT8.webp",
+    "src": "resources/images/alt-style/workshop-leaders/katey.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/tine.webp": {
+    "file": "assets/tine-UoHTofxy.webp",
+    "src": "resources/images/alt-style/workshop-leaders/tine.webp"
+  },
+  "resources/images/alt-style/znft8q.webp": {
+    "file": "assets/znft8q-G2pSL-tg.webp",
+    "src": "resources/images/alt-style/znft8q.webp"
   },
   "resources/images/cegem360-logo.png": {
     "file": "assets/cegem360-logo-BdDtjedL.png",
@@ -165,7 +261,7 @@
     "src": "resources/images/textures/transition-subtle.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DIuewKhF.js",
+    "file": "assets/app-BuG9aa18.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
