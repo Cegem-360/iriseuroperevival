@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Override;
 
@@ -63,7 +64,7 @@ class Product extends Model
 
     protected function formattedPrice(): Attribute
     {
-        return Attribute::make(get: fn (): string => number_format($this->price_in_euros, 2) . ' €');
+        return Attribute::make(get: fn (): string => Number::currency($this->price_in_euros, 'EUR'));
     }
 
     public function isInStock(): bool

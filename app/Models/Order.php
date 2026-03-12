@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Override;
 
@@ -72,7 +73,7 @@ class Order extends Model
 
     protected function formattedTotal(): Attribute
     {
-        return Attribute::make(get: fn (): string => number_format($this->total_in_euros, 2) . ' €');
+        return Attribute::make(get: fn (): string => Number::currency($this->total_in_euros, 'EUR'));
     }
 
     protected function subtotalInEuros(): Attribute

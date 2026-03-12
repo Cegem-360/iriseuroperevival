@@ -7,6 +7,7 @@ namespace App\Filament\Widgets;
 use App\Models\Registration;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Illuminate\Support\Number;
 use Override;
 
 class RegistrationStatsWidget extends StatsOverviewWidget
@@ -50,7 +51,7 @@ class RegistrationStatsWidget extends StatsOverviewWidget
                 ->descriptionIcon('heroicon-o-clock')
                 ->color($pendingApprovals > 0 ? 'warning' : 'success'),
 
-            Stat::make('Total Revenue', '€' . number_format($totalRevenue / 100, 2))
+            Stat::make('Total Revenue', Number::currency($totalRevenue / 100, 'EUR'))
                 ->description($paidRegistrations . ' paid registrations')
                 ->descriptionIcon('heroicon-o-currency-euro')
                 ->color('success'),

@@ -35,7 +35,7 @@
                             @foreach($order->items as $item)
                                 <li class="flex justify-between text-sm">
                                     <span class="text-white">{{ $item->product_name }} x {{ $item->quantity }}</span>
-                                    <span class="text-white/60">{{ number_format($item->total / 100, 2) }} &euro;</span>
+                                    <span class="text-white/60">{{ Number::currency($item->total / 100, 'EUR') }}</span>
                                 </li>
                             @endforeach
                         </ul>

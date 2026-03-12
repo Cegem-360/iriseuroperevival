@@ -45,7 +45,6 @@ class StripeService
                 'type' => $registration->type,
             ],
             'billing_address_collection' => 'required',
-            'allow_promotion_codes' => true,
         ]);
 
         // Save the session ID and customer ID
@@ -140,18 +139,12 @@ class StripeService
      */
     protected function buildLineItems(Registration $registration): array
     {
-        $tier = $this->getCurrentPricingTier();
-        $ticketType = $registration->type === 'volunteer' ? 'volunteer' : $registration->ticket_type;
-        $pricePerTicket = $this->getTicketPrice($ticketType, $tier);
-
-        $ticketName = match ($ticketType) {
-            'team' => 'Europe Revival 2026 - Team Pass',
-            'volunteer' => 'Europe Revival 2026 - Volunteer Pass',
-            'vip' => 'Europe Revival 2026 - VIP Pass',
-            default => 'Europe Revival 2026 - Individual Ticket',
+        $ticketName = match ($registration->ticket_type) {
+            'early_bird' => 'Europe Revival 2026 — 1 Day Pass',
+            'regular' => 'Europe Revival 2026 — 3 Day Pass',
+            'volunteer' => 'Europe Revival 2026 — Volunteer Pass',
+            default => 'Europe Revival 2026 — Ticket',
         };
-
-        $description = "October 22-25, 2026 | Budapest, Hungary | {$tier} pricing";
 
         return [
             [
@@ -159,14 +152,14 @@ class StripeService
                     'currency' => 'eur',
                     'product_data' => [
                         'name' => $ticketName,
-                        'description' => $description,
+                        'description' => 'October 22-25, 2026 | Budapest, Hungary',
                         'images' => [
                             asset('images/ticket-image.jpg'),
                         ],
                     ],
-                    'unit_amount' => $pricePerTicket, // Amount in cents
+                    'unit_amount' => $registration->amount,
                 ],
-                'quantity' => $registration->ticket_quantity ?? 1,
+                'quantity' => 1,
             ],
         ];
     }
