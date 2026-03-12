@@ -11,6 +11,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Number;
 
 class OrdersTable
 {
@@ -43,7 +44,7 @@ class OrdersTable
                         default => 'gray',
                     }),
                 TextColumn::make('total')
-                    ->formatStateUsing(fn ($state): string => number_format($state / 100, 2) . ' €')
+                    ->formatStateUsing(fn ($state): string => Number::currency($state / 100, 'EUR'))
                     ->sortable(),
                 TextColumn::make('promotionCode.code')
                     ->label('Promo Code')

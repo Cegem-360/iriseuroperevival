@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Mail\MinistryApplicationApproved;
+use App\Mail\MinistryApplicationRejected;
 use App\Mail\PaymentConfirmation;
+use App\Mail\VolunteerApplicationApproved;
+use App\Mail\VolunteerApplicationRejected;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Override;
 
@@ -201,7 +206,7 @@ class Registration extends Model
 
     protected function formattedAmount(): Attribute
     {
-        return Attribute::make(get: fn (): string => '€' . number_format($this->amount / 100, 2));
+        return Attribute::make(get: fn (): string => Number::currency($this->amount / 100, 'EUR'));
     }
 
     protected function statusBadge(): Attribute
@@ -257,8 +262,8 @@ class Registration extends Model
     protected function sendApprovalEmail(): void
     {
         $mailable = match ($this->type) {
-            'volunteer' => new \App\Mail\VolunteerApplicationApproved($this),
-            'ministry' => new \App\Mail\MinistryApplicationApproved($this),
+            'volunteer' => new VolunteerApplicationApproved($this),
+            'ministry' => new MinistryApplicationApproved($this),
             default => null,
         };
 
@@ -270,8 +275,8 @@ class Registration extends Model
     protected function sendRejectionEmail(): void
     {
         $mailable = match ($this->type) {
-            'volunteer' => new \App\Mail\VolunteerApplicationRejected($this),
-            'ministry' => new \App\Mail\MinistryApplicationRejected($this),
+            'volunteer' => new VolunteerApplicationRejected($this),
+            'ministry' => new MinistryApplicationRejected($this),
             default => null,
         };
 

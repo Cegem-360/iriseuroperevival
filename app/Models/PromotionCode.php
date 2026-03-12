@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Number;
 
 class PromotionCode extends Model
 {
@@ -98,7 +99,7 @@ class PromotionCode extends Model
                 return $this->value . '%';
             }
 
-            return number_format($this->value / 100, 2) . ' €';
+            return Number::currency($this->value / 100, 'EUR');
         });
     }
 

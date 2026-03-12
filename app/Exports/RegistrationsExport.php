@@ -6,11 +6,13 @@ namespace App\Exports;
 
 use App\Models\Registration;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Number;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping, WithStyles
@@ -81,7 +83,7 @@ class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeading
             $registration->city,
             $registration->ticket_type,
             $registration->ticket_quantity,
-            $registration->amount ? number_format($registration->amount / 100, 2) : '',
+            $registration->amount ? Number::format($registration->amount / 100, 2) : '',
             $registration->paid_at?->format('Y-m-d H:i'),
             $registration->created_at->format('Y-m-d H:i'),
             $registration->church_name,
@@ -96,7 +98,7 @@ class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeading
             1 => [
                 'font' => ['bold' => true],
                 'fill' => [
-                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'fillType' => Fill::FILL_SOLID,
                     'startColor' => ['rgb' => 'E2E8F0'],
                 ],
             ],

@@ -18,14 +18,14 @@
 | {{ __('Product') }} | {{ __('Quantity') }} | {{ __('Price') }} |
 |:-------------|:-------:|--------:|
 @foreach($order->items as $item)
-| {{ $item->product_name }} | {{ $item->quantity }} | {{ number_format($item->total / 100, 2) }} € |
+| {{ $item->product_name }} | {{ $item->quantity }} | {{ Number::currency($item->total / 100, 'EUR') }} |
 @endforeach
 </x-mail::table>
 
 <x-mail::panel>
-**{{ __('Subtotal') }}:** {{ number_format($order->subtotal / 100, 2) }} €
+**{{ __('Subtotal') }}:** {{ Number::currency($order->subtotal / 100, 'EUR') }}
 @if($order->discount > 0)
-**{{ __('Discount') }}:** -{{ number_format($order->discount / 100, 2) }} €
+**{{ __('Discount') }}:** -{{ Number::currency($order->discount / 100, 'EUR') }}
 @endif
 **{{ __('Total') }}:** {{ $order->formatted_total }}
 </x-mail::panel>

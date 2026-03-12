@@ -9,7 +9,7 @@
 **{{ __('Refund Details') }}**
 
 **{{ __('Reference Number') }}:** {{ $registration->uuid }}
-**{{ __('Refund Amount') }}:** {{ $refundAmount }} €
+**{{ __('Refund Amount') }}:** {{ $refundAmount }}
 </x-mail::panel>
 
 {{ __('The refund should appear in your account within 5-10 business days, depending on your payment method.') }}

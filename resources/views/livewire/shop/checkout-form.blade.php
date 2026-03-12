@@ -76,7 +76,7 @@
                     @foreach($this->items as $item)
                         <div class="flex justify-between text-sm">
                             <span>{{ $item['product']->name }} x {{ $item['quantity'] }}</span>
-                            <span>{{ number_format($item['total'] / 100, 2) }} &euro;</span>
+                            <span>{{ Number::currency($item['total'] / 100, 'EUR') }}</span>
                         </div>
                     @endforeach
                 </div>
@@ -84,19 +84,19 @@
                 <div class="mt-4 space-y-2 border-t border-zinc-200 pt-4 dark:border-zinc-700">
                     <div class="flex justify-between">
                         <span class="text-zinc-600 dark:text-zinc-400">Subtotal</span>
-                        <span>{{ number_format($this->subtotal / 100, 2) }} &euro;</span>
+                        <span>{{ Number::currency($this->subtotal / 100, 'EUR') }}</span>
                     </div>
 
                     @if($this->discount > 0)
                         <div class="flex justify-between text-green-600">
                             <span>Discount</span>
-                            <span>-{{ number_format($this->discount / 100, 2) }} &euro;</span>
+                            <span>-{{ Number::currency($this->discount / 100, 'EUR') }}</span>
                         </div>
                     @endif
 
                     <div class="flex justify-between border-t border-zinc-200 pt-2 text-lg font-bold dark:border-zinc-700">
                         <span>Total</span>
-                        <span>{{ number_format($this->total / 100, 2) }} &euro;</span>
+                        <span>{{ Number::currency($this->total / 100, 'EUR') }}</span>
                     </div>
                 </div>
 

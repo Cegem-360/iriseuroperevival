@@ -500,24 +500,7 @@
     {{-- ============================================
     PRICING SECTION
 ============================================= --}}
-    @php
-        $prices = [
-            'early' => [
-                '1day' => $this->ticketPrices['early']['1day'] ?? 29,
-                '3day' => $this->ticketPrices['early']['3day'] ?? 49,
-                'group' => $this->ticketPrices['early']['group'] ?? 39,
-            ],
-            'regular' => [
-                '1day' => $this->ticketPrices['regular']['1day'] ?? 39,
-                '3day' => $this->ticketPrices['regular']['3day'] ?? 69,
-                'group' => $this->ticketPrices['regular']['group'] ?? 59,
-            ],
-        ];
-    @endphp
-    <section id="pricing" class="py-24 bg-navy-900 relative" x-data="{
-        activeTier: 'early',
-        prices: {{ Js::from($prices) }}
-    }">
+    <section id="pricing" class="py-24 bg-navy-900 relative">
         <div class="max-w-7xl mx-auto px-4">
             {{-- Section Header --}}
             <div class="text-center mb-6">
@@ -528,7 +511,7 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Save Your Place</h2>
             </div>
 
-            {{-- Early Bird Deadline Highlight --}}
+            {{-- 1-Day Pass Deadline Highlight --}}
             <div class="text-center mb-12">
                 <span
                     class="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500/15 border border-orange-500/30 rounded-full text-orange-400 font-semibold">
@@ -536,99 +519,136 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Early Bird price available until June 30, 2026
+                    1-Day Pass available until June 30, 2026
                 </span>
             </div>
 
-            {{-- Pricing Toggle --}}
-            <div class="flex justify-center gap-2 mb-12">
-                <button type="button"
-                    @click="let y = window.scrollY; activeTier = 'early'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
-                    :class="activeTier === 'early' ? 'bg-sky-400 text-navy-800' :
-                        'bg-navy-700 text-white/70 hover:text-white'"
-                    class="px-5 py-2.5 rounded-full font-medium text-sm transition-colors flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full"
-                        :class="activeTier === 'early' ? 'bg-navy-800' : 'bg-sky-400'"></span>
-                    Early Bird (until June 30)
-                </button>
-                <button type="button"
-                    @click="let y = window.scrollY; activeTier = 'regular'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
-                    :class="activeTier === 'regular' ? 'bg-sky-400 text-navy-800' :
-                        'bg-navy-700 text-white/70 hover:text-white'"
-                    class="px-5 py-2.5 rounded-full font-medium text-sm transition-colors flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full"
-                        :class="activeTier === 'regular' ? 'bg-navy-800' : 'bg-sky-400'"></span>
-                    Regular (July 1+)
-                </button>
-            </div>
-
             {{-- Pricing Cards --}}
-            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 {{-- 1-Day Pass --}}
                 <div
-                    class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="text-2xl font-bold text-white mb-2">1-Day Pass</h3>
-                    <p class="text-white/50 mb-6">Single day access</p>
+                    x-data="{ selected: '20', custom: '', get href() {
+                        let url = '{{ route('register') }}?duration=early_bird&price=' + this.selected;
+                        if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
+                        return url;
+                    }, get valid() {
+                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 40);
+                    } }"
+                    class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col"
+                >
+                    <div class="mb-1">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-sky-400/10 text-sky-400 border border-sky-400/20 rounded-full">
+                            1 Day
+                        </span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mt-4 mb-2">1-Day Pass</h3>
+                    <p class="text-white/50 mb-6">Single day access to the conference</p>
 
-                    <div class="mb-8 grow">
-                        <span class="text-5xl font-bold text-white">€<span
-                                x-text="prices[activeTier]['1day']">{{ $prices['early']['1day'] }}</span></span>
-                        <span class="text-white/50">/person</span>
+                    <div class="mb-8 grow space-y-2">
+                        <button type="button" @click="selected = '20'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '20' ? 'border-white bg-white' : 'border-white/30 group-hover:border-white/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '20'"></span>
+                            </span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === '20' ? 'text-white' : 'text-white/50'">€20</span>
+                            <span class="text-sm transition-colors" :class="selected === '20' ? 'text-white/60' : 'text-white/30'">standard</span>
+                        </button>
+                        <button type="button" @click="selected = '40'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '40' ? 'border-white bg-white' : 'border-white/30 group-hover:border-white/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '40'"></span>
+                            </span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === '40' ? 'text-white' : 'text-white/50'">€40</span>
+                            <span class="text-sm transition-colors" :class="selected === '40' ? 'text-white/60' : 'text-white/30'">supporter</span>
+                        </button>
+                        <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === 'custom' ? 'border-white bg-white' : 'border-white/30 group-hover:border-white/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === 'custom'"></span>
+                            </span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === 'custom' ? 'text-white' : 'text-white/50'">€41+</span>
+                            <span class="text-sm transition-colors" :class="selected === 'custom' ? 'text-white/60' : 'text-white/30'">your choice</span>
+                        </button>
+                        <div x-show="selected === 'custom'" x-transition class="pt-1">
+                            <div class="flex items-center gap-2 bg-navy-700/50 border border-navy-500 rounded-xl px-3 py-2">
+                                <span class="text-white/50 font-medium">€</span>
+                                <input type="number" x-model="custom" min="41" step="1" placeholder="Enter amount"
+                                    class="bg-transparent text-white placeholder-white/30 w-full outline-none text-lg font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                            </div>
+                            <p x-show="custom && parseInt(custom) <= 40" class="text-red-400 text-xs mt-1">Minimum €41</p>
+                        </div>
                     </div>
 
-                    <a href="{{ route('register') }}?ticket=1day" class="btn-primary w-full justify-center">
+                    <a :href="href" :class="valid ? 'btn-primary' : 'btn-primary opacity-50 pointer-events-none'" class="w-full justify-center">
                         Register Now
                     </a>
                 </div>
 
                 {{-- 3-Day Pass --}}
                 <div
-                    class="bg-linear-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                    x-data="{ selected: '20', custom: '', get href() {
+                        let url = '{{ route('register') }}?duration=regular&price=' + this.selected;
+                        if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
+                        return url;
+                    }, get valid() {
+                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 40);
+                    } }"
+                    class="bg-linear-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden flex flex-col"
+                >
                     {{-- Best Value Badge --}}
                     <div class="absolute -top-px -right-px">
-                        <div
-                            class="bg-linear-to-r from-primary-500 to-primary-600 text-navy-800 text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-3xl">
+                        <div class="bg-linear-to-r from-primary-500 to-primary-600 text-navy-800 text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-3xl">
                             BEST VALUE
                         </div>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-white mb-2">3-Day Pass</h3>
-                    <p class="text-white/50 mb-6">Full event access</p>
+                    <div class="mb-1">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-400/10 text-primary-400 border border-primary-400/20 rounded-full">
+                            3 Days
+                        </span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mt-4 mb-2">3-Day Pass</h3>
+                    <p class="text-white/50 mb-6">Full conference access, all days</p>
 
-                    <div class="mb-8 grow">
-                        <span class="text-5xl font-bold text-primary-400">€<span
-                                x-text="prices[activeTier]['3day']">{{ $prices['early']['3day'] }}</span></span>
-                        <span class="text-white/50">/person</span>
+                    <div class="mb-8 grow space-y-2">
+                        <button type="button" @click="selected = '20'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '20' ? 'border-primary-400 bg-primary-400' : 'border-primary-400/30 group-hover:border-primary-400/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '20'"></span>
+                            </span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === '20' ? 'text-primary-400' : 'text-primary-400/50'">€20</span>
+                            <span class="text-sm transition-colors" :class="selected === '20' ? 'text-white/60' : 'text-white/30'">standard</span>
+                        </button>
+                        <button type="button" @click="selected = '40'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '40' ? 'border-primary-400 bg-primary-400' : 'border-primary-400/30 group-hover:border-primary-400/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '40'"></span>
+                            </span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === '40' ? 'text-primary-400' : 'text-primary-400/50'">€40</span>
+                            <span class="text-sm transition-colors" :class="selected === '40' ? 'text-white/60' : 'text-white/30'">supporter</span>
+                        </button>
+                        <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === 'custom' ? 'border-primary-400 bg-primary-400' : 'border-primary-400/30 group-hover:border-primary-400/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === 'custom'"></span>
+                            </span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === 'custom' ? 'text-primary-400' : 'text-primary-400/50'">€41+</span>
+                            <span class="text-sm transition-colors" :class="selected === 'custom' ? 'text-white/60' : 'text-white/30'">your choice</span>
+                        </button>
+                        <div x-show="selected === 'custom'" x-transition class="pt-1">
+                            <div class="flex items-center gap-2 bg-navy-700/50 border border-primary-500/40 rounded-xl px-3 py-2">
+                                <span class="text-white/50 font-medium">€</span>
+                                <input type="number" x-model="custom" min="41" step="1" placeholder="Enter amount"
+                                    class="bg-transparent text-white placeholder-white/30 w-full outline-none text-lg font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                            </div>
+                            <p x-show="custom && parseInt(custom) <= 40" class="text-red-400 text-xs mt-1">Minimum €41</p>
+                        </div>
                     </div>
 
-                    <a href="{{ route('register') }}?ticket=3day" class="btn-primary w-full justify-center">
+                    <a :href="href" :class="valid ? 'btn-primary' : 'btn-primary opacity-50 pointer-events-none'" class="w-full justify-center">
                         Register Now
                     </a>
                 </div>
-
-                {{-- Group Ticket --}}
-                <div
-                    class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="text-2xl font-bold text-white mb-2">Group Ticket</h3>
-                    <p class="text-white/50 mb-6">Groups of 10+ attendees</p>
-
-                    <div class="mb-8 grow">
-                        <span class="text-5xl font-bold text-white">€<span
-                                x-text="prices[activeTier]['group']">{{ $prices['early']['group'] }}</span></span>
-                        <span class="text-white/50">/person</span>
-                    </div>
-
-                    <a href="{{ route('register') }}?ticket=group" class="btn-primary w-full justify-center">
-                        Register Now
-                    </a>
-                </div>
-            </div>
-
-            {{-- Coupon Code Note --}}
-            <div class="text-center mt-8">
-                <p class="text-white/40 text-sm">
-                    If you are attending as a volunteer, enter the coupon code from your email during registration.
-                </p>
             </div>
 
         </div>

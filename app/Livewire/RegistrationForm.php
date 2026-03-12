@@ -28,6 +28,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -47,11 +48,21 @@ class RegistrationForm extends Component implements HasSchemas
     {
         $this->type = $type;
 
-        $this->form->fill([
+        $duration = request()->query('duration', 'early_bird');
+        $price = request()->query('price', '20');
+        $amount = request()->query('amount');
+
+        $fill = [
             'registration_type' => $type,
-            'ticket_type' => 'individual',
-            'ticket_quantity' => 1,
-        ]);
+            'ticket_duration' => in_array($duration, ['early_bird', 'regular']) ? $duration : 'early_bird',
+            'ticket_price_option' => in_array($price, ['20', '40', 'custom']) ? $price : '20',
+        ];
+
+        if ($price === 'custom' && $amount && (int) $amount > 40) {
+            $fill['ticket_custom_amount'] = (int) $amount;
+        }
+
+        $this->form->fill($fill);
     }
 
     public function form(Schema $schema): Schema
@@ -69,7 +80,6 @@ class RegistrationForm extends Component implements HasSchemas
     protected function getWizardSteps(): array
     {
         return [
-            $this->getRegistrationTypeStep(),
             $this->getPersonalInfoStep(),
             $this->getMinistryDetailsStep(),
             $this->getChurchInfoStep(),
@@ -78,27 +88,6 @@ class RegistrationForm extends Component implements HasSchemas
             $this->getVolunteerDetailsStep(),
             $this->getConfirmationStep(),
         ];
-    }
-
-    protected function getRegistrationTypeStep(): Step
-    {
-        return Step::make('Registration Type')
-            ->description('How would you like to join us?')
-            ->icon('heroicon-o-identification')
-            ->schema([
-                Radio::make('registration_type')
-                    ->label('Select your registration type')
-                    ->required()
-                    ->options([
-                        'attendee' => 'Conference Attendee',
-                        'volunteer' => 'Volunteer',
-                    ])
-                    ->descriptions([
-                        'attendee' => 'Attend the conference as a participant. Purchase tickets for yourself or your group.',
-                        'volunteer' => 'Serve as a volunteer. Discounted pass, meals during shifts, and more.',
-                    ])
-                    ->live(),
-            ]);
     }
 
     protected function getPersonalInfoStep(): Step
@@ -341,56 +330,53 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function getTicketSelectionStep(): Step
     {
-        $stripeService = app(StripeService::class);
-        $prices = $stripeService->getAllPrices();
-        $tierName = $stripeService->getTierName();
-
         return Step::make('Select Your Tickets')
             ->description('Choose the best option for you')
             ->icon('heroicon-o-ticket')
             ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
             ->schema([
-                Radio::make('ticket_type')
-                    ->label('Ticket Type')
+                Radio::make('ticket_duration')
+                    ->label('Access Duration')
                     ->required()
                     ->options([
-                        'individual' => 'Standard Ticket - Single attendee registration',
-                        'team' => 'Group Pass - 10+ attendees (Save 20%)',
-                        'vip' => 'VIP Pass - Premium experience with exclusive benefits',
+                        'early_bird' => '1 Day',
+                        'regular' => '3 Days',
                     ])
-                    ->descriptions([
-                        'individual' => "{$tierName} Price: €" . number_format($prices['individual'] / 100, 0) . '/person',
-                        'team' => "{$tierName} Price: €" . number_format($prices['team'] / 100, 0) . '/person (min. 10 people)',
-                        'vip' => "{$tierName} Price: €" . number_format($prices['vip'] / 100, 0) . '/person - Front row seating, VIP lounge access, meet & greet',
-                    ])
-                    ->default('individual')
+                    ->default('early_bird')
                     ->live(),
 
-                TextInput::make('ticket_quantity')
-                    ->label('Number of Tickets')
+                Radio::make('ticket_price_option')
+                    ->label('Choose Your Amount')
+                    ->required()
+                    ->options([
+                        '20' => '€20',
+                        '40' => '€40',
+                        'custom' => 'Custom amount (€41+)',
+                    ])
+                    ->default('20')
+                    ->live(),
+
+                TextInput::make('ticket_custom_amount')
+                    ->label('Custom Amount (€)')
                     ->numeric()
                     ->required()
-                    ->minValue(fn ($get) => $get('ticket_type') === 'team' ? 10 : 1)
-                    ->maxValue(fn ($get) => $get('ticket_type') === 'vip' ? 10 : 50)
-                    ->default(1)
+                    ->minValue(41)
+                    ->step(1)
+                    ->placeholder('e.g. 50')
+                    ->helperText('Enter a whole number greater than 40.')
+                    ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom')
                     ->live()
-                    ->helperText(function ($get) {
-                        $ticketType = $get('ticket_type');
-                        $quantity = (int) ($get('ticket_quantity') ?? 1);
-
-                        if ($ticketType === 'team' && $quantity < 10) {
-                            return 'Group pass requires minimum 10 tickets to qualify for the discount.';
-                        }
-
-                        if ($ticketType === 'vip') {
-                            return 'VIP passes are limited to maximum 10 per order.';
-                        }
-                    })
                     ->rules([
-                        fn ($get) => function (string $attribute, $value, \Closure $fail) use ($get) {
-                            if ($get('ticket_type') === 'team' && (int) $value < 10) {
-                                $fail('Group pass requires minimum 10 tickets.');
-                            }
+                        function () {
+                            return function (string $_attribute, $value, \Closure $fail): void {
+                                if (! is_numeric($value) || floor((float) $value) !== (float) $value) {
+                                    $fail('Please enter a whole number.');
+                                }
+
+                                if ((int) $value <= 40) {
+                                    $fail('Custom amount must be greater than €40.');
+                                }
+                            };
                         },
                     ]),
 
@@ -546,8 +532,8 @@ class RegistrationForm extends Component implements HasSchemas
         ];
 
         if ($this->type === 'attendee') {
-            $registrationData['ticket_type'] = $data['ticket_type'];
-            $registrationData['ticket_quantity'] = $data['ticket_quantity'];
+            $registrationData['ticket_type'] = $data['ticket_duration'];
+            $registrationData['ticket_quantity'] = 1;
             $registrationData['amount'] = $this->calculateAmount($data);
         }
 
@@ -604,23 +590,24 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function calculateAmount(array $data): int
     {
-        $stripeService = app(StripeService::class);
-        $tier = $stripeService->getCurrentPricingTier();
-        $pricePerTicket = $stripeService->getTicketPrice($data['ticket_type'], $tier);
-
-        return (int) ($pricePerTicket * (int) $data['ticket_quantity']);
+        return match ($data['ticket_price_option'] ?? '20') {
+            '40' => 4000,
+            'custom' => (int) $data['ticket_custom_amount'] * 100,
+            default => 2000,
+        };
     }
 
     public function getFormattedPrice(): string
     {
         $data = $this->data ?? [];
-        $ticketType = $data['ticket_type'] ?? 'individual';
-        $quantity = (int) ($data['ticket_quantity'] ?? 1);
 
-        $stripeService = app(StripeService::class);
-        $pricePerTicket = $stripeService->getTicketPrice($ticketType, $stripeService->getCurrentPricingTier());
+        $amountCents = match ($data['ticket_price_option'] ?? '20') {
+            '40' => 4000,
+            'custom' => (int) ($data['ticket_custom_amount'] ?? 41) * 100,
+            default => 2000,
+        };
 
-        return '€' . number_format(($pricePerTicket * $quantity) / 100, 2);
+        return Number::currency($amountCents / 100, 'EUR');
     }
 
     public function render(): Factory|View

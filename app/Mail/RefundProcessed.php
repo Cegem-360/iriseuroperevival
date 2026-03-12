@@ -12,6 +12,7 @@ use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Number;
 
 class RefundProcessed extends Mailable implements ShouldQueue
 {
@@ -44,7 +45,7 @@ class RefundProcessed extends Mailable implements ShouldQueue
             markdown: 'emails.payment.refund',
             with: [
                 'registration' => $this->registration,
-                'refundAmount' => number_format($this->refundAmount / 100, 2),
+                'refundAmount' => Number::currency($this->refundAmount / 100, 'EUR'),
             ],
         );
     }

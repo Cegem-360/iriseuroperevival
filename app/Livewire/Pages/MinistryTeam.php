@@ -27,6 +27,7 @@ use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -361,9 +362,9 @@ class MinistryTeam extends Component implements HasSchemas
                         'vip' => 'VIP Pass - Premium experience with exclusive benefits',
                     ])
                     ->descriptions([
-                        'individual' => "{$tierName} Price: €" . number_format($prices['individual'] / 100, 0) . '/person',
-                        'team' => "{$tierName} Price: €" . number_format($prices['team'] / 100, 0) . '/person (min. 10 people)',
-                        'vip' => "{$tierName} Price: €" . number_format($prices['vip'] / 100, 0) . '/person - Front row seating, VIP lounge access, meet & greet',
+                        'individual' => "{$tierName} Price: " . Number::currency($prices['individual'] / 100, 'EUR') . '/person',
+                        'team' => "{$tierName} Price: " . Number::currency($prices['team'] / 100, 'EUR') . '/person (min. 10 people)',
+                        'vip' => "{$tierName} Price: " . Number::currency($prices['vip'] / 100, 'EUR') . '/person - Front row seating, VIP lounge access, meet & greet',
                     ])
                     ->default('individual')
                     ->live(),
@@ -599,7 +600,7 @@ class MinistryTeam extends Component implements HasSchemas
         $stripeService = app(StripeService::class);
         $pricePerTicket = $stripeService->getTicketPrice($ticketType, $stripeService->getCurrentPricingTier());
 
-        return '€' . number_format(($pricePerTicket * $quantity) / 100, 2);
+        return Number::currency(($pricePerTicket * $quantity) / 100, 'EUR');
     }
 
     public function render(): View
