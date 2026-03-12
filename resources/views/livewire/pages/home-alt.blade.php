@@ -7,9 +7,9 @@
         <div class="absolute inset-0 z-0">
             <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/baker-background.webp') }}" alt=""
                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-linear-to-b from-[var(--alt-navy-deeper)]/80 via-[var(--alt-navy-deeper)]/50 to-[var(--alt-navy-deeper)]"></div>
+            <div class="absolute inset-0 bg-linear-to-b from-[var(--alt-navy-deeper)]/30 via-transparent to-[var(--alt-navy-deeper)]/70"></div>
             {{-- Film Grain Texture --}}
-            <div class="absolute inset-0 opacity-20"
+            <div class="absolute inset-0 opacity-10"
                 style="background-image: url('{{ Vite::asset('resources/images/alt-style/backgrounds/film-grain-background.webp') }}'); background-size: cover; mix-blend-mode: overlay;">
             </div>
         </div>
@@ -548,8 +548,8 @@
         {{-- Background --}}
         <div class="absolute inset-0">
             <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/open-up.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover opacity-10">
-            <div class="absolute inset-0 bg-linear-to-r from-[var(--alt-gold)]/15 to-[var(--alt-navy-dark)]/95"></div>
+                class="absolute inset-0 w-full h-full object-cover opacity-25">
+            <div class="absolute inset-0 bg-linear-to-r from-[var(--alt-gold)]/10 to-[var(--alt-navy-dark)]/70"></div>
         </div>
 
         <div class="relative z-10 max-w-5xl mx-auto px-4">
