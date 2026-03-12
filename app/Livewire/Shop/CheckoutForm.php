@@ -46,7 +46,7 @@ class CheckoutForm extends Component
     public function mount(): void
     {
         if ($this->cartService->isEmpty()) {
-            $this->redirect(route('shop.cart'));
+            $this->redirect(route('shop.cart'), true);
         }
     }
 
