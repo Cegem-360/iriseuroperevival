@@ -1,10 +1,6 @@
 {
   "resources/css/app.css": {
-<<<<<<< HEAD
-    "file": "assets/app-DLmH06K6.css",
-=======
-    "file": "assets/app-KTsRaFS5.css",
->>>>>>> form-modification
+    "file": "assets/app-CLlTzUx3.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
