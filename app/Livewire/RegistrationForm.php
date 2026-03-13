@@ -485,7 +485,7 @@ class RegistrationForm extends Component implements HasSchemas
 
         return Workshop::query()
             ->published()
-            ->where('date', $dates[$dayIndex])
+            ->whereDate('date', $dates[$dayIndex])
             ->withCount('registrations')
             ->get()
             ->filter(function (Workshop $workshop): bool {
