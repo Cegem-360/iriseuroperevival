@@ -31,6 +31,9 @@ class WorkshopsTable
                     ->label('Leader')
                     ->searchable()
                     ->toggleable(),
+                TextColumn::make('date')
+                    ->date('Y. m. d.')
+                    ->sortable(),
                 TextColumn::make('difficulty_level')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
