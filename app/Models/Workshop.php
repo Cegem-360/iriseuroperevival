@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use Override;
 
@@ -33,6 +34,7 @@ class Workshop extends Model
         'duration_minutes',
         'difficulty_level',
         'requirements',
+        'date',
         'is_published',
         'sort_order',
         'translations',
@@ -43,6 +45,7 @@ class Workshop extends Model
         return [
             'benefits' => 'array',
             'requirements' => 'array',
+            'date' => 'date',
             'is_published' => 'boolean',
             'translations' => 'array',
         ];
@@ -60,6 +63,18 @@ class Workshop extends Model
     public function speaker(): BelongsTo
     {
         return $this->belongsTo(Speaker::class);
+    }
+
+    public function registrations(): BelongsToMany
+    {
+        return $this->belongsToMany(Registration::class)->withTimestamps();
+    }
+
+    public function isAtCapacity(): bool
+    {
+        $maxAllowed = (int) ceil(($this->capacity ?? 0) * 1.1);
+
+        return $this->registrations()->count() >= $maxAllowed;
     }
 
     protected function translated(): Attribute

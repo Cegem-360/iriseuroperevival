@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Workshops\Schemas;
 
 use App\Models\Speaker;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
@@ -34,6 +35,10 @@ class WorkshopForm
                             ->options(Speaker::query()->pluck('name', 'id'))
                             ->searchable()
                             ->nullable(),
+                        DatePicker::make('date')
+                            ->label('Workshop Date')
+                            ->native(false)
+                            ->required(),
                         Select::make('difficulty_level')
                             ->options([
                                 'all' => 'All Levels',

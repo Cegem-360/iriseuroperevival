@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
@@ -46,6 +47,9 @@ class Registration extends Model
         'service_areas',
         'has_served_before',
         'previous_service_description',
+
+        // Evangelism
+        'wants_to_evangelize',
 
         // Ministry Team Fields
         'citizenship',
@@ -113,6 +117,11 @@ class Registration extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function workshops(): BelongsToMany
+    {
+        return $this->belongsToMany(Workshop::class)->withTimestamps();
     }
 
     /*
@@ -325,6 +334,7 @@ class Registration extends Model
             'languages' => 'array',
             'service_areas' => 'array',
             'has_served_before' => 'boolean',
+            'wants_to_evangelize' => 'boolean',
             'is_born_again' => 'boolean',
             'is_spirit_filled' => 'boolean',
             'attended_ministry_school' => 'boolean',

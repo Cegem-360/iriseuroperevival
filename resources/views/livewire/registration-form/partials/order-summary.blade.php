@@ -1,7 +1,7 @@
 @php
     $livewire = $getLivewire();
     $data = $livewire->data ?? [];
-    $ticketDuration = $data['ticket_duration'] ?? 'early_bird';
+    $ticketDuration = $data['ticket_duration'] ?? '1_day';
     $priceOption = $data['ticket_price_option'] ?? '20';
     $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
 
@@ -12,7 +12,7 @@
     };
 
     $durationLabel = match ($ticketDuration) {
-        'regular' => '3 Day Pass',
+        '3_days' => '3 Day Pass',
         default => '1 Day Pass',
     };
 @endphp

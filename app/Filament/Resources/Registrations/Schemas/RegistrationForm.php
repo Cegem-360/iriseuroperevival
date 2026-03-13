@@ -90,6 +90,14 @@ class RegistrationForm
                     ])
                     ->columns(2),
 
+                Section::make('Evangelism')
+                    ->schema([
+                        Toggle::make('wants_to_evangelize')
+                            ->label('Wants to Evangelize'),
+                    ])
+                    ->collapsible()
+                    ->collapsed(),
+
                 Section::make('Ministry Team Details')
                     ->schema([
                         TextInput::make('citizenship')

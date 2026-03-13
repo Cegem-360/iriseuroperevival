@@ -528,7 +528,7 @@
                 {{-- 1-Day Pass --}}
                 <div
                     x-data="{ selected: '20', custom: '', get href() {
-                        let url = '{{ route('register') }}?duration=early_bird&price=' + this.selected;
+                        let url = '{{ route('register') }}?duration=1_day&price=' + this.selected;
                         if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
                         return url;
                     }, get valid() {
@@ -587,7 +587,7 @@
                 {{-- 3-Day Pass --}}
                 <div
                     x-data="{ selected: '20', custom: '', get href() {
-                        let url = '{{ route('register') }}?duration=regular&price=' + this.selected;
+                        let url = '{{ route('register') }}?duration=3_days&price=' + this.selected;
                         if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
                         return url;
                     }, get valid() {

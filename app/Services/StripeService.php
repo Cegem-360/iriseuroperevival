@@ -140,8 +140,8 @@ class StripeService
     protected function buildLineItems(Registration $registration): array
     {
         $ticketName = match ($registration->ticket_type) {
-            'early_bird' => 'Europe Revival 2026 — 1 Day Pass',
-            'regular' => 'Europe Revival 2026 — 3 Day Pass',
+            '1_day' => 'Europe Revival 2026 — 1 Day Pass',
+            '3_days' => 'Europe Revival 2026 — 3 Day Pass',
             'volunteer' => 'Europe Revival 2026 — Volunteer Pass',
             default => 'Europe Revival 2026 — Ticket',
         };
