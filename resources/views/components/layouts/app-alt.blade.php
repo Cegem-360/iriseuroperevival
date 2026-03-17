@@ -11,10 +11,9 @@
     {{-- Favicon --}}
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 
-    {{-- Fonts: Montserrat (AZO Sans stand-in) + Caveat (script/handwritten accent) --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {{-- Fonts: Azo Sans (headings via Adobe Fonts) + Abuget (script font) --}}
+    <link rel="stylesheet" href="https://use.typekit.net/win4vqd.css">
+    <link href="https://fonts.cdnfonts.com/css/abuget" rel="stylesheet">
 
     {{-- Styles --}}
     @filamentStyles
@@ -24,8 +23,8 @@
         [x-cloak] { display: none !important; }
 
         /* Alt style overrides */
-        .font-heading { font-family: 'Montserrat', sans-serif; }
-        .font-script { font-family: 'Caveat', cursive; }
+        .font-heading { font-family: 'azo-sans-web', sans-serif; }
+        .font-script { font-family: 'Abuget', cursive; }
 
         /* Beige/cream color tokens */
         :root {

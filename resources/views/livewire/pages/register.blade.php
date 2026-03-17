@@ -27,13 +27,6 @@
                <livewire:registration-form :type="$type" />
             </div>
 
-            {{-- Help Section --}}
-            <div class="mt-8 text-center">
-                <p class="text-white/50 text-sm">
-                    Need help? Contact us at
-                    <a href="mailto:info@iriseuroperevival.com" class="text-primary-400 hover:underline">info@iriseuroperevival.com</a>
-                </p>
-            </div>
         </div>
     </div>
 </div>

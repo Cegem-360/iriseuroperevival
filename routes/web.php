@@ -35,8 +35,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home & Landing Pages
-Route::get('/', Home::class)->name('home');
-Route::get('/alt', HomeAlt::class)->name('home.alt');
+Route::get('/', HomeAlt::class)->name('home');
+Route::get('/old-home', Home::class)->name('home.old');
 Route::get('/program', Program::class)->name('program');
 Route::get('/workshops', Workshops::class)->name('workshops');
 Route::get('/speakers', Speakers::class)->name('speakers');

@@ -19,7 +19,7 @@
             {{-- Conference Badge --}}
             <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--alt-beige)]/10 backdrop-blur-sm border border-[var(--alt-beige)]/20 rounded-full mb-8 animate-fade-in">
                 <span class="w-2 h-2 bg-[var(--alt-gold)] rounded-full animate-pulse"></span>
-                <span class="text-[var(--alt-beige)] text-base md:text-lg font-heading font-semibold uppercase tracking-wider">October 23-25, 2026 &bull; Budapest</span>
+                <span class="text-[var(--alt-beige)] text-base md:text-lg font-heading font-semibold uppercase tracking-wider">October 23-25, 2026 &bull; Budapest, BOK Hall</span>
             </div>
 
             {{-- Script accent --}}
@@ -51,13 +51,13 @@
             {{-- CTA Buttons --}}
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up"
                 style="animation-delay: 0.3s;">
-                <a href="{{ route('register') }}"
-                    class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
+                <button @click="$dispatch('open-registration-modal')"
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105 cursor-pointer">
                     Register Now
                     <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                </a>
+                </button>
                 <button @click="$dispatch('open-vision-modal')"
                     class="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--alt-beige)]/10 hover:bg-[var(--alt-beige)]/20 backdrop-blur-sm border border-[var(--alt-beige)]/20 text-[var(--alt-beige)] font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300">
                     <span class="w-10 h-10 bg-[var(--alt-beige)]/20 rounded-full flex items-center justify-center group-hover:bg-[var(--alt-beige)]/30 transition-colors">
@@ -119,25 +119,23 @@
                 </p>
             </div>
 
-            {{-- Speakers Grid --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+            {{-- Speakers Grid (4 columns) --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 @foreach ($this->featuredSpeakers as $speaker)
                     <x-home.speaker-card-alt :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
                 @endforeach
-            </div>
-
-            {{-- Worship Teams --}}
-            @if ($this->worshipTeams->isNotEmpty())
-                <div class="mt-24">
-                    <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-[var(--alt-beige)] text-center mb-4">Worship Teams</h3>
-                    <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-[var(--alt-gold)] to-transparent mx-auto mb-8"></div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                        @foreach ($this->worshipTeams as $speaker)
-                            <x-home.speaker-card-alt :speaker="$speaker" :showArrow="false" wire:key="worship-{{ $speaker->id }}" />
-                        @endforeach
-                            </div>
+                {{-- Coming Soon placeholder --}}
+                <div class="relative overflow-hidden rounded-2xl border border-[var(--alt-beige)]/10 bg-[var(--alt-navy)]/50 flex items-center justify-center" style="aspect-ratio: 1/1;">
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-[var(--alt-gold)]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[var(--alt-gold)]/20">
+                            <svg class="w-8 h-8 text-[var(--alt-gold)]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-[var(--alt-beige)]/40">Coming Soon</p>
+                    </div>
                 </div>
-            @endif
+            </div>
 
             {{-- Workshop Leaders --}}
             @if ($this->workshopLeaders->isNotEmpty())
@@ -148,15 +146,26 @@
                         Reserve your spot at the workshops. Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.
                     </p>
                     @php
-                        $altWorkshopSlugs = ['baoyan-lam', 'mary-pat-gokee', 'katey-maddux', 'tineke-bouwman'];
+                        $altWorkshopSlugs = ['mary-pat-gokee', 'katey-maddux', 'tineke-bouwman'];
                         $altWorkshopLeaders = $this->workshopLeaders->filter(fn ($s) => in_array($s->slug, $altWorkshopSlugs));
                     @endphp
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                         @foreach ($altWorkshopLeaders as $speaker)
                             <div wire:key="workshop-{{ $speaker->id }}">
                                 <x-home.speaker-card-alt :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
                             </div>
                         @endforeach
+                        {{-- Coming Soon placeholder --}}
+                        <div class="relative overflow-hidden rounded-2xl border border-[var(--alt-beige)]/10 bg-[var(--alt-navy)]/50 flex items-center justify-center" style="aspect-ratio: 5/6;">
+                            <div class="text-center p-6">
+                                <div class="w-16 h-16 bg-[var(--alt-gold)]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[var(--alt-gold)]/20">
+                                    <svg class="w-8 h-8 text-[var(--alt-gold)]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+                                    </svg>
+                                </div>
+                                <p class="font-heading text-lg font-bold uppercase tracking-wide text-[var(--alt-beige)]/40">Coming Soon</p>
+                            </div>
+                        </div>
                     </div>
 
                     {{-- Workshop Sign-up CTA --}}
@@ -175,85 +184,122 @@
     </section>
 
     {{-- ============================================
-    THEME SECTION
+    WORSHIP BLOCK — Designer's "Deep Worship" image + team cards
 ============================================= --}}
-    <section id="theme" class="py-24 bg-[var(--alt-navy)] relative overflow-hidden">
-        {{-- Background Artwork --}}
-        <div class="absolute right-0 top-0 w-1/2 h-full opacity-15">
+    <section id="worship" class="py-24 bg-[var(--alt-navy)] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            {{-- Deep Worship header image (designer provided — has baked-in text) --}}
+            <div class="rounded-2xl overflow-hidden shadow-2xl border border-[var(--alt-beige)]/10 mb-12">
+                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-background.webp') }}"
+                    alt="Deep Worship — Inspired Prayer"
+                    class="w-full object-cover">
+            </div>
+
+            {{-- Worship Team Cards --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {{-- Awakening Music --}}
+                @if ($this->worshipTeams->isNotEmpty())
+                    @php $awakeningTeam = $this->worshipTeams->first(); @endphp
+                    <a href="{{ route('speaker.show', $awakeningTeam->slug) }}"
+                        class="group relative rounded-2xl overflow-hidden border border-[var(--alt-beige)]/10 bg-[var(--alt-navy-dark)] hover:border-[var(--alt-gold)]/30 transition-all duration-300" style="aspect-ratio: 16/9;">
+                        @if ($awakeningTeam->photo_path)
+                            <img src="{{ Vite::asset('resources/' . $awakeningTeam->photo_path) }}"
+                                alt="{{ $awakeningTeam->name }}"
+                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-linear-to-t from-[var(--alt-navy-deeper)]/80 to-transparent"></div>
+                        @endif
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-[var(--alt-beige)]">{{ $awakeningTeam->name }}</h4>
+                            @if ($awakeningTeam->organization)
+                                <p class="text-[var(--alt-beige-muted)] text-sm">{{ $awakeningTeam->organization }}</p>
+                            @endif
+                        </div>
+                    </a>
+                @endif
+
+                {{-- Coming Soon placeholder --}}
+                <div class="relative rounded-2xl overflow-hidden border border-[var(--alt-beige)]/10 bg-[var(--alt-navy-dark)]/50 flex items-center justify-center" style="aspect-ratio: 16/9;">
+                    <div class="text-center p-6">
+                        <div class="w-14 h-14 bg-[var(--alt-gold)]/10 rounded-full flex items-center justify-center mx-auto mb-3 border border-[var(--alt-gold)]/20">
+                            <svg class="w-7 h-7 text-[var(--alt-gold)]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+                            </svg>
+                        </div>
+                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-[var(--alt-beige)]/40">Coming Soon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ============================================
+    THEME SECTION — "Encounter Jesus. Catch on Fire."
+============================================= --}}
+    <section id="theme" class="py-24 relative overflow-hidden">
+        {{-- Full background: catch-on-fire image --}}
+        <div class="absolute inset-0">
             <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}" alt=""
-                class="w-full h-full object-cover object-left">
-            <div class="absolute inset-0 bg-linear-to-r from-[var(--alt-navy)] to-transparent"></div>
+                class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-linear-to-r from-[var(--alt-navy-deeper)]/85 via-[var(--alt-navy-deeper)]/60 to-[var(--alt-navy-deeper)]/40"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                {{-- Left: Artwork --}}
-                <div class="relative">
-                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-[var(--alt-gold)]/20">
-                        <img src="{{ Vite::asset('resources/images/encounter-jesus.webp') }}" alt="Encounter Jesus"
-                            class="w-full aspect-4/5 object-cover">
-                        <div class="absolute -inset-4 bg-[var(--alt-gold)]/10 blur-3xl -z-10"></div>
-                    </div>
-                </div>
+            <div class="max-w-3xl">
+                {{-- Script-style heading like the promo video --}}
+                <p class="font-script text-[var(--alt-gold-light)] text-4xl md:text-5xl mb-2">encounter Jesus</p>
+                <h2 class="font-script text-5xl md:text-7xl text-[var(--alt-gold)] mb-8">Catch on fire</h2>
 
-                {{-- Right: Content --}}
-                <div>
-                    <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-6">
-                        Encounter Jesus.<br>
-                        <span class="text-transparent bg-clip-text bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)]">Catch on Fire.</span>
-                    </h2>
-                    <p class="text-[var(--alt-beige-muted)] text-lg mb-8 leading-relaxed">
-                        We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe.
-                        We burn with passion for Jesus and carry the Gospel to the lost — a message of redemption, restoration, love, and
-                        power. Be part of what God is doing in Europe through <strong class="text-[var(--alt-beige)]">Europe Revival 2026</strong>!
-                    </p>
+                <p class="text-[var(--alt-beige)] text-lg md:text-xl mb-8 leading-relaxed">
+                    We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe.
+                    We burn with passion for Jesus and carry the Gospel to the lost — a message of redemption, restoration, love, and
+                    power. Be part of what God is doing in Europe through <strong class="text-[var(--alt-gold)]">Europe Revival 2026</strong>!
+                </p>
 
-                    {{-- Theme Points --}}
-                    <div class="space-y-6 mb-10">
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
-                                <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Deep Worship & Prayer</h4>
-                                <p class="text-[var(--alt-beige-muted)] text-sm">Join powerful worship and prayer sessions creating space for deep encounters with God and hearing His voice.</p>
-                            </div>
+                {{-- Theme Points --}}
+                <div class="space-y-6 mb-10">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
+                            <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+                            </svg>
                         </div>
-
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
-                                <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Ministry & Inspiration</h4>
-                                <p class="text-[var(--alt-beige-muted)] text-sm">Hear from amazing speakers walking closely with God and receive fresh anointing and breakthrough for your personal walk with Lord Jesus.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
-                                <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Outreaches & Missions</h4>
-                                <p class="text-[var(--alt-beige-muted)] text-sm">Be commissioned to live for the gospel and join the worldwide missions movement that seeks to bring love, hope and power of Jesus to the lost and the broken.</p>
-                            </div>
+                        <div>
+                            <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Deep Worship & Prayer</h4>
+                            <p class="text-[var(--alt-beige-muted)] text-sm">Join powerful worship and prayer sessions creating space for deep encounters with God and hearing His voice.</p>
                         </div>
                     </div>
 
-                    {{-- Scripture --}}
-                    <blockquote class="bg-[var(--alt-gold)]/5 border border-[var(--alt-gold)]/20 rounded-xl px-6 py-5">
-                        <p class="text-[var(--alt-beige)] italic text-lg mb-2">"What no eye has seen, what no ear has heard, and what no human mind has conceived — the things God has prepared for those who love him."</p>
-                        <cite class="text-[var(--alt-gold)] text-sm font-heading font-medium uppercase tracking-wider">— 1 Corinthians 2:9</cite>
-                    </blockquote>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
+                            <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Ministry & Inspiration</h4>
+                            <p class="text-[var(--alt-beige-muted)] text-sm">Hear from amazing speakers walking closely with God and receive fresh anointing and breakthrough for your personal walk with Lord Jesus.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
+                            <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Outreaches & Missions</h4>
+                            <p class="text-[var(--alt-beige-muted)] text-sm">Be commissioned to live for the gospel and join the worldwide missions movement that seeks to bring love, hope and power of Jesus to the lost and the broken.</p>
+                        </div>
+                    </div>
                 </div>
+
+                {{-- Scripture --}}
+                <blockquote class="bg-black/20 backdrop-blur-sm border border-[var(--alt-gold)]/20 rounded-xl px-6 py-5">
+                    <p class="text-[var(--alt-beige)] italic text-lg mb-2">"What no eye has seen, what no ear has heard, and what no human mind has conceived — the things God has prepared for those who love him."</p>
+                    <cite class="text-[var(--alt-gold)] text-sm font-heading font-medium uppercase tracking-wider">— 1 Corinthians 2:9</cite>
+                </blockquote>
             </div>
         </div>
     </section>
@@ -261,8 +307,15 @@
     {{-- ============================================
     SCHEDULE SECTION
 ============================================= --}}
-    <section id="schedule" class="py-24 bg-[var(--alt-navy-dark)] relative" x-data="{ activeTab: 'main' }">
-        <div class="max-w-7xl mx-auto px-4">
+    <section id="schedule" class="py-24 relative overflow-hidden" x-data="{ activeTab: 'main' }">
+        {{-- Background: open-up (triumphal arch) --}}
+        <div class="absolute inset-0">
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/open-up.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover object-top">
+            <div class="absolute inset-0 bg-[var(--alt-navy-dark)]/80"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4">
             {{-- Section Header --}}
             <div class="text-center mb-16">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-[var(--alt-gold)] bg-[var(--alt-gold)]/10 border border-[var(--alt-gold)]/30 rounded-full mb-4">
@@ -270,7 +323,7 @@
                 </span>
                 <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-4">3 Days of Encounter</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-[var(--alt-gold)] to-transparent mx-auto mb-6"></div>
-                <p class="text-[var(--alt-beige-muted)] text-lg max-w-2xl mx-auto">
+                <p class="text-[var(--alt-beige)] text-lg max-w-2xl mx-auto px-6 py-4 bg-black/30 backdrop-blur-sm rounded-xl">
                     Powerful sessions, inspirational workshops, healing & prophetic rooms, time of fellowship and divine appointments for the Kingdom of God to grow in Europe!
                 </p>
             </div>
@@ -419,7 +472,7 @@
                         We're finalizing the conference program. Subscribe to our newsletter to be the first to know when it's released.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full">Register Now</a>
+                        <button @click="$dispatch('open-registration-modal')" class="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full cursor-pointer">Register Now</button>
                         <a href="{{ route('program') }}" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-[var(--alt-gold)]/30 text-[var(--alt-beige)] font-heading font-semibold uppercase tracking-wider rounded-full">Check Program Page</a>
                     </div>
                 </div>
@@ -430,25 +483,15 @@
     {{-- ============================================
     PRICING SECTION
 ============================================= --}}
-    @php
-        $prices = [
-            'early' => [
-                '1day' => $this->ticketPrices['early']['1day'] ?? 29,
-                '3day' => $this->ticketPrices['early']['3day'] ?? 49,
-                'group' => $this->ticketPrices['early']['group'] ?? 39,
-            ],
-            'regular' => [
-                '1day' => $this->ticketPrices['regular']['1day'] ?? 39,
-                '3day' => $this->ticketPrices['regular']['3day'] ?? 69,
-                'group' => $this->ticketPrices['regular']['group'] ?? 59,
-            ],
-        ];
-    @endphp
-    <section id="pricing" class="py-24 bg-[var(--alt-navy)] relative" x-data="{
-        activeTier: 'early',
-        prices: {{ Js::from($prices) }}
-    }">
-        <div class="max-w-7xl mx-auto px-4">
+    <section id="pricing" class="py-24 relative overflow-hidden">
+        {{-- Background: Budapest map --}}
+        <div class="absolute inset-0">
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/budapest.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-[var(--alt-navy-deeper)]/85"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4">
             {{-- Section Header --}}
             <div class="text-center mb-6">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-[var(--alt-gold)] bg-[var(--alt-gold)]/10 border border-[var(--alt-gold)]/30 rounded-full mb-4">
@@ -458,76 +501,118 @@
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-[var(--alt-gold)] to-transparent mx-auto"></div>
             </div>
 
-            {{-- Early Bird Deadline --}}
+            {{-- 1-Day Pass Deadline (hidden per client request)
             <div class="text-center mb-12">
                 <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-500/15 border border-orange-500/30 rounded-full text-orange-400 font-heading font-semibold uppercase tracking-wider text-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Early Bird price available until June 30, 2026
+                    1-Day Pass available until June 30, 2026
                 </span>
-            </div>
+            </div> --}}
 
-            {{-- Pricing Toggle --}}
-            <div class="flex justify-center gap-2 mb-12">
-                <button type="button"
-                    @click="let y = window.scrollY; activeTier = 'early'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
-                    :class="activeTier === 'early' ? 'bg-[var(--alt-gold)] text-[var(--alt-navy-deeper)]' : 'bg-[var(--alt-navy-dark)] text-[var(--alt-beige-muted)] hover:text-[var(--alt-beige)]'"
-                    class="px-5 py-2.5 rounded-full font-heading font-medium text-sm uppercase tracking-wider transition-colors flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full" :class="activeTier === 'early' ? 'bg-[var(--alt-navy-deeper)]' : 'bg-[var(--alt-gold)]'"></span>
-                    Early Bird (until June 30)
-                </button>
-                <button type="button"
-                    @click="let y = window.scrollY; activeTier = 'regular'; $nextTick(() => window.scrollTo({ top: y, behavior: 'instant' }))"
-                    :class="activeTier === 'regular' ? 'bg-[var(--alt-gold)] text-[var(--alt-navy-deeper)]' : 'bg-[var(--alt-navy-dark)] text-[var(--alt-beige-muted)] hover:text-[var(--alt-beige)]'"
-                    class="px-5 py-2.5 rounded-full font-heading font-medium text-sm uppercase tracking-wider transition-colors flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full" :class="activeTier === 'regular' ? 'bg-[var(--alt-navy-deeper)]' : 'bg-[var(--alt-gold)]'"></span>
-                    Regular (July 1+)
-                </button>
-            </div>
+            {{-- Registration Coming Soon --}}
+            <p class="text-center text-[var(--alt-beige)] text-2xl md:text-3xl font-heading font-semibold">Registration opens soon</p>
 
-            {{-- Pricing Cards --}}
-            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {{-- 1-Day Pass --}}
-                <div class="bg-[var(--alt-navy-dark)]/50 border border-[var(--alt-beige)]/10 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">1-Day Pass</h3>
+            @if(false) {{-- Pricing Cards (temporarily hidden) --}}
+            <p class="text-center text-[var(--alt-beige)] text-lg mb-8">How much would you like to donate to support the event?</p>
+            <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                {{-- 1-Day Supporter Pass --}}
+                <div
+                    x-data="{ selected: '20', custom: '', get href() {
+                        let url = '{{ route('register') }}?duration=1_day&price=' + this.selected;
+                        if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
+                        return url;
+                    }, get valid() {
+                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 40);
+                    } }"
+                    class="bg-[var(--alt-navy-dark)]/50 border border-[var(--alt-beige)]/10 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">1-Day Supporter Pass</h3>
                     <p class="text-[var(--alt-beige-muted)] mb-6">Single day access</p>
-                    <div class="mb-8 grow">
-                        <span class="text-5xl font-heading font-bold text-[var(--alt-beige)]">&euro;<span x-text="prices[activeTier]['1day']">{{ $prices['early']['1day'] }}</span></span>
-                        <span class="text-[var(--alt-beige-muted)]">/person</span>
-                    </div>
-                    <a href="{{ route('register') }}?ticket=1day" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
-                        Register Now
-                    </a>
-                </div>
 
-                {{-- 3-Day Pass (Featured) --}}
-                <div class="bg-linear-to-br from-[var(--alt-gold)]/10 to-[var(--alt-gold-light)]/10 border-2 border-[var(--alt-gold)]/50 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <div class="absolute -top-px -right-px">
-                        <div class="bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] text-xs font-heading font-bold uppercase tracking-wider px-4 py-1.5 rounded-bl-xl rounded-tr-3xl">
-                            Best Value
+                    <div class="mb-8 grow space-y-2">
+                        <button type="button" @click="selected = '20'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '20' ? 'border-[var(--alt-beige)] bg-[var(--alt-beige)]' : 'border-[var(--alt-beige)]/30 group-hover:border-[var(--alt-beige)]/60'">
+                                <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '20'"></span>
+                            </span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '20' ? 'text-[var(--alt-beige)]' : 'text-[var(--alt-beige)]/50'">&euro;20</span>
+                        </button>
+                        <button type="button" @click="selected = '40'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '40' ? 'border-[var(--alt-beige)] bg-[var(--alt-beige)]' : 'border-[var(--alt-beige)]/30 group-hover:border-[var(--alt-beige)]/60'">
+                                <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '40'"></span>
+                            </span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '40' ? 'text-[var(--alt-beige)]' : 'text-[var(--alt-beige)]/50'">&euro;40</span>
+                        </button>
+                        <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === 'custom' ? 'border-[var(--alt-beige)] bg-[var(--alt-beige)]' : 'border-[var(--alt-beige)]/30 group-hover:border-[var(--alt-beige)]/60'">
+                                <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === 'custom'"></span>
+                            </span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-beige)]' : 'text-[var(--alt-beige)]/50'">&euro;41+</span>
+                        </button>
+                        <div x-show="selected === 'custom'" x-transition class="pt-1">
+                            <div class="flex items-center gap-2 bg-[var(--alt-navy)]/50 border border-[var(--alt-beige)]/10 rounded-xl px-3 py-2">
+                                <span class="text-[var(--alt-beige-muted)] font-medium">&euro;</span>
+                                <input type="number" x-model="custom" min="41" step="1" placeholder="Enter amount"
+                                    class="bg-transparent text-[var(--alt-beige)] placeholder-[var(--alt-beige-muted)]/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                            </div>
+                            <p x-show="custom && parseInt(custom) <= 40" class="text-red-400 text-xs mt-1">Minimum &euro;41</p>
                         </div>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">3-Day Pass</h3>
-                    <p class="text-[var(--alt-beige-muted)] mb-6">Full event access</p>
-                    <div class="mb-8 grow">
-                        <span class="text-5xl font-heading font-bold text-[var(--alt-gold)]">&euro;<span x-text="prices[activeTier]['3day']">{{ $prices['early']['3day'] }}</span></span>
-                        <span class="text-[var(--alt-beige-muted)]">/person</span>
-                    </div>
-                    <a href="{{ route('register') }}?ticket=3day" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
+
+                    <a :href="href" :class="valid ? '' : 'opacity-50 pointer-events-none'" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
                         Register Now
                     </a>
                 </div>
 
-                {{-- Group Ticket --}}
-                <div class="bg-[var(--alt-navy-dark)]/50 border border-[var(--alt-beige)]/10 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">Group Ticket</h3>
-                    <p class="text-[var(--alt-beige-muted)] mb-6">Groups of 10+ attendees</p>
-                    <div class="mb-8 grow">
-                        <span class="text-5xl font-heading font-bold text-[var(--alt-beige)]">&euro;<span x-text="prices[activeTier]['group']">{{ $prices['early']['group'] }}</span></span>
-                        <span class="text-[var(--alt-beige-muted)]">/person</span>
+                {{-- 3-Day Supporter Pass --}}
+                <div
+                    x-data="{ selected: '30', custom: '', get href() {
+                        let url = '{{ route('register') }}?duration=3_days&price=' + this.selected;
+                        if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
+                        return url;
+                    }, get valid() {
+                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 60);
+                    } }"
+                    class="bg-linear-to-br from-[var(--alt-gold)]/10 to-[var(--alt-gold-light)]/10 border-2 border-[var(--alt-gold)]/50 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">3-Day Supporter Pass</h3>
+                    <p class="text-[var(--alt-beige-muted)] mb-6">Full event access</p>
+
+                    <div class="mb-8 grow space-y-2">
+                        <button type="button" @click="selected = '30'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '30' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
+                                <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '30'"></span>
+                            </span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '30' ? 'text-[var(--alt-gold)]' : 'text-[var(--alt-gold)]/50'">&euro;30</span>
+                        </button>
+                        <button type="button" @click="selected = '60'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === '60' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
+                                <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '60'"></span>
+                            </span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '60' ? 'text-[var(--alt-gold)]' : 'text-[var(--alt-gold)]/50'">&euro;60</span>
+                        </button>
+                        <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
+                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                                :class="selected === 'custom' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
+                                <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === 'custom'"></span>
+                            </span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-gold)]' : 'text-[var(--alt-gold)]/50'">&euro;61+</span>
+                        </button>
+                        <div x-show="selected === 'custom'" x-transition class="pt-1">
+                            <div class="flex items-center gap-2 bg-[var(--alt-navy)]/50 border border-[var(--alt-beige)]/10 rounded-xl px-3 py-2">
+                                <span class="text-[var(--alt-beige-muted)] font-medium">&euro;</span>
+                                <input type="number" x-model="custom" min="61" step="1" placeholder="Enter amount"
+                                    class="bg-transparent text-[var(--alt-gold)] placeholder-[var(--alt-gold)]/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                            </div>
+                            <p x-show="custom && parseInt(custom) <= 60" class="text-red-400 text-xs mt-1">Minimum &euro;61</p>
+                        </div>
                     </div>
-                    <a href="{{ route('register') }}?ticket=group" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
+
+                    <a :href="href" :class="valid ? '' : 'opacity-50 pointer-events-none'" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
                         Register Now
                     </a>
                 </div>
@@ -538,18 +623,19 @@
                     If you are attending as a volunteer, enter the coupon code from your email during registration.
                 </p>
             </div>
+            @endif
         </div>
     </section>
 
     {{-- ============================================
     VOLUNTEER CTA SECTION
 ============================================= --}}
-    <section id="volunteer" class="py-20 bg-[var(--alt-navy-dark)] relative overflow-hidden">
-        {{-- Background --}}
+    <section id="volunteer" class="py-20 relative overflow-hidden">
+        {{-- Background: Stadium --}}
         <div class="absolute inset-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/open-up.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover opacity-25">
-            <div class="absolute inset-0 bg-linear-to-r from-[var(--alt-gold)]/10 to-[var(--alt-navy-dark)]/70"></div>
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/stadium-background-3.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-[var(--alt-navy-deeper)]/75"></div>
         </div>
 
         <div class="relative z-10 max-w-5xl mx-auto px-4">
@@ -567,7 +653,7 @@
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center gap-3 mb-6 max-w-2xl mx-auto">
-                    @foreach (['Childcare', 'Ushers', 'Registration', 'Merch', 'Hospitality', 'Tech & Media', 'Street Evangelism', 'Kids Ministry'] as $role)
+                    @foreach (['Childcare', 'Ushers', 'Registration', 'Merch', 'Hospitality', 'Tech & Media', 'Kids Ministry'] as $role)
                         <span class="px-4 py-2 bg-[var(--alt-beige)]/5 border border-[var(--alt-beige)]/10 rounded-full text-[var(--alt-beige-muted)] text-sm">{{ $role }}</span>
                     @endforeach
                 </div>
@@ -588,8 +674,15 @@
     {{-- ============================================
     FAQ SECTION
 ============================================= --}}
-    <section id="faq" class="py-24 bg-[var(--alt-navy-dark)]" x-data="{ openFaq: null }">
-        <div class="max-w-3xl mx-auto px-4">
+    <section id="faq" class="py-24 relative overflow-hidden" x-data="{ openFaq: null }">
+        {{-- Background: Liberty Bridge watercolor --}}
+        <div class="absolute inset-0">
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/15258.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-[var(--alt-navy-dark)]/85"></div>
+        </div>
+
+        <div class="relative z-10 max-w-3xl mx-auto px-4">
             {{-- Section Header --}}
             <div class="text-center mb-16">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-[var(--alt-gold)] bg-[var(--alt-gold)]/10 border border-[var(--alt-gold)]/30 rounded-full mb-4">
@@ -639,14 +732,12 @@
     {{-- ============================================
     FINAL CTA SECTION
 ============================================= --}}
-    <section class="py-32 bg-[var(--alt-navy)] relative overflow-hidden">
-        {{-- Background --}}
+    <section class="py-32 relative overflow-hidden">
+        {{-- Background: crowd-ai --}}
         <div class="absolute inset-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/stadium-background-3.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-linear-to-t from-[var(--alt-navy-deeper)] via-[var(--alt-navy-deeper)]/70 to-[var(--alt-navy-deeper)]"></div>
-            <div class="absolute inset-0 opacity-10"
-                style="background-image: url('{{ Vite::asset('resources/images/alt-style/backgrounds/film-grain-background.webp') }}'); background-size: cover;"></div>
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/crowd-ai.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-[var(--alt-navy-deeper)]/85"></div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
@@ -664,19 +755,19 @@
                 Don't miss out! Join thousands of believers from across Europe for three days that could change your life forever.
             </p>
 
-            <a href="{{ route('register') }}"
-                class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-xl uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
+            <button @click="$dispatch('open-registration-modal')"
+                class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-xl uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105 cursor-pointer">
                 Register Now
                 <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-            </a>
+            </button>
 
             <p class="mt-8 text-[var(--alt-beige-muted)]/60 font-heading uppercase tracking-wider">
                 <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                October 23-25, 2026 &bull; Budapest, Hungary
+                October 23-25, 2026 &bull; Budapest, BOK Hall, Hungary
             </p>
         </div>
     </section>

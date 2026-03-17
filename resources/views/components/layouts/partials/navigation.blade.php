@@ -50,14 +50,14 @@
                 {{-- Language Switcher --}}
                {{--  <x-language-switcher variant="dropdown" /> --}}
 
-                {{-- Register Button --}}
-                <a href="{{ route('register') }}"
-                   class="group inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-semibold text-base rounded-full transition-all duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30">
+                {{-- Register Button (temporarily shows modal) --}}
+                <button @click="$dispatch('open-registration-modal')"
+                   class="group inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-semibold text-base rounded-full transition-all duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 cursor-pointer">
                     {{ __('Register Now') }}
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                     </svg>
-                </a>
+                </button>
             </div>
 
             {{-- Mobile Menu Button --}}
@@ -95,16 +95,40 @@
                 <x-language-switcher variant="inline" />
             </div>
 
-            {{-- Mobile CTA --}}
+            {{-- Mobile CTA (temporarily shows modal) --}}
             <div class="pt-4">
-                <a href="{{ route('register') }}"
-                   class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-linear-to-r from-primary-400 to-primary-600 text-navy-900 font-bold rounded-full">
+                <button @click="mobileMenuOpen = false; $dispatch('open-registration-modal')"
+                   class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-linear-to-r from-primary-400 to-primary-600 text-navy-900 font-bold rounded-full cursor-pointer">
                     {{ __('Register Now') }}
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                     </svg>
-                </a>
+                </button>
             </div>
         </div>
     </div>
 </header>
+
+{{-- Registration Coming Soon Modal (outside header to avoid positioning issues) --}}
+<div x-data="{ open: false }"
+     @open-registration-modal.window="open = true"
+     x-show="open" x-transition.opacity
+     class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+     @click.self="open = false"
+     @keydown.escape.window="open = false"
+     style="display: none;">
+    <div x-show="open" x-transition
+         class="bg-navy-900 border border-white/10 rounded-2xl p-8 md:p-10 max-w-md mx-4 text-center shadow-2xl">
+        <div class="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-5 border border-primary-500/30">
+            <svg class="w-8 h-8 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-3">Registration Opens Soon</h3>
+        <p class="text-white/60 mb-6">We're finalizing the details. Stay tuned — registration will be available shortly!</p>
+        <button @click="open = false"
+                class="px-8 py-3 bg-primary-500 hover:bg-primary-600 text-navy-900 font-semibold rounded-full transition-colors cursor-pointer">
+            Got it
+        </button>
+    </div>
+</div>
