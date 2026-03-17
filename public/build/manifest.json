@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CLlTzUx3.css",
+    "file": "assets/app-rjiEp7q-.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -13,7 +13,7 @@
     "src": "resources/images/ER-colours.jpg"
   },
   "resources/images/alt-style/backgrounds/15258.webp": {
-    "file": "assets/15258-DggC1fS8.webp",
+    "file": "assets/15258-OmzFeCGT.webp",
     "src": "resources/images/alt-style/backgrounds/15258.webp"
   },
   "resources/images/alt-style/backgrounds/baker-background.webp": {
@@ -21,7 +21,7 @@
     "src": "resources/images/alt-style/backgrounds/baker-background.webp"
   },
   "resources/images/alt-style/backgrounds/budapest.webp": {
-    "file": "assets/budapest-OmzFeCGT.webp",
+    "file": "assets/budapest-BC6l-RPT.webp",
     "src": "resources/images/alt-style/backgrounds/budapest.webp"
   },
   "resources/images/alt-style/backgrounds/catch-on-fire-flare.webp": {
@@ -37,7 +37,7 @@
     "src": "resources/images/alt-style/backgrounds/consuming_worship.webp"
   },
   "resources/images/alt-style/backgrounds/crowd-ai.webp": {
-    "file": "assets/crowd-ai-BC6l-RPT.webp",
+    "file": "assets/crowd-ai-DggC1fS8.webp",
     "src": "resources/images/alt-style/backgrounds/crowd-ai.webp"
   },
   "resources/images/alt-style/backgrounds/deep-worship-background.webp": {
