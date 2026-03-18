@@ -494,8 +494,8 @@
         {{-- Background: Budapest map --}}
         <div class="absolute inset-0">
             <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/budapest.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-[var(--alt-navy-deeper)]/85"></div>
+                class="absolute inset-0 w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-[var(--alt-navy-deeper)]/50"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
@@ -530,7 +530,7 @@
                     }, get valid() {
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 40);
                     } }"
-                    class="bg-[var(--alt-navy-dark)]/50 border border-[var(--alt-beige)]/10 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                    class="bg-[var(--alt-navy-dark)]/40 backdrop-blur-sm border border-[var(--alt-beige)]/15 rounded-3xl p-8 relative overflow-hidden flex flex-col">
                     <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">1-Day Supporter Pass</h3>
                     <p class="text-[var(--alt-beige-muted)] mb-6">Single day access</p>
 
@@ -580,7 +580,7 @@
                     }, get valid() {
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 60);
                     } }"
-                    class="bg-linear-to-br from-[var(--alt-gold)]/10 to-[var(--alt-gold-light)]/10 border-2 border-[var(--alt-gold)]/50 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                    class="bg-linear-to-br from-[var(--alt-gold)]/15 to-[var(--alt-navy-dark)]/60 backdrop-blur-md border-2 border-[var(--alt-gold)]/40 rounded-3xl p-8 relative overflow-hidden flex flex-col shadow-lg shadow-[var(--alt-gold)]/10">
                     <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">3-Day Supporter Pass</h3>
                     <p class="text-[var(--alt-beige-muted)] mb-6">Full event access</p>
 
