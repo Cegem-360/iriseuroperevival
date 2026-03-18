@@ -48,7 +48,13 @@
 
                             <!-- Short Description -->
                             @if($workshop->short_description)
-                                <p class="text-white/50 text-sm mb-4 line-clamp-2">{{ $workshop->short_description }}</p>
+                                @if(str_contains($workshop->short_description, 'Only those who'))
+                                    @php [$desc, $restriction] = explode('Only those', $workshop->short_description, 2); @endphp
+                                    <p class="text-white/50 text-sm mb-2">{{ trim($desc) }}</p>
+                                    <p class="text-primary-400 text-sm font-medium mb-4">Only those{{ $restriction }}</p>
+                                @else
+                                    <p class="text-white/50 text-sm mb-4 line-clamp-2">{{ $workshop->short_description }}</p>
+                                @endif
                             @endif
 
                             <div class="mt-auto">
