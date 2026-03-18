@@ -530,7 +530,7 @@
                     }, get valid() {
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 40);
                     } }"
-                    class="bg-[var(--alt-navy-dark)]/40 backdrop-blur-sm border border-[var(--alt-beige)]/15 rounded-3xl p-8 relative overflow-hidden flex flex-col">
+                    class="bg-[var(--alt-navy-dark)]/40 border border-[var(--alt-beige)]/15 rounded-3xl p-8 relative overflow-hidden flex flex-col">
                     <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">1-Day Supporter Pass</h3>
                     <p class="text-[var(--alt-beige-muted)] mb-6">Single day access</p>
 
@@ -580,7 +580,7 @@
                     }, get valid() {
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 60);
                     } }"
-                    class="bg-linear-to-br from-[var(--alt-gold)]/15 to-[var(--alt-navy-dark)]/60 backdrop-blur-md border-2 border-[var(--alt-gold)]/40 rounded-3xl p-8 relative overflow-hidden flex flex-col shadow-lg shadow-[var(--alt-gold)]/10">
+                    class="bg-linear-to-br from-[var(--alt-gold)]/15 to-[var(--alt-navy-dark)]/70 border-2 border-[var(--alt-gold)]/40 rounded-3xl p-8 relative overflow-hidden flex flex-col shadow-lg shadow-[var(--alt-gold)]/10">
                     <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-2">3-Day Supporter Pass</h3>
                     <p class="text-[var(--alt-beige-muted)] mb-6">Full event access</p>
 
@@ -590,21 +590,21 @@
                                 :class="selected === '30' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
                                 <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '30'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '30' ? 'text-[var(--alt-gold)]' : 'text-[var(--alt-gold)]/50'">&euro;30</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '30' ? 'text-[var(--alt-gold)]' : 'text-white/50'">&euro;30</span>
                         </button>
                         <button type="button" @click="selected = '60'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                                 :class="selected === '60' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
                                 <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '60'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '60' ? 'text-[var(--alt-gold)]' : 'text-[var(--alt-gold)]/50'">&euro;60</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '60' ? 'text-[var(--alt-gold)]' : 'text-white/50'">&euro;60</span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                                 :class="selected === 'custom' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
                                 <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === 'custom'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-gold)]' : 'text-[var(--alt-gold)]/50'">&euro;61+</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-gold)]' : 'text-white/50'">&euro;61+</span>
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-[var(--alt-navy)]/50 border border-[var(--alt-beige)]/10 rounded-xl px-3 py-2">
