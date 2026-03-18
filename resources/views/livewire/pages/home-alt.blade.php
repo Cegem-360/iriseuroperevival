@@ -245,7 +245,7 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
             <div>
-                <div class="max-w-xl">
+                <div class="max-w-2xl">
                     {{-- Script-style heading like the promo video --}}
                     <p class="font-script text-[var(--alt-gold-light)] text-5xl md:text-7xl mb-2">encounter Jesus</p>
                     <h2 class="font-script text-6xl md:text-8xl text-[var(--alt-gold)] mb-8">Catch on fire</h2>
