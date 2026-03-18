@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
@@ -50,7 +51,8 @@ class Registration extends Model
 
         // Evangelism
         'wants_to_evangelize',
-
+        'want_to_healing_room',
+        'want_to_prophet_room',
         // Ministry Team Fields
         'citizenship',
         'languages',
@@ -122,6 +124,11 @@ class Registration extends Model
     public function workshops(): BelongsToMany
     {
         return $this->belongsToMany(Workshop::class)->withTimestamps();
+    }
+
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(Room::class)->withTimestamps();
     }
 
     /*

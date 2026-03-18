@@ -57,7 +57,7 @@ class RegistrationForm extends Component implements HasSchemas
         $fill = [
             'registration_type' => $type,
             'ticket_duration' => in_array($duration, ['1_day', '3_days']) ? $duration : '1_day',
-            'ticket_price_option' => in_array($price, ['20', '40', 'custom']) ? $price : '20',
+            'ticket_price_option' => in_array($price, ['20', '30', '40', '60', 'custom']) ? $price : ($duration === '3_days' ? '30' : '20'),
         ];
 
         if ($price === 'custom' && $amount && (int) $amount > 40) {
@@ -88,6 +88,7 @@ class RegistrationForm extends Component implements HasSchemas
             $this->getTestimonyStep(),
             $this->getTicketSelectionStep(),
             $this->getWorkshopSelectionStep(),
+            $this->getHealingAndPropheticRoomsStep(),
             $this->getEvangelismStep(),
             $this->getVolunteerDetailsStep(),
             $this->getConfirmationStep(),
@@ -352,22 +353,30 @@ class RegistrationForm extends Component implements HasSchemas
                 Radio::make('ticket_price_option')
                     ->label('Choose Your Amount')
                     ->required()
-                    ->options([
-                        '20' => '€20',
-                        '40' => '€40',
-                        'custom' => 'Custom amount (€41+)',
-                    ])
-                    ->default('20')
+                    ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
+                        ? [
+                            '30' => '€30',
+                            '60' => '€60',
+                            'custom' => 'Custom amount (€61+)',
+                        ]
+                        : [
+                            '20' => '€20',
+                            '40' => '€40',
+                            'custom' => 'Custom amount (€41+)',
+                        ])
+                    ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '30' : '20')
                     ->live(),
 
                 TextInput::make('ticket_custom_amount')
                     ->label('Custom Amount (€)')
                     ->numeric()
                     ->required()
-                    ->minValue(41)
+                    ->minValue(fn (Get $get): int => $get('ticket_duration') === '3_days' ? 61 : 41)
                     ->step(1)
-                    ->placeholder('e.g. 50')
-                    ->helperText('Enter a whole number greater than 40.')
+                    ->placeholder(fn (Get $get): string => $get('ticket_duration') === '3_days' ? 'e.g. 70' : 'e.g. 50')
+                    ->helperText(fn (Get $get): string => $get('ticket_duration') === '3_days'
+                        ? 'Enter a whole number greater than 60.'
+                        : 'Enter a whole number greater than 40.')
                     ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom')
                     ->live()
                     ->rules([
@@ -375,10 +384,6 @@ class RegistrationForm extends Component implements HasSchemas
                             return function (string $_attribute, $value, \Closure $fail): void {
                                 if (! is_numeric($value) || floor((float) $value) !== (float) $value) {
                                     $fail('Please enter a whole number.');
-                                }
-
-                                if ((int) $value <= 40) {
-                                    $fail('Custom amount must be greater than €40.');
                                 }
                             };
                         },
@@ -437,6 +442,26 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->boolean()
                     ->helperText('During the conference, we organize street evangelism outreach opportunities.'),
+            ]);
+    }
+
+    protected function getHealingAndPropheticRoomsStep(): Step
+    {
+        return Step::make('Healing and Prophetic Rooms')
+            ->description('Would you like to participate?')
+            ->icon('heroicon-o-heart')
+            ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
+            ->schema([
+                Radio::make('wants_to_healing_room')
+                    ->label('Would you like to participate in the healing room? 14:30-18:00 (Duration 15 min.)')
+                    ->required()
+                    ->boolean()
+                    ->helperText('During the conference, we organize healing room sessions.'),
+                Radio::make('wants_to_prophet_room')
+                    ->label('Would you like to participate in the prophetic room? 14:30-18:00 (Duration 15 min.)')
+                    ->required()
+                    ->boolean()
+                    ->helperText('During the conference, we organize prophetic room sessions.'),
             ]);
     }
 
@@ -718,7 +743,9 @@ class RegistrationForm extends Component implements HasSchemas
     protected function calculateAmount(array $data): int
     {
         return match ($data['ticket_price_option'] ?? '20') {
+            '30' => 3000,
             '40' => 4000,
+            '60' => 6000,
             'custom' => (int) $data['ticket_custom_amount'] * 100,
             default => 2000,
         };
@@ -729,7 +756,9 @@ class RegistrationForm extends Component implements HasSchemas
         $data = $this->data ?? [];
 
         $amountCents = match ($data['ticket_price_option'] ?? '20') {
+            '30' => 3000,
             '40' => 4000,
+            '60' => 6000,
             'custom' => (int) ($data['ticket_custom_amount'] ?? 41) * 100,
             default => 2000,
         };

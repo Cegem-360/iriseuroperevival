@@ -28295,6 +28295,20 @@ namespace App\Filament\Resources\Registrations\Pages {
             }
     }
 
+namespace App\Filament\Resources\Registrations\RelationManagers {
+    /**
+     */
+    class WorkshopsRelationManager extends \Filament\Resources\RelationManagers\RelationManager {
+            }
+    }
+
+namespace Filament\Resources\RelationManagers {
+    /**
+     */
+    class RelationManager extends \Livewire\Component {
+            }
+    }
+
 namespace App\Filament\Resources\ScheduleItems\Pages {
     /**
      */
@@ -28577,6 +28591,10 @@ namespace Illuminate\View {
     }
 
 namespace App\Livewire\Pages {
+    /**
+     */
+    class HomeAlt extends \Livewire\Component {
+            }
     /**
      */
     class Home extends \Livewire\Component {

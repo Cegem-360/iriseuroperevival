@@ -13,12 +13,34 @@
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property string $uuid
+ * @property string $activity_type
+ * @property int|null $workshop_id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $email
+ * @property string|null $phone
+ * @property string|null $notes
+ * @property \Carbon\CarbonImmutable|null $created_at
+ * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read \App\Models\Workshop|null $workshop
  * @method static \Database\Factories\ActivitySignupFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup forActivity(string $type)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereActivityType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ActivitySignup whereWorkshopId($value)
  */
 	class ActivitySignup extends \Eloquent {}
 }
@@ -284,6 +306,10 @@ namespace App\Models{
  * @property string|null $reference_2_status
  * @property string|null $reference_2_response
  * @property \Carbon\CarbonImmutable|null $confirmation_email_sent_at
+ * @property array<array-key, mixed>|null $service_areas
+ * @property bool $has_served_before
+ * @property string|null $previous_service_description
+ * @property bool $wants_to_evangelize
  * @property-read string $formatted_amount
  * @property-read string $full_name
  * @property-read bool $is_approved
@@ -292,6 +318,8 @@ namespace App\Models{
  * @property-read bool $is_rejected
  * @property-read string $status_badge
  * @property-read \App\Models\User|null $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Workshop> $workshops
+ * @property-read int|null $workshops_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration approved()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration attendees()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration byCountry(string $country)
@@ -319,6 +347,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereHasServedBefore($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereInvitedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereIsBornAgain($value)
@@ -331,6 +360,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration wherePastorEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration wherePastorName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration wherePreviousServiceDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereReference1ContactedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereReference1Email($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereReference1Name($value)
@@ -344,6 +374,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereRejectedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereRejectedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereRejectionReason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereServiceAreas($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereStripeCustomerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereStripePaymentIntent($value)
@@ -355,8 +386,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereWantsToEvangelize($value)
  */
 	class Registration extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @method static \Database\Factories\RoomFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Room query()
+ */
+	class Room extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -581,7 +623,12 @@ namespace App\Models{
  * @property array<array-key, mixed>|null $translations
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property string|null $leader_name
+ * @property string|null $schedule_note
+ * @property \Carbon\CarbonImmutable|null $date
  * @property-read string $formatted_duration
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Registration> $registrations
+ * @property-read int|null $registrations_count
  * @property-read \App\Models\Speaker|null $speaker
  * @property-read mixed $translated
  * @method static \Database\Factories\WorkshopFactory factory($count = null, $state = [])
@@ -594,13 +641,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereBenefits($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereCapacity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereDifficultyLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereDurationMinutes($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereImagePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereIsPublished($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereLeaderName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereRequirements($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereScheduleNote($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereShortDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop whereSortOrder($value)
