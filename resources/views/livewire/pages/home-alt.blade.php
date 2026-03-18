@@ -139,7 +139,7 @@
 
             {{-- Workshop Leaders --}}
             @if ($this->workshopLeaders->isNotEmpty())
-                <div class="mt-24">
+                <div id="workshops" class="mt-24 scroll-mt-32">
                     <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-[var(--alt-beige)] text-center mb-4">Workshop Leaders</h3>
                     <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-[var(--alt-gold)] to-transparent mx-auto mb-6"></div>
                     <p class="text-[var(--alt-beige-muted)] text-lg text-center max-w-3xl mx-auto mb-8">

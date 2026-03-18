@@ -27,7 +27,7 @@
                     {{ __('Speakers') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="{{ route('workshops') }}" class="text-white/70 hover:text-white font-medium text-base transition-colors relative group">
+                <a href="{{ route('home') }}#workshops" class="text-white/70 hover:text-white font-medium text-base transition-colors relative group">
                     {{ __('Workshops') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
@@ -85,7 +85,7 @@
          style="display: none;">
         <div class="max-w-7xl mx-auto px-4 py-6 space-y-4">
             <a href="{{ route('home') }}#speakers" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Speakers') }}</a>
-            <a href="{{ route('workshops') }}" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
+            <a href="{{ route('home') }}#workshops" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
             <a href="{{ route('home') }}#schedule" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
             <a href="{{ route('home') }}#pricing" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Pricing') }}</a>
             <a href="{{ route('home') }}#volunteer" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Join as a Volunteer') }}</a>
