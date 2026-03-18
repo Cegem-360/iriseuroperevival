@@ -245,10 +245,10 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
             <div>
-                <div class="max-w-2xl">
+                <div class="max-w-xl">
                     {{-- Script-style heading like the promo video --}}
-                    <p class="font-script text-[var(--alt-gold-light)] text-4xl md:text-5xl mb-2">encounter Jesus</p>
-                    <h2 class="font-script text-5xl md:text-7xl text-[var(--alt-gold)] mb-8">Catch on fire</h2>
+                    <p class="font-script text-[var(--alt-gold-light)] text-5xl md:text-7xl mb-2">encounter Jesus</p>
+                    <h2 class="font-script text-6xl md:text-8xl text-[var(--alt-gold)] mb-8">Catch on fire</h2>
 
                     <p class="text-[var(--alt-beige)] text-lg md:text-xl mb-8 leading-relaxed">
                         We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe.
