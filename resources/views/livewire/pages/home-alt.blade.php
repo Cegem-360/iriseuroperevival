@@ -73,10 +73,10 @@
             {{-- Promo Video Placeholder --}}
             <div class="relative max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-[var(--alt-beige)]/10">
-                    <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire-flare.webp') }}"
+                    <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
                         alt="Europe Revival 2026"
                         class="w-full aspect-video object-cover">
-                    <div class="absolute inset-0 bg-black/15 flex flex-col items-center justify-center">
+                    <div class="absolute inset-0 bg-black/5 flex flex-col items-center justify-center">
                         <div class="w-20 h-20 bg-[var(--alt-beige)]/10 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-[var(--alt-beige)]/20 mb-5">
                             <svg class="w-8 h-8 text-[var(--alt-beige)]/30 ml-1" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
