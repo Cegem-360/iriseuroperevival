@@ -75,8 +75,8 @@
                                         <a href="{{ route('speaker.show', $workshop->speaker->slug) }}" class="text-white font-medium hover:text-sky-400 transition-colors">
                                             {{ $workshop->leader_name }}
                                         </a>
-                                        @if($workshop->speaker->title)
-                                            <p class="text-primary-400 text-xs font-medium">{{ $workshop->speaker->title }}</p>
+                                        @if($workshop->speaker->organization)
+                                            <p class="text-primary-400 text-xs font-medium">{{ $workshop->speaker->organization }}</p>
                                         @endif
                                     @else
                                         <p class="text-white font-medium">{{ $workshop->leader_name }}</p>

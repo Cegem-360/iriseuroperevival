@@ -514,7 +514,7 @@
             {{-- Registration Coming Soon --}}
             <p class="text-center text-[var(--alt-beige)] text-2xl md:text-3xl font-heading font-semibold">Registration opens soon</p>
 
-            @if(false) {{-- Pricing Cards (temporarily hidden) --}}
+            @if(true) {{-- Pricing Cards (temporarily hidden) --}}
             <p class="text-center text-[var(--alt-beige)] text-lg mb-8">How much would you like to donate to support the event?</p>
             <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 {{-- 1-Day Supporter Pass --}}
