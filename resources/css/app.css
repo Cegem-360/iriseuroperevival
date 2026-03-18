@@ -321,7 +321,7 @@
     }
 
     .speaker-card.no-gradient::after {
-        @apply from-navy-950/50 via-navy-950/10 to-transparent;
+        @apply from-navy-950/80 via-navy-950/30 to-transparent;
     }
 
     .speaker-card-content {

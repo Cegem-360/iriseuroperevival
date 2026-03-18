@@ -1,4 +1,4 @@
-@props(['speaker', 'showArrow' => true, 'workshopTopic' => null])
+@props(['speaker', 'showArrow' => true, 'workshopTopic' => null, 'titleOverride' => null])
 
 @php
     // Map speaker slugs to designer portrait files
@@ -34,11 +34,11 @@
         @if ($altWorkshopPhoto)
             {{-- Designer workshop images have topic text baked in — no overlay needed --}}
         @else
-            <div class="speaker-card-content {{ $altPhoto ? 'text-right items-end' : '' }}">
+            <div class="speaker-card-content {{ $altPhoto ? 'text-right items-end max-w-[75%] ml-auto' : '' }}">
                 @if ($workshopTopic)
                     <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-[var(--alt-gold)]/20 text-[var(--alt-gold)] border border-[var(--alt-gold)]/30 font-heading uppercase tracking-wider mb-2">{{ $workshopTopic }}</span>
-                @elseif ($speaker->title)
-                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-[var(--alt-gold)]/20 text-[var(--alt-gold)] border border-[var(--alt-gold)]/30 font-heading uppercase tracking-wider mb-2">{{ $speaker->title }}</span>
+                @elseif ($titleOverride ?? $speaker->title)
+                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-slate-400/15 text-slate-300 border border-slate-400/25 font-heading uppercase tracking-wider mb-2 whitespace-nowrap">{{ $titleOverride ?? $speaker->title }}</span>
                 @endif
                 <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-[var(--alt-beige)]">{{ $speaker->name }}</h3>
                 @if ($speaker->organization)
@@ -59,11 +59,11 @@
     @if ($speaker->bio && !$altWorkshopPhoto)
         <div class="absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             <div class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-[var(--alt-navy-deeper)]/95 via-[var(--alt-navy)]/75 to-[var(--alt-navy-dark)]/85 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[var(--alt-navy-deeper)]/95 via-[var(--alt-navy)]/90 to-[var(--alt-navy-dark)]/95 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
             <div class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                 <h4 class="font-heading font-bold uppercase tracking-wide text-[var(--alt-beige)]">{{ $speaker->name }}</h4>
-                @if ($speaker->title)
-                    <span class="text-[var(--alt-gold)] text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $speaker->title }}</span>
+                @if ($titleOverride ?? $speaker->title)
+                    <span class="text-[var(--alt-gold)] text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $titleOverride ?? $speaker->title }}</span>
                 @endif
                 <div class="relative flex-1 min-h-0">
                     <p class="text-[var(--alt-beige-muted)] text-sm leading-relaxed overflow-y-auto h-full pb-12"

@@ -122,7 +122,7 @@
             {{-- Speakers Grid (4 columns) --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 @foreach ($this->featuredSpeakers as $speaker)
-                    <x-home.speaker-card-alt :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
+                    <x-home.speaker-card-alt :speaker="$speaker" :titleOverride="$speaker->type === 'workshop_leader' ? 'Guest Speaker' : null" wire:key="speaker-{{ $speaker->id }}" />
                 @endforeach
                 {{-- Coming Soon placeholder --}}
                 <div class="relative overflow-hidden rounded-2xl border border-[var(--alt-beige)]/10 bg-[var(--alt-navy)]/50 flex items-center justify-center" style="aspect-ratio: 1/1;">
