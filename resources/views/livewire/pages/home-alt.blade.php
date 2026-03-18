@@ -51,13 +51,13 @@
             {{-- CTA Buttons --}}
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up"
                 style="animation-delay: 0.3s;">
-                <button @click="$dispatch('open-registration-modal')"
-                    class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105 cursor-pointer">
+                <a href="{{ route('register') }}"
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
                     Register Now
                     <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                </button>
+                </a>
                 <button @click="$dispatch('open-vision-modal')"
                     class="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--alt-beige)]/10 hover:bg-[var(--alt-beige)]/20 backdrop-blur-sm border border-[var(--alt-beige)]/20 text-[var(--alt-beige)] font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300">
                     <span class="w-10 h-10 bg-[var(--alt-beige)]/20 rounded-full flex items-center justify-center group-hover:bg-[var(--alt-beige)]/30 transition-colors">
@@ -479,7 +479,7 @@
                         We're finalizing the conference program. Subscribe to our newsletter to be the first to know when it's released.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <button @click="$dispatch('open-registration-modal')" class="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full cursor-pointer">Register Now</button>
+                        <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] font-heading font-bold uppercase tracking-wider rounded-full">Register Now</a>
                         <a href="{{ route('program') }}" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-[var(--alt-gold)]/30 text-[var(--alt-beige)] font-heading font-semibold uppercase tracking-wider rounded-full">Check Program Page</a>
                     </div>
                 </div>
@@ -518,10 +518,7 @@
                 </span>
             </div> --}}
 
-            {{-- Registration Coming Soon --}}
-            <p class="text-center text-[var(--alt-beige)] text-2xl md:text-3xl font-heading font-semibold">Registration opens soon</p>
-
-            @if(true) {{-- Pricing Cards (temporarily hidden) --}}
+            @if(true) {{-- Pricing Cards --}}
             <p class="text-center text-[var(--alt-beige)] text-lg mb-8">How much would you like to donate to support the event?</p>
             <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 {{-- 1-Day Supporter Pass --}}
@@ -625,11 +622,6 @@
                 </div>
             </div>
 
-            <div class="text-center mt-8">
-                <p class="text-[var(--alt-beige-muted)]/60 text-sm">
-                    If you are attending as a volunteer, enter the coupon code from your email during registration.
-                </p>
-            </div>
             @endif
         </div>
     </section>
@@ -762,13 +754,13 @@
                 Don't miss out! Join thousands of believers from across Europe for three days that could change your life forever.
             </p>
 
-            <button @click="$dispatch('open-registration-modal')"
-                class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-xl uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105 cursor-pointer">
+            <a href="{{ route('register') }}"
+                class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-xl uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
                 Register Now
                 <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-            </button>
+            </a>
 
             <p class="mt-8 text-[var(--alt-beige-muted)]/60 font-heading uppercase tracking-wider">
                 <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
