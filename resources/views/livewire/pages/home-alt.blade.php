@@ -314,7 +314,8 @@
         {{-- Background: open-up (triumphal arch) --}}
         <div class="absolute inset-0">
             <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/open-up.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover object-top">
+                class="absolute inset-0 w-full object-contain object-top"
+                style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);">
             <div class="absolute inset-0 bg-[var(--alt-navy-dark)]/80"></div>
         </div>
 
@@ -326,7 +327,7 @@
                 </span>
                 <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-4">3 Days of Encounter</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-[var(--alt-gold)] to-transparent mx-auto mb-6"></div>
-                <p class="text-[var(--alt-beige)] text-lg max-w-2xl mx-auto px-6 py-4 bg-black/30 backdrop-blur-sm rounded-xl">
+                <p class="text-[var(--alt-beige)] text-lg max-w-4xl mx-auto px-6 py-4 bg-black/30 backdrop-blur-sm rounded-xl">
                     Powerful sessions, inspirational workshops, healing & prophetic rooms, time of fellowship and divine appointments for the Kingdom of God to grow in Europe!
                 </p>
             </div>
