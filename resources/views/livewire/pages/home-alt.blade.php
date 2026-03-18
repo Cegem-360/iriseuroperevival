@@ -445,7 +445,10 @@
                                             @if ($item->speaker)
                                                 <p class="text-[var(--alt-beige-muted)] text-sm">{{ $item->speaker->name }}</p>
                                             @elseif($item->description)
-                                                <p class="text-[var(--alt-beige-muted)] text-sm">{{ $item->description }}</p>
+                                                <p class="text-[var(--alt-beige-muted)] text-sm whitespace-nowrap overflow-hidden"
+                                                    x-data="{ fits: true }"
+                                                    x-init="fits = $el.scrollWidth <= $el.clientWidth"
+                                                    x-show="fits">{{ $item->description }}</p>
                                             @endif
                                         </div>
                                     @endforeach
