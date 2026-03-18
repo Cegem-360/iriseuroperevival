@@ -310,12 +310,12 @@
     {{-- ============================================
     SCHEDULE SECTION
 ============================================= --}}
-    <section id="schedule" class="py-24 relative overflow-hidden" x-data="{ activeTab: 'main' }">
+    <section id="schedule" class="pt-50 pb-16 relative overflow-hidden" x-data="{ activeTab: 'main' }">
         {{-- Background: open-up (triumphal arch) --}}
         <div class="absolute inset-0">
             <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/open-up.webp') }}" alt=""
                 class="absolute inset-0 w-full object-contain object-top"
-                style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);">
+                style="mask-image: linear-gradient(to bottom, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);">
             <div class="absolute inset-0 bg-[var(--alt-navy-dark)]/80"></div>
         </div>
 
