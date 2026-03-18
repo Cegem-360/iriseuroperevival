@@ -734,18 +734,18 @@
     <section class="py-32 relative overflow-hidden">
         {{-- Background: crowd-ai --}}
         <div class="absolute inset-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/crowd-ai.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-[var(--alt-navy-deeper)]/85"></div>
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/stadium-background.webp') }}" alt=""
+                class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-[var(--alt-navy-deeper)]/50"></div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
             {{-- Script accent --}}
-            <p class="font-script text-[var(--alt-gold-light)] text-3xl md:text-4xl mb-4">the nations gather</p>
+            <p class="font-script text-[var(--alt-gold-light)] text-3xl md:text-6xl mb-4">the nations gather</p>
 
             <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-4">
-                Encounter Jesus.<br>
-                <span class="text-transparent bg-clip-text bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)]">Catch on Fire.</span>
+                Encounter Jesus<br>
+                <span class="text-transparent bg-clip-text bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)]">Catch on Fire</span>
             </h2>
             <p class="text-xl md:text-2xl text-[var(--alt-beige-muted)] mb-4 max-w-2xl mx-auto font-heading font-medium">
                 Revival awaits. Be a part of what God is doing in Europe!
