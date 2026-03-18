@@ -244,62 +244,70 @@
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
-            <div class="max-w-3xl">
-                {{-- Script-style heading like the promo video --}}
-                <p class="font-script text-[var(--alt-gold-light)] text-4xl md:text-5xl mb-2">encounter Jesus</p>
-                <h2 class="font-script text-5xl md:text-7xl text-[var(--alt-gold)] mb-8">Catch on fire</h2>
+            <div class="flex flex-col md:flex-row gap-12 items-end">
+                <div class="max-w-3xl flex-1">
+                    {{-- Script-style heading like the promo video --}}
+                    <p class="font-script text-[var(--alt-gold-light)] text-4xl md:text-5xl mb-2">encounter Jesus</p>
+                    <h2 class="font-script text-5xl md:text-7xl text-[var(--alt-gold)] mb-8">Catch on fire</h2>
 
-                <p class="text-[var(--alt-beige)] text-lg md:text-xl mb-8 leading-relaxed">
-                    We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe.
-                    We burn with passion for Jesus and carry the Gospel to the lost — a message of redemption, restoration, love, and
-                    power. Be part of what God is doing in Europe through <strong class="text-[var(--alt-gold)]">Europe Revival 2026</strong>!
-                </p>
+                    <p class="text-[var(--alt-beige)] text-lg md:text-xl mb-8 leading-relaxed">
+                        We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe.
+                        We burn with passion for Jesus and carry the Gospel to the lost — a message of redemption, restoration, love, and
+                        power. Be part of what God is doing in Europe through <strong class="text-[var(--alt-gold)]">Europe Revival 2026</strong>!
+                    </p>
 
-                {{-- Theme Points --}}
-                <div class="space-y-6 mb-10">
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
-                            <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
-                            </svg>
+                    {{-- Theme Points --}}
+                    <div class="space-y-6 mb-10">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
+                                <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Deep Worship & Prayer</h4>
+                                <p class="text-[var(--alt-beige-muted)] text-sm">Join powerful worship and prayer sessions creating space for deep encounters with God and hearing His voice.</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Deep Worship & Prayer</h4>
-                            <p class="text-[var(--alt-beige-muted)] text-sm">Join powerful worship and prayer sessions creating space for deep encounters with God and hearing His voice.</p>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
+                                <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Ministry & Inspiration</h4>
+                                <p class="text-[var(--alt-beige-muted)] text-sm">Hear from amazing speakers walking closely with God and receive fresh anointing and breakthrough for your personal walk with Lord Jesus.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
+                                <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Outreaches & Missions</h4>
+                                <p class="text-[var(--alt-beige-muted)] text-sm">Be commissioned to live for the gospel and join the worldwide missions movement that seeks to bring love, hope and power of Jesus to the lost and the broken.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
-                            <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Ministry & Inspiration</h4>
-                            <p class="text-[var(--alt-beige-muted)] text-sm">Hear from amazing speakers walking closely with God and receive fresh anointing and breakthrough for your personal walk with Lord Jesus.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 bg-[var(--alt-gold)]/20 rounded-xl flex items-center justify-center shrink-0 border border-[var(--alt-gold)]/30">
-                            <svg class="w-6 h-6 text-[var(--alt-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-heading text-[var(--alt-beige)] font-semibold uppercase tracking-wide mb-1">Outreaches & Missions</h4>
-                            <p class="text-[var(--alt-beige-muted)] text-sm">Be commissioned to live for the gospel and join the worldwide missions movement that seeks to bring love, hope and power of Jesus to the lost and the broken.</p>
-                        </div>
-                    </div>
+                    {{-- Scripture --}}
+                    <blockquote class="bg-black/20 backdrop-blur-sm border border-[var(--alt-gold)]/20 rounded-xl px-6 py-5">
+                        <p class="text-[var(--alt-beige)] italic text-lg mb-2">"What no eye has seen, what no ear has heard, and what no human mind has conceived — the things God has prepared for those who love him."</p>
+                        <cite class="text-[var(--alt-gold)] text-sm font-heading font-medium uppercase tracking-wider">— 1 Corinthians 2:9</cite>
+                    </blockquote>
                 </div>
 
-                {{-- Scripture --}}
-                <blockquote class="bg-black/20 backdrop-blur-sm border border-[var(--alt-gold)]/20 rounded-xl px-6 py-5">
-                    <p class="text-[var(--alt-beige)] italic text-lg mb-2">"What no eye has seen, what no ear has heard, and what no human mind has conceived — the things God has prepared for those who love him."</p>
-                    <cite class="text-[var(--alt-gold)] text-sm font-heading font-medium uppercase tracking-wider">— 1 Corinthians 2:9</cite>
-                </blockquote>
+                {{-- Worship crowd image — bottom right --}}
+                <div class="hidden md:block w-96 lg:w-[28rem] xl:w-[32rem] shrink-0">
+                    <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/worship-unsplash.webp') }}" alt="Worship crowd"
+                        class="w-full rounded-2xl border border-[var(--alt-gold)]/20 shadow-2xl shadow-black/30">
+                </div>
             </div>
         </div>
     </section>
