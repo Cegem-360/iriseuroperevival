@@ -6,7 +6,7 @@
             <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                 {{ __('October 22-25, 2026') }}
             </span>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ __('Event Program') }}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('Event Program') }}</h1>
             <p class="text-xl text-white/50 max-w-2xl mx-auto">{{ __('Four days of powerful worship, teaching, and encounters with God.') }}</p>
         </div>
 
@@ -18,7 +18,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-white mb-2">{{ __('Full Schedule Coming Soon') }}</h3>
+                <h3 class="text-xl font-semibold mb-2">{{ __('Full Schedule Coming Soon') }}</h3>
                 <p class="text-white/50 max-w-md mx-auto">{{ __('We are finalizing an amazing program. Stay tuned for the detailed schedule!') }}</p>
             </div>
         @else
@@ -140,7 +140,7 @@
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <h3 class="text-lg font-bold text-white">{{ $item->title }}</h3>
+                                                    <h3 class="text-lg font-bold">{{ $item->title }}</h3>
                                                     @if($item->location)
                                                         <p class="text-white/40 text-sm flex items-center gap-1">
                                                             <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">

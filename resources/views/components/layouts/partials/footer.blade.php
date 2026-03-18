@@ -37,7 +37,7 @@
 
             {{-- Quick Links --}}
             <div>
-                <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                <h4 class="font-semibold mb-4">Quick Links</h4>
                 <ul class="space-y-3">
                     <li><a href="#speakers" class="text-white/50 hover:text-white text-sm transition-colors">Speakers</a></li>
                     <li><a href="#schedule" class="text-white/50 hover:text-white text-sm transition-colors">Schedule</a></li>
@@ -49,7 +49,7 @@
 
             {{-- Registration --}}
             <div>
-                <h4 class="text-white font-semibold mb-4">Registration</h4>
+                <h4 class="font-semibold mb-4">Registration</h4>
                 <ul class="space-y-3">
                     <li><a href="{{ route('register') }}" class="text-white/50 hover:text-white text-sm transition-colors">Attendee Registration</a></li>
                     <li><a href="{{ route('ministry-team') }}" class="text-white/50 hover:text-white text-sm transition-colors">Ministry Team Application</a></li>
@@ -59,7 +59,7 @@
 
                 {{-- Newsletter --}}
                 <div class="mt-6">
-                    <h4 class="text-white font-semibold mb-3 text-sm">Stay Updated</h4>
+                    <h4 class="font-semibold mb-3 text-sm">Stay Updated</h4>
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex gap-2">
                         @csrf
                         <input type="email" name="email" placeholder="Your email"

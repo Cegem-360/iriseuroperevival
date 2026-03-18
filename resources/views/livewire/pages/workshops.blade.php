@@ -6,7 +6,7 @@
             <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                 {{ __('Saturday & Sunday · 16:00–17:30') }}
             </span>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ __('Workshops') }}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('Workshops') }}</h1>
             <p class="text-xl text-white/50 max-w-2xl mx-auto">{{ __('Choose from a variety of interactive workshops to deepen your faith and equip you for Kingdom impact.') }}</p>
         </div>
 
@@ -18,7 +18,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-white mb-2">{{ __('Workshop Details Coming Soon') }}</h3>
+                <h3 class="text-xl font-semibold mb-2">{{ __('Workshop Details Coming Soon') }}</h3>
                 <p class="text-white/50 max-w-md mx-auto">{{ __('We are preparing an amazing lineup of interactive workshops. Stay tuned for announcements!') }}</p>
             </div>
         @else
@@ -42,7 +42,7 @@
                             </div>
 
                             <!-- Title -->
-                            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition-colors">
+                            <h3 class="text-lg font-bold mb-2 group-hover:text-sky-400 transition-colors">
                                 {{ $workshop->title }}
                             </h3>
 
@@ -100,7 +100,7 @@
             <div class="mt-16 text-center">
                 <div class="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-orange-500/15 rounded-2xl border border-orange-500/30">
                     <div class="text-left">
-                        <h3 class="text-lg font-semibold text-white">{{ __('Ready to join?') }}</h3>
+                        <h3 class="text-lg font-semibold">{{ __('Ready to join?') }}</h3>
                         <p class="text-white/60 text-sm">{{ __('Register now to secure your spot in these transformative workshops.') }}</p>
                     </div>
                     <a href="{{ route('register') }}" class="btn-primary whitespace-nowrap">

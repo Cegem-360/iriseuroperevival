@@ -36,7 +36,7 @@
    ================================================ */
 @theme {
     /* Font Family */
-    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-sans: "azo-sans-web", system-ui, -apple-system, sans-serif;
 
     /* Primary gold accent colors (based on #F7A31D) */
     --color-primary-50: #FEF3D6;
@@ -165,6 +165,11 @@
     body {
         @apply bg-navy-950 text-white antialiased;
         font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    /* Heading colors — beige instead of white */
+    h1, h2, h3, h4 {
+        color: #f5e6d0;
     }
 
     /* Custom Selection */

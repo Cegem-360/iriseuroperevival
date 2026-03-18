@@ -124,7 +124,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-3">Registration Opens Soon</h3>
+        <h3 class="text-2xl font-bold mb-3">Registration Opens Soon</h3>
         <p class="text-white/60 mb-6">We're finalizing the details. Stay tuned — registration will be available shortly!</p>
         <button @click="open = false"
                 class="px-8 py-3 bg-primary-500 hover:bg-primary-600 text-navy-900 font-semibold rounded-full transition-colors cursor-pointer">

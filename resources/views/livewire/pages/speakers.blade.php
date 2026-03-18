@@ -7,7 +7,7 @@
                 <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                     Europe Revival 2026
                 </span>
-                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Our Speakers</h1>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Our Speakers</h1>
                 <p class="text-xl text-white/50 max-w-2xl mx-auto">
                     Meet the anointed men and women of God who will be ministering at Europe Revival 2026.
                 </p>
@@ -23,7 +23,7 @@
                     <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                         Featured Speakers
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Speakers</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Speakers</h2>
                     <p class="text-white/50 max-w-xl mx-auto">
                         Powerful voices bringing messages of revival, healing, and transformation
                     </p>
@@ -46,7 +46,7 @@
                     <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                         Workshop Leaders
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Expert Teachers</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Expert Teachers</h2>
                     <p class="text-white/50 max-w-xl mx-auto">
                         Leading interactive sessions on specialized topics
                     </p>
@@ -69,7 +69,7 @@
                     <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                         Worship Leaders
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Anointed Worshippers</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Anointed Worshippers</h2>
                     <p class="text-white/50 max-w-xl mx-auto">
                         Creating an atmosphere for encounter with God
                     </p>
@@ -93,7 +93,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-4">Speaker Announcements Coming Soon</h2>
+                <h2 class="text-2xl font-bold mb-4">Speaker Announcements Coming Soon</h2>
                 <p class="text-white/50 mb-8">
                     We're excited to announce our lineup of incredible speakers. Check back soon for updates!
                 </p>
@@ -107,7 +107,7 @@
     {{-- CTA Section --}}
     <section class="py-20 bg-navy-950">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-white mb-4">Don't Miss This Opportunity</h2>
+            <h2 class="text-3xl font-bold mb-4">Don't Miss This Opportunity</h2>
             <p class="text-white/50 mb-8">
                 Register now to secure your spot and experience these powerful ministers in person.
             </p>
