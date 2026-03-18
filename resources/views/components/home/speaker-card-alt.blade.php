@@ -56,8 +56,8 @@
         @endif
     </a>
 
-    {{-- Bio Overlay (skip for workshop images with baked-in topic text) --}}
-    @if ($speaker->bio && !$altWorkshopPhoto)
+    {{-- Bio Overlay --}}
+    @if ($speaker->bio)
         <div class="absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             <div class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-[var(--alt-navy-deeper)]/95 via-[var(--alt-navy)]/90 to-[var(--alt-navy-dark)]/95 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
