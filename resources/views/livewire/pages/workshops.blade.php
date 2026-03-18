@@ -26,7 +26,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($workshops as $workshop)
                     <div wire:key="workshop-{{ $workshop->id }}" class="group bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden hover:border-sky-400/30 transition-colors">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col h-full">
                             <!-- Icon & Schedule Badge -->
                             <div class="flex items-start justify-between mb-4">
                                 <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center shrink-0">
@@ -51,6 +51,7 @@
                                 <p class="text-white/50 text-sm mb-4 line-clamp-2">{{ $workshop->short_description }}</p>
                             @endif
 
+                            <div class="mt-auto">
                             <!-- Duration -->
                             @if($workshop->formatted_duration)
                                 <div class="flex items-center gap-1.5 text-white/40 text-xs mb-4">
@@ -82,6 +83,7 @@
                                         <p class="text-white font-medium">{{ $workshop->leader_name }}</p>
                                     @endif
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

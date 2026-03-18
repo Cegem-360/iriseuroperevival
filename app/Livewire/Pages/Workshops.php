@@ -16,11 +16,23 @@ class Workshops extends Component
 {
     public function render(): View
     {
-        $workshops = Workshop::query()
+        $allWorkshops = Workshop::query()
             ->published()
             ->ordered()
             ->with('speaker')
             ->get();
+
+        // Group by speaker + title to show one card per unique workshop,
+        // combining schedule notes when same workshop runs on both days
+        $workshops = $allWorkshops->groupBy(fn ($w) => $w->speaker_id . '-' . $w->title)->map(function ($group) {
+            $primary = $group->first();
+            $notes = $group->pluck('schedule_note')->filter()->unique()->sort();
+            $primary->schedule_note = $notes->count() > 1
+                ? 'Saturday & Sunday'
+                : $notes->first();
+
+            return $primary;
+        })->values();
 
         return view('livewire.pages.workshops', [
             'workshops' => $workshops,
