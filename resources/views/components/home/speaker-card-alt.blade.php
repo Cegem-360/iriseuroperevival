@@ -37,12 +37,10 @@
             <div class="speaker-card-content {{ $altPhoto ? 'text-right items-end max-w-[75%] ml-auto' : '' }}">
                 @if ($workshopTopic)
                     <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-[var(--alt-gold)]/20 text-[var(--alt-gold)] border border-[var(--alt-gold)]/30 font-heading uppercase tracking-wider mb-2">{{ $workshopTopic }}</span>
-                @elseif ($titleOverride ?? $speaker->title)
-                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-slate-400/15 text-slate-300 border border-slate-400/25 font-heading uppercase tracking-wider mb-2 whitespace-nowrap">{{ $titleOverride ?? $speaker->title }}</span>
                 @endif
                 <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-[var(--alt-beige)]">{{ $speaker->name }}</h3>
                 @if ($speaker->organization)
-                    <p class="text-[var(--alt-beige-muted)] text-sm">{{ $speaker->organization }}</p>
+                    <p class="text-[var(--alt-beige-muted)] text-sm">{!! strip_tags($speaker->organization, '<br>') !!}</p>
                 @endif
             </div>
         @endif
