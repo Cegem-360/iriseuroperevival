@@ -41,7 +41,7 @@
 
     @stack('styles')
 </head>
-<body class="bg-[var(--alt-navy-deeper)] text-[var(--alt-beige)] antialiased" style="font-family: 'Montserrat', sans-serif;">
+<body class="bg-[var(--alt-navy-deeper)] text-[var(--alt-beige)] antialiased font-sans">
     {{-- Navigation --}}
     <x-layouts.partials.navigation />
 
