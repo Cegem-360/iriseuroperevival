@@ -438,7 +438,7 @@ class RegistrationForm extends Component implements HasSchemas
             ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
             ->schema([
                 Radio::make('wants_to_evangelize')
-                    ->label('Would you like to participate in street evangelism?')
+                    ->label('Would you like to participate in street evangelism? 14:30-17:00')
                     ->required()
                     ->boolean()
                     ->helperText('During the conference, we organize street evangelism outreach opportunities.'),
@@ -456,12 +456,12 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label('Would you like to participate in the healing room? 14:30-18:00 (Duration 15 min.)')
                     ->required()
                     ->boolean()
-                    ->helperText('During the conference, we organize healing room sessions.'),
+                    ->helperText('Registration is not mandatory, but spaces are limited!'),
                 Radio::make('wants_to_prophet_room')
                     ->label('Would you like to participate in the prophetic room? 14:30-18:00 (Duration 15 min.)')
                     ->required()
                     ->boolean()
-                    ->helperText('During the conference, we organize prophetic room sessions.'),
+                    ->helperText('Registration is not mandatory, but spaces are limited!'),
             ]);
     }
 
