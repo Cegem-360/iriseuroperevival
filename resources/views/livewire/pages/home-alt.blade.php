@@ -238,14 +238,14 @@
     <section id="theme" class="py-24 relative overflow-hidden">
         {{-- Full background: catch-on-fire image --}}
         <div class="absolute inset-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}" alt=""
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/worship-unsplash.webp') }}" alt=""
                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-linear-to-r from-[var(--alt-navy-deeper)]/85 via-[var(--alt-navy-deeper)]/60 to-[var(--alt-navy-deeper)]/40"></div>
+            <div class="absolute inset-0 bg-linear-to-r from-[var(--alt-navy-deeper)]/85 via-[var(--alt-navy-deeper)]/70 to-[var(--alt-navy-deeper)]/50"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row gap-12 items-end">
-                <div class="max-w-3xl flex-1">
+            <div>
+                <div class="max-w-3xl">
                     {{-- Script-style heading like the promo video --}}
                     <p class="font-script text-[var(--alt-gold-light)] text-4xl md:text-5xl mb-2">encounter Jesus</p>
                     <h2 class="font-script text-5xl md:text-7xl text-[var(--alt-gold)] mb-8">Catch on fire</h2>
@@ -303,11 +303,6 @@
                     </blockquote>
                 </div>
 
-                {{-- Worship crowd image — bottom right --}}
-                <div class="hidden md:block w-96 lg:w-[28rem] xl:w-[32rem] shrink-0">
-                    <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/worship-unsplash.webp') }}" alt="Worship crowd"
-                        class="w-full rounded-2xl border border-[var(--alt-gold)]/20 shadow-2xl shadow-black/30">
-                </div>
             </div>
         </div>
     </section>
