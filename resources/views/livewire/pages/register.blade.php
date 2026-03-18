@@ -14,7 +14,7 @@
                 October 23-25, 2026 • Budapest
             </span>
 
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $title }}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold uppercase mb-4">{{ $title }}</h1>
             <p class="text-xl text-white/60">{{ $subtitle }}</p>
         </div>
     </div>

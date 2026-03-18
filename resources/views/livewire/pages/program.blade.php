@@ -6,7 +6,7 @@
             <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                 {{ __('October 22-25, 2026') }}
             </span>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('Event Program') }}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold uppercase mb-4">{{ __('Event Program') }}</h1>
             <p class="text-xl text-white/50 max-w-2xl mx-auto">{{ __('Four days of powerful worship, teaching, and encounters with God.') }}</p>
         </div>
 

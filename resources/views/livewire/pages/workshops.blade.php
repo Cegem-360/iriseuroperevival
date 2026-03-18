@@ -6,7 +6,7 @@
             <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                 {{ __('Saturday & Sunday · 16:00–17:30') }}
             </span>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('Workshops') }}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold uppercase mb-4">{{ __('Workshops') }}</h1>
             <p class="text-xl text-white/50 max-w-2xl mx-auto">{{ __('Choose from a variety of interactive workshops to deepen your faith and equip you for Kingdom impact.') }}</p>
         </div>
 

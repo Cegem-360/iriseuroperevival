@@ -7,7 +7,7 @@
                 <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                     Europe Revival 2026
                 </span>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">Our Speakers</h1>
+                <h1 class="text-4xl md:text-6xl font-bold uppercase mb-6">Our Speakers</h1>
                 <p class="text-xl text-white/50 max-w-2xl mx-auto">
                     Meet the anointed men and women of God who will be ministering at Europe Revival 2026.
                 </p>
