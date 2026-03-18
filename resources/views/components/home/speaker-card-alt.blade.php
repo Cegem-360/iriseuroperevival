@@ -34,11 +34,14 @@
         @if ($altWorkshopPhoto)
             {{-- Designer workshop images have topic text baked in — no overlay needed --}}
         @else
-            <div class="speaker-card-content {{ $altPhoto ? 'text-right items-end max-w-[75%] ml-auto' : '' }}">
+            <div class="speaker-card-content {{ $altPhoto ? 'text-right items-end max-w-[85%] ml-auto' : '' }}">
                 @if ($workshopTopic)
                     <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-[var(--alt-gold)]/20 text-[var(--alt-gold)] border border-[var(--alt-gold)]/30 font-heading uppercase tracking-wider mb-2">{{ $workshopTopic }}</span>
                 @endif
                 <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-[var(--alt-beige)]">{{ $speaker->name }}</h3>
+                @if ($titleOverride ?? $speaker->title)
+                    <p class="text-[var(--alt-beige-muted)] text-sm">{{ $titleOverride ?? $speaker->title }}</p>
+                @endif
                 @if ($speaker->organization)
                     <p class="text-[var(--alt-beige-muted)] text-sm">{!! strip_tags($speaker->organization, '<br>') !!}</p>
                 @endif
