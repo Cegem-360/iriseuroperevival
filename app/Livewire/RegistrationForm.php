@@ -21,6 +21,7 @@ use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
@@ -348,7 +349,11 @@ class RegistrationForm extends Component implements HasSchemas
                         '3_days' => '3 Days',
                     ])
                     ->default('1_day')
-                    ->live(),
+                    ->live()
+                    ->afterStateUpdated(function (Set $set, ?string $state): void {
+                        $set('ticket_price_option', $state === '3_days' ? '30' : '20');
+                        $set('ticket_custom_amount', null);
+                    }),
 
                 Radio::make('ticket_price_option')
                     ->label('Choose Your Amount')
