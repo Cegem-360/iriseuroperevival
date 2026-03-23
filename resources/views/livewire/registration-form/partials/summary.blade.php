@@ -23,8 +23,8 @@
         };
 
         $durationLabel = match ($ticketDuration) {
-            '3_days' => '3 Day Pass',
-            default => '1 Day Pass',
+            '3_days' => '3 Day Supporter Pass',
+            default => '1 Day Supporter Pass',
         };
     }
 @endphp
