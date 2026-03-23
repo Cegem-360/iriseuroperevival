@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CPHVPdw5.css",
+    "file": "assets/app-CRNHKK-e.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -51,6 +51,10 @@
   "resources/images/alt-style/backgrounds/film-grain-background.webp": {
     "file": "assets/film-grain-background-D8sugpF-.webp",
     "src": "resources/images/alt-style/backgrounds/film-grain-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/hero-background.webp": {
+    "file": "assets/hero-background-CdBYR4hL.webp",
+    "src": "resources/images/alt-style/backgrounds/hero-background.webp"
   },
   "resources/images/alt-style/backgrounds/open-up.webp": {
     "file": "assets/open-up-75p4RMbd.webp",

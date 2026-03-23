@@ -2,10 +2,10 @@
     {{-- ============================================
     HERO SECTION — Split layout inspired by designer mockup
 ============================================= --}}
-    <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section class="relative min-h-screen overflow-hidden">
         {{-- Background: Deep worship / crowd image with film grain --}}
         <div class="absolute inset-0 z-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/baker-background.webp') }}" alt=""
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/hero-background.webp') }}" alt=""
                 class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-linear-to-b from-[var(--alt-navy-deeper)]/30 via-transparent to-[var(--alt-navy-deeper)]/70"></div>
             {{-- Film Grain Texture --}}
@@ -14,43 +14,27 @@
             </div>
         </div>
 
-        {{-- Hero Content --}}
-        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center pt-32 pb-20">
-            {{-- Conference Badge --}}
-            <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--alt-beige)]/10 backdrop-blur-sm border border-[var(--alt-beige)]/20 rounded-full mb-8 animate-fade-in">
-                <span class="w-2 h-2 bg-[var(--alt-gold)] rounded-full animate-pulse"></span>
-                <span class="text-[var(--alt-beige)] text-base md:text-lg font-heading font-semibold uppercase tracking-wider">October 23-25, 2026 &bull; Budapest, BOK Hall</span>
+        {{-- Hero Content — image has title baked in, text sits at bottom --}}
+        <div class="absolute inset-0 z-10 flex flex-col justify-between max-w-5xl mx-auto px-4 text-center">
+            {{-- Conference Badge at top --}}
+            <div class="absolute top-24 left-1/2 -translate-x-1/2">
+                <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--alt-navy-deeper)]/40 backdrop-blur-sm border border-[var(--alt-beige)]/20 rounded-full animate-fade-in">
+                    <span class="w-2 h-2 bg-[var(--alt-gold)] rounded-full animate-pulse"></span>
+                    <span class="text-[var(--alt-beige)] text-base md:text-lg font-heading font-semibold uppercase tracking-wider">October 23-25, 2026 &bull; Budapest, BOK Hall</span>
+                </div>
             </div>
 
-            {{-- Script accent --}}
-            <p class="font-script text-[var(--alt-gold-light)] text-3xl md:text-4xl mb-4 animate-fade-in-up">the nations gather</p>
-
-            {{-- Main Title --}}
-            <div class="mb-8 animate-fade-in-up" style="animation-delay: 0.1s;">
-                <h1 class="font-heading text-5xl md:text-7xl font-extrabold uppercase tracking-tight leading-none">
-                    <span class="text-[var(--alt-beige)]">Europe</span><br>
-                    <span class="text-transparent bg-clip-text bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)]">Revival</span>
-                </h1>
-                <p class="font-script text-[var(--alt-gold-light)] text-4xl md:text-5xl mt-2">Budapest 2026</p>
-            </div>
-
-            {{-- Tagline --}}
-            <div class="mb-10 animate-fade-in-up" style="animation-delay: 0.15s;">
-                <h2 class="font-heading text-2xl md:text-4xl font-bold uppercase tracking-wide text-[var(--alt-beige)]">
-                    Deep Worship<br>
-                    <span class="text-[var(--alt-gold)]">Inspired Prayer</span>
-                </h2>
-            </div>
+            {{-- Hidden h1 for SEO --}}
+            <h1 class="sr-only">Europe Revival Budapest 2026</h1>
 
             {{-- Description --}}
-            <p class="text-lg md:text-xl text-[var(--alt-beige-muted)] max-w-3xl mx-auto mb-10 animate-fade-in-up"
-                style="animation-delay: 0.2s;">
+            <p class="text-lg md:text-xl text-[var(--alt-beige)] max-w-3xl mx-auto mb-10 animate-fade-in-up">
                 A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.
             </p>
 
             {{-- CTA Buttons --}}
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up"
-                style="animation-delay: 0.3s;">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
+                style="animation-delay: 0.1s;">
                 <a href="{{ route('register') }}"
                     class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
                     Register Now
@@ -71,7 +55,7 @@
             </div>
 
             {{-- Promo Video Placeholder --}}
-            <div class="relative max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
+            <div class="relative max-w-3xl mx-auto mt-12 animate-fade-in-up" style="animation-delay: 0.2s;">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-[var(--alt-beige)]/10">
                     <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
                         alt="Europe Revival 2026"
