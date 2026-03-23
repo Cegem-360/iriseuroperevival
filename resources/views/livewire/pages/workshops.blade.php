@@ -43,7 +43,7 @@
 
                             <!-- Title -->
                             <h3 class="text-lg font-bold mb-2 group-hover:text-sky-400 transition-colors">
-                                {{ $workshop->title }}
+                                {{ Str::before($workshop->title, ' - ') }}
                             </h3>
 
                             <!-- Short Description -->
