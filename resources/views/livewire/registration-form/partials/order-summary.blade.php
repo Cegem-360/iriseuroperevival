@@ -9,13 +9,13 @@
         '30' => 30,
         '40' => 40,
         '60' => 60,
-        'custom' => $customAmount > 0 ? $customAmount : 0,
+        'custom' => $customAmount > ($ticketDuration === '3_days' ? 60 : 40) ? $customAmount : 0,
         default => 20,
     };
 
     $durationLabel = match ($ticketDuration) {
-        '3_days' => '3 Day Pass',
-        default => '1 Day Pass',
+        '3_days' => '3 Day Supporter Ticket',
+        default => '1 Day Supporter Ticket',
     };
 @endphp
 

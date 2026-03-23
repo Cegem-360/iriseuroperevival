@@ -747,11 +747,24 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function calculateAmount(array $data): int
     {
-        return match ($data['ticket_price_option'] ?? '20') {
+        $priceOption = $data['ticket_price_option'] ?? '20';
+        $duration = $data['ticket_duration'] ?? '1_day';
+
+        if ($priceOption === 'custom') {
+            $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
+            $minimum = $duration === '3_days' ? 61 : 41;
+
+            if ($customAmount < $minimum) {
+                throw new Exception("Custom amount must be at least €{$minimum}.");
+            }
+
+            return $customAmount * 100;
+        }
+
+        return match ($priceOption) {
             '30' => 3000,
             '40' => 4000,
             '60' => 6000,
-            'custom' => (int) $data['ticket_custom_amount'] * 100,
             default => 2000,
         };
     }
@@ -759,14 +772,21 @@ class RegistrationForm extends Component implements HasSchemas
     public function getFormattedPrice(): string
     {
         $data = $this->data ?? [];
+        $priceOption = $data['ticket_price_option'] ?? '20';
+        $duration = $data['ticket_duration'] ?? '1_day';
 
-        $amountCents = match ($data['ticket_price_option'] ?? '20') {
-            '30' => 3000,
-            '40' => 4000,
-            '60' => 6000,
-            'custom' => (int) ($data['ticket_custom_amount'] ?? 41) * 100,
-            default => 2000,
-        };
+        if ($priceOption === 'custom') {
+            $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
+            $minimum = $duration === '3_days' ? 61 : 41;
+            $amountCents = $customAmount >= $minimum ? $customAmount * 100 : 0;
+        } else {
+            $amountCents = match ($priceOption) {
+                '30' => 3000,
+                '40' => 4000,
+                '60' => 6000,
+                default => 2000,
+            };
+        }
 
         return Number::currency($amountCents / 100, 'EUR');
     }
