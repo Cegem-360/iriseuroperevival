@@ -70,7 +70,7 @@ class RegistrationForm
                             ->required()
                             ->default('pending_payment'),
                         Select::make('ticket_type')
-                            ->label('Ticket Type')
+                            ->label('Pass Type')
                             ->options([
                                 'individual' => 'Standard',
                                 'team' => 'Group (10+)',

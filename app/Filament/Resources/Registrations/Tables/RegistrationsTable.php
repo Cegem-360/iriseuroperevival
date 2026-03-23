@@ -81,7 +81,7 @@ class RegistrationsTable
                     ->searchable()
                     ->toggleable(),
                 TextColumn::make('ticket_type')
-                    ->label('Ticket')
+                    ->label('Pass')
                     ->badge()
                     ->color(fn (?string $state): string => match ($state) {
                         'individual' => 'gray',

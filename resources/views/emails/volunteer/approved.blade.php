@@ -14,7 +14,7 @@ You can attend the event at a discounted rate!
 You can now book your discounted ticket: click the button below and enter the coupon code to claim your discount.
 
 <x-mail::button :url="$registerUrl">
-Book Your Discounted Ticket
+Book Your Discounted Pass
 </x-mail::button>
 
 We will send more details about your volunteer work by email soon.

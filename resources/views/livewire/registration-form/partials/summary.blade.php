@@ -18,7 +18,7 @@
             '30' => 30,
             '40' => 40,
             '60' => 60,
-            'custom' => $customAmount,
+            'custom' => $customAmount > ($ticketDuration === '3_days' ? 60 : 40) ? $customAmount : 0,
             default => 20,
         };
 

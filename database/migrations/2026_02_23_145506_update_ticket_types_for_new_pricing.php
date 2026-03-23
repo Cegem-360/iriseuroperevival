@@ -15,14 +15,14 @@ return new class() extends Migration
         // Rename "individual" to "3day" (3-Day Pass)
         TicketPrice::query()->where('ticket_type', 'individual')->update([
             'ticket_type' => '3day',
-            'label' => '3-Day Pass',
+            'label' => '3-Day Supporter Pass',
             'sort_order' => 3,
         ]);
 
         // Rename "team" to "group" (Group Ticket)
         TicketPrice::query()->where('ticket_type', 'team')->update([
             'ticket_type' => 'group',
-            'label' => 'Group Ticket',
+            'label' => 'Group Supporter Pass',
             'sort_order' => 5,
         ]);
 
@@ -36,7 +36,7 @@ return new class() extends Migration
             'ticket_type' => '1day',
             'pricing_tier' => 'early',
             'price' => 2900,
-            'label' => '1-Day Pass',
+            'label' => '1-Day Supporter Pass',
             'sort_order' => 1,
             'is_active' => true,
         ]);
@@ -45,7 +45,7 @@ return new class() extends Migration
             'ticket_type' => '1day',
             'pricing_tier' => 'regular',
             'price' => 3900,
-            'label' => '1-Day Pass',
+            'label' => '1-Day Supporter Pass',
             'sort_order' => 2,
             'is_active' => true,
         ]);
