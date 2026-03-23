@@ -15,7 +15,9 @@
         $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
 
         $amountEuros = match ($priceOption) {
+            '30' => 30,
             '40' => 40,
+            '60' => 60,
             'custom' => $customAmount,
             default => 20,
         };

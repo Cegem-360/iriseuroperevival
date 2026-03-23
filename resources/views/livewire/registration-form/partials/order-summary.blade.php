@@ -6,8 +6,10 @@
     $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
 
     $amountEuros = match ($priceOption) {
+        '30' => 30,
         '40' => 40,
-        'custom' => $customAmount > 40 ? $customAmount : 0,
+        '60' => 60,
+        'custom' => $customAmount > 0 ? $customAmount : 0,
         default => 20,
     };
 
@@ -30,7 +32,7 @@
     </div>
 
     <div class="border-t border-navy-600 pt-3 flex justify-between text-lg font-bold">
-        <span class="text-primary-400">Total</span>
+        <span class="text-primary-400">{{ __('Total') }}</span>
         <span class="text-primary-400">
             @if($amountEuros > 0)
                 {{ Number::currency($amountEuros, 'EUR') }}
