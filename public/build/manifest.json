@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CJZJW0DH.css",
+    "file": "assets/app-BbI4sptf.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -43,6 +43,14 @@
   "resources/images/alt-style/backgrounds/deep-worship-background.webp": {
     "file": "assets/deep-worship-background-B477hksw.webp",
     "src": "resources/images/alt-style/backgrounds/deep-worship-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/deep-worship-bg.webp": {
+    "file": "assets/deep-worship-bg-DjbKO159.webp",
+    "src": "resources/images/alt-style/backgrounds/deep-worship-bg.webp"
+  },
+  "resources/images/alt-style/backgrounds/deep-worship-title.webp": {
+    "file": "assets/deep-worship-title-Bap5Kk2X.webp",
+    "src": "resources/images/alt-style/backgrounds/deep-worship-title.webp"
   },
   "resources/images/alt-style/backgrounds/europe-revival-bp-2026.webp": {
     "file": "assets/europe-revival-bp-2026-CxDCTWsa.webp",

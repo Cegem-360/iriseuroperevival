@@ -40,7 +40,7 @@
             </p>
 
             {{-- Description --}}
-            <p class="text-lg md:text-xl text-[var(--alt-beige)] max-w-3xl mx-auto mb-10 animate-fade-in-up">
+            <p class="text-lg md:text-2xl text-[var(--alt-beige)] max-w-3xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
                 A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.
             </p>
 
@@ -184,11 +184,16 @@
 ============================================= --}}
     <section id="worship" class="py-24 bg-[var(--alt-navy)] relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
-            {{-- Deep Worship header image (designer provided — has baked-in text) --}}
-            <div class="rounded-2xl overflow-hidden shadow-2xl border border-[var(--alt-beige)]/10 mb-12">
-                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-background.webp') }}"
+            {{-- Deep Worship header image with title overlay --}}
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-[var(--alt-beige)]/10 mb-12">
+                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-bg.webp') }}"
                     alt="Deep Worship — Inspired Prayer"
                     class="w-full object-cover">
+                <div class="absolute inset-0 flex items-end justify-center pb-[20%] px-8">
+                    <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-title.webp') }}"
+                        alt="The nations gather — Deep Worship, Inspired Prayer"
+                        class="max-w-lg md:max-w-xl lg:max-w-2xl w-full">
+                </div>
             </div>
 
             {{-- Worship Team Cards --}}
