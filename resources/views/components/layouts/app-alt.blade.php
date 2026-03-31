@@ -28,7 +28,7 @@
 
         @font-face {
             font-family: 'For Winter';
-            src: url('{{ Vite::asset('resources/fonts/For_Winter.ttf') }}') format('truetype');
+            src: url('{{ asset('fonts/For_Winter.ttf') }}') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
