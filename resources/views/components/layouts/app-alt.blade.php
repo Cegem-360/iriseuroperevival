@@ -26,6 +26,15 @@
         .font-heading { font-family: 'azo-sans-web', sans-serif; }
         .font-script { font-family: 'Abuget', cursive; }
 
+        @font-face {
+            font-family: 'For Winter';
+            src: url('{{ Vite::asset('resources/fonts/For_Winter.ttf') }}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        .font-winter { font-family: 'For Winter', cursive; }
+
         /* Beige/cream color tokens */
         :root {
             --alt-beige: #F5E6D0;

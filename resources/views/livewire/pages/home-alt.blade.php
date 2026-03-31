@@ -3,29 +3,41 @@
     HERO SECTION — Split layout inspired by designer mockup
 ============================================= --}}
     <section class="relative min-h-screen overflow-hidden">
-        {{-- Background: Deep worship / crowd image with film grain --}}
+        {{-- Background: Illustrated Budapest collage --}}
         <div class="absolute inset-0 z-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/hero-background.webp') }}" alt=""
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/iris-hero-bg.webp') }}" alt=""
                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-linear-to-b from-[var(--alt-navy-deeper)]/30 via-transparent to-[var(--alt-navy-deeper)]/70"></div>
+            <div class="absolute inset-0 bg-linear-to-b from-[var(--alt-navy-deeper)]/40 via-[var(--alt-navy-deeper)]/15 to-[var(--alt-navy-deeper)]/80"></div>
             {{-- Film Grain Texture --}}
             <div class="absolute inset-0 opacity-10"
                 style="background-image: url('{{ Vite::asset('resources/images/alt-style/backgrounds/film-grain-background.webp') }}'); background-size: cover; mix-blend-mode: overlay;">
             </div>
         </div>
 
-        {{-- Hero Content — image has title baked in, text sits at bottom --}}
-        <div class="absolute inset-0 z-10 flex flex-col justify-between max-w-5xl mx-auto px-4 text-center">
-            {{-- Conference Badge at top --}}
-            <div class="absolute top-24 left-1/2 -translate-x-1/2">
-                <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--alt-navy-deeper)]/40 backdrop-blur-sm border border-[var(--alt-beige)]/20 rounded-full animate-fade-in">
-                    <span class="w-2 h-2 bg-[var(--alt-gold)] rounded-full animate-pulse"></span>
+        {{-- Hero Content --}}
+        <div class="relative z-10 flex flex-col items-center max-w-5xl mx-auto px-4 pt-28 pb-16 text-center">
+            {{-- Date & Venue Badge --}}
+            <div class="mb-8 animate-fade-in">
+                <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--alt-navy-deeper)]/40 backdrop-blur-sm border border-[var(--alt-beige)]/20 rounded-full">
+                    {{-- <span class="w-2 h-2 bg-[var(--alt-gold)] rounded-full animate-pulse"></span> --}}
                     <span class="text-[var(--alt-beige)] text-base md:text-lg font-heading font-semibold uppercase tracking-wider">October 23-25, 2026 &bull; Budapest, BOK Hall</span>
                 </div>
             </div>
 
+            {{-- Title Image --}}
+            <div class="mb-8 animate-fade-in-up">
+                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/europe-revival-bp-2026.webp') }}"
+                    alt="Europe Revival Budapest 2026"
+                    class="max-w-md md:max-w-lg lg:max-w-xl w-full mx-auto">
+            </div>
+
             {{-- Hidden h1 for SEO --}}
             <h1 class="sr-only">Europe Revival Budapest 2026</h1>
+
+            {{-- Scripture Verse --}}
+            <p class="font-winter text-xl md:text-2xl text-[var(--alt-beige)]/90 max-w-2xl mx-auto mb-6 animate-fade-in-up">
+                &ldquo;No eye has seen, no ear has heard, no mind has imagined what the Lord has prepared for those who love Him.&rdquo;
+            </p>
 
             {{-- Description --}}
             <p class="text-lg md:text-xl text-[var(--alt-beige)] max-w-3xl mx-auto mb-10 animate-fade-in-up">
@@ -33,7 +45,7 @@
             </p>
 
             {{-- CTA Buttons --}}
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-in-up"
                 style="animation-delay: 0.1s;">
                 <a href="{{ route('register') }}"
                     class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] hover:from-[var(--alt-gold-light)] hover:to-[var(--alt-gold)] text-[var(--alt-navy-deeper)] font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
@@ -43,7 +55,7 @@
                     </svg>
                 </a>
                 <button @click="$dispatch('open-vision-modal')"
-                    class="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--alt-beige)]/10 hover:bg-[var(--alt-beige)]/20 backdrop-blur-sm border border-[var(--alt-beige)]/20 text-[var(--alt-beige)] font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300">
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--alt-beige)]/10 hover:bg-[var(--alt-beige)]/20 backdrop-blur-sm border border-[var(--alt-beige)]/20 text-[var(--alt-beige)] font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300"
                     <span class="w-10 h-10 bg-[var(--alt-beige)]/20 rounded-full flex items-center justify-center group-hover:bg-[var(--alt-beige)]/30 transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -55,7 +67,7 @@
             </div>
 
             {{-- Promo Video Placeholder --}}
-            <div class="relative max-w-3xl mx-auto mt-12 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="relative max-w-3xl w-full mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-[var(--alt-beige)]/10">
                     <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
                         alt="Europe Revival 2026"
