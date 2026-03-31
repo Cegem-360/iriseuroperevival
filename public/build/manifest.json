@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CRNHKK-e.css",
+    "file": "assets/app-CJZJW0DH.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -44,6 +44,10 @@
     "file": "assets/deep-worship-background-B477hksw.webp",
     "src": "resources/images/alt-style/backgrounds/deep-worship-background.webp"
   },
+  "resources/images/alt-style/backgrounds/europe-revival-bp-2026.webp": {
+    "file": "assets/europe-revival-bp-2026-CxDCTWsa.webp",
+    "src": "resources/images/alt-style/backgrounds/europe-revival-bp-2026.webp"
+  },
   "resources/images/alt-style/backgrounds/film-grain-background-text.webp": {
     "file": "assets/film-grain-background-text-Hl8hcdRv.webp",
     "src": "resources/images/alt-style/backgrounds/film-grain-background-text.webp"
@@ -55,6 +59,10 @@
   "resources/images/alt-style/backgrounds/hero-background.webp": {
     "file": "assets/hero-background-CdBYR4hL.webp",
     "src": "resources/images/alt-style/backgrounds/hero-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/iris-hero-bg.webp": {
+    "file": "assets/iris-hero-bg-u3FLJalT.webp",
+    "src": "resources/images/alt-style/backgrounds/iris-hero-bg.webp"
   },
   "resources/images/alt-style/backgrounds/open-up.webp": {
     "file": "assets/open-up-75p4RMbd.webp",
