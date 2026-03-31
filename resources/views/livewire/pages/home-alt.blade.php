@@ -66,22 +66,35 @@
                 </button>
             </div>
 
-            {{-- Promo Video Placeholder --}}
-            <div class="relative max-w-3xl w-full mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-[var(--alt-beige)]/10">
-                    <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
-                        alt="Europe Revival 2026"
-                        class="w-full aspect-video object-cover">
-                    <div class="absolute inset-0 bg-black/5 flex flex-col items-center justify-center">
-                        <div class="w-20 h-20 bg-[var(--alt-beige)]/10 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-[var(--alt-beige)]/20 mb-5">
-                            <svg class="w-8 h-8 text-[var(--alt-beige)]/30 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
+            {{-- Promo Video --}}
+            <div class="relative max-w-3xl w-full mx-auto animate-fade-in-up" style="animation-delay: 0.2s;"
+                x-data="{ playing: false }">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-[var(--alt-beige)]/10 aspect-video">
+                    {{-- Thumbnail --}}
+                    <template x-if="!playing">
+                        <div class="absolute inset-0 cursor-pointer" @click="playing = true">
+                            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
+                                alt="Europe Revival 2026"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/5 flex items-center justify-center">
+                                <div class="w-20 h-20 bg-[var(--alt-beige)]/10 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-[var(--alt-beige)]/20 hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-8 h-8 text-[var(--alt-beige)] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <div class="px-5 py-2 bg-[var(--alt-beige)]/10 backdrop-blur-sm border border-[var(--alt-beige)]/20 rounded-full">
-                            <p class="text-[var(--alt-beige)] font-heading font-semibold text-sm tracking-wider uppercase">Coming Soon</p>
-                        </div>
-                    </div>
+                    </template>
+                    {{-- YouTube Embed --}}
+                    <template x-if="playing">
+                        <iframe
+                            src="https://www.youtube.com/embed/7OXlvlUA2GA?autoplay=1&rel=0"
+                            class="absolute inset-0 w-full h-full"
+                            frameborder="0"
+                            allow="autoplay; encrypted-media"
+                            allowfullscreen>
+                        </iframe>
+                    </template>
                 </div>
             </div>
         </div>
