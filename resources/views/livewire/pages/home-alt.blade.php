@@ -128,8 +128,8 @@
                 </p>
             </div>
 
-            {{-- Speakers Grid (4 columns) --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {{-- Speakers Grid (2x2) --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto">
                 @foreach ($this->featuredSpeakers as $speaker)
                     <x-home.speaker-card-alt :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
                 @endforeach
@@ -146,49 +146,6 @@
                 </div>
             </div>
 
-            {{-- Workshop Leaders --}}
-            @if ($this->workshopLeaders->isNotEmpty())
-                <div id="workshops" class="mt-24 scroll-mt-32">
-                    <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-[var(--alt-beige)] text-center mb-4">Workshop Leaders</h3>
-                    <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-[var(--alt-gold)] to-transparent mx-auto mb-6"></div>
-                    <p class="text-[var(--alt-beige-muted)] text-lg text-center max-w-3xl mx-auto mb-8">
-                        Reserve your spot at the workshops. Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.
-                    </p>
-                    @php
-                        $altWorkshopSlugs = ['mary-pat-gokee', 'katey-maddux', 'tineke-bouwman'];
-                        $altWorkshopLeaders = $this->workshopLeaders->filter(fn ($s) => in_array($s->slug, $altWorkshopSlugs));
-                    @endphp
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                        @foreach ($altWorkshopLeaders as $speaker)
-                            <div wire:key="workshop-{{ $speaker->id }}">
-                                <x-home.speaker-card-alt :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
-                            </div>
-                        @endforeach
-                        {{-- Coming Soon placeholder --}}
-                        <div class="relative overflow-hidden rounded-2xl border border-[var(--alt-beige)]/10 bg-[var(--alt-navy)]/50 flex items-center justify-center" style="aspect-ratio: 5/6;">
-                            <div class="text-center p-6">
-                                <div class="w-16 h-16 bg-[var(--alt-gold)]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[var(--alt-gold)]/20">
-                                    <svg class="w-8 h-8 text-[var(--alt-gold)]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
-                                    </svg>
-                                </div>
-                                <p class="font-heading text-lg font-bold uppercase tracking-wide text-[var(--alt-beige)]/40">Coming Soon</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Workshop Sign-up CTA --}}
-                    <div class="mt-10 text-center">
-                        <a href="{{ route('workshops') }}"
-                           class="inline-flex items-center gap-2 px-8 py-4 text-lg rounded-full font-heading font-bold uppercase tracking-wider bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] hover:shadow-lg transition-all duration-300 hover:scale-105">
-                            Signup Now to Secure Your Spot
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            @endif
         </div>
     </section>
 
@@ -245,6 +202,56 @@
             </div>
         </div>
     </section>
+
+    {{-- ============================================
+    WORKSHOP LEADERS SECTION
+============================================= --}}
+    @if ($this->workshopLeaders->isNotEmpty())
+        <section id="workshops" class="py-24 bg-[var(--alt-navy-dark)] relative overflow-hidden scroll-mt-32">
+            <div class="relative z-10 max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-[var(--alt-beige)] mb-4">Workshop Leaders</h3>
+                    <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-[var(--alt-gold)] to-transparent mx-auto mb-6"></div>
+                    <p class="text-[var(--alt-beige-muted)] text-lg max-w-3xl mx-auto">
+                        Reserve your spot at the workshops. Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.
+                    </p>
+                </div>
+                @php
+                    $altWorkshopSlugs = ['mary-pat-gokee', 'katey-maddux', 'tineke-bouwman'];
+                    $altWorkshopLeaders = $this->workshopLeaders->filter(fn ($s) => in_array($s->slug, $altWorkshopSlugs));
+                @endphp
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    @foreach ($altWorkshopLeaders as $speaker)
+                        <div wire:key="workshop-{{ $speaker->id }}">
+                            <x-home.speaker-card-alt :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
+                        </div>
+                    @endforeach
+                    {{-- Coming Soon placeholder --}}
+                    <div class="relative overflow-hidden rounded-2xl border border-[var(--alt-beige)]/10 bg-[var(--alt-navy)]/50 flex items-center justify-center" style="aspect-ratio: 5/6;">
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-[var(--alt-gold)]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[var(--alt-gold)]/20">
+                                <svg class="w-8 h-8 text-[var(--alt-gold)]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+                                </svg>
+                            </div>
+                            <p class="font-heading text-lg font-bold uppercase tracking-wide text-[var(--alt-beige)]/40">Coming Soon</p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Workshop Sign-up CTA --}}
+                <div class="mt-10 text-center">
+                    <a href="{{ route('workshops') }}"
+                       class="inline-flex items-center gap-2 px-8 py-4 text-lg rounded-full font-heading font-bold uppercase tracking-wider bg-linear-to-r from-[var(--alt-gold)] to-[var(--alt-gold-light)] text-[var(--alt-navy-deeper)] hover:shadow-lg transition-all duration-300 hover:scale-105">
+                        Signup Now to Secure Your Spot
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    @endif
 
     {{-- ============================================
     THEME SECTION — "Encounter Jesus. Catch on Fire."
