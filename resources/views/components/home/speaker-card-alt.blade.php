@@ -36,20 +36,20 @@
         @else
             <div class="speaker-card-content {{ $altPhoto ? 'text-right items-end max-w-[85%] ml-auto' : '' }}">
                 @if ($workshopTopic)
-                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-[var(--alt-gold)]/20 text-[var(--alt-gold)] border border-[var(--alt-gold)]/30 font-heading uppercase tracking-wider mb-2">{{ $workshopTopic }}</span>
+                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-(--alt-gold)/20 text-(--alt-gold) border border-(--alt-gold)/30 font-heading uppercase tracking-wider mb-2">{{ $workshopTopic }}</span>
                 @endif
-                <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-[var(--alt-beige)]">{{ $speaker->name }}</h3>
+                <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->name }}</h3>
                 @if ($titleOverride ?? $speaker->title)
-                    <p class="text-[var(--alt-beige-muted)] text-sm">{{ $titleOverride ?? $speaker->title }}</p>
+                    <p class="text-(--alt-beige-muted) text-sm">{{ $titleOverride ?? $speaker->title }}</p>
                 @endif
                 @if ($speaker->organization)
-                    <p class="text-[var(--alt-beige-muted)] text-sm">{!! strip_tags($speaker->organization, '<br>') !!}</p>
+                    <p class="text-(--alt-beige-muted) text-sm">{!! strip_tags($speaker->organization, '<br>') !!}</p>
                 @endif
             </div>
         @endif
         @if ($showArrow)
-            <div class="absolute top-4 right-4 w-10 h-10 bg-[var(--alt-gold)] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20 hidden lg:flex">
-                <svg class="w-5 h-5 text-[var(--alt-navy-deeper)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="absolute top-4 right-4 w-10 h-10 bg-(--alt-gold) rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20 hidden lg:flex">
+                <svg class="w-5 h-5 text-(--alt-navy-deeper)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
             </div>
@@ -59,8 +59,8 @@
     {{-- Mobile Bio Button --}}
     @if ($speaker->bio)
         <button @click.prevent="bioOpen = true"
-            class="lg:hidden absolute top-3 right-3 z-20 w-9 h-9 bg-[var(--alt-navy-deeper)]/70 backdrop-blur-sm rounded-full flex items-center justify-center border border-[var(--alt-beige)]/20">
-            <svg class="w-4 h-4 text-[var(--alt-beige)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            class="lg:hidden absolute top-3 right-3 z-20 w-9 h-9 bg-(--alt-navy-deeper)/70 backdrop-blur-sm rounded-full flex items-center justify-center border border-(--alt-beige)/20">
+            <svg class="w-4 h-4 text-(--alt-beige)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </button>
@@ -70,14 +70,14 @@
     @if ($speaker->bio)
         <div class="hidden lg:block absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             <div class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-[var(--alt-navy-deeper)]/95 via-[var(--alt-navy)]/90 to-[var(--alt-navy-dark)]/95 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-(--alt-navy-deeper)/95 via-(--alt-navy)/90 to-(--alt-navy-dark)/95 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
             <div class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                <h4 class="font-heading font-bold uppercase tracking-wide text-[var(--alt-beige)]">{{ $speaker->name }}</h4>
+                <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->name }}</h4>
                 @if ($titleOverride ?? $speaker->title)
-                    <span class="text-[var(--alt-gold)] text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $titleOverride ?? $speaker->title }}</span>
+                    <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $titleOverride ?? $speaker->title }}</span>
                 @endif
                 <div class="relative flex-1 min-h-0">
-                    <p class="text-[var(--alt-beige-muted)] text-sm leading-relaxed overflow-y-auto h-full pb-12"
+                    <p class="text-(--alt-beige-muted) text-sm leading-relaxed overflow-y-auto h-full pb-12"
                         style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->bio }}</p>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 {{-- Backdrop --}}
                 <div class="absolute inset-0 bg-black/70" @click="bioOpen = false"></div>
                 {{-- Modal Content --}}
-                <div class="relative w-full max-w-sm max-h-[80vh] rounded-2xl overflow-hidden bg-[var(--alt-navy-dark)] border border-[var(--alt-beige)]/15 shadow-2xl flex flex-col"
+                <div class="relative w-full max-w-sm max-h-[80vh] rounded-2xl overflow-hidden bg-(--alt-navy-dark) border border-(--alt-beige)/15 shadow-2xl flex flex-col"
                     x-transition:enter="transition ease-out duration-200"
                     x-transition:enter-start="opacity-0 scale-95"
                     x-transition:enter-end="opacity-100 scale-100"
@@ -109,22 +109,22 @@
                     {{-- Speaker Photo --}}
                     <div class="relative h-48 shrink-0">
                         <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}" class="w-full h-full object-cover {{ $altPhoto ? 'sepia-[.2]' : '' }}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[var(--alt-navy-dark)] to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-(--alt-navy-dark) to-transparent"></div>
                         <button @click="bioOpen = false" class="absolute top-3 right-3 w-8 h-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
                         <div class="absolute bottom-3 left-4 right-4">
-                            <h4 class="font-heading font-bold uppercase tracking-wide text-[var(--alt-beige)] text-lg">{{ $speaker->name }}</h4>
+                            <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige) text-lg">{{ $speaker->name }}</h4>
                             @if ($titleOverride ?? $speaker->title)
-                                <span class="text-[var(--alt-gold)] text-xs font-heading font-medium uppercase tracking-wider">{{ $titleOverride ?? $speaker->title }}</span>
+                                <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider">{{ $titleOverride ?? $speaker->title }}</span>
                             @endif
                         </div>
                     </div>
                     {{-- Bio --}}
                     <div class="p-5 overflow-y-auto">
-                        <p class="text-[var(--alt-beige-muted)] text-sm leading-relaxed">{{ $speaker->bio }}</p>
+                        <p class="text-(--alt-beige-muted) text-sm leading-relaxed">{{ $speaker->bio }}</p>
                     </div>
                 </div>
             </div>
