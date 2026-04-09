@@ -561,23 +561,23 @@
                                 :class="selected === '7500' ? 'border-[var(--alt-beige)] bg-[var(--alt-beige)]' : 'border-[var(--alt-beige)]/30 group-hover:border-[var(--alt-beige)]/60'">
                                 <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '7500'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '7500' ? 'text-[var(--alt-beige)]' : 'text-[var(--alt-beige)]/50'">7,500 Ft</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '7500' ? 'text-[var(--alt-beige)]' : 'text-[var(--alt-beige)]/50'">{{ Number::currency(7500, 'HUF', 'en', 0) }}</span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                                 :class="selected === 'custom' ? 'border-[var(--alt-beige)] bg-[var(--alt-beige)]' : 'border-[var(--alt-beige)]/30 group-hover:border-[var(--alt-beige)]/60'">
                                 <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === 'custom'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-beige)]' : 'text-[var(--alt-beige)]/50'">15,000+ Ft</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-beige)]' : 'text-[var(--alt-beige)]/50'">Custom amount</span>
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-[var(--alt-navy)]/50 border border-[var(--alt-beige)]/10 rounded-xl px-3 py-2">
                                 <input type="number" x-model="custom" min="15001" step="1" placeholder="Enter amount"
                                     class="bg-transparent text-[var(--alt-beige)] placeholder-[var(--alt-beige-muted)]/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-                                <span class="text-[var(--alt-beige-muted)] font-medium shrink-0">Ft</span>
+                                <span class="text-[var(--alt-beige-muted)] font-medium shrink-0">HUF</span>
                             </div>
-                            <p class="text-[var(--alt-beige-muted)] text-xs mt-1">If you would like to support the event with an amount exceeding 15,000 HUF.</p>
-                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum 15,001 Ft</p>
+                            <p class="text-[var(--alt-beige-muted)] text-xs mt-1">If you would like to support the event with an amount exceeding {{ Number::currency(15000, 'HUF', 'en', 0) }}.</p>
+                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum {{ Number::currency(15001, 'HUF', 'en', 0) }}</p>
                         </div>
                     </div>
 
@@ -605,23 +605,23 @@
                                 :class="selected === '15000' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
                                 <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === '15000'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '15000' ? 'text-[var(--alt-gold)]' : 'text-white/50'">15,000 Ft</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '15000' ? 'text-[var(--alt-gold)]' : 'text-white/50'">{{ Number::currency(15000, 'HUF', 'en', 0) }}</span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                                 :class="selected === 'custom' ? 'border-[var(--alt-gold)] bg-[var(--alt-gold)]' : 'border-[var(--alt-gold)]/30 group-hover:border-[var(--alt-gold)]/60'">
                                 <span class="w-2 h-2 rounded-full bg-[var(--alt-navy-deeper)]" x-show="selected === 'custom'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-gold)]' : 'text-white/50'">15,000+ Ft</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-[var(--alt-gold)]' : 'text-white/50'">Custom amount</span>
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-[var(--alt-navy)]/50 border border-[var(--alt-beige)]/10 rounded-xl px-3 py-2">
                                 <input type="number" x-model="custom" min="15001" step="1" placeholder="Enter amount"
                                     class="bg-transparent text-[var(--alt-gold)] placeholder-[var(--alt-gold)]/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-                                <span class="text-[var(--alt-beige-muted)] font-medium shrink-0">Ft</span>
+                                <span class="text-[var(--alt-beige-muted)] font-medium shrink-0">HUF</span>
                             </div>
-                            <p class="text-[var(--alt-beige-muted)] text-xs mt-1">If you would like to support the event with an amount exceeding 15,000 HUF.</p>
-                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum 15,001 Ft</p>
+                            <p class="text-[var(--alt-beige-muted)] text-xs mt-1">If you would like to support the event with an amount exceeding {{ Number::currency(15000, 'HUF', 'en', 0) }}.</p>
+                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum {{ Number::currency(15001, 'HUF', 'en', 0) }}</p>
                         </div>
                     </div>
 
