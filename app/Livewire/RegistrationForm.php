@@ -18,6 +18,7 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
@@ -371,11 +372,11 @@ class RegistrationForm extends Component implements HasSchemas
                         ])
                     ->descriptions(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
-                            '15000' => 'This is the standard ticket price. If you would like to support the event with a higher amount, please select the custom option.',
+                            '15000' => 'This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.',
                             'custom' => 'Thank you for choosing to support the event with a custom amount!',
                         ]
                         : [
-                            '7500' => 'This is the standard ticket price. If you would like to support the event with a higher amount, please select the custom option.',
+                            '7500' => 'This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.',
                             'custom' => 'Thank you for choosing to support the event with a custom amount!',
                         ])
                     ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '15000' : '7500')
@@ -391,15 +392,14 @@ class RegistrationForm extends Component implements HasSchemas
                     ->helperText(__('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0)]))
                     ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom')
                     ->live()
-                    ->rules([
-                        function () {
-                            return function (string $_attribute, $value, \Closure $fail): void {
-                                if (! is_numeric($value) || floor((float) $value) !== (float) $value) {
-                                    $fail('Please enter a whole number.');
-                                }
-                            };
-                        },
-                    ]),
+                    ->integer(),
+
+                TextEntry::make('ticket_custom_amount_eur')
+                    ->label('')
+                    ->state(fn (Get $get): string => is_numeric($get('ticket_custom_amount'))
+                        ? '≈ ' . Number::currency((int) $get('ticket_custom_amount') / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale())
+                        : '')
+                    ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom' && is_numeric($get('ticket_custom_amount'))),
 
                 Section::make('Order Summary')
                     ->schema([
