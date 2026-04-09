@@ -7,9 +7,7 @@ namespace App\Livewire;
 use App\Mail\MinistryApplicationReceived;
 use App\Mail\RegistrationConfirmation;
 use App\Models\Registration;
-use App\Models\Workshop;
 use App\Services\StripeService;
-use Carbon\Carbon;
 use Exception;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
@@ -91,9 +89,6 @@ class RegistrationForm extends Component implements HasSchemas
             $this->getChurchInfoStep(),
             $this->getTestimonyStep(),
             $this->getTicketSelectionStep(),
-            $this->getWorkshopSelectionStep(),
-            $this->getHealingAndPropheticRoomsStep(),
-            $this->getEvangelismStep(),
             $this->getVolunteerDetailsStep(),
             $this->getConfirmationStep(),
         ];
@@ -408,136 +403,6 @@ class RegistrationForm extends Component implements HasSchemas
             ]);
     }
 
-    protected function getWorkshopSelectionStep(): Step
-    {
-        return Step::make('Workshop Selection')
-            ->description('Choose your workshops')
-            ->icon('heroicon-o-academic-cap')
-            ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
-            ->schema([
-                Radio::make('selected_day')
-                    ->label('Which day would you like to attend?')
-                    ->required()
-                    ->options(fn (): array => $this->getWorkshopDayOptions())
-                    ->visible(fn (Get $get): bool => $get('ticket_duration') === '1_day')
-                    ->live(),
-
-                Select::make('workshop_day_1')
-                    ->label(fn (): string => 'Workshop - ' . $this->getWorkshopDayLabel(0))
-                    ->options(fn (Get $get): array => $this->getAvailableWorkshopOptions(0))
-                    ->searchable()
-                    ->placeholder('Select a workshop (optional)')
-                    ->visible(fn (Get $get): bool => $get('ticket_duration') === '3_days'
-                        || ($get('ticket_duration') === '1_day' && $get('selected_day') === 'day_1'))
-                    ->live(),
-
-                Select::make('workshop_day_2')
-                    ->label(fn (): string => 'Workshop - ' . $this->getWorkshopDayLabel(1))
-                    ->options(fn (Get $get): array => $this->getAvailableWorkshopOptions(1))
-                    ->searchable()
-                    ->placeholder('Select a workshop (optional)')
-                    ->visible(fn (Get $get): bool => $get('ticket_duration') === '3_days'
-                        || ($get('ticket_duration') === '1_day' && $get('selected_day') === 'day_2'))
-                    ->live(),
-            ]);
-    }
-
-    protected function getEvangelismStep(): Step
-    {
-        return Step::make('Street Evangelism')
-            ->description('Would you like to participate?')
-            ->icon('heroicon-o-megaphone')
-            ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
-            ->schema([
-                Radio::make('wants_to_evangelize')
-                    ->label('Would you like to participate in street evangelism? 14:30-17:00')
-                    ->required()
-                    ->boolean()
-                    ->helperText('During the conference, we organize street evangelism outreach opportunities.'),
-            ]);
-    }
-
-    protected function getHealingAndPropheticRoomsStep(): Step
-    {
-        return Step::make('Healing and Prophetic Rooms')
-            ->description('Would you like to participate?')
-            ->icon('heroicon-o-heart')
-            ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
-            ->schema([
-                Radio::make('wants_to_healing_room')
-                    ->label('Would you like to participate in the healing room? 14:30-18:00 (Duration 15 min.)')
-                    ->required()
-                    ->boolean()
-                    ->helperText('Registration is not mandatory, but spaces are limited!'),
-                Radio::make('wants_to_prophet_room')
-                    ->label('Would you like to participate in the prophetic room? 14:30-18:00 (Duration 15 min.)')
-                    ->required()
-                    ->boolean()
-                    ->helperText('Registration is not mandatory, but spaces are limited!'),
-            ]);
-    }
-
-    /** @return array<string, string> */
-    protected function getWorkshopDayOptions(): array
-    {
-        $dates = $this->getWorkshopDates();
-
-        $options = [];
-        foreach ($dates as $index => $date) {
-            $options['day_' . ($index + 1)] = $date->format('Y. m. d. (l)');
-        }
-
-        return $options;
-    }
-
-    protected function getWorkshopDayLabel(int $dayIndex): string
-    {
-        $dates = $this->getWorkshopDates();
-
-        return isset($dates[$dayIndex]) ? $dates[$dayIndex]->format('Y. m. d. (l)') : 'Day ' . ($dayIndex + 1);
-    }
-
-    /** @return array<int, Carbon> */
-    protected function getWorkshopDates(): array
-    {
-        return Workshop::query()
-            ->published()
-            ->whereNotNull('date')
-            ->selectRaw('DISTINCT date')
-            ->orderBy('date')
-            ->pluck('date')
-            ->map(fn ($date) => Carbon::parse($date))
-            ->values()
-            ->all();
-    }
-
-    /** @return array<int|string, string> */
-    protected function getAvailableWorkshopOptions(int $dayIndex): array
-    {
-        $dates = $this->getWorkshopDates();
-
-        if (! isset($dates[$dayIndex])) {
-            return [];
-        }
-
-        return Workshop::query()
-            ->published()
-            ->whereDate('date', $dates[$dayIndex])
-            ->withCount('registrations')
-            ->get()
-            ->filter(function (Workshop $workshop): bool {
-                $maxAllowed = (int) ceil(($workshop->capacity ?? 0) * 1.1);
-
-                return $workshop->capacity === null || $workshop->registrations_count < $maxAllowed;
-            })
-            ->mapWithKeys(fn (Workshop $workshop): array => [
-                $workshop->id => $workshop->title . ($workshop->capacity
-                    ? ' (' . ($workshop->capacity - $workshop->registrations_count) . ' spots left)'
-                    : ''),
-            ])
-            ->all();
-    }
-
     protected function getVolunteerDetailsStep(): Step
     {
         return Step::make('Volunteer Details')
@@ -686,7 +551,6 @@ class RegistrationForm extends Component implements HasSchemas
             $registrationData['ticket_type'] = $data['ticket_duration'];
             $registrationData['ticket_quantity'] = 1;
             $registrationData['amount'] = $this->calculateAmount($data);
-            $registrationData['wants_to_evangelize'] = $data['wants_to_evangelize'] ?? false;
         }
 
         if ($this->type === 'volunteer') {
@@ -722,18 +586,6 @@ class RegistrationForm extends Component implements HasSchemas
         }
 
         $registration = Registration::query()->create($registrationData);
-
-        // Attach selected workshops
-        if ($this->type === 'attendee') {
-            $workshopIds = array_filter([
-                $data['workshop_day_1'] ?? null,
-                $data['workshop_day_2'] ?? null,
-            ]);
-
-            if (! empty($workshopIds)) {
-                $registration->workshops()->attach($workshopIds);
-            }
-        }
 
         // Send confirmation email
         $this->sendConfirmationEmail($registration);

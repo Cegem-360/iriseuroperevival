@@ -91,22 +91,6 @@ class RegistrationForm
                     ])
                     ->columns(2),
 
-                Section::make('Evangelism')
-                    ->schema([
-                        Toggle::make('wants_to_evangelize')
-                            ->label('Wants to Evangelize'),
-                    ])
-                    ->collapsible()
-                    ->collapsed(),
-                Section::make('Healing and Prophetic Rooms')
-                    ->schema([
-                        Toggle::make('want_to_healing_room')
-                            ->label('Wants to Healing Room'),
-                        Toggle::make('want_to_prophet_room')
-                            ->label('Wants to Prophet Room'),
-                    ])
-                    ->collapsible()
-                    ->collapsed(),
                 Section::make('Ministry Team Details')
                     ->schema([
                         TextInput::make('citizenship')

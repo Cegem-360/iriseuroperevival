@@ -49,10 +49,6 @@ class Registration extends Model
         'has_served_before',
         'previous_service_description',
 
-        // Evangelism
-        'wants_to_evangelize',
-        'want_to_healing_room',
-        'want_to_prophet_room',
         // Ministry Team Fields
         'citizenship',
         'languages',
@@ -341,7 +337,7 @@ class Registration extends Model
             'languages' => 'array',
             'service_areas' => 'array',
             'has_served_before' => 'boolean',
-            'wants_to_evangelize' => 'boolean',
+
             'is_born_again' => 'boolean',
             'is_spirit_filled' => 'boolean',
             'attended_ministry_school' => 'boolean',

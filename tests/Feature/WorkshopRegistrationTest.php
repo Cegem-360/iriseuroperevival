@@ -35,14 +35,6 @@ it('allows registrations under capacity plus ten percent', function (): void {
     expect($workshop->isAtCapacity())->toBeFalse();
 });
 
-it('stores wants_to_evangelize on registration', function (): void {
-    $registration = Registration::factory()->attendee()->create([
-        'wants_to_evangelize' => true,
-    ]);
-
-    expect($registration->fresh()->wants_to_evangelize)->toBeTrue();
-});
-
 it('stores workshop date correctly', function (): void {
     $workshop = Workshop::factory()->create(['date' => '2026-07-10']);
 
