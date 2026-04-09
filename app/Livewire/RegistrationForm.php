@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Exception;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -72,6 +73,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return $schema
             ->components([
+                Hidden::make('registration_type'),
                 Wizard::make($this->getWizardSteps())
                     ->submitAction(new HtmlString(view('livewire.registration-form.partials.submit-button', [
                         'type' => $this->data['registration_type'] ?? 'attendee',

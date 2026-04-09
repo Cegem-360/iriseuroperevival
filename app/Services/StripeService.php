@@ -157,7 +157,7 @@ class StripeService
                             asset('images/ticket-image.jpg'),
                         ],
                     ],
-                    'unit_amount' => $registration->amount,
+                    'unit_amount' => (int) $registration->amount,
                 ],
                 'quantity' => 1,
             ],
