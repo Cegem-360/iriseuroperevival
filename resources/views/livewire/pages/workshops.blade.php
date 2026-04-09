@@ -96,7 +96,7 @@
                 @endforeach
 
                 {{-- Additional workshops coming soon --}}
-                <div class="bg-navy-700/30 rounded-xl border border-navy-600 border-dashed flex items-center justify-center p-8">
+                <div class="bg-navy-700/30 rounded-xl border border-navy-600 border-dashed flex items-center justify-center p-8 min-h-64">
                     <div class="text-center">
                         <div class="w-12 h-12 rounded-lg bg-primary-500/10 flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,6 +112,7 @@
             <div class="mt-16 text-center">
                 <div class="inline-flex flex-col items-center gap-4 p-8 bg-orange-500/15 rounded-2xl border border-orange-500/30 max-w-2xl">
                     <h3 class="text-xl font-semibold">{{ __('Ready to join?') }}</h3>
+                    <p class="text-white/60 text-sm">{{ __('Register now to secure your spot in these transformative workshops.') }}</p>
                     <p class="text-primary-400 font-semibold text-base">
                         {{ __('You can sign up for workshops after registering for the event. Before the event, we will send you an email with the details, where you can choose the topic that interests you most.') }}
                     </p>
