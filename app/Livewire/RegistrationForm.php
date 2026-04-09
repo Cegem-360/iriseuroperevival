@@ -369,9 +369,15 @@ class RegistrationForm extends Component implements HasSchemas
                             '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0),
                             'custom' => 'Custom amount (HUF 15 000)',
                         ])
-                    ->descriptions(fn (Get $get): string => $get('ticket_price_option') === 'custom'
-                        ? 'Thank you for choosing to support the event with a custom amount!'
-                        : 'This is the standard ticket price. If you would like to support the event with a higher amount, please select the custom option.')
+                    ->descriptions(fn (Get $get): array => $get('ticket_duration') === '3_days'
+                        ? [
+                            '15000' => 'This is the standard ticket price. If you would like to support the event with a higher amount, please select the custom option.',
+                            'custom' => 'Thank you for choosing to support the event with a custom amount!',
+                        ]
+                        : [
+                            '7500' => 'This is the standard ticket price. If you would like to support the event with a higher amount, please select the custom option.',
+                            'custom' => 'Thank you for choosing to support the event with a custom amount!',
+                        ])
                     ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '15000' : '7500')
                     ->live(),
 
