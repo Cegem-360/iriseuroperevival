@@ -94,16 +94,28 @@
                         </div>
                     </div>
                 @endforeach
+
+                {{-- Additional workshops coming soon --}}
+                <div class="bg-navy-700/30 rounded-xl border border-navy-600 border-dashed flex items-center justify-center p-8">
+                    <div class="text-center">
+                        <div class="w-12 h-12 rounded-lg bg-primary-500/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                        <p class="text-white/60 font-semibold">{{ __('Additional workshop topics will be available soon.') }}</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Call to Action -->
             <div class="mt-16 text-center">
-                <div class="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-orange-500/15 rounded-2xl border border-orange-500/30">
-                    <div class="text-left">
-                        <h3 class="text-lg font-semibold">{{ __('Ready to join?') }}</h3>
-                        <p class="text-white/60 text-sm">{{ __('Register now to secure your spot in these transformative workshops.') }}</p>
-                    </div>
-                    <a href="{{ route('register') }}" class="btn-primary whitespace-nowrap">
+                <div class="inline-flex flex-col items-center gap-4 p-8 bg-orange-500/15 rounded-2xl border border-orange-500/30 max-w-2xl">
+                    <h3 class="text-xl font-semibold">{{ __('Ready to join?') }}</h3>
+                    <p class="text-primary-400 font-semibold text-base">
+                        {{ __('You can sign up for workshops after registering for the event. Before the event, we will send you an email with the details, where you can choose the topic that interests you most.') }}
+                    </p>
+                    <a href="{{ route('register') }}" class="btn-primary whitespace-nowrap mt-2">
                         {{ __('Register Now') }}
                         <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
