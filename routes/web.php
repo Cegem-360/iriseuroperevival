@@ -6,7 +6,6 @@ use App\Http\Controllers\WebhookController;
 use App\Livewire\Pages\ActivitySignup;
 use App\Livewire\Pages\Dashboard;
 use App\Livewire\Pages\Home;
-use App\Livewire\Pages\HomeAlt;
 use App\Livewire\Pages\MinistryTeam;
 use App\Livewire\Pages\Privacy;
 use App\Livewire\Pages\Program;
@@ -35,8 +34,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home & Landing Pages
-Route::get('/', HomeAlt::class)->name('home');
-Route::get('/old-home', Home::class)->name('home.old');
+Route::get('/', Home::class)->name('home');
 Route::get('/program', Program::class)->name('program');
 Route::get('/workshops', Workshops::class)->name('workshops');
 Route::get('/speakers', Speakers::class)->name('speakers');

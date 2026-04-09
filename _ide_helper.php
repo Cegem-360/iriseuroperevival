@@ -28593,10 +28593,6 @@ namespace Illuminate\View {
 namespace App\Livewire\Pages {
     /**
      */
-    class HomeAlt extends \Livewire\Component {
-            }
-    /**
-     */
     class Home extends \Livewire\Component {
             }
     /**
