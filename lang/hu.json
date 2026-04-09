@@ -177,5 +177,6 @@
     "Something went wrong": "Valami hiba tortent",
     "Please try again": "Kerlek probald ujra",
     "Page not found": "Az oldal nem talalhato",
-    "Go back home": "Vissza a folapra"
+    "Go back home": "Vissza a folapra",
+    "If you would like to support the event with an amount exceeding :amount.": "Ha :amount feletti oszeggel szeretned tamogatni a rendezvenyt."
 }

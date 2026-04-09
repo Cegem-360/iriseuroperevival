@@ -363,12 +363,13 @@ class RegistrationForm extends Component implements HasSchemas
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
                             '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0),
-                            'custom' => 'Custom amount (15,000+ Ft)',
+                            'custom' => 'Custom amount (HUF 15,000)',
                         ]
                         : [
                             '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0),
-                            'custom' => 'Custom amount (15,000+ Ft)',
+                            'custom' => 'Custom amount (HUF 15 000)',
                         ])
+
                     ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '15000' : '7500')
                     ->live(),
 
@@ -379,7 +380,7 @@ class RegistrationForm extends Component implements HasSchemas
                     ->minValue(15001)
                     ->step(1)
                     ->placeholder('e.g. 20000')
-                    ->helperText('Ha 15.000 Ft feletti összeggel szeretnél támogatni a rendezvényt. / If you would like to support the event with an amount exceeding 15,000 HUF.')
+                    ->helperText(__('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0)]))
                     ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom')
                     ->live()
                     ->rules([

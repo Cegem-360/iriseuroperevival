@@ -177,5 +177,6 @@
     "Something went wrong": "Etwas ist schiefgelaufen",
     "Please try again": "Bitte versuchen Sie es erneut",
     "Page not found": "Seite nicht gefunden",
-    "Go back home": "Zuruck zur Startseite"
+    "Go back home": "Zuruck zur Startseite",
+    "If you would like to support the event with an amount exceeding :amount.": "Wenn Sie die Veranstaltung mit einem Betrag uber :amount unterstutzen mochten."
 }
