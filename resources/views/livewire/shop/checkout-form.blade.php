@@ -76,7 +76,7 @@
                     @foreach($this->items as $item)
                         <div class="flex justify-between text-sm">
                             <span>{{ $item['product']->name }} x {{ $item['quantity'] }}</span>
-                            <span>{{ Number::currency($item['total'] / 100, 'HUF', 'hu', precision: 0) }}</span>
+                            <span>{{ Number::currency($item['total'] / 100, 'HUF', app()->getLocale(), precision: 0) }}</span>
                         </div>
                     @endforeach
                 </div>
@@ -84,19 +84,19 @@
                 <div class="mt-4 space-y-2 border-t border-zinc-200 pt-4 dark:border-zinc-700">
                     <div class="flex justify-between">
                         <span class="text-zinc-600 dark:text-zinc-400">Subtotal</span>
-                        <span>{{ Number::currency($this->subtotal / 100, 'HUF', 'hu', precision: 0) }}</span>
+                        <span>{{ Number::currency($this->subtotal / 100, 'HUF', app()->getLocale(), precision: 0) }}</span>
                     </div>
 
                     @if($this->discount > 0)
                         <div class="flex justify-between text-green-600">
                             <span>Discount</span>
-                            <span>-{{ Number::currency($this->discount / 100, 'HUF', 'hu', precision: 0) }}</span>
+                            <span>-{{ Number::currency($this->discount / 100, 'HUF', app()->getLocale(), precision: 0) }}</span>
                         </div>
                     @endif
 
                     <div class="flex justify-between border-t border-zinc-200 pt-2 text-lg font-bold dark:border-zinc-700">
                         <span>Total</span>
-                        <span>{{ Number::currency($this->total / 100, 'HUF', 'hu', precision: 0) }}</span>
+                        <span>{{ Number::currency($this->total / 100, 'HUF', app()->getLocale(), precision: 0) }}</span>
                     </div>
                 </div>
 

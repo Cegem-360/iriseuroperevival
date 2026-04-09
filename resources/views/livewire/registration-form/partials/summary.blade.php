@@ -53,7 +53,7 @@
         </div>
         <div class="flex justify-between text-lg font-bold">
             <dt class="text-primary-400">Total</dt>
-            <dd class="text-primary-400">{{ Number::currency($amountHuf, 'HUF', 'hu', precision: 0) }}</dd>
+            <dd class="text-primary-400">{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}</dd>
         </div>
     @endif
 </dl>

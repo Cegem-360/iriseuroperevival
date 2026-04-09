@@ -73,7 +73,7 @@ class Order extends Model
 
     protected function formattedTotal(): Attribute
     {
-        return Attribute::make(get: fn (): string => Number::currency($this->total / 100, 'HUF', 'hu', precision: 0));
+        return Attribute::make(get: fn (): string => Number::currency($this->total / 100, 'HUF', app()->getLocale(), precision: 0));
     }
 
     protected function subtotalInHuf(): Attribute

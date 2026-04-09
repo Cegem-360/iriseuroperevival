@@ -18,14 +18,14 @@
 | {{ __('Product') }} | {{ __('Quantity') }} | {{ __('Price') }} |
 |:-------------|:-------:|--------:|
 @foreach($order->items as $item)
-| {{ $item->product_name }} | {{ $item->quantity }} | {{ Number::currency($item->total / 100, 'HUF', 'hu', precision: 0) }} |
+| {{ $item->product_name }} | {{ $item->quantity }} | {{ Number::currency($item->total / 100, 'HUF', app()->getLocale(), precision: 0) }} |
 @endforeach
 </x-mail::table>
 
 <x-mail::panel>
-**{{ __('Subtotal') }}:** {{ Number::currency($order->subtotal / 100, 'HUF', 'hu', precision: 0) }}
+**{{ __('Subtotal') }}:** {{ Number::currency($order->subtotal / 100, 'HUF', app()->getLocale(), precision: 0) }}
 @if($order->discount > 0)
-**{{ __('Discount') }}:** -{{ Number::currency($order->discount / 100, 'HUF', 'hu', precision: 0) }}
+**{{ __('Discount') }}:** -{{ Number::currency($order->discount / 100, 'HUF', app()->getLocale(), precision: 0) }}
 @endif
 **{{ __('Total') }}:** {{ $order->formatted_total }}
 </x-mail::panel>

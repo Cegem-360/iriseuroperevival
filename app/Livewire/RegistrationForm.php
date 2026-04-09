@@ -362,11 +362,11 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
-                            '15000' => Number::currency(15000, 'HUF', 'hu', precision: 0),
+                            '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0),
                             'custom' => 'Custom amount (15,000+ Ft)',
                         ]
                         : [
-                            '7500' => Number::currency(7500, 'HUF', 'hu', precision: 0),
+                            '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0),
                             'custom' => 'Custom amount (15,000+ Ft)',
                         ])
                     ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '15000' : '7500')
@@ -778,7 +778,7 @@ class RegistrationForm extends Component implements HasSchemas
             };
         }
 
-        return Number::currency($amountCents / 100, 'HUF', 'hu', precision: 0);
+        return Number::currency($amountCents / 100, 'HUF', app()->getLocale(), precision: 0);
     }
 
     public function render(): Factory|View

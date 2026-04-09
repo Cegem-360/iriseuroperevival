@@ -20,7 +20,7 @@ it('has correct computed attributes', function () {
 
     expect($ticketPrice->price_in_huf)->toEqual(49)
         ->and($ticketPrice->formatted_price)->toContain('49')
-        ->and($ticketPrice->formatted_price)->toContain('Ft');
+        ->and($ticketPrice->formatted_price)->toContain('HUF');
 });
 
 it('scopes active ticket prices', function () {

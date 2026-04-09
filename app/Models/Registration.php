@@ -222,7 +222,7 @@ class Registration extends Model
 
     protected function formattedAmount(): Attribute
     {
-        return Attribute::make(get: fn (): string => Number::currency($this->amount / 100, 'HUF', 'hu', precision: 0));
+        return Attribute::make(get: fn (): string => Number::currency($this->amount / 100, 'HUF', app()->getLocale(), precision: 0));
     }
 
     protected function statusBadge(): Attribute

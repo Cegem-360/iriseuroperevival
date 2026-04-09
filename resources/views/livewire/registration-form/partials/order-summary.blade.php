@@ -22,7 +22,7 @@
         <div class="flex justify-between text-sm text-white/60">
             <span>{{ $durationLabel }}</span>
             @if($amountHuf > 0)
-                <span>{{ Number::currency($amountHuf, 'HUF', 'hu', precision: 0) }}</span>
+                <span>{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}</span>
             @else
                 <span class="text-white/30">—</span>
             @endif
@@ -33,7 +33,7 @@
         <span class="text-primary-400">{{ __('Total') }}</span>
         <span class="text-primary-400">
             @if($amountHuf > 0)
-                {{ Number::currency($amountHuf, 'HUF', 'hu', precision: 0) }}
+                {{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}
             @else
                 —
             @endif

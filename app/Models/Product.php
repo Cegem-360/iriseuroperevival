@@ -64,7 +64,7 @@ class Product extends Model
 
     protected function formattedPrice(): Attribute
     {
-        return Attribute::make(get: fn (): string => Number::currency($this->price / 100, 'HUF', 'hu', precision: 0));
+        return Attribute::make(get: fn (): string => Number::currency($this->price / 100, 'HUF', app()->getLocale(), precision: 0));
     }
 
     public function isInStock(): bool
