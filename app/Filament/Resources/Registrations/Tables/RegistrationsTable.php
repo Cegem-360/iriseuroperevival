@@ -100,7 +100,7 @@ class RegistrationsTable
                     ->toggleable(),
                 TextColumn::make('amount')
                     ->label('Amount')
-                    ->money('EUR', divideBy: 100)
+                    ->money('HUF', divideBy: 100)
                     ->sortable()
                     ->toggleable(),
                 IconColumn::make('paid_at')

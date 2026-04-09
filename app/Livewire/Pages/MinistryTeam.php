@@ -362,9 +362,9 @@ class MinistryTeam extends Component implements HasSchemas
                         'vip' => 'VIP Pass - Premium experience with exclusive benefits',
                     ])
                     ->descriptions([
-                        'individual' => "{$tierName} Price: " . Number::currency($prices['individual'] / 100, 'EUR') . '/person',
-                        'team' => "{$tierName} Price: " . Number::currency($prices['team'] / 100, 'EUR') . '/person (min. 10 people)',
-                        'vip' => "{$tierName} Price: " . Number::currency($prices['vip'] / 100, 'EUR') . '/person - Front row seating, VIP lounge access, meet & greet',
+                        'individual' => "{$tierName} Price: " . Number::currency($prices['individual'] / 100, 'HUF', 'hu', precision: 0) . '/person',
+                        'team' => "{$tierName} Price: " . Number::currency($prices['team'] / 100, 'HUF', 'hu', precision: 0) . '/person (min. 10 people)',
+                        'vip' => "{$tierName} Price: " . Number::currency($prices['vip'] / 100, 'HUF', 'hu', precision: 0) . '/person - Front row seating, VIP lounge access, meet & greet',
                     ])
                     ->default('individual')
                     ->live(),
@@ -600,7 +600,7 @@ class MinistryTeam extends Component implements HasSchemas
         $stripeService = app(StripeService::class);
         $pricePerTicket = $stripeService->getTicketPrice($ticketType, $stripeService->getCurrentPricingTier());
 
-        return Number::currency(($pricePerTicket * $quantity) / 100, 'EUR');
+        return Number::currency(($pricePerTicket * $quantity) / 100, 'HUF', 'hu', precision: 0);
     }
 
     public function render(): View

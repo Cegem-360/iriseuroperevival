@@ -527,12 +527,12 @@
             <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 {{-- 1-Day Pass --}}
                 <div
-                    x-data="{ selected: '20', custom: '', get href() {
+                    x-data="{ selected: '7500', custom: '', get href() {
                         let url = '{{ route('register') }}?duration=1_day&price=' + this.selected;
                         if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
                         return url;
                     }, get valid() {
-                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 40);
+                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 15000);
                     } }"
                     class="bg-navy-800/50 border border-navy-600 rounded-3xl p-8 relative overflow-hidden flex flex-col"
                 >
@@ -544,38 +544,31 @@
                     <h3 class="text-2xl font-bold text-white mt-4 mb-2">1-Day Supporter Pass</h3>
                     <p class="text-white/50 mb-6">Single day access to the conference</p>
 
-                    <div class="mb-8 grow space-y-2">
-                        <button type="button" @click="selected = '20'" class="flex items-center gap-3 w-full group">
+                    <div class="mb-8 grow space-y-3">
+                        <button type="button" @click="selected = '7500'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
-                                :class="selected === '20' ? 'border-white bg-white' : 'border-white/30 group-hover:border-white/60'">
-                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '20'"></span>
+                                :class="selected === '7500' ? 'border-white bg-white' : 'border-white/30 group-hover:border-white/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '7500'"></span>
                             </span>
-                            <span class="text-2xl font-bold transition-colors" :class="selected === '20' ? 'text-white' : 'text-white/50'">€20</span>
-                            <span class="text-sm transition-colors" :class="selected === '20' ? 'text-white/60' : 'text-white/30'">standard</span>
-                        </button>
-                        <button type="button" @click="selected = '40'" class="flex items-center gap-3 w-full group">
-                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
-                                :class="selected === '40' ? 'border-white bg-white' : 'border-white/30 group-hover:border-white/60'">
-                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '40'"></span>
-                            </span>
-                            <span class="text-2xl font-bold transition-colors" :class="selected === '40' ? 'text-white' : 'text-white/50'">€40</span>
-                            <span class="text-sm transition-colors" :class="selected === '40' ? 'text-white/60' : 'text-white/30'">supporter</span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === '7500' ? 'text-white' : 'text-white/50'">7 500 Ft</span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                                 :class="selected === 'custom' ? 'border-white bg-white' : 'border-white/30 group-hover:border-white/60'">
                                 <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === 'custom'"></span>
                             </span>
-                            <span class="text-2xl font-bold transition-colors" :class="selected === 'custom' ? 'text-white' : 'text-white/50'">€41+</span>
-                            <span class="text-sm transition-colors" :class="selected === 'custom' ? 'text-white/60' : 'text-white/30'">your choice</span>
+                            <span class="text-lg font-bold transition-colors" :class="selected === 'custom' ? 'text-white' : 'text-white/50'">Custom amount</span>
+                            <span class="text-sm transition-colors" :class="selected === 'custom' ? 'text-white/60' : 'text-white/30'">15,000+ Ft</span>
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-navy-700/50 border border-navy-500 rounded-xl px-3 py-2">
-                                <span class="text-white/50 font-medium">€</span>
-                                <input type="number" x-model="custom" min="41" step="1" placeholder="Enter amount"
+                                <span class="text-white/50 font-medium">Ft</span>
+                                <input type="number" x-model="custom" min="15001" step="1" placeholder="e.g. 20000"
                                     class="bg-transparent text-white placeholder-white/30 w-full outline-none text-lg font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                             </div>
-                            <p x-show="custom && parseInt(custom) <= 40" class="text-red-400 text-xs mt-1">Minimum €41</p>
+                            <p class="text-white/40 text-xs mt-1">Ha 15.000 Ft feletti összeggel szeretnél támogatni a rendezvényt.</p>
+                            <p class="text-white/40 text-xs">If you would like to support the event with an amount exceeding 15,000 HUF.</p>
+                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum 15,001 Ft</p>
                         </div>
                     </div>
 
@@ -586,12 +579,12 @@
 
                 {{-- 3-Day Pass --}}
                 <div
-                    x-data="{ selected: '20', custom: '', get href() {
+                    x-data="{ selected: '15000', custom: '', get href() {
                         let url = '{{ route('register') }}?duration=3_days&price=' + this.selected;
                         if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
                         return url;
                     }, get valid() {
-                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 40);
+                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 15000);
                     } }"
                     class="bg-linear-to-br from-primary-500/10 to-primary-600/10 border-2 border-primary-500/50 rounded-3xl p-8 relative overflow-hidden flex flex-col"
                 >
@@ -610,38 +603,31 @@
                     <h3 class="text-2xl font-bold text-white mt-4 mb-2">3-Day Pass</h3>
                     <p class="text-white/50 mb-6">Full conference access, all days</p>
 
-                    <div class="mb-8 grow space-y-2">
-                        <button type="button" @click="selected = '20'" class="flex items-center gap-3 w-full group">
+                    <div class="mb-8 grow space-y-3">
+                        <button type="button" @click="selected = '15000'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
-                                :class="selected === '20' ? 'border-primary-400 bg-primary-400' : 'border-primary-400/30 group-hover:border-primary-400/60'">
-                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '20'"></span>
+                                :class="selected === '15000' ? 'border-primary-400 bg-primary-400' : 'border-primary-400/30 group-hover:border-primary-400/60'">
+                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '15000'"></span>
                             </span>
-                            <span class="text-2xl font-bold transition-colors" :class="selected === '20' ? 'text-primary-400' : 'text-primary-400/50'">€20</span>
-                            <span class="text-sm transition-colors" :class="selected === '20' ? 'text-white/60' : 'text-white/30'">standard</span>
-                        </button>
-                        <button type="button" @click="selected = '40'" class="flex items-center gap-3 w-full group">
-                            <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
-                                :class="selected === '40' ? 'border-primary-400 bg-primary-400' : 'border-primary-400/30 group-hover:border-primary-400/60'">
-                                <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === '40'"></span>
-                            </span>
-                            <span class="text-2xl font-bold transition-colors" :class="selected === '40' ? 'text-primary-400' : 'text-primary-400/50'">€40</span>
-                            <span class="text-sm transition-colors" :class="selected === '40' ? 'text-white/60' : 'text-white/30'">supporter</span>
+                            <span class="text-2xl font-bold transition-colors" :class="selected === '15000' ? 'text-primary-400' : 'text-primary-400/50'">15 000 Ft</span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
                                 :class="selected === 'custom' ? 'border-primary-400 bg-primary-400' : 'border-primary-400/30 group-hover:border-primary-400/60'">
                                 <span class="w-2 h-2 rounded-full bg-navy-900" x-show="selected === 'custom'"></span>
                             </span>
-                            <span class="text-2xl font-bold transition-colors" :class="selected === 'custom' ? 'text-primary-400' : 'text-primary-400/50'">€41+</span>
-                            <span class="text-sm transition-colors" :class="selected === 'custom' ? 'text-white/60' : 'text-white/30'">your choice</span>
+                            <span class="text-lg font-bold transition-colors" :class="selected === 'custom' ? 'text-primary-400' : 'text-primary-400/50'">Custom amount</span>
+                            <span class="text-sm transition-colors" :class="selected === 'custom' ? 'text-white/60' : 'text-white/30'">15,000+ Ft</span>
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-navy-700/50 border border-primary-500/40 rounded-xl px-3 py-2">
-                                <span class="text-white/50 font-medium">€</span>
-                                <input type="number" x-model="custom" min="41" step="1" placeholder="Enter amount"
+                                <span class="text-white/50 font-medium">Ft</span>
+                                <input type="number" x-model="custom" min="15001" step="1" placeholder="e.g. 20000"
                                     class="bg-transparent text-white placeholder-white/30 w-full outline-none text-lg font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                             </div>
-                            <p x-show="custom && parseInt(custom) <= 40" class="text-red-400 text-xs mt-1">Minimum €41</p>
+                            <p class="text-white/40 text-xs mt-1">Ha 15.000 Ft feletti összeggel szeretnél támogatni a rendezvényt.</p>
+                            <p class="text-white/40 text-xs">If you would like to support the event with an amount exceeding 15,000 HUF.</p>
+                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum 15,001 Ft</p>
                         </div>
                     </div>
 

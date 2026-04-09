@@ -11,15 +11,13 @@
 
     if ($type === 'attendee') {
         $ticketDuration = $data['ticket_duration'] ?? '1_day';
-        $priceOption = $data['ticket_price_option'] ?? '20';
+        $priceOption = $data['ticket_price_option'] ?? '7500';
         $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
 
-        $amountEuros = match ($priceOption) {
-            '30' => 30,
-            '40' => 40,
-            '60' => 60,
-            'custom' => $customAmount > ($ticketDuration === '3_days' ? 60 : 40) ? $customAmount : 0,
-            default => 20,
+        $amountHuf = match ($priceOption) {
+            '15000' => 15000,
+            'custom' => $customAmount > 15000 ? $customAmount : 0,
+            default => 7500,
         };
 
         $durationLabel = match ($ticketDuration) {
@@ -55,7 +53,7 @@
         </div>
         <div class="flex justify-between text-lg font-bold">
             <dt class="text-primary-400">Total</dt>
-            <dd class="text-primary-400">{{ Number::currency($amountEuros, 'EUR') }}</dd>
+            <dd class="text-primary-400">{{ Number::currency($amountHuf, 'HUF', 'hu', precision: 0) }}</dd>
         </div>
     @endif
 </dl>

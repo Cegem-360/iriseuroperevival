@@ -149,7 +149,7 @@ class StripeService
         return [
             [
                 'price_data' => [
-                    'currency' => 'eur',
+                    'currency' => 'huf',
                     'product_data' => [
                         'name' => $ticketName,
                         'description' => 'October 22-25, 2026 | Budapest, Hungary',

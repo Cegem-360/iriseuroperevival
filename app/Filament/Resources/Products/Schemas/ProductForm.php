@@ -42,9 +42,10 @@ class ProductForm
                         TextInput::make('price')
                             ->required()
                             ->numeric()
-                            ->suffix('cents')
-                            ->helperText('Price in cents (e.g., 2500 = 25.00 €)')
-                            ->minValue(0),
+                            ->suffix('Ft')
+                            ->minValue(0)
+                            ->formatStateUsing(fn ($state) => $state ? $state / 100 : null)
+                            ->dehydrateStateUsing(fn ($state) => $state ? $state * 100 : null),
                     ]),
                 Section::make('Inventory')
                     ->columns(2)

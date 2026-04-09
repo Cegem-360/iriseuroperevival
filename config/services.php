@@ -41,4 +41,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
     ],
+
+    'currency' => [
+        'eur_huf_rate' => (int) env('EUR_HUF_RATE', 400),
+    ],
 ];

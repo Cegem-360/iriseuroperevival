@@ -83,10 +83,11 @@ class RegistrationForm
                             ->default(1)
                             ->minValue(1),
                         TextInput::make('amount')
-                            ->label('Amount (cents)')
+                            ->label('Amount (Ft)')
                             ->numeric()
-                            ->prefix('€')
-                            ->helperText('Amount in cents (e.g., 4900 = €49.00)'),
+                            ->suffix('Ft')
+                            ->formatStateUsing(fn ($state) => $state ? $state / 100 : null)
+                            ->dehydrateStateUsing(fn ($state) => $state ? $state * 100 : null),
                     ])
                     ->columns(2),
 

@@ -13,7 +13,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
-use Illuminate\Support\Number;
 
 class ProductsTable
 {
@@ -35,7 +34,7 @@ class ProductsTable
                         default => 'gray',
                     }),
                 TextColumn::make('price')
-                    ->formatStateUsing(fn ($state): string => Number::currency($state / 100, 'EUR'))
+                    ->money('HUF', 100, 'hu', 0)
                     ->sortable(),
                 TextColumn::make('stock_quantity')
                     ->label('Stock')

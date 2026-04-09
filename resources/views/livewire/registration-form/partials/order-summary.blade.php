@@ -2,15 +2,13 @@
     $livewire = $getLivewire();
     $data = $livewire->data ?? [];
     $ticketDuration = $data['ticket_duration'] ?? '1_day';
-    $priceOption = $data['ticket_price_option'] ?? '20';
+    $priceOption = $data['ticket_price_option'] ?? '7500';
     $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
 
-    $amountEuros = match ($priceOption) {
-        '30' => 30,
-        '40' => 40,
-        '60' => 60,
-        'custom' => $customAmount > ($ticketDuration === '3_days' ? 60 : 40) ? $customAmount : 0,
-        default => 20,
+    $amountHuf = match ($priceOption) {
+        '15000' => 15000,
+        'custom' => $customAmount > 15000 ? $customAmount : 0,
+        default => 7500,
     };
 
     $durationLabel = match ($ticketDuration) {
@@ -23,8 +21,8 @@
     <div class="space-y-2">
         <div class="flex justify-between text-sm text-white/60">
             <span>{{ $durationLabel }}</span>
-            @if($amountEuros > 0)
-                <span>{{ Number::currency($amountEuros, 'EUR') }}</span>
+            @if($amountHuf > 0)
+                <span>{{ Number::currency($amountHuf, 'HUF', 'hu', precision: 0) }}</span>
             @else
                 <span class="text-white/30">—</span>
             @endif
@@ -34,8 +32,8 @@
     <div class="border-t border-navy-600 pt-3 flex justify-between text-lg font-bold">
         <span class="text-primary-400">{{ __('Total') }}</span>
         <span class="text-primary-400">
-            @if($amountEuros > 0)
-                {{ Number::currency($amountEuros, 'EUR') }}
+            @if($amountHuf > 0)
+                {{ Number::currency($amountHuf, 'HUF', 'hu', precision: 0) }}
             @else
                 —
             @endif

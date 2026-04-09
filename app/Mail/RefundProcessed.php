@@ -45,7 +45,7 @@ class RefundProcessed extends Mailable implements ShouldQueue
             markdown: 'emails.payment.refund',
             with: [
                 'registration' => $this->registration,
-                'refundAmount' => Number::currency($this->refundAmount / 100, 'EUR'),
+                'refundAmount' => Number::currency($this->refundAmount / 100, 'HUF', 'hu', precision: 0),
             ],
         );
     }

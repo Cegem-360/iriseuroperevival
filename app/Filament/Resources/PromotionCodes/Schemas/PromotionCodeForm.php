@@ -36,7 +36,7 @@ class PromotionCodeForm
                         Select::make('type')
                             ->options([
                                 'percentage' => 'Percentage (%)',
-                                'fixed_amount' => 'Fixed Amount (€)',
+                                'fixed_amount' => 'Fixed Amount (Ft)',
                             ])
                             ->default('percentage')
                             ->required()

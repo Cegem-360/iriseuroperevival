@@ -132,7 +132,7 @@ class CheckoutForm extends Component
 
         $lineItems = $this->items->map(fn ($item): array => [
             'price_data' => [
-                'currency' => 'eur',
+                'currency' => 'huf',
                 'product_data' => [
                     'name' => $item['product']->name,
                     'description' => $item['product']->description ?? null,
@@ -146,7 +146,7 @@ class CheckoutForm extends Component
         if ($this->discount > 0) {
             $lineItems[] = [
                 'price_data' => [
-                    'currency' => 'eur',
+                    'currency' => 'huf',
                     'product_data' => [
                         'name' => 'Discount (' . $this->promotionCode->code . ')',
                     ],

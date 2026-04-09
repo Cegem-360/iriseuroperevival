@@ -46,14 +46,14 @@ class TicketPrice extends Model
         });
     }
 
-    protected function priceInEuros(): Attribute
+    protected function priceInHuf(): Attribute
     {
         return Attribute::make(get: fn (): int|float => $this->price / 100);
     }
 
     protected function formattedPrice(): Attribute
     {
-        return Attribute::make(get: fn (): string => Number::currency($this->price_in_euros, 'EUR'));
+        return Attribute::make(get: fn (): string => Number::currency($this->price / 100, 'HUF', 'hu', precision: 0));
     }
 
     #[Scope]

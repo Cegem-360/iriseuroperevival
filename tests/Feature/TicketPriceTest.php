@@ -18,8 +18,9 @@ beforeEach(function () {
 it('has correct computed attributes', function () {
     $ticketPrice = TicketPrice::factory()->create(['price' => 4900]);
 
-    expect($ticketPrice->price_in_euros)->toEqual(49)
-        ->and($ticketPrice->formatted_price)->toBe('€49.00');
+    expect($ticketPrice->price_in_huf)->toEqual(49)
+        ->and($ticketPrice->formatted_price)->toContain('49')
+        ->and($ticketPrice->formatted_price)->toContain('Ft');
 });
 
 it('scopes active ticket prices', function () {
@@ -74,7 +75,7 @@ it('can create a ticket price in filament', function () {
         ->fillForm([
             'ticket_type' => 'individual',
             'pricing_tier' => 'early',
-            'price' => 4900,
+            'price' => 49,
             'label' => 'Standard Ticket',
             'is_active' => true,
             'sort_order' => 0,
@@ -98,7 +99,7 @@ it('can edit a ticket price in filament', function () {
     ]);
 
     Livewire::test(EditTicketPrice::class, ['record' => $ticketPrice->id])
-        ->fillForm(['price' => 5500])
+        ->fillForm(['price' => 55])
         ->call('save')
         ->assertNotified();
 

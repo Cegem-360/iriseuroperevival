@@ -99,7 +99,7 @@ class PromotionCode extends Model
                 return $this->value . '%';
             }
 
-            return Number::currency($this->value / 100, 'EUR');
+            return Number::currency($this->value / 100, 'HUF', 'hu', precision: 0);
         });
     }
 

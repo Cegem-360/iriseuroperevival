@@ -66,22 +66,22 @@ class Order extends Model
         return $this->belongsTo(PromotionCode::class);
     }
 
-    protected function totalInEuros(): Attribute
+    protected function totalInHuf(): Attribute
     {
         return Attribute::make(get: fn (): int|float => $this->total / 100);
     }
 
     protected function formattedTotal(): Attribute
     {
-        return Attribute::make(get: fn (): string => Number::currency($this->total_in_euros, 'EUR'));
+        return Attribute::make(get: fn (): string => Number::currency($this->total / 100, 'HUF', 'hu', precision: 0));
     }
 
-    protected function subtotalInEuros(): Attribute
+    protected function subtotalInHuf(): Attribute
     {
         return Attribute::make(get: fn (): int|float => $this->subtotal / 100);
     }
 
-    protected function discountInEuros(): Attribute
+    protected function discountInHuf(): Attribute
     {
         return Attribute::make(get: fn (): int|float => $this->discount / 100);
     }

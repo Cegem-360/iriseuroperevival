@@ -53,16 +53,16 @@ class RegistrationForm extends Component implements HasSchemas
         $this->type = $type;
 
         $duration = request()->query('duration', '1_day');
-        $price = request()->query('price', '20');
+        $price = request()->query('price', '7500');
         $amount = request()->query('amount');
 
         $fill = [
             'registration_type' => $type,
             'ticket_duration' => in_array($duration, ['1_day', '3_days']) ? $duration : '1_day',
-            'ticket_price_option' => in_array($price, ['20', '30', '40', '60', 'custom']) ? $price : ($duration === '3_days' ? '30' : '20'),
+            'ticket_price_option' => in_array($price, ['7500', '15000', 'custom']) ? $price : ($duration === '3_days' ? '15000' : '7500'),
         ];
 
-        if ($price === 'custom' && $amount && (int) $amount > 40) {
+        if ($price === 'custom' && $amount && (int) $amount > 15000) {
             $fill['ticket_custom_amount'] = (int) $amount;
         }
 
@@ -353,7 +353,7 @@ class RegistrationForm extends Component implements HasSchemas
                     ->default('1_day')
                     ->live()
                     ->afterStateUpdated(function (Set $set, ?string $state): void {
-                        $set('ticket_price_option', $state === '3_days' ? '30' : '20');
+                        $set('ticket_price_option', $state === '3_days' ? '15000' : '7500');
                         $set('ticket_custom_amount', null);
                     }),
 
@@ -362,28 +362,24 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
-                            '30' => '€30',
-                            '60' => '€60',
-                            'custom' => 'Custom amount (€61+)',
+                            '15000' => Number::currency(15000, 'HUF', 'hu', precision: 0),
+                            'custom' => 'Custom amount (15,000+ Ft)',
                         ]
                         : [
-                            '20' => '€20',
-                            '40' => '€40',
-                            'custom' => 'Custom amount (€41+)',
+                            '7500' => Number::currency(7500, 'HUF', 'hu', precision: 0),
+                            'custom' => 'Custom amount (15,000+ Ft)',
                         ])
-                    ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '30' : '20')
+                    ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '15000' : '7500')
                     ->live(),
 
                 TextInput::make('ticket_custom_amount')
-                    ->label('Custom Amount (€)')
+                    ->label('Custom Amount (Ft)')
                     ->numeric()
                     ->required()
-                    ->minValue(fn (Get $get): int => $get('ticket_duration') === '3_days' ? 61 : 41)
+                    ->minValue(15001)
                     ->step(1)
-                    ->placeholder(fn (Get $get): string => $get('ticket_duration') === '3_days' ? 'e.g. 70' : 'e.g. 50')
-                    ->helperText(fn (Get $get): string => $get('ticket_duration') === '3_days'
-                        ? 'Enter a whole number greater than 60.'
-                        : 'Enter a whole number greater than 40.')
+                    ->placeholder('e.g. 20000')
+                    ->helperText('Ha 15.000 Ft feletti összeggel szeretnél támogatni a rendezvényt. / If you would like to support the event with an amount exceeding 15,000 HUF.')
                     ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom')
                     ->live()
                     ->rules([
@@ -749,48 +745,40 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function calculateAmount(array $data): int
     {
-        $priceOption = $data['ticket_price_option'] ?? '20';
-        $duration = $data['ticket_duration'] ?? '1_day';
+        $priceOption = $data['ticket_price_option'] ?? '7500';
 
         if ($priceOption === 'custom') {
             $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
-            $minimum = $duration === '3_days' ? 61 : 41;
 
-            if ($customAmount < $minimum) {
-                throw new Exception("Custom amount must be at least €{$minimum}.");
+            if ($customAmount < 15001) {
+                throw new Exception('Custom amount must be at least 15,001 Ft.');
             }
 
             return $customAmount * 100;
         }
 
         return match ($priceOption) {
-            '30' => 3000,
-            '40' => 4000,
-            '60' => 6000,
-            default => 2000,
+            '15000' => 1500000,
+            default => 750000,
         };
     }
 
     public function getFormattedPrice(): string
     {
         $data = $this->data ?? [];
-        $priceOption = $data['ticket_price_option'] ?? '20';
-        $duration = $data['ticket_duration'] ?? '1_day';
+        $priceOption = $data['ticket_price_option'] ?? '7500';
 
         if ($priceOption === 'custom') {
             $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
-            $minimum = $duration === '3_days' ? 61 : 41;
-            $amountCents = $customAmount >= $minimum ? $customAmount * 100 : 0;
+            $amountCents = $customAmount >= 15001 ? $customAmount * 100 : 0;
         } else {
             $amountCents = match ($priceOption) {
-                '30' => 3000,
-                '40' => 4000,
-                '60' => 6000,
-                default => 2000,
+                '15000' => 1500000,
+                default => 750000,
             };
         }
 
-        return Number::currency($amountCents / 100, 'EUR');
+        return Number::currency($amountCents / 100, 'HUF', 'hu', precision: 0);
     }
 
     public function render(): Factory|View

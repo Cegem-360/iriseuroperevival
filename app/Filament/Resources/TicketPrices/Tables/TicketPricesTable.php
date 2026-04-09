@@ -42,7 +42,7 @@ class TicketPricesTable
                 TextColumn::make('label')
                     ->searchable(),
                 TextColumn::make('price')
-                    ->formatStateUsing(fn ($state): string => Number::currency($state / 100, 'EUR'))
+                    ->formatStateUsing(fn ($state): string => Number::currency($state / 100, 'HUF', 'hu', precision: 0))
                     ->sortable(),
                 IconColumn::make('is_active')
                     ->boolean()

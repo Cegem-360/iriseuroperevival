@@ -55,7 +55,7 @@
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-right font-medium">
-                                        {{ Number::currency($item['total'] / 100, 'EUR') }}
+                                        {{ Number::currency($item['total'] / 100, 'HUF', 'hu', precision: 0) }}
                                     </td>
                                     <td class="px-4 py-4 text-right">
                                         <flux:button wire:click="removeItem({{ $item['product']->id }})" size="sm" variant="ghost">
@@ -82,7 +82,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between">
                             <span class="text-zinc-600 dark:text-zinc-400">Subtotal</span>
-                            <span>{{ Number::currency($this->subtotal / 100, 'EUR') }}</span>
+                            <span>{{ Number::currency($this->subtotal / 100, 'HUF', 'hu', precision: 0) }}</span>
                         </div>
 
                         @if($this->promotionCode)
@@ -91,14 +91,14 @@
                                     Discount ({{ $this->promotionCode->code }})
                                     <button wire:click="removePromoCode" class="ml-1 text-xs text-red-500 hover:underline">[remove]</button>
                                 </span>
-                                <span>-{{ Number::currency($this->discount / 100, 'EUR') }}</span>
+                                <span>-{{ Number::currency($this->discount / 100, 'HUF', 'hu', precision: 0) }}</span>
                             </div>
                         @endif
 
                         <div class="border-t border-zinc-200 pt-3 dark:border-zinc-700">
                             <div class="flex justify-between text-lg font-bold">
                                 <span>Total</span>
-                                <span>{{ Number::currency($this->total / 100, 'EUR') }}</span>
+                                <span>{{ Number::currency($this->total / 100, 'HUF', 'hu', precision: 0) }}</span>
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,6 @@ use App\Models\Faq;
 use App\Models\ScheduleItem;
 use App\Models\Speaker;
 use App\Models\Sponsor;
-use App\Models\TicketPrice;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
@@ -104,17 +103,6 @@ class HomeAlt extends Component
                 'items' => $items,
             ];
         });
-    }
-
-    #[Computed]
-    public function ticketPrices(): SupportCollection
-    {
-        return TicketPrice::query()
-            ->active()
-            ->whereIn('ticket_type', ['1day', '3day', 'group'])
-            ->get()
-            ->groupBy('pricing_tier')
-            ->map(fn ($tierPrices) => $tierPrices->pluck('price_in_euros', 'ticket_type'));
     }
 
     public function render(): View
