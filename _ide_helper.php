@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 12.54.1.
+ * Generated for Laravel 12.56.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15829,6 +15829,18 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
+         * Determine if the current request is asking for Markdown.
+         *
+         * @return bool
+         * @static
+         */
+        public static function wantsMarkdown()
+        {
+            /** @var \Illuminate\Http\Request $instance */
+            return $instance->wantsMarkdown();
+        }
+
+        /**
          * Determines whether the current requests accepts a given content type.
          *
          * @param string|array $contentTypes
@@ -15876,6 +15888,18 @@ namespace Illuminate\Support\Facades {
         {
             /** @var \Illuminate\Http\Request $instance */
             return $instance->acceptsJson();
+        }
+
+        /**
+         * Determines whether a request accepts Markdown.
+         *
+         * @return bool
+         * @static
+         */
+        public static function acceptsMarkdown()
+        {
+            /** @var \Illuminate\Http\Request $instance */
+            return $instance->acceptsMarkdown();
         }
 
         /**
@@ -23339,41 +23363,6 @@ namespace Illuminate\Support\Facades {
             }
     }
 
-namespace AnourValar\EloquentSerialize\Facades {
-    /**
-     */
-    class EloquentSerializeFacade {
-        /**
-         * Pack
-         *
-         * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Relations\Relation $builder
-         * @return string
-         * @throws \RuntimeException
-         * @static
-         */
-        public static function serialize($builder)
-        {
-            /** @var \AnourValar\EloquentSerialize\Service $instance */
-            return $instance->serialize($builder);
-        }
-
-        /**
-         * Unpack
-         *
-         * @param mixed $package
-         * @throws \LogicException
-         * @return \Illuminate\Database\Eloquent\Builder
-         * @static
-         */
-        public static function unserialize($package)
-        {
-            /** @var \AnourValar\EloquentSerialize\Service $instance */
-            return $instance->unserialize($package);
-        }
-
-            }
-    }
-
 namespace Fruitcake\LaravelDebugbar\Facades {
     /**
      * @method static void            alert(mixed $message)
@@ -23387,7 +23376,7 @@ namespace Fruitcake\LaravelDebugbar\Facades {
      * @method static void            warning(mixed $message)
      * @see \Fruitcake\LaravelDebugbar\LaravelDebugbar
      */
-    class Debugbar extends \DebugBar\DebugBar {
+    class Debugbar {
         /**
          * @static
          */
@@ -24143,6 +24132,15 @@ namespace Flux {
         {
             /** @var \Flux\FluxManager $instance */
             return $instance->markAssetsRendered();
+        }
+
+        /**
+         * @static
+         */
+        public static function nonce()
+        {
+            /** @var \Flux\FluxManager $instance */
+            return $instance->nonce();
         }
 
         /**
@@ -33043,6 +33041,20 @@ namespace  {
         }
 
         /**
+         * Add an "order by" clause to order results by a given sequence of values.
+         *
+         * @param \Illuminate\Contracts\Database\Query\Expression|string $column
+         * @param \Illuminate\Contracts\Support\Arrayable|array $values
+         * @return \Illuminate\Database\Eloquent\Builder<static>
+         * @static
+         */
+        public static function inOrderOf($column, $values)
+        {
+            /** @var \Illuminate\Database\Query\Builder $instance */
+            return $instance->inOrderOf($column, $values);
+        }
+
+        /**
          * Add a raw "order by" clause to the query.
          *
          * @param string $sql
@@ -34208,7 +34220,6 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
     class View extends \Illuminate\Support\Facades\View {}
     class Vite extends \Illuminate\Support\Facades\Vite {}
-    class EloquentSerialize extends \AnourValar\EloquentSerialize\Facades\EloquentSerializeFacade {}
     class Debugbar extends \Fruitcake\LaravelDebugbar\Facades\Debugbar {}
     class Flux extends \Flux\Flux {}
     class Livewire extends \Livewire\Livewire {}

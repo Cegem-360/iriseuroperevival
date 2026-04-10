@@ -358,11 +358,11 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
-                            '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0) . ' (~€' . Number::currency(15000 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
+                            '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(15000 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
                             'custom' => 'Custom amount (HUF 15,000)',
                         ]
                         : [
-                            '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0) . ' (~€' . Number::currency(7500 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
+                            '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(7500 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
                             'custom' => 'Custom amount (HUF 7,500)',
                         ])
                     ->descriptions(fn (Get $get): array => $get('ticket_duration') === '3_days'
