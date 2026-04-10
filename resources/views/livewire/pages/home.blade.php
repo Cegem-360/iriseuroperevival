@@ -549,7 +549,7 @@
                         if (this.selected === 'custom' && this.custom) url += '&amount=' + this.custom;
                         return url;
                     }, get valid() {
-                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 15000);
+                        return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 7500);
                     } }"
                     class="bg-(--alt-navy-dark)/40 border border-(--alt-beige)/15 rounded-3xl p-8 relative overflow-hidden flex flex-col">
                     <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">1-Day Pass</h3>
@@ -561,7 +561,7 @@
                                 :class="selected === '7500' ? 'border-(--alt-beige) bg-(--alt-beige)' : 'border-(--alt-beige)/30 group-hover:border-(--alt-beige)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === '7500'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '7500' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">{{ Number::currency(7500, 'HUF', app()->getLocale(), 0) }}</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '7500' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">{{ Number::currency(7500, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(7500 / 400)) }})</span></span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
@@ -572,12 +572,13 @@
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-(--alt-navy)/50 border border-(--alt-beige)/10 rounded-xl px-3 py-2">
-                                <input type="number" x-model="custom" min="15001" step="1" placeholder="Enter amount"
+                                <input type="number" x-model="custom" min="7501" step="1" placeholder="Enter amount"
                                     class="bg-transparent text-(--alt-beige) placeholder-(--alt-beige-muted)/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                 <span class="text-(--alt-beige-muted) font-medium shrink-0">HUF</span>
+                                <span x-show="custom" class="text-(--alt-beige-muted)/60 text-sm shrink-0" x-text="'(~€' + Math.round(parseInt(custom || 0) / 400) + ')'"></span>
                             </div>
-                            <p class="text-(--alt-beige-muted) text-xs mt-1">If you would like to support the event with an amount exceeding {{ Number::currency(15000, 'HUF', app()->getLocale(), 0) }}.</p>
-                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum {{ Number::currency(15001, 'HUF', app()->getLocale(), 0) }}</p>
+                            <p class="text-(--alt-beige-muted) text-xs mt-1">If you would like to support the event with an amount exceeding {{ Number::currency(7500, 'HUF', app()->getLocale(), 0) }}.</p>
+                            <p x-show="custom && parseInt(custom) <= 7500" class="text-red-400 text-xs mt-1">Minimum {{ Number::currency(7501, 'HUF', app()->getLocale(), 0) }}</p>
                         </div>
                     </div>
 
@@ -605,7 +606,7 @@
                                 :class="selected === '15000' ? 'border-(--alt-gold) bg-(--alt-gold)' : 'border-(--alt-gold)/30 group-hover:border-(--alt-gold)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === '15000'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '15000' ? 'text-(--alt-gold)' : 'text-white/50'">{{ Number::currency(15000, 'HUF', app()->getLocale(), 0) }}</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '15000' ? 'text-(--alt-gold)' : 'text-white/50'">{{ Number::currency(15000, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(15000 / 400)) }})</span></span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
@@ -619,6 +620,7 @@
                                 <input type="number" x-model="custom" min="15001" step="1" placeholder="Enter amount"
                                     class="bg-transparent text-(--alt-gold) placeholder-(--alt-gold)/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                 <span class="text-(--alt-beige-muted) font-medium shrink-0">HUF</span>
+                                <span x-show="custom" class="text-(--alt-beige-muted)/60 text-sm shrink-0" x-text="'(~€' + Math.round(parseInt(custom || 0) / 400) + ')'"></span>
                             </div>
                             <p class="text-(--alt-beige-muted) text-xs mt-1">If you would like to support the event with an amount exceeding {{ Number::currency(15000, 'HUF', app()->getLocale(), 0) }}.</p>
                             <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum {{ Number::currency(15001, 'HUF', app()->getLocale(), 0) }}</p>

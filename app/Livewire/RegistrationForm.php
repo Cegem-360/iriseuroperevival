@@ -358,12 +358,12 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
-                            '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0),
+                            '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0) . ' (~€' . Number::currency(15000 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
                             'custom' => 'Custom amount (HUF 15,000)',
                         ]
                         : [
-                            '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0),
-                            'custom' => 'Custom amount (HUF 15 000)',
+                            '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0) . ' (~€' . Number::currency(7500 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
+                            'custom' => 'Custom amount (HUF 7,500)',
                         ])
                     ->descriptions(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
@@ -378,13 +378,13 @@ class RegistrationForm extends Component implements HasSchemas
                     ->live(),
 
                 TextInput::make('ticket_custom_amount')
-                    ->label('Custom Amount (Ft)')
+                    ->label('Custom Amount (HUF)')
                     ->numeric()
                     ->required()
-                    ->minValue(15001)
+                    ->minValue(fn (Get $get): int => $get('ticket_duration') === '3_days' ? 15001 : 7501)
                     ->step(1)
                     ->placeholder('e.g. 20000')
-                    ->helperText(__('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0)]))
+                    ->helperText(fn (Get $get): string => __('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency($get('ticket_duration') === '3_days' ? 15000 : 7500, 'HUF', app()->getLocale(), precision: 0)]))
                     ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom')
                     ->live()
                     ->integer(),
