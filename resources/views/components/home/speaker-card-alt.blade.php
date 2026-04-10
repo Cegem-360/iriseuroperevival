@@ -59,10 +59,8 @@
     {{-- Mobile Bio Button --}}
     @if ($speaker->bio)
         <button @click.prevent="bioOpen = true"
-            class="lg:hidden absolute top-3 right-3 z-20 w-9 h-9 bg-(--alt-navy-deeper)/70 backdrop-blur-sm rounded-full flex items-center justify-center border border-(--alt-beige)/20">
-            <svg class="w-4 h-4 text-(--alt-beige)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            class="lg:hidden absolute top-6 right-3 z-20 px-4 py-2 bg-sky-700 rounded-full flex items-center justify-center shadow-md">
+            <span class="text-white text-sm font-heading font-bold uppercase tracking-wider">Bio</span>
         </button>
     @endif
 
