@@ -359,11 +359,11 @@ class RegistrationForm extends Component implements HasSchemas
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
                             '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(15000 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
-                            'custom' => 'Custom amount (HUF 15,000)',
+                            'custom' => 'Custom amount',
                         ]
                         : [
                             '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(7500 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
-                            'custom' => 'Custom amount (HUF 7,500)',
+                            'custom' => 'Custom amount',
                         ])
                     ->descriptions(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
@@ -607,12 +607,14 @@ class RegistrationForm extends Component implements HasSchemas
     protected function calculateAmount(array $data): int
     {
         $priceOption = $data['ticket_price_option'] ?? '7500';
+        $ticketDuration = $data['ticket_duration'] ?? '1_day';
 
         if ($priceOption === 'custom') {
             $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
+            $minAmount = $ticketDuration === '3_days' ? 15001 : 7501;
 
-            if ($customAmount < 15001) {
-                throw new Exception('Custom amount must be at least 15,001 Ft.');
+            if ($customAmount < $minAmount) {
+                throw new Exception("Custom amount must be at least {$minAmount} Ft.");
             }
 
             return $customAmount * 100;
@@ -631,7 +633,9 @@ class RegistrationForm extends Component implements HasSchemas
 
         if ($priceOption === 'custom') {
             $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
-            $amountCents = $customAmount >= 15001 ? $customAmount * 100 : 0;
+            $ticketDuration = $data['ticket_duration'] ?? '1_day';
+            $minAmount = $ticketDuration === '3_days' ? 15001 : 7501;
+            $amountCents = $customAmount >= $minAmount ? $customAmount * 100 : 0;
         } else {
             $amountCents = match ($priceOption) {
                 '15000' => 1500000,

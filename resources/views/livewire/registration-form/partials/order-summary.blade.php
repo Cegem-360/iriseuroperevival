@@ -5,9 +5,11 @@
     $priceOption = $data['ticket_price_option'] ?? '7500';
     $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
 
+    $minCustom = $ticketDuration === '3_days' ? 15000 : 7500;
+
     $amountHuf = match ($priceOption) {
         '15000' => 15000,
-        'custom' => $customAmount > 15000 ? $customAmount : 0,
+        'custom' => $customAmount > $minCustom ? $customAmount : 0,
         default => 7500,
     };
 
