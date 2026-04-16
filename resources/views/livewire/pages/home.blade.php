@@ -6,8 +6,8 @@
         {{-- Background: Illustrated Budapest collage --}}
         <div class="absolute inset-0 z-0">
             <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/iris-hero-bg.webp') }}" alt=""
-                class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-linear-to-b from-(--alt-navy-deeper)/40 via-(--alt-navy-deeper)/15 to-(--alt-navy-deeper)/80"></div>
+                class="absolute inset-x-0 -top-[20%] w-full h-[120%] object-cover">
+            <div class="absolute inset-0 bg-linear-to-b from-(--alt-navy-deeper)/40 from-0% via-(--alt-navy-deeper)/0 via-20% to-(--alt-navy-deeper)/20 to-100%"></div>
             {{-- Film Grain Texture --}}
             <div class="absolute inset-0 opacity-10"
                 style="background-image: url('{{ Vite::asset('resources/images/alt-style/backgrounds/film-grain-background.webp') }}'); background-size: cover; mix-blend-mode: overlay;">
@@ -16,13 +16,15 @@
 
         {{-- Hero Content --}}
         <div class="relative z-10 flex flex-col items-center max-w-5xl mx-auto px-4 pt-28 pb-16 text-center">
-            {{-- Date & Venue Badge --}}
-            <div class="mb-8 animate-fade-in">
-                <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-(--alt-navy-deeper)/40 backdrop-blur-sm border border-(--alt-beige)/20 rounded-full">
-
-                    <span class="text-(--alt-beige) text-base md:text-lg font-heading font-semibold uppercase tracking-wider">October 23-25, 2026 &bull; Budapest, BOK Hall</span>
-                </div>
+            {{-- Date & Venue --}}
+            <div class="mb-12 animate-fade-in">
+                <span class="text-[var(--alt-beige)] text-base md:text-xl font-heading font-semibold uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">October 23-25, 2026 &bull; Budapest, BOK Hall</span>
             </div>
+
+            {{-- Description --}}
+            <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
+                A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.
+            </p>
 
             {{-- Title Image --}}
             <div class="mb-8 animate-fade-in-up">
@@ -35,20 +37,15 @@
             <h1 class="sr-only">Europe Revival Budapest 2026</h1>
 
             {{-- Scripture Verse --}}
-            <p class="font-winter text-xl md:text-2xl text-(--alt-beige)/90 max-w-2xl mx-auto mb-6 animate-fade-in-up">
+            <p class="font-winter text-xl md:text-2xl text-neutral-900 max-w-2xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
                 &ldquo;No eye has seen, no ear has heard, no mind has imagined what the Lord has prepared for those who love Him.&rdquo;
-            </p>
-
-            {{-- Description --}}
-            <p class="text-lg md:text-2xl text-(--alt-beige) max-w-3xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.
             </p>
 
             {{-- CTA Buttons --}}
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-in-up"
                 style="animation-delay: 0.1s;">
                 <a href="{{ route('register') }}"
-                    class="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) hover:from-(--alt-gold-light) hover:to-(--alt-gold) text-(--alt-navy-deeper) font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
                     Register Now
                     <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -62,7 +59,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                     </span>
-                    See the Vision
+                    Vision
                 </button>
             </div>
 
@@ -141,7 +138,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
                             </svg>
                         </div>
-                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">Coming Soon</p>
+                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">and more to be announced</p>
                     </div>
                 </div>
             </div>
@@ -155,14 +152,14 @@
     <section id="worship" class="py-24 bg-(--alt-navy) relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
             {{-- Deep Worship header image with title overlay --}}
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-(--alt-beige)/10 mb-12">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-(--alt-beige)/10 mb-12 h-48 md:h-60 lg:h-72 max-w-3xl mx-auto">
                 <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-bg.webp') }}"
                     alt="Deep Worship — Inspired Prayer"
-                    class="w-full object-cover">
-                <div class="absolute inset-0 flex items-end justify-center pb-[20%] px-8">
+                    class="absolute inset-0 w-full h-full object-cover object-bottom">
+                <div class="absolute inset-0 flex items-center justify-center px-8">
                     <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-title.webp') }}"
                         alt="The nations gather — Deep Worship, Inspired Prayer"
-                        class="max-w-lg md:max-w-xl lg:max-w-2xl w-full">
+                        class="max-w-56 md:max-w-sm lg:max-w-md w-full">
                 </div>
             </div>
 
@@ -173,12 +170,10 @@
                     @php $awakeningTeam = $this->worshipTeams->first(); @endphp
                     <a href="{{ route('speaker.show', $awakeningTeam->slug) }}"
                         class="group relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark) hover:border-(--alt-gold)/30 transition-all duration-300" style="aspect-ratio: 16/9;">
-                        @if ($awakeningTeam->photo_path)
-                            <img src="{{ Vite::asset('resources/' . $awakeningTeam->photo_path) }}"
-                                alt="{{ $awakeningTeam->name }}"
-                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
-                        @endif
+                        <img src="{{ Vite::asset('resources/images/alt-style/awakeningmusic.webp') }}"
+                            alt="{{ $awakeningTeam->name }}"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-5">
                             <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $awakeningTeam->name }}</h4>
                             @if ($awakeningTeam->organization)
@@ -188,17 +183,34 @@
                     </a>
                 @endif
 
-                {{-- Coming Soon placeholder --}}
-                <div class="relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark)/50 flex items-center justify-center" style="aspect-ratio: 16/9;">
-                    <div class="text-center p-6">
-                        <div class="w-14 h-14 bg-(--alt-gold)/10 rounded-full flex items-center justify-center mx-auto mb-3 border border-(--alt-gold)/20">
-                            <svg class="w-7 h-7 text-(--alt-gold)/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
-                            </svg>
+                {{-- Mountain People Worship --}}
+                @if ($this->worshipTeams->count() > 1)
+                    @php $mountainTeam = $this->worshipTeams->get(1); @endphp
+                    <a href="{{ route('speaker.show', $mountainTeam->slug) }}"
+                        class="group relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark) hover:border-(--alt-gold)/30 transition-all duration-300" style="aspect-ratio: 16/9;">
+                        <img src="{{ Vite::asset('resources/images/alt-style/mountainpeopleworship.webp') }}"
+                            alt="{{ $mountainTeam->name }}"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $mountainTeam->name }}</h4>
+                            @if ($mountainTeam->organization)
+                                <p class="text-(--alt-beige-muted) text-sm">{{ $mountainTeam->organization }}</p>
+                            @endif
                         </div>
-                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">Coming Soon</p>
+                    </a>
+                @else
+                    {{-- Fallback if Mountain People Worship not in DB yet --}}
+                    <div class="group relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark)" style="aspect-ratio: 16/9;">
+                        <img src="{{ Vite::asset('resources/images/alt-style/mountainpeopleworship.webp') }}"
+                            alt="Mountain People Worship"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">Mountain People Worship</h4>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </section>
@@ -234,7 +246,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
                                 </svg>
                             </div>
-                            <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">Coming Soon</p>
+                            <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">and more to be announced</p>
                         </div>
                     </div>
                 </div>
@@ -265,7 +277,7 @@
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4">
-            <div>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="max-w-2xl">
                     {{-- Script-style heading like the promo video --}}
                     <p class="font-script text-(--alt-gold-light) text-5xl md:text-7xl mb-2">encounter Jesus</p>
@@ -324,6 +336,36 @@
                     </blockquote>
                 </div>
 
+                {{-- Promo Video (same as hero section) --}}
+                <div class="relative w-full bg-(--alt-gold)/15 backdrop-blur-sm rounded-3xl p-4 border border-(--alt-gold)/30" x-data="{ playing: false }">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 aspect-video">
+                        {{-- Thumbnail --}}
+                        <template x-if="!playing">
+                            <div class="absolute inset-0 cursor-pointer" @click="playing = true">
+                                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
+                                    alt="Europe Revival 2026"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/5 flex items-center justify-center">
+                                    <div class="w-20 h-20 bg-(--alt-beige)/10 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-(--alt-beige)/20 hover:scale-110 transition-transform duration-300">
+                                        <svg class="w-8 h-8 text-(--alt-beige) ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        {{-- YouTube Embed --}}
+                        <template x-if="playing">
+                            <iframe
+                                src="https://www.youtube.com/embed/7OXlvlUA2GA?autoplay=1&rel=0"
+                                class="absolute inset-0 w-full h-full"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
+                        </template>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

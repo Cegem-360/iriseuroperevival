@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-mWwuhT9I.css",
+    "file": "assets/app-CP6NLIbY.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -11,6 +11,10 @@
   "resources/images/ER-colours.jpg": {
     "file": "assets/ER-colours-ChCmU5s8.jpg",
     "src": "resources/images/ER-colours.jpg"
+  },
+  "resources/images/alt-style/awakeningmusic.webp": {
+    "file": "assets/awakeningmusic-Cxc_nRK6.webp",
+    "src": "resources/images/alt-style/awakeningmusic.webp"
   },
   "resources/images/alt-style/backgrounds/15258.webp": {
     "file": "assets/15258-OmzFeCGT.webp",
@@ -48,8 +52,12 @@
     "file": "assets/deep-worship-bg-DjbKO159.webp",
     "src": "resources/images/alt-style/backgrounds/deep-worship-bg.webp"
   },
+  "resources/images/alt-style/backgrounds/deep-worship-title-trimmed.webp": {
+    "file": "assets/deep-worship-title-trimmed-B7sB3w_4.webp",
+    "src": "resources/images/alt-style/backgrounds/deep-worship-title-trimmed.webp"
+  },
   "resources/images/alt-style/backgrounds/deep-worship-title.webp": {
-    "file": "assets/deep-worship-title-Bap5Kk2X.webp",
+    "file": "assets/deep-worship-title-B_0y3UIV.webp",
     "src": "resources/images/alt-style/backgrounds/deep-worship-title.webp"
   },
   "resources/images/alt-style/backgrounds/europe-revival-bp-2026.webp": {
@@ -95,6 +103,10 @@
   "resources/images/alt-style/image.webp": {
     "file": "assets/image-C_mSIH4_.webp",
     "src": "resources/images/alt-style/image.webp"
+  },
+  "resources/images/alt-style/mountainpeopleworship.webp": {
+    "file": "assets/mountainpeopleworship-nF7ooVux.webp",
+    "src": "resources/images/alt-style/mountainpeopleworship.webp"
   },
   "resources/images/alt-style/speakers/speaker-gava.webp": {
     "file": "assets/speaker-gava-CfPuWDHF.webp",
@@ -179,6 +191,10 @@
   "resources/images/iris-krakow-logo.webp": {
     "file": "assets/iris-krakow-logo-DB4GZThO.webp",
     "src": "resources/images/iris-krakow-logo.webp"
+  },
+  "resources/images/iris-logo-white.webp": {
+    "file": "assets/iris-logo-white-DhDQ9oRw.webp",
+    "src": "resources/images/iris-logo-white.webp"
   },
   "resources/images/iris-logo.webp": {
     "file": "assets/iris-logo-ZTjscbN6.webp",
