@@ -29,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('probalkozz')
             ->login(Login::class)
             ->profile(EditProfile::class, isSimple: false)
             ->brandName('Europe Revival 2026')
