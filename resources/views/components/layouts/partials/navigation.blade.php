@@ -15,14 +15,18 @@
         <nav class="flex items-center justify-between h-24">
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="shrink-0">
-                <img src="{{ Vite::asset('resources/images/europe-revival-2026-logo.webp') }}"
+                <img src="{{ Vite::asset('resources/images/iris-logo-white.webp') }}"
                      alt="Europe Revival 2026"
-                     class="h-16 md:h-20 transition-all duration-300"
-                     :class="scrolled ? 'h-12 md:h-14' : 'h-16 md:h-20'"
+                     class="h-10 md:h-12 opacity-90 transition-all duration-300"
+                     :class="scrolled ? 'h-8 md:h-10' : 'h-10 md:h-12'"
             </a>
 
             {{-- Desktop Navigation --}}
             <div class="hidden lg:flex items-center gap-8">
+                <a href="#" @click.prevent="$dispatch('open-vision-modal')" class="text-white/70 hover:text-white font-medium text-base transition-colors relative group">
+                    {{ __('Vision') }}
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
+                </a>
                 <a href="{{ route('home') }}#speakers" class="text-white/70 hover:text-white font-medium text-base transition-colors relative group">
                     {{ __('Speakers') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
@@ -52,7 +56,7 @@
 
                 {{-- Register Button --}}
                 <a href="{{ route('register') }}"
-                   class="group inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-primary-400 to-primary-600 hover:from-primary-500 hover:to-primary-700 text-navy-900 font-semibold text-base rounded-full transition-all duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30">
+                   class="group inline-flex items-center gap-2 px-6 py-2.5 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-semibold text-base rounded-full transition-all duration-300 shadow-lg shadow-[#EE9B14]/20 hover:shadow-[#EE9B14]/30">
                     {{ __('Register Now') }}
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
@@ -84,6 +88,7 @@
          class="lg:hidden bg-navy-950/98 backdrop-blur-xl border-t border-white/5"
          style="display: none;">
         <div class="max-w-7xl mx-auto px-4 py-6 space-y-4">
+            <button @click="$dispatch('open-vision-modal'); mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5 w-full text-left">{{ __('Vision') }}</button>
             <a href="{{ route('home') }}#speakers" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Speakers') }}</a>
             <a href="{{ route('home') }}#workshops" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
             <a href="{{ route('home') }}#schedule" @click="mobileMenuOpen = false" class="block py-3 text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
@@ -98,7 +103,7 @@
             {{-- Mobile CTA --}}
             <div class="pt-4">
                 <a href="{{ route('register') }}" @click="mobileMenuOpen = false"
-                   class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-linear-to-r from-primary-400 to-primary-600 text-navy-900 font-bold rounded-full">
+                   class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-bold rounded-full">
                     {{ __('Register Now') }}
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
