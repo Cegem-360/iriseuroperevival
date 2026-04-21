@@ -28385,11 +28385,20 @@ namespace App\Filament\Resources\Workshops\Pages {
 namespace App\Filament\Pages\Auth {
     /**
      */
+    class EditProfile extends \Filament\Auth\Pages\EditProfile {
+            }
+    /**
+     */
     class Login extends \Filament\Auth\Pages\Login {
             }
     }
 
 namespace Filament\Auth\Pages {
+    /**
+     * @property-read Schema $form
+     */
+    class EditProfile extends \Filament\Pages\Page {
+            }
     /**
      * @property-read Action $registerAction
      * @property-read Schema $form
