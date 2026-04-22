@@ -9,6 +9,7 @@ use App\Mail\OrderConfirmation;
 use App\Mail\PaymentConfirmation;
 use App\Mail\RefundProcessed;
 use App\Mail\RegistrationConfirmation;
+use App\Mail\TicketPurchaseConfirmation;
 use App\Models\Order;
 use App\Models\Registration;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -84,6 +85,28 @@ it('renders payment confirmation email', function (): void {
 
     $mailable->assertSeeInHtml($registration->first_name);
     $mailable->assertSeeInHtml($registration->uuid);
+});
+
+it('renders ticket purchase confirmation email', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'attendee',
+        'first_name' => 'Anna',
+        'ticket_type' => '1_day',
+        'amount' => 17500,
+        'paid_at' => now(),
+    ]);
+
+    $mailable = new TicketPurchaseConfirmation($registration);
+
+    $mailable->assertSeeInHtml($registration->first_name);
+    $mailable->assertSeeInHtml($registration->uuid);
+    $mailable->assertHasSubject(__('Thank you for your ticket purchase — Europe Revival 2026'));
+});
+
+it('queues ticket purchase confirmation email', function (): void {
+    $mailable = new TicketPurchaseConfirmation(Registration::factory()->create());
+
+    expect($mailable)->toBeInstanceOf(ShouldQueue::class);
 });
 
 it('renders refund processed email', function (): void {

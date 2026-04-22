@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Mail\MinistryApplicationApproved;
 use App\Mail\MinistryApplicationRejected;
 use App\Mail\PaymentConfirmation;
+use App\Mail\TicketPurchaseConfirmation;
 use App\Mail\VolunteerApplicationApproved;
 use App\Mail\VolunteerApplicationRejected;
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -314,6 +315,10 @@ class Registration extends Model
 
         if ($saved) {
             Mail::to($this->email)->queue(new PaymentConfirmation($this));
+
+            if ($this->type === 'attendee') {
+                Mail::to($this->email)->queue(new TicketPurchaseConfirmation($this));
+            }
         }
 
         return $saved;
