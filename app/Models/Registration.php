@@ -43,6 +43,7 @@ class Registration extends Model
         'ticket_type',
         'ticket_quantity',
         'amount',
+        'is_test',
 
         // Volunteer Service Fields
         'service_areas',
@@ -189,6 +190,12 @@ class Registration extends Model
     protected function byCountry($query, string $country)
     {
         return $query->where('country', $country);
+    }
+
+    #[Scope]
+    protected function notTest($query)
+    {
+        return $query->where('is_test', false);
     }
 
     protected function fullName(): Attribute
@@ -341,6 +348,7 @@ class Registration extends Model
             'is_born_again' => 'boolean',
             'is_spirit_filled' => 'boolean',
             'attended_ministry_school' => 'boolean',
+            'is_test' => 'boolean',
             'amount' => 'decimal:2',
             'paid_at' => 'datetime',
             'approved_at' => 'datetime',
