@@ -13,10 +13,7 @@
         default => 7500,
     };
 
-    $durationLabel = match ($ticketDuration) {
-        '3_days' => '3 Day Supporter Pass',
-        default => '1 Day Supporter Pass',
-    };
+    $durationLabel = \App\Models\Registration::formatTicketType($ticketDuration);
 @endphp
 
 <div class="space-y-4">

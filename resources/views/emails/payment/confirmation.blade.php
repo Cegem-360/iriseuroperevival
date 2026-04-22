@@ -10,7 +10,7 @@
 
 **{{ __('Reference Number') }}:** {{ $registration->uuid }}
 **{{ __('Name') }}:** {{ $registration->full_name }}
-**{{ __('Ticket Type') }}:** {{ ucfirst($registration->ticket_type ?? 'Standard') }}
+**{{ __('Ticket Type') }}:** {{ $registration->formatted_ticket_type }}
 **{{ __('Total') }}:** {{ $registration->formatted_amount }}
 **{{ __('Payment Date') }}:** {{ $registration->paid_at->format('F j, Y') }}
 </x-mail::panel>

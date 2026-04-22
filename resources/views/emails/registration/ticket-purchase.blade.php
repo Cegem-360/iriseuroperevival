@@ -11,7 +11,7 @@
 **{{ __('Reference Number') }}:** {{ $registration->uuid }}
 **{{ __('Name') }}:** {{ $registration->full_name }}
 **{{ __('Email') }}:** {{ $registration->email }}
-**{{ __('Ticket Type') }}:** {{ ucfirst($registration->ticket_type ?? 'Standard') }}
+**{{ __('Ticket Type') }}:** {{ $registration->formatted_ticket_type }}
 @if($registration->amount)
 **{{ __('Total') }}:** {{ $registration->formatted_amount }}
 @endif

@@ -229,6 +229,22 @@ class Registration extends Model
         return Attribute::make(get: fn (): string => Number::currency($this->amount / 100, 'HUF', app()->getLocale(), precision: 0));
     }
 
+    protected function formattedTicketType(): Attribute
+    {
+        return Attribute::make(get: fn (): string => self::formatTicketType($this->ticket_type));
+    }
+
+    public static function formatTicketType(?string $ticketType): string
+    {
+        return match ($ticketType) {
+            '1_day' => '1 Day Supporter Pass',
+            '3_days' => '3 Day Supporter Pass',
+            'individual' => 'Individual Pass',
+            'team' => 'Team Pass',
+            default => 'Standard Pass',
+        };
+    }
+
     protected function statusBadge(): Attribute
     {
         return Attribute::make(get: fn (): string => match ($this->status) {

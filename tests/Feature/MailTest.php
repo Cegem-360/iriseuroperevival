@@ -72,11 +72,11 @@ it('renders ministry application rejected email with reason', function (): void 
     $mailable->assertSeeInHtml('Incomplete application');
 });
 
-it('renders payment confirmation email', function (): void {
+it('renders payment confirmation email with human-readable ticket type', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'attendee',
         'first_name' => 'John',
-        'ticket_type' => 'team',
+        'ticket_type' => '1_day',
         'amount' => 25000,
         'paid_at' => now(),
     ]);
@@ -85,13 +85,15 @@ it('renders payment confirmation email', function (): void {
 
     $mailable->assertSeeInHtml($registration->first_name);
     $mailable->assertSeeInHtml($registration->uuid);
+    $mailable->assertSeeInHtml('1 Day Supporter Pass');
+    $mailable->assertDontSeeInHtml('1_day');
 });
 
-it('renders ticket purchase confirmation email', function (): void {
+it('renders ticket purchase confirmation email with human-readable ticket type', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'attendee',
         'first_name' => 'Anna',
-        'ticket_type' => '1_day',
+        'ticket_type' => '3_days',
         'amount' => 17500,
         'paid_at' => now(),
     ]);
@@ -100,6 +102,8 @@ it('renders ticket purchase confirmation email', function (): void {
 
     $mailable->assertSeeInHtml($registration->first_name);
     $mailable->assertSeeInHtml($registration->uuid);
+    $mailable->assertSeeInHtml('3 Day Supporter Pass');
+    $mailable->assertDontSeeInHtml('3_days');
     $mailable->assertHasSubject(__('Thank you for your ticket purchase — Europe Revival 2026'));
 });
 
