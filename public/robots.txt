@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /register/__internal/
+Disallow:

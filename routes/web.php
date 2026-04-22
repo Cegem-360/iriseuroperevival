@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\WebhookController;
-use App\Http\Middleware\EnsureInternalTestAccess;
 use App\Livewire\Pages\ActivitySignup;
 use App\Livewire\Pages\Dashboard;
 use App\Livewire\Pages\Home;
@@ -12,7 +11,6 @@ use App\Livewire\Pages\Privacy;
 use App\Livewire\Pages\Program;
 use App\Livewire\Pages\Register;
 use App\Livewire\Pages\RegisterCancel;
-use App\Livewire\Pages\RegisterInternalTest;
 use App\Livewire\Pages\RegisterSuccess;
 use App\Livewire\Pages\Shop\Cart as ShopCart;
 use App\Livewire\Pages\Shop\Checkout as ShopCheckout;
@@ -52,16 +50,6 @@ Route::prefix('register')->group(function (): void {
     Route::get('/volunteer', Register::class)
         ->defaults('type', 'volunteer')
         ->name('volunteer');
-
-    // Internal end-to-end live-payment test (admin-only, secret-token-gated, hidden).
-    // Returns 404 unless the requester is an authenticated admin AND the URL token
-    // matches config('internal_test.token'). Uses a separate, disposable Livewire
-    // component pair so the production registration flow is untouched. Rollback =
-    // delete these 4 files + this route block + migration rollback.
-    Route::get('/__internal/{secret}', RegisterInternalTest::class)
-        ->middleware(EnsureInternalTestAccess::class)
-        ->where('secret', '[A-Za-z0-9]+')
-        ->name('register.internal-test');
 
     // Success & Cancel Pages
     Route::get('/success/{uuid}', RegisterSuccess::class)->name('register.success');
