@@ -17,7 +17,7 @@ class Register extends Component
 
     public string $title = 'Register for Europe Revival 2026';
 
-    public string $subtitle = 'Choose your registration type and secure your spot';
+    public string $subtitle = 'Reserve your spot';
 
     public function mount(string $type = 'attendee'): void
     {
