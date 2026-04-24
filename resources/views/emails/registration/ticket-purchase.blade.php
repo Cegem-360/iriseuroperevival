@@ -26,5 +26,5 @@
 {{ __('Please keep this email for your records. You will receive further event information closer to the date.') }}
 
 {{ __('Thanks') }},<br>
-{{ config('app.name') }}
+Europe Revival 2026
 </x-mail::message>

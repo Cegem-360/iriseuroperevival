@@ -24,5 +24,5 @@
 {{ __('You will receive a confirmation email shortly') }}
 
 {{ __('Thanks') }},<br>
-{{ config('app.name') }}
+Europe Revival 2026
 </x-mail::message>
