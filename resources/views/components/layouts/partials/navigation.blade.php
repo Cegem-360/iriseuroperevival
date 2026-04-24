@@ -17,8 +17,8 @@
             <a href="{{ route('home') }}" class="shrink-0">
                 <img src="{{ Vite::asset('resources/images/iris-logo-white.webp') }}"
                      alt="Europe Revival 2026"
-                     class="h-10 md:h-12 opacity-90 transition-all duration-300"
-                     :class="scrolled ? 'h-8 md:h-10' : 'h-10 md:h-12'"
+                     class="h-16 md:h-18 opacity-90 transition-all duration-300"
+                     :class="scrolled ? 'h-12 md:h-14' : 'h-16 md:h-18'"
             </a>
 
             {{-- Desktop Navigation --}}
@@ -64,16 +64,22 @@
                 </a>
             </div>
 
-            {{-- Mobile Menu Button --}}
-            <button @click="mobileMenuOpen = !mobileMenuOpen"
-                    class="lg:hidden w-10 h-10 flex items-center justify-center text-white">
+            {{-- Mobile Register + Menu Button --}}
+            <div class="lg:hidden flex items-center gap-3">
+                <a href="{{ route('register') }}"
+                   class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-semibold text-sm rounded-full transition-all duration-300 shadow-lg shadow-[#EE9B14]/20">
+                    {{ __('Register Now') }}
+                </a>
+                <button @click="mobileMenuOpen = !mobileMenuOpen"
+                    class="w-10 h-10 flex items-center justify-center text-white">
                 <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
                 <svg x-show="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
-            </button>
+                </button>
+            </div>
         </nav>
     </div>
 

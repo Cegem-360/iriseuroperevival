@@ -97,13 +97,6 @@
         </div>
     </section>
 
-    {{-- Texture Transition --}}
-    <div class="h-24 bg-linear-to-b from-(--alt-navy-deeper) to-(--alt-navy-dark) relative overflow-hidden">
-        <div class="absolute inset-0 opacity-15"
-            style="background-image: url('{{ Vite::asset('resources/images/alt-style/backgrounds/film-grain-background.webp') }}'); background-size: cover; mix-blend-mode: overlay;">
-        </div>
-    </div>
-
     {{-- ============================================
     SPEAKERS SECTION
 ============================================= --}}
@@ -594,7 +587,7 @@
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 7500);
                     } }"
                     class="bg-(--alt-navy-dark)/40 border border-(--alt-beige)/15 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">1-Day Pass</h3>
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">1-Day Supporter Pass</h3>
                     <p class="text-(--alt-beige-muted) mb-6">Single day access</p>
 
                     <div class="mb-8 grow space-y-2">
@@ -639,7 +632,7 @@
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 15000);
                     } }"
                     class="bg-linear-to-br from-(--alt-gold)/15 to-(--alt-navy-dark)/70 border-2 border-(--alt-gold)/40 rounded-3xl p-8 relative overflow-hidden flex flex-col shadow-lg shadow-(--alt-gold)/10">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">3-Day Pass</h3>
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">3-Day Supporter Pass</h3>
                     <p class="text-(--alt-beige-muted) mb-6">Full event access</p>
 
                     <div class="mb-8 grow space-y-2">
