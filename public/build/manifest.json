@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-BOw2A1aA.css",
+    "file": "assets/app-9LXYEMvu.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -75,6 +75,10 @@
   "resources/images/alt-style/backgrounds/hero-background.webp": {
     "file": "assets/hero-background-CdBYR4hL.webp",
     "src": "resources/images/alt-style/backgrounds/hero-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/iris-hero-bg-mobile.webp": {
+    "file": "assets/iris-hero-bg-mobile-CyVmto2P.webp",
+    "src": "resources/images/alt-style/backgrounds/iris-hero-bg-mobile.webp"
   },
   "resources/images/alt-style/backgrounds/iris-hero-bg.webp": {
     "file": "assets/iris-hero-bg-u3FLJalT.webp",

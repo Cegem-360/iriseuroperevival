@@ -2,12 +2,15 @@
     {{-- ============================================
     HERO SECTION — Split layout inspired by designer mockup
 ============================================= --}}
-    <section class="relative min-h-screen overflow-hidden">
+    <section class="relative min-h-screen overflow-hidden bg-(--alt-beige)">
         {{-- Background: Illustrated Budapest collage --}}
         <div class="absolute inset-0 z-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/iris-hero-bg.webp') }}" alt=""
-                class="absolute inset-x-0 -top-[20%] w-full h-[120%] object-cover">
-            <div class="absolute inset-0 bg-linear-to-b from-(--alt-navy-deeper)/40 from-0% via-(--alt-navy-deeper)/0 via-20% to-(--alt-navy-deeper)/20 to-100%"></div>
+            <picture>
+                <source media="(min-width: 768px)" srcset="{{ Vite::asset('resources/images/alt-style/backgrounds/iris-hero-bg.webp') }}">
+                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/iris-hero-bg-mobile.webp') }}" alt=""
+                    class="absolute inset-x-0 -top-[4%] w-full h-[107%] object-cover object-top-right mask-[linear-gradient(to_bottom,black_60%,transparent_95%)] md:inset-0 md:-top-[20%] md:h-[120%] md:object-[65%_top] md:mask-none">
+            </picture>
+            <div class="absolute inset-0 bg-linear-to-b from-(--alt-navy-deeper)/40 from-0% via-(--alt-navy-deeper)/0 via-20% to-transparent to-100%"></div>
             {{-- Film Grain Texture --}}
             <div class="absolute inset-0 opacity-10"
                 style="background-image: url('{{ Vite::asset('resources/images/alt-style/backgrounds/film-grain-background.webp') }}'); background-size: cover; mix-blend-mode: overlay;">
@@ -22,7 +25,7 @@
             </div>
 
             {{-- Description --}}
-            <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
+            <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
                 A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.
             </p>
 
@@ -37,7 +40,7 @@
             <h1 class="sr-only">Europe Revival Budapest 2026</h1>
 
             {{-- Scripture Verse --}}
-            <p class="font-winter text-xl md:text-2xl text-neutral-900 max-w-2xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
+            <p class="font-winter text-xl md:text-2xl text-neutral-900 max-w-2xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
                 &ldquo;No eye has seen, no ear has heard, no mind has imagined what the Lord has prepared for those who love Him.&rdquo;
             </p>
 
@@ -52,8 +55,8 @@
                     </svg>
                 </a>
                 <button @click="$dispatch('open-vision-modal')"
-                    class="group inline-flex items-center gap-3 px-8 py-4 bg-(--alt-beige)/10 hover:bg-(--alt-beige)/20 backdrop-blur-sm border border-(--alt-beige)/20 text-(--alt-beige) font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300"
-                    <span class="w-10 h-10 bg-(--alt-beige)/20 rounded-full flex items-center justify-center group-hover:bg-(--alt-beige)/30 transition-colors">
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-gray-500/10 hover:bg-gray-500/20 backdrop-blur-sm border border-gray-500/20 text-gray-600 md:bg-(--alt-beige)/10 md:hover:bg-(--alt-beige)/20 md:border-(--alt-beige)/20 md:text-(--alt-beige) font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300">
+                    <span class="w-10 h-10 bg-gray-500/15 md:bg-(--alt-beige)/20 rounded-full flex items-center justify-center group-hover:bg-gray-500/25 md:group-hover:bg-(--alt-beige)/30 transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
