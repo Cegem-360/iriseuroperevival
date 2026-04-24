@@ -705,7 +705,7 @@
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center gap-3 mb-6 max-w-2xl mx-auto">
-                    @foreach (['Childcare', 'Ushers', 'Registration', 'Merch', 'Hospitality', 'Tech & Media', 'Kids Ministry'] as $role)
+                    @foreach (['Childcare', 'Ushers', 'Registration', 'Merch', 'Hospitality', 'Tech & Media'] as $role)
                         <span class="px-4 py-2 bg-(--alt-beige)/5 border border-(--alt-beige)/10 rounded-full text-(--alt-beige-muted) text-sm">{{ $role }}</span>
                     @endforeach
                 </div>

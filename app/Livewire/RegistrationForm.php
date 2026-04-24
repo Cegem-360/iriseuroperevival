@@ -439,7 +439,6 @@ class RegistrationForm extends Component implements HasSchemas
                         'Hospitality' => 'Hospitality',
                         'Tech & Media' => 'Tech & Media',
                         'Street Evangelism' => 'Street Evangelism',
-                        'Kids Ministry' => 'Kids Ministry',
                     ])
                     ->columns(2)
                     ->gridDirection('row'),
