@@ -218,7 +218,7 @@
         <section id="workshops" class="py-24 bg-(--alt-navy-dark) relative overflow-hidden scroll-mt-32">
             <div class="relative z-10 max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
-                    <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Workshop Leaders</h3>
+                    <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Workshops</h3>
                     <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto mb-6"></div>
                     <p class="text-(--alt-beige-muted) text-lg max-w-3xl mx-auto">
                         Reserve your spot at the workshops. <br>Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.
