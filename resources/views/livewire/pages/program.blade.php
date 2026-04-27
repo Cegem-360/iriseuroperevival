@@ -191,9 +191,12 @@
                                             @endif
 
                                             @if($item->title === 'Pastors & Leaders Session')
-                                                <div class="mt-4 p-3 bg-amber-500/15 border border-amber-500/30 rounded-lg">
-                                                    <p class="text-amber-400 text-sm font-semibold">
+                                                <div class="mt-4 p-3 bg-orange-500/15 border border-orange-500/30 rounded-lg space-y-2">
+                                                    <p class="text-orange-400 text-sm font-semibold">
                                                         {{ __('Participation in this presentation is possible only with an invitation.') }}
+                                                    </p>
+                                                    <p class="text-orange-400 text-sm">
+                                                        <strong>{{ __('Venue:') }}</strong> {{ __('This session is NOT held at BOK Csarnok. Participants will receive the exact venue details by email.') }}
                                                     </p>
                                                 </div>
                                             @endif

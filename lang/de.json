@@ -12,7 +12,6 @@
     "Privacy Policy": "Datenschutz",
     "Terms of Service": "Nutzungsbedingungen",
     "Language": "Sprache",
-
     "Europe Revival 2026": "Europe Revival 2026",
     "A conference for spiritual renewal": "Eine Konferenz fur geistliche Erneuerung",
     "Join us for an unforgettable experience": "Erleben Sie ein unvergessliches Erlebnis",
@@ -21,14 +20,12 @@
     "Theme": "Thema",
     "Pricing": "Preise",
     "Travel": "Anreise",
-
     "Registration": "Registrierung",
     "Attendee Registration": "Teilnehmer-Registrierung",
     "Ministry Team Application": "Dienst-Team Bewerbung",
     "Volunteer Application": "Freiwilligen-Bewerbung",
     "Registration successful": "Registrierung erfolgreich",
     "Registration cancelled": "Registrierung abgebrochen",
-
     "First Name": "Vorname",
     "Last Name": "Nachname",
     "Email": "E-Mail",
@@ -38,7 +35,6 @@
     "Church": "Gemeinde",
     "Address": "Adresse",
     "Postal Code": "Postleitzahl",
-
     "Select a country": "Land auswahlen",
     "Select a ticket type": "Ticketart auswahlen",
     "Ticket Type": "Ticketart",
@@ -46,7 +42,6 @@
     "Standard": "Standard",
     "VIP": "VIP",
     "Student": "Student",
-
     "Accommodation": "Unterkunft",
     "Do you need accommodation?": "Benotigen Sie eine Unterkunft?",
     "Yes": "Ja",
@@ -55,13 +50,11 @@
     "Hotel": "Hotel",
     "Hostel": "Hostel",
     "Private": "Privat",
-
     "Additional Information": "Zusatzliche Informationen",
     "Special Requirements": "Besondere Anforderungen",
     "Dietary Requirements": "Ernahrungsanforderungen",
     "Emergency Contact": "Notfallkontakt",
     "Emergency Contact Phone": "Notfalltelefon",
-
     "Ministry Team": "Dienst-Team",
     "Worship": "Lobpreis",
     "Prayer": "Gebet",
@@ -71,7 +64,6 @@
     "Select ministry areas": "Dienstbereiche auswahlen",
     "Ministry Experience": "Diensterfahrung",
     "Describe your ministry experience": "Beschreiben Sie Ihre Diensterfahrung",
-
     "Volunteer": "Freiwillige",
     "Registration Desk": "Anmeldeschalter",
     "Ushering": "Platzanweisung",
@@ -80,7 +72,6 @@
     "Select volunteer areas": "Freiwilligenbereiche auswahlen",
     "Availability": "Verfugbarkeit",
     "Describe your availability": "Beschreiben Sie Ihre Verfugbarkeit",
-
     "Submit": "Absenden",
     "Processing": "Verarbeitung...",
     "Please wait": "Bitte warten",
@@ -88,24 +79,20 @@
     "Continue": "Weiter",
     "Next": "Nachste",
     "Previous": "Vorherige",
-
     "Payment": "Zahlung",
     "Proceed to Payment": "Zur Zahlung",
     "Total": "Gesamt",
     "Subtotal": "Zwischensumme",
     "Discount": "Rabatt",
     "Free": "Kostenlos",
-
     "Thank you for registering": "Vielen Dank fur Ihre Registrierung!",
     "Your registration has been received": "Ihre Registrierung wurde empfangen.",
     "You will receive a confirmation email shortly": "Sie erhalten in Kurze eine Bestatigungsmail.",
     "Registration Details": "Registrierungsdetails",
     "Reference Number": "Referenznummer",
-
     "Pending Approval": "Genehmigung ausstehend",
     "Your application is being reviewed": "Ihre Bewerbung wird gepruft.",
     "We will contact you once your application is approved": "Wir werden Sie kontaktieren, sobald Ihre Bewerbung genehmigt wurde.",
-
     "Products": "Produkte",
     "Add to Cart": "In den Warenkorb",
     "Added to cart": "Zum Warenkorb hinzugefugt!",
@@ -119,20 +106,17 @@
     "In Stock": "Auf Lager",
     "Out of Stock": "Nicht auf Lager",
     "Clear Cart": "Warenkorb leeren",
-
     "Promotion Code": "Aktionscode",
     "Apply": "Anwenden",
     "Invalid promotion code": "Ungultiger Aktionscode",
     "Promotion code applied": "Aktionscode angewendet!",
     "Remove code": "Code entfernen",
-
     "Order Summary": "Bestellubersicht",
     "Place Order": "Bestellen",
     "Order Successful": "Bestellung erfolgreich!",
     "Thank you for your order": "Vielen Dank fur Ihre Bestellung!",
     "Order Reference": "Bestellreferenz",
     "Order Details": "Bestelldetails",
-
     "Schedule": "Zeitplan",
     "Day": "Tag",
     "Time": "Uhrzeit",
@@ -143,22 +127,18 @@
     "Break": "Pause",
     "Lunch": "Mittagessen",
     "Dinner": "Abendessen",
-
     "FAQ": "FAQ",
     "Frequently Asked Questions": "Haufig gestellte Fragen",
     "Sponsors": "Sponsoren",
     "Our Sponsors": "Unsere Sponsoren",
     "Partners": "Partner",
-
     "Newsletter": "Newsletter",
     "Subscribe to Newsletter": "Newsletter abonnieren",
     "Enter your email": "E-Mail eingeben",
     "Subscribe": "Abonnieren",
     "Thank you for subscribing": "Vielen Dank fur Ihr Abonnement!",
-
     "Follow Us": "Folgen Sie uns",
     "All Rights Reserved": "Alle Rechte vorbehalten",
-
     "Settings": "Einstellungen",
     "Profile": "Profil",
     "Password": "Passwort",
@@ -172,11 +152,20 @@
     "New password": "Neues Passwort",
     "Confirm Password": "Passwort bestatigen",
     "Two-Factor Auth": "Zwei-Faktor-Auth",
-
     "Error": "Fehler",
     "Something went wrong": "Etwas ist schiefgelaufen",
     "Please try again": "Bitte versuchen Sie es erneut",
     "Page not found": "Seite nicht gefunden",
     "Go back home": "Zuruck zur Startseite",
-    "If you would like to support the event with an amount exceeding :amount.": "Wenn Sie die Veranstaltung mit einem Betrag uber :amount unterstutzen mochten."
+    "If you would like to support the event with an amount exceeding :amount.": "Wenn Sie die Veranstaltung mit einem Betrag uber :amount unterstutzen mochten.",
+    "Share the event with your friends!": "Teile das Event mit deinen Freunden!",
+    "Don't let them miss out, let's burn together for Jesus!": "Lass sie es nicht verpassen, lasst uns gemeinsam für Jesus brennen!",
+    "Share on Facebook": "Auf Facebook teilen",
+    "Share on Instagram": "Auf Instagram teilen",
+    "Share on TikTok": "Auf TikTok teilen",
+    "Share on X": "Auf X teilen",
+    "Forward by email": "Per E-Mail weiterleiten",
+    "Link copied! Paste it in the app to share.": "Link kopiert! Füge ihn in der App ein, um zu teilen.",
+    "Europe Revival 2026 — Encounter Jesus, Catch on Fire": "Europa Erweckung 2026 — Begegne Jesus, fang Feuer",
+    "I just registered for Europe Revival 2026 in Budapest! Join me — don't miss out, let's burn together for Jesus.\n\n": "Ich habe mich gerade für Europe Revival 2026 in Budapest angemeldet! Komm mit – verpasse es nicht, lasst uns gemeinsam für Jesus brennen.\n\n"
 }

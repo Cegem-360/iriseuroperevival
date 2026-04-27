@@ -19,37 +19,16 @@
     {{-- Speaker Hero --}}
     <section class="py-16 bg-navy-950">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <div class="grid lg:grid-cols-[20rem_1fr] gap-12 items-start">
                 {{-- Photo --}}
-                <div class="relative">
+                <div class="relative max-w-xs">
                     <div class="aspect-3/4 rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ $speaker->photo_path ? Vite::asset($speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
+                        <img src="{{ $speaker->photo_path ? Vite::asset('resources/' . $speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                              alt="{{ $speaker->name }}"
                              class="w-full h-full object-cover">
                     </div>
                     {{-- Glow Effect --}}
                     <div class="absolute -inset-4 bg-primary-500/10 blur-3xl -z-10 rounded-full"></div>
-
-                    {{-- Type Badge --}}
-                    @php
-                        $badgeColor = match($speaker->type) {
-                            'speaker' => 'amber',
-                            'worship_leader' => 'purple',
-                            'workshop_leader' => 'cyan',
-                            default => 'gray',
-                        };
-                        $typeName = match($speaker->type) {
-                            'speaker' => 'Speaker',
-                            'worship_leader' => 'Worship Leader',
-                            'workshop_leader' => 'Workshop Leader',
-                            default => 'Speaker',
-                        };
-                    @endphp
-                    <div class="absolute top-6 left-6">
-                        <span class="inline-block px-4 py-2 text-sm font-semibold text-{{ $badgeColor }}-400 bg-{{ $badgeColor }}-500/20 backdrop-blur-sm border border-{{ $badgeColor }}-500/30 rounded-full">
-                            {{ $typeName }}
-                        </span>
-                    </div>
                 </div>
 
                 {{-- Info --}}
@@ -86,9 +65,7 @@
 
                     {{-- Bio --}}
                     @if($speaker->bio)
-                        <div class="prose prose-lg prose-invert max-w-none mb-8">
-                            <p class="text-white/70 leading-relaxed">{{ $speaker->bio }}</p>
-                        </div>
+                        <div class="text-white/70 leading-relaxed whitespace-pre-line mb-8">{{ $speaker->bio }}</div>
                     @endif
 
                     {{-- Social Links --}}
@@ -174,7 +151,7 @@
                            class="group relative overflow-hidden rounded-2xl bg-navy-800/50 border border-navy-700 hover:border-primary-500/50 transition-all duration-300"
                            wire:key="other-{{ $otherSpeaker->id }}">
                             <div class="aspect-3/4 overflow-hidden">
-                                <img src="{{ $otherSpeaker->photo_path ? Vite::asset($otherSpeaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
+                                <img src="{{ $otherSpeaker->photo_path ? Vite::asset('resources/' . $otherSpeaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
                                      alt="{{ $otherSpeaker->name }}"
                                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-linear-to-t from-navy-900 via-navy-900/20 to-transparent"></div>

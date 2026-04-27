@@ -25,6 +25,10 @@ class SpeakerShow extends Component
     {
         $otherSpeakers = Speaker::query()
             ->where('id', '!=', $this->speaker->id)
+            ->whereNotNull('photo_path')
+            ->where(fn ($q) => $q
+                ->whereHas('workshops')
+                ->orWhereHas('scheduleItems'))
             ->inRandomOrder()
             ->limit(4)
             ->get();

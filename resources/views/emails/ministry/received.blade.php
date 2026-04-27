@@ -7,6 +7,8 @@
 
 {{ __('We have received your ministry team application and it is now being reviewed by our team.') }}
 
+@include('emails.partials.share-event')
+
 <x-mail::panel>
 **{{ __('Application Details') }}**
 

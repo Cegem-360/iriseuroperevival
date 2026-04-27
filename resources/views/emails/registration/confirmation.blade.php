@@ -5,6 +5,8 @@
 
 {{ __('Your registration has been received') }}
 
+@include('emails.partials.share-event')
+
 <x-mail::panel>
 **{{ __('Registration Details') }}**
 

@@ -12,7 +12,6 @@
     "Privacy Policy": "Adatvedelem",
     "Terms of Service": "Felhasznalasi feltetelek",
     "Language": "Nyelv",
-
     "Europe Revival 2026": "Europe Revival 2026",
     "A conference for spiritual renewal": "Konferencia a lelki megujulasert",
     "Join us for an unforgettable experience": "Csatlakozz hozzank egy felejthetetlen elmenyre",
@@ -21,14 +20,12 @@
     "Theme": "Tema",
     "Pricing": "Arak",
     "Travel": "Utazas",
-
     "Registration": "Regisztracio",
     "Attendee Registration": "Resztvevoi regisztracio",
     "Ministry Team Application": "Szolgalocsapat jelentkezes",
     "Volunteer Application": "Onkentes jelentkezes",
     "Registration successful": "Sikeres regisztracio",
     "Registration cancelled": "Regisztracio megszakitva",
-
     "First Name": "Keresztnev",
     "Last Name": "Vezeteknev",
     "Email": "E-mail",
@@ -38,7 +35,6 @@
     "Church": "Gyulekezet",
     "Address": "Cim",
     "Postal Code": "Iranyitoszam",
-
     "Select a country": "Valassz orszagot",
     "Select a ticket type": "Valassz jegytipust",
     "Ticket Type": "Jegytipus",
@@ -46,7 +42,6 @@
     "Standard": "Standard",
     "VIP": "VIP",
     "Student": "Diak",
-
     "Accommodation": "Szallas",
     "Do you need accommodation?": "Szukseged van szallasra?",
     "Yes": "Igen",
@@ -55,13 +50,11 @@
     "Hotel": "Hotel",
     "Hostel": "Hostel",
     "Private": "Magan",
-
     "Additional Information": "Tovabbi informaciok",
     "Special Requirements": "Kulonleges igenyek",
     "Dietary Requirements": "Etkezesi igenyek",
     "Emergency Contact": "Veszelyhelyzeti kapcsolat",
     "Emergency Contact Phone": "Veszelyhelyzeti telefonszam",
-
     "Ministry Team": "Szolgalocsapat",
     "Worship": "Dicseret",
     "Prayer": "Ima",
@@ -71,7 +64,6 @@
     "Select ministry areas": "Valassz szolgalati teruletet",
     "Ministry Experience": "Szolgalati tapasztalat",
     "Describe your ministry experience": "Ird le a szolgalati tapasztalatodat",
-
     "Volunteer": "Onkentes",
     "Registration Desk": "Regisztracios pult",
     "Ushering": "Teremrendezés",
@@ -80,7 +72,6 @@
     "Select volunteer areas": "Valassz onkentes teruletet",
     "Availability": "Elérhetoseg",
     "Describe your availability": "Ird le az elerhetoségedet",
-
     "Submit": "Küldés",
     "Processing": "Feldolgozas...",
     "Please wait": "Kerlek varj",
@@ -88,24 +79,20 @@
     "Continue": "Tovabb",
     "Next": "Kovetkezo",
     "Previous": "Elozo",
-
     "Payment": "Fizetes",
     "Proceed to Payment": "Tovabb a fizeteshez",
     "Total": "Osszesen",
     "Subtotal": "Reszosszeg",
     "Discount": "Kedvezmeny",
     "Free": "Ingyenes",
-
     "Thank you for registering": "Koszonjuk a regisztraciot!",
     "Your registration has been received": "A regisztraciod megerkezett.",
     "You will receive a confirmation email shortly": "Hamarosan kapsz egy visszaigazolo e-mailt.",
     "Registration Details": "Regisztracio reszletei",
     "Reference Number": "Hivatkozasi szam",
-
     "Pending Approval": "Jovahagyas alatt",
     "Your application is being reviewed": "A jelentkezesed elbiralas alatt van.",
     "We will contact you once your application is approved": "Felkeresunk, amint a jelentkezesedet jovahagytuk.",
-
     "Products": "Termekek",
     "Add to Cart": "Kosarba",
     "Added to cart": "Kosarba kerult!",
@@ -119,20 +106,17 @@
     "In Stock": "Keszleten",
     "Out of Stock": "Nincs keszleten",
     "Clear Cart": "Kosar uritese",
-
     "Promotion Code": "Kuponkod",
     "Apply": "Alkalmaz",
     "Invalid promotion code": "Ervenytelen kuponkod",
     "Promotion code applied": "Kuponkod alkalmazva!",
     "Remove code": "Kod torlese",
-
     "Order Summary": "Rendeles osszegzese",
     "Place Order": "Megrendeles",
     "Order Successful": "Sikeres rendeles!",
     "Thank you for your order": "Koszonjuk a rendelest!",
     "Order Reference": "Rendeles azonosito",
     "Order Details": "Rendeles reszletei",
-
     "Schedule": "Program",
     "Day": "Nap",
     "Time": "Ido",
@@ -143,22 +127,18 @@
     "Break": "Szunet",
     "Lunch": "Ebed",
     "Dinner": "Vacsora",
-
     "FAQ": "GYIK",
     "Frequently Asked Questions": "Gyakran Ismetelt Kerdesek",
     "Sponsors": "Szponzorok",
     "Our Sponsors": "Szponzoraink",
     "Partners": "Partnereink",
-
     "Newsletter": "Hirlevel",
     "Subscribe to Newsletter": "Feliratkozas a hirlevélre",
     "Enter your email": "Add meg az e-mail cimedet",
     "Subscribe": "Feliratkozas",
     "Thank you for subscribing": "Koszonjuk a feliratkozast!",
-
     "Follow Us": "Kovess minket",
     "All Rights Reserved": "Minden jog fenntartva",
-
     "Settings": "Beallitasok",
     "Profile": "Profil",
     "Password": "Jelszo",
@@ -172,11 +152,20 @@
     "New password": "Uj jelszo",
     "Confirm Password": "Jelszo megerositese",
     "Two-Factor Auth": "Ketfaktoros hitelesites",
-
     "Error": "Hiba",
     "Something went wrong": "Valami hiba tortent",
     "Please try again": "Kerlek probald ujra",
     "Page not found": "Az oldal nem talalhato",
     "Go back home": "Vissza a folapra",
-    "If you would like to support the event with an amount exceeding :amount.": "Ha :amount feletti oszeggel szeretned tamogatni a rendezvenyt."
+    "If you would like to support the event with an amount exceeding :amount.": "Ha :amount feletti oszeggel szeretned tamogatni a rendezvenyt.",
+    "Share the event with your friends!": "Oszd meg az ismerőseiddel az eseményt!",
+    "Don't let them miss out, let's burn together for Jesus!": "Ne maradjanak le, lángoljunk együtt Jézusért!",
+    "Share on Facebook": "Megosztom Facebookon",
+    "Share on Instagram": "Megosztom Instagramon",
+    "Share on TikTok": "Megosztom Tik Tokon",
+    "Share on X": "Megosztom az X-en",
+    "Forward by email": "Továbbküldöm e-mailben",
+    "Link copied! Paste it in the app to share.": "Link kimásolva! Illeszd be az alkalmazásban a megosztáshoz.",
+    "Europe Revival 2026 — Encounter Jesus, Catch on Fire": "Európa Ébredés 2026 — Találkozz Jézussal, Lobbanj Lángra",
+    "I just registered for Europe Revival 2026 in Budapest! Join me — don't miss out, let's burn together for Jesus.\n\n": "Most regisztráltam az Európa Ébredés 2026 eseményre Budapesten! Csatlakozz hozzám — ne maradj le, lángoljunk együtt Jézusért!\n\n"
 }

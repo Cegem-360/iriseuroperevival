@@ -18,16 +18,19 @@ class Speakers extends Component
     {
         $featuredSpeakers = Speaker::query()
             ->featured()
+            ->whereNotNull('photo_path')
             ->ordered()
             ->get();
 
         $workshopLeaders = Speaker::query()
             ->ofType('workshop_leader')
+            ->whereNotNull('photo_path')
             ->ordered()
             ->get();
 
         $worshipLeaders = Speaker::query()
             ->ofType('worship_leader')
+            ->whereNotNull('photo_path')
             ->ordered()
             ->get();
 

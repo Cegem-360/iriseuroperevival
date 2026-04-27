@@ -50,6 +50,11 @@
             @endif
         </div>
 
+        {{-- Social Share (between thank you text and registration details) --}}
+        <div class="mb-8 animate-fade-in-up" style="animation-delay: 0.15s;">
+            <x-share-event />
+        </div>
+
         {{-- Registration Details Card --}}
         <div class="bg-navy-900/50 border border-navy-700 rounded-2xl p-6 text-left mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
             <h3 class="text-sm font-semibold text-white/50 uppercase tracking-wider mb-4">Registration Details</h3>
@@ -157,32 +162,6 @@
             </a>
         </div>
 
-        {{-- Social Share --}}
-        <div class="mt-12 pt-8 border-t border-navy-700 animate-fade-in-up" style="animation-delay: 0.5s;">
-            <p class="text-white/50 text-sm mb-4">Share the news!</p>
-            <div class="flex justify-center gap-4">
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('home')) }}"
-                   target="_blank"
-                   class="w-10 h-10 bg-navy-800 hover:bg-navy-700 rounded-full flex items-center justify-center text-white/60 hover:text-white transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
-                    </svg>
-                </a>
-                <a href="https://twitter.com/intent/tweet?text={{ urlencode('I just registered for Europe Revival 2026! 🔥 Encounter Jesus. Catch on Fire. October 23-25, Budapest.') }}&url={{ urlencode(route('home')) }}"
-                   target="_blank"
-                   class="w-10 h-10 bg-navy-800 hover:bg-navy-700 rounded-full flex items-center justify-center text-white/60 hover:text-white transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-                <a href="mailto:?subject={{ urlencode('Europe Revival 2026') }}&body={{ urlencode('I just registered for Europe Revival 2026! Join me in Budapest, October 23-25, 2026. Register at: ' . route('home')) }}"
-                   class="w-10 h-10 bg-navy-800 hover:bg-navy-700 rounded-full flex items-center justify-center text-white/60 hover:text-white transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
     </div>
 </div>
 </div>

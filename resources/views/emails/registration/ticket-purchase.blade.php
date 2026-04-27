@@ -5,6 +5,8 @@
 
 {{ __('Thank you for purchasing your ticket for Europe Revival 2026. We can\'t wait to see you there!') }}
 
+@include('emails.partials.share-event')
+
 <x-mail::panel>
 **{{ __('Your Ticket') }}**
 

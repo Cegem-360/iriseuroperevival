@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-BCw1Hi3G.css",
+    "file": "assets/app-CfVa0mU9.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -271,6 +271,10 @@
   "resources/images/speakers/placeholder.webp": {
     "file": "assets/placeholder-DUU3kW1K.webp",
     "src": "resources/images/speakers/placeholder.webp"
+  },
+  "resources/images/speakers/rudy-baoyan.webp": {
+    "file": "assets/rudy-baoyan-C0LE754B.webp",
+    "src": "resources/images/speakers/rudy-baoyan.webp"
   },
   "resources/images/speakers/tineke-bouwman.webp": {
     "file": "assets/tineke-bouwman-C8-vbCGd.webp",
