@@ -91,7 +91,7 @@ Route::get('/terms', Terms::class)->name('terms');
 
 // Language Switching
 Route::get('/lang/{locale}', function ($locale): RedirectResponse {
-    if (in_array($locale, ['en', 'hu', 'de'])) {
+    if (in_array($locale, ['en', 'hu'])) {
         session(['locale' => $locale]);
     }
 

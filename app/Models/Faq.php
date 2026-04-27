@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Database\Factories\FaqFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
     /** @use HasFactory<FaqFactory> */
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'question',
@@ -30,16 +30,6 @@ class Faq extends Model
             'is_published' => 'boolean',
             'translations' => 'array',
         ];
-    }
-
-    protected function translated(): Attribute
-    {
-        return Attribute::make(get: function (string $attribute, ?string $locale = null) {
-            $locale = $locale ?? app()->getLocale();
-            $translations = $this->translations ?? [];
-
-            return $translations[$locale][$attribute] ?? $this->$attribute;
-        });
     }
 
     #[Scope]

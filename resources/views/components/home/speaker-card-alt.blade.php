@@ -39,11 +39,11 @@
                     <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-(--alt-gold)/20 text-(--alt-gold) border border-(--alt-gold)/30 font-heading uppercase tracking-wider mb-2">{{ $workshopTopic }}</span>
                 @endif
                 <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->name }}</h3>
-                @if ($titleOverride ?? $speaker->title)
-                    <p class="text-(--alt-beige-muted) text-sm">{{ $titleOverride ?? $speaker->title }}</p>
+                @if ($titleOverride ?? $speaker->t('title'))
+                    <p class="text-(--alt-beige-muted) text-sm">{{ $titleOverride ?? $speaker->t('title') }}</p>
                 @endif
-                @if ($speaker->organization)
-                    <p class="text-(--alt-beige-muted) text-sm">{!! strip_tags($speaker->organization, '<br>') !!}</p>
+                @if ($speaker->t('organization'))
+                    <p class="text-(--alt-beige-muted) text-sm">{!! strip_tags($speaker->t('organization'), '<br>') !!}</p>
                 @endif
             </div>
         @endif
@@ -57,7 +57,7 @@
     </a>
 
     {{-- Mobile Bio Button --}}
-    @if ($speaker->bio)
+    @if ($speaker->t('bio'))
         <button @click.prevent="bioOpen = true"
             class="lg:hidden absolute top-6 right-3 z-20 px-4 py-2 bg-sky-700 rounded-full flex items-center justify-center shadow-md">
             <span class="text-white text-sm font-heading font-bold uppercase tracking-wider">Bio</span>
@@ -65,25 +65,25 @@
     @endif
 
     {{-- Desktop Bio Overlay (hover) --}}
-    @if ($speaker->bio)
+    @if ($speaker->t('bio'))
         <div class="hidden lg:block absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             <div class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-(--alt-navy-deeper)/95 via-(--alt-navy)/90 to-(--alt-navy-dark)/95 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
             <div class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                 <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->name }}</h4>
-                @if ($titleOverride ?? $speaker->title)
-                    <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $titleOverride ?? $speaker->title }}</span>
+                @if ($titleOverride ?? $speaker->t('title'))
+                    <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $titleOverride ?? $speaker->t('title') }}</span>
                 @endif
                 <div class="relative flex-1 min-h-0">
                     <p class="text-(--alt-beige-muted) text-sm leading-relaxed overflow-y-auto h-full pb-12"
-                        style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->bio }}</p>
+                        style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->t('bio') }}</p>
                 </div>
             </div>
         </div>
     @endif
 
     {{-- Mobile Bio Modal --}}
-    @if ($speaker->bio)
+    @if ($speaker->t('bio'))
         <template x-teleport="body">
             <div x-show="bioOpen" x-cloak
                 class="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -115,14 +115,14 @@
                         </button>
                         <div class="absolute bottom-3 left-4 right-4">
                             <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige) text-lg">{{ $speaker->name }}</h4>
-                            @if ($titleOverride ?? $speaker->title)
-                                <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider">{{ $titleOverride ?? $speaker->title }}</span>
+                            @if ($titleOverride ?? $speaker->t('title'))
+                                <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider">{{ $titleOverride ?? $speaker->t('title') }}</span>
                             @endif
                         </div>
                     </div>
                     {{-- Bio --}}
                     <div class="p-5 overflow-y-auto">
-                        <p class="text-(--alt-beige-muted) text-sm leading-relaxed">{{ $speaker->bio }}</p>
+                        <p class="text-(--alt-beige-muted) text-sm leading-relaxed">{{ $speaker->t('bio') }}</p>
                     </div>
                 </div>
             </div>

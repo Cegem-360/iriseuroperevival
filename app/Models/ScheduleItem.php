@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Database\Factories\ScheduleItemFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ScheduleItem extends Model
 {
     /** @use HasFactory<ScheduleItemFactory> */
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'title',
@@ -44,16 +44,6 @@ class ScheduleItem extends Model
     public function speaker(): BelongsTo
     {
         return $this->belongsTo(Speaker::class);
-    }
-
-    protected function translated(): Attribute
-    {
-        return Attribute::make(get: function (string $attribute, ?string $locale = null) {
-            $locale = $locale ?? app()->getLocale();
-            $translations = $this->translations ?? [];
-
-            return $translations[$locale][$attribute] ?? $this->$attribute;
-        });
     }
 
     #[Scope]

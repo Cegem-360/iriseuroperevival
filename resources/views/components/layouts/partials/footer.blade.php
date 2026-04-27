@@ -8,7 +8,7 @@
                     <img src="{{ Vite::asset('resources/images/iris-krakow-logo.webp') }}" alt="Iris Krakow" class="h-14">
                 </a>
                 <p class="text-white/50 text-sm leading-relaxed max-w-md mb-6">
-                    Europe Revival 2026 is brought to you by Iris Krakow, part of Iris Global, a Christ-centred missions organization bringing light to the darkness, healing to the broken and love to the unloved. One person at a time.
+                    {{ __('Europe Revival 2026 is brought to you by Iris Krakow, part of Iris Global, a Christ-centred missions organization bringing light to the darkness, healing to the broken and love to the unloved. One person at a time.') }}
                 </p>
                 {{-- Social Links --}}
                 <div class="flex items-center gap-4">
@@ -37,34 +37,34 @@
 
             {{-- Quick Links --}}
             <div>
-                <h4 class="font-semibold mb-4">Quick Links</h4>
+                <h4 class="font-semibold mb-4">{{ __('Quick Links') }}</h4>
                 <ul class="space-y-3">
-                    <li><a href="#speakers" class="text-white/50 hover:text-white text-sm transition-colors">Speakers</a></li>
-                    <li><a href="#schedule" class="text-white/50 hover:text-white text-sm transition-colors">Schedule</a></li>
-                    <li><a href="{{ route('workshops') }}" class="text-white/50 hover:text-white text-sm transition-colors">Workshops</a></li>
-                    <li><a href="{{ route('program') }}" class="text-white/50 hover:text-white text-sm transition-colors">Full Program</a></li>
-                                        <li><a href="#faq" class="text-white/50 hover:text-white text-sm transition-colors">FAQ</a></li>
+                    <li><a href="#speakers" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('Speakers') }}</a></li>
+                    <li><a href="#schedule" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('Schedule') }}</a></li>
+                    <li><a href="{{ route('workshops') }}" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('Workshops') }}</a></li>
+                    <li><a href="{{ route('program') }}" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('Full Program') }}</a></li>
+                                        <li><a href="#faq" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('FAQ') }}</a></li>
                 </ul>
             </div>
 
             {{-- Registration --}}
             <div>
-                <h4 class="font-semibold mb-4">Registration</h4>
+                <h4 class="font-semibold mb-4">{{ __('Registration') }}</h4>
                 <ul class="space-y-3">
-                    <li><a href="{{ route('register') }}" class="text-white/50 hover:text-white text-sm transition-colors">Attendee Registration</a></li>
-                    <li><a href="{{ route('volunteer') }}" class="text-white/50 hover:text-white text-sm transition-colors">Volunteer Application</a></li>
-                    <li><a href="mailto:info@iriseuroperevival.com" class="text-white/50 hover:text-white text-sm transition-colors">Contact Us</a></li>
+                    <li><a href="{{ route('register') }}" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('Attendee Registration') }}</a></li>
+                    <li><a href="{{ route('volunteer') }}" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('Volunteer Application') }}</a></li>
+                    <li><a href="mailto:info@iriseuroperevival.com" class="text-white/50 hover:text-white text-sm transition-colors">{{ __('Contact Us') }}</a></li>
                 </ul>
 
                 {{-- Newsletter --}}
                 <div class="mt-6">
-                    <h4 class="font-semibold mb-3 text-sm">Stay Updated</h4>
+                    <h4 class="font-semibold mb-3 text-sm">{{ __('Stay Updated') }}</h4>
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex gap-2">
                         @csrf
-                        <input type="email" name="email" placeholder="Your email"
+                        <input type="email" name="email" placeholder="{{ __('Your email') }}"
                                class="flex-1 px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-sm text-white placeholder-white/40 focus:outline-none focus:border-primary-500 transition-colors">
                         <button type="submit" class="px-4 py-2 bg-primary-500 hover:bg-primary-400 text-navy-800 font-semibold rounded-lg text-sm transition-colors">
-                            Subscribe
+                            {{ __('Subscribe') }}
                         </button>
                     </form>
                 </div>
@@ -74,11 +74,11 @@
         {{-- Bottom Bar --}}
         <div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
             <p class="text-white/40 text-sm">
-                © {{ date('Y') }} Europe Revival / Iris Global. All rights reserved.
+                © {{ date('Y') }} Europe Revival / Iris Global. {{ __('All rights reserved.') }}
             </p>
             <div class="flex items-center gap-6">
-                <a href="{{ route('privacy') }}" class="text-white/40 hover:text-white text-sm transition-colors">Privacy Policy</a>
-                <a href="{{ route('terms') }}" class="text-white/40 hover:text-white text-sm transition-colors">Terms of Use</a>
+                <a href="{{ route('privacy') }}" class="text-white/40 hover:text-white text-sm transition-colors">{{ __('Privacy Policy') }}</a>
+                <a href="{{ route('terms') }}" class="text-white/40 hover:text-white text-sm transition-colors">{{ __('Terms of Use') }}</a>
             </div>
         </div>
     </div>

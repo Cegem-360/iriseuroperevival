@@ -21,12 +21,12 @@
         <div class="relative z-10 flex flex-col items-center max-w-5xl mx-auto px-4 pt-28 pb-16 text-center">
             {{-- Date & Venue --}}
             <div class="mb-12 animate-fade-in">
-                <span class="text-[var(--alt-beige)] text-base md:text-xl font-heading font-semibold uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">October 23-25, 2026 &bull; Budapest, BOK Hall</span>
+                <span class="text-[var(--alt-beige)] text-base md:text-xl font-heading font-semibold uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">{{ __('October 23-25, 2026 • Budapest, BOK Hall') }}</span>
             </div>
 
             {{-- Description --}}
             <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
-                A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.
+                {{ __('A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.') }}
             </p>
 
             {{-- Title Image --}}
@@ -41,7 +41,7 @@
 
             {{-- Scripture Verse --}}
             <p class="font-winter text-xl md:text-2xl text-neutral-900 max-w-2xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
-                &ldquo;No eye has seen, no ear has heard, no mind has imagined what the Lord has prepared for those who love Him.&rdquo;
+                {!! __('“No eye has seen, no ear has heard, no mind has imagined what the Lord has prepared for those who love Him.”') !!}
             </p>
 
             {{-- CTA Buttons --}}
@@ -49,7 +49,7 @@
                 style="animation-delay: 0.1s;">
                 <a href="{{ route('register') }}"
                     class="group inline-flex items-center gap-3 px-8 py-4 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-heading font-bold text-lg uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
-                    Register Now
+                    {{ __('Register Now') }}
                     <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -62,7 +62,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                     </span>
-                    Vision
+                    {{ __('Vision') }}
                 </button>
             </div>
 
@@ -112,12 +112,12 @@
             {{-- Section Header --}}
             <div class="text-center mb-16">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-(--alt-gold) bg-(--alt-gold)/10 border border-(--alt-gold)/30 rounded-full mb-4">
-                    Featured Speakers
+                    {{ __('Featured Speakers') }}
                 </span>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Speakers</h2>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">{{ __('Speakers') }}</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto mb-6"></div>
                 <p class="text-(--alt-beige-muted) text-lg max-w-2xl mx-auto">
-                    Missionaries & ministers who carry revival in different nations around the world, sharing deep messages of love, hope and power of God.
+                    {{ __('Missionaries & ministers who carry revival in different nations around the world, sharing deep messages of love, hope and power of God.') }}
                 </p>
             </div>
 
@@ -134,7 +134,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
                             </svg>
                         </div>
-                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">and more to be announced</p>
+                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">{{ __('and more to be announced') }}</p>
                     </div>
                 </div>
             </div>
@@ -172,8 +172,8 @@
                         <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-5">
                             <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $awakeningTeam->name }}</h4>
-                            @if ($awakeningTeam->organization)
-                                <p class="text-(--alt-beige-muted) text-sm">{{ $awakeningTeam->organization }}</p>
+                            @if ($awakeningTeam->t('organization'))
+                                <p class="text-(--alt-beige-muted) text-sm">{{ $awakeningTeam->t('organization') }}</p>
                             @endif
                         </div>
                     </a>
@@ -190,8 +190,8 @@
                         <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-5">
                             <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $mountainTeam->name }}</h4>
-                            @if ($mountainTeam->organization)
-                                <p class="text-(--alt-beige-muted) text-sm">{{ $mountainTeam->organization }}</p>
+                            @if ($mountainTeam->t('organization'))
+                                <p class="text-(--alt-beige-muted) text-sm">{{ $mountainTeam->t('organization') }}</p>
                             @endif
                         </div>
                     </a>
@@ -218,10 +218,10 @@
         <section id="workshops" class="py-24 bg-(--alt-navy-dark) relative overflow-hidden scroll-mt-32">
             <div class="relative z-10 max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
-                    <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Workshops</h3>
+                    <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">{{ __('Workshops') }}</h3>
                     <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto mb-6"></div>
                     <p class="text-(--alt-beige-muted) text-lg max-w-3xl mx-auto">
-                        Reserve your spot at the workshops. <br>Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.
+                        {!! __('Reserve your spot at the workshops. ') !!}<br>{{ __('Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.') }}
                     </p>
                 </div>
                 @php
@@ -242,7 +242,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
                                 </svg>
                             </div>
-                            <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">and more to be announced</p>
+                            <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">{{ __('and more to be announced') }}</p>
                         </div>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
                 <div class="mt-10 text-center">
                     <a href="{{ route('workshops') }}"
                        class="inline-flex items-center gap-2 px-8 py-4 text-lg rounded-full font-heading font-bold uppercase tracking-wider bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) text-(--alt-navy-deeper) hover:shadow-lg transition-all duration-300 hover:scale-105">
-                        Signup Now to Secure Your Spot
+                        {{ __('Signup Now to Secure Your Spot') }}
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
@@ -276,13 +276,11 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="max-w-2xl">
                     {{-- Script-style heading like the promo video --}}
-                    <p class="font-script text-(--alt-gold-light) text-5xl md:text-7xl mb-2">encounter Jesus</p>
-                    <h2 class="font-script text-6xl md:text-8xl text-(--alt-gold) mb-8">Catch on fire</h2>
+                    <p class="font-script text-(--alt-gold-light) text-5xl md:text-7xl mb-2">{{ __('encounter Jesus') }}</p>
+                    <h2 class="font-script text-6xl md:text-8xl text-(--alt-gold) mb-8">{{ __('Catch on fire') }}</h2>
 
                     <p class="text-(--alt-beige) text-lg md:text-xl mb-8 leading-relaxed">
-                        We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe.
-                        We burn with passion for Jesus and carry the Gospel to the lost — a message of redemption, restoration, love, and
-                        power. Be part of what God is doing in Europe through <strong class="text-(--alt-gold)">Europe Revival 2026</strong>!
+                        {{ __('We are a movement of hungry, laid-down lovers of Jesus who long to live out revival and see it sweep across Europe. We burn with passion for Jesus and carry the Gospel to the lost — a message of redemption, restoration, love, and power. Be part of what God is doing in Europe through') }} <strong class="text-(--alt-gold)">Europe Revival 2026</strong>!
                     </p>
 
                     {{-- Theme Points --}}
@@ -294,8 +292,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="font-heading text-(--alt-beige) font-semibold uppercase tracking-wide mb-1">Deep Worship & Prayer</h4>
-                                <p class="text-(--alt-beige-muted) text-sm">Join powerful worship and prayer sessions creating space for deep encounters with God and hearing His voice.</p>
+                                <h4 class="font-heading text-(--alt-beige) font-semibold uppercase tracking-wide mb-1">{{ __('Deep Worship & Prayer') }}</h4>
+                                <p class="text-(--alt-beige-muted) text-sm">{{ __('Join powerful worship and prayer sessions creating space for deep encounters with God and hearing His voice.') }}</p>
                             </div>
                         </div>
 
@@ -307,8 +305,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="font-heading text-(--alt-beige) font-semibold uppercase tracking-wide mb-1">Ministry & Inspiration</h4>
-                                <p class="text-(--alt-beige-muted) text-sm">Hear from amazing speakers walking closely with God and receive fresh anointing and breakthrough for your personal walk with Lord Jesus.</p>
+                                <h4 class="font-heading text-(--alt-beige) font-semibold uppercase tracking-wide mb-1">{{ __('Ministry & Inspiration') }}</h4>
+                                <p class="text-(--alt-beige-muted) text-sm">{{ __('Hear from amazing speakers walking closely with God and receive fresh anointing and breakthrough for your personal walk with Lord Jesus.') }}</p>
                             </div>
                         </div>
 
@@ -319,16 +317,16 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="font-heading text-(--alt-beige) font-semibold uppercase tracking-wide mb-1">Outreaches & Missions</h4>
-                                <p class="text-(--alt-beige-muted) text-sm">Be commissioned to live for the gospel and join the worldwide missions movement that seeks to bring love, hope and power of Jesus to the lost and the broken.</p>
+                                <h4 class="font-heading text-(--alt-beige) font-semibold uppercase tracking-wide mb-1">{{ __('Outreaches & Missions') }}</h4>
+                                <p class="text-(--alt-beige-muted) text-sm">{{ __('Be commissioned to live for the gospel and join the worldwide missions movement that seeks to bring love, hope and power of Jesus to the lost and the broken.') }}</p>
                             </div>
                         </div>
                     </div>
 
                     {{-- Scripture --}}
                     <blockquote class="bg-black/20 backdrop-blur-sm border border-(--alt-gold)/20 rounded-xl px-6 py-5">
-                        <p class="text-(--alt-beige) italic text-lg mb-2">"What no eye has seen, what no ear has heard, and what no human mind has conceived — the things God has prepared for those who love him."</p>
-                        <cite class="text-(--alt-gold) text-sm font-heading font-medium uppercase tracking-wider">— 1 Corinthians 2:9</cite>
+                        <p class="text-(--alt-beige) italic text-lg mb-2">{{ __('"What no eye has seen, what no ear has heard, and what no human mind has conceived — the things God has prepared for those who love him."') }}</p>
+                        <cite class="text-(--alt-gold) text-sm font-heading font-medium uppercase tracking-wider">{{ __('— 1 Corinthians 2:9') }}</cite>
                     </blockquote>
                 </div>
 
@@ -382,12 +380,12 @@
             {{-- Section Header --}}
             <div class="text-center mb-16">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-(--alt-gold) bg-(--alt-gold)/10 border border-(--alt-gold)/30 rounded-full mb-4">
-                    Event Schedule
+                    {{ __('Event Schedule') }}
                 </span>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">3 Days of Encounter</h2>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">{{ __('3 Days of Encounter') }}</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto mb-6"></div>
                 <p class="text-(--alt-beige) text-lg max-w-4xl mx-auto px-6 py-4 bg-black/30 backdrop-blur-sm rounded-xl">
-                    Powerful sessions, inspirational workshops, healing & prophetic rooms, time of fellowship and divine appointments for the Kingdom of God to grow in Europe!
+                    {{ __('Powerful sessions, inspirational workshops, healing & prophetic rooms, time of fellowship and divine appointments for the Kingdom of God to grow in Europe!') }}
                 </p>
             </div>
 
@@ -403,13 +401,13 @@
                         <button @click="activeTab = 'training'"
                             :class="activeTab === 'training' ? 'bg-(--alt-gold) text-(--alt-navy-deeper)' : 'bg-(--alt-navy) text-(--alt-beige-muted) hover:text-(--alt-beige)'"
                             class="px-6 py-3 rounded-full font-heading font-semibold uppercase tracking-wider text-sm transition-all">
-                            Training Day ({{ \Carbon\Carbon::parse($trainingDay['date'])->format('M j') }})
+                            {{ __('Training Day') }} ({{ \Carbon\Carbon::parse($trainingDay['date'])->translatedFormat('M j') }})
                         </button>
                     @endif
                     <button @click="activeTab = 'main'"
                         :class="activeTab === 'main' ? 'bg-(--alt-gold) text-(--alt-navy-deeper)' : 'bg-(--alt-navy) text-(--alt-beige-muted) hover:text-(--alt-beige)'"
                         class="px-6 py-3 rounded-full font-heading font-semibold uppercase tracking-wider text-sm transition-all">
-                        Main Conference (Oct 23-25)
+                        {{ __('Main Conference (Oct 23-25)') }}
                     </button>
                 </div>
 
@@ -427,9 +425,9 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige)">Ministry Team Training Day</h3>
+                                        <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ __('Ministry Team Training Day') }}</h3>
                                         <p class="text-(--alt-beige-muted)">{{ $trainingDay['formatted_date'] }} &middot; 10:00am–5:00pm</p>
-                                        <p class="text-(--alt-beige-muted)/60 text-sm">Speaker: David Gava & Ministry team leaders</p>
+                                        <p class="text-(--alt-beige-muted)/60 text-sm">{{ __('Speaker: David Gava & Ministry team leaders') }}</p>
                                     </div>
                                 </div>
 
@@ -440,9 +438,9 @@
                                                 {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }}–{{ \Carbon\Carbon::parse($item->end_time)->format('g:ia') }}
                                             </span>
                                             <div>
-                                                <h4 class="text-(--alt-beige) font-medium">{{ $item->title }}</h4>
-                                                @if ($item->description)
-                                                    <p class="text-(--alt-beige-muted) text-sm">{{ $item->description }}</p>
+                                                <h4 class="text-(--alt-beige) font-medium">{{ $item->t('title') }}</h4>
+                                                @if ($item->t('description'))
+                                                    <p class="text-(--alt-beige-muted) text-sm">{{ $item->t('description') }}</p>
                                                 @endif
                                                 @if ($item->speaker)
                                                     <p class="text-(--alt-gold)/70 text-sm mt-1">with {{ $item->speaker->name }}</p>
@@ -454,10 +452,10 @@
 
                                 <div class="mt-6 p-4 bg-orange-500/15 border border-orange-500/30 rounded-xl space-y-2">
                                     <p class="text-orange-400 text-sm">
-                                        <strong>Who can attend:</strong> The Training Day is exclusively for registered volunteers who have received an acceptance confirmation, and approved Ministry Team members.
+                                        <strong>{{ __('Who can attend:') }}</strong> {{ __('The Training Day is exclusively for registered volunteers who have received an acceptance confirmation, and approved Ministry Team members.') }}
                                     </p>
                                     <p class="text-orange-400 text-sm">
-                                        <strong>Venue:</strong> The Training Day is NOT held at BOK Csarnok. Participants will receive the exact venue details by email.
+                                        <strong>{{ __('Venue:') }}</strong> {{ __('The Training Day is NOT held at BOK Csarnok. Participants will receive the exact venue details by email.') }}
                                     </p>
                                 </div>
                             </div>
@@ -473,7 +471,7 @@
                         @foreach ($mainDays->take(3) as $day)
                             <div class="bg-(--alt-navy)/50 border border-(--alt-beige)/10 rounded-2xl overflow-hidden">
                                 <div class="bg-(--alt-navy) px-6 py-4 border-b border-(--alt-beige)/10">
-                                    <span class="text-(--alt-beige-muted) text-sm font-heading font-medium uppercase tracking-wider">Day {{ $loop->iteration }}</span>
+                                    <span class="text-(--alt-beige-muted) text-sm font-heading font-medium uppercase tracking-wider">{{ __('Day') }} {{ $loop->iteration }}</span>
                                     <h3 class="text-(--alt-beige) text-xl font-heading font-bold">{{ $day['formatted_date'] }}</h3>
                                 </div>
                                 <div class="p-6 space-y-4">
@@ -501,14 +499,14 @@
                                                 {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }} -
                                                 {{ \Carbon\Carbon::parse($item->end_time)->format('g:ia') }}
                                             </span>
-                                            <h4 class="text-(--alt-beige) font-medium">{{ $item->title }}</h4>
+                                            <h4 class="text-(--alt-beige) font-medium">{{ $item->t('title') }}</h4>
                                             @if ($item->speaker)
                                                 <p class="text-(--alt-beige-muted) text-sm">{{ $item->speaker->name }}</p>
-                                            @elseif($item->description)
+                                            @elseif($item->t('description'))
                                                 <p class="text-(--alt-beige-muted) text-sm whitespace-nowrap overflow-hidden"
                                                     x-data="{ fits: true }"
                                                     x-init="fits = $el.scrollWidth <= $el.clientWidth"
-                                                    x-show="fits">{{ $item->description }}</p>
+                                                    x-show="fits">{{ $item->t('description') }}</p>
                                             @endif
                                         </div>
                                     @endforeach
@@ -538,7 +536,7 @@
                         We're finalizing the conference program. Subscribe to our newsletter to be the first to know when it's released.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) text-(--alt-navy-deeper) font-heading font-bold uppercase tracking-wider rounded-full">Register Now</a>
+                        <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) text-(--alt-navy-deeper) font-heading font-bold uppercase tracking-wider rounded-full">{{ __('Register Now') }}</a>
                         <a href="{{ route('program') }}" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-(--alt-gold)/30 text-(--alt-beige) font-heading font-semibold uppercase tracking-wider rounded-full">Check Program Page</a>
                     </div>
                 </div>
@@ -561,9 +559,9 @@
             {{-- Section Header --}}
             <div class="text-center mb-6">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-(--alt-gold) bg-(--alt-gold)/10 border border-(--alt-gold)/30 rounded-full mb-4">
-                    Tickets Now Available
+                    {{ __('Tickets Now Available') }}
                 </span>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Save Your Place</h2>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">{{ __('Save Your Place') }}</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto"></div>
             </div>
 
@@ -578,7 +576,7 @@
             </div> --}}
 
             @if(true) {{-- Pricing Cards --}}
-            <p class="text-center text-(--alt-beige) text-lg mb-8">How much would you like to donate to support the event?</p>
+            <p class="text-center text-(--alt-beige) text-lg mb-8">{{ __('How much would you like to donate to support the event?') }}</p>
             <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 {{-- 1-Day Pass --}}
                 <div
@@ -590,8 +588,8 @@
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 7500);
                     } }"
                     class="bg-(--alt-navy-dark)/40 border border-(--alt-beige)/15 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">1-Day Supporter Pass</h3>
-                    <p class="text-(--alt-beige-muted) mb-6">Single day access</p>
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">{{ __('1-Day Supporter Pass') }}</h3>
+                    <p class="text-(--alt-beige-muted) mb-6">{{ __('Single day access') }}</p>
 
                     <div class="mb-8 grow space-y-2">
                         <button type="button" @click="selected = '7500'" class="flex items-center gap-3 w-full group">
@@ -606,11 +604,11 @@
                                 :class="selected === 'custom' ? 'border-(--alt-beige) bg-(--alt-beige)' : 'border-(--alt-beige)/30 group-hover:border-(--alt-beige)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === 'custom'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">Custom amount</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">{{ __('Custom amount') }}</span>
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-(--alt-navy)/50 border border-(--alt-beige)/10 rounded-xl px-3 py-2">
-                                <input type="number" x-model="custom" min="7501" step="1" placeholder="Enter amount"
+                                <input type="number" x-model="custom" min="7501" step="1" placeholder="{{ __('Enter amount') }}"
                                     class="bg-transparent text-(--alt-beige) placeholder-(--alt-beige-muted)/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                 <span class="text-(--alt-beige-muted) font-medium shrink-0">HUF</span>
                                 <span x-show="custom" class="text-(--alt-beige-muted)/60 text-sm shrink-0" x-text="'(~€' + Math.round(parseInt(custom || 0) / 400) + ')'"></span>
@@ -621,7 +619,7 @@
                     </div>
 
                     <a :href="href" :class="valid ? '' : 'opacity-50 pointer-events-none'" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) text-(--alt-navy-deeper) font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
-                        Register Now
+                        {{ __('Register Now') }}
                     </a>
                 </div>
 
@@ -635,8 +633,8 @@
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > 15000);
                     } }"
                     class="bg-linear-to-br from-(--alt-gold)/15 to-(--alt-navy-dark)/70 border-2 border-(--alt-gold)/40 rounded-3xl p-8 relative overflow-hidden flex flex-col shadow-lg shadow-(--alt-gold)/10">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">3-Day Supporter Pass</h3>
-                    <p class="text-(--alt-beige-muted) mb-6">Full event access</p>
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">{{ __('3-Day Supporter Pass') }}</h3>
+                    <p class="text-(--alt-beige-muted) mb-6">{{ __('Full event access') }}</p>
 
                     <div class="mb-8 grow space-y-2">
                         <button type="button" @click="selected = '15000'" class="flex items-center gap-3 w-full group">
@@ -651,11 +649,11 @@
                                 :class="selected === 'custom' ? 'border-(--alt-gold) bg-(--alt-gold)' : 'border-(--alt-gold)/30 group-hover:border-(--alt-gold)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === 'custom'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-(--alt-gold)' : 'text-white/50'">Custom amount</span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'custom' ? 'text-(--alt-gold)' : 'text-white/50'">{{ __('Custom amount') }}</span>
                         </button>
                         <div x-show="selected === 'custom'" x-transition class="pt-1">
                             <div class="flex items-center gap-2 bg-(--alt-navy)/50 border border-(--alt-beige)/10 rounded-xl px-3 py-2">
-                                <input type="number" x-model="custom" min="15001" step="1" placeholder="Enter amount"
+                                <input type="number" x-model="custom" min="15001" step="1" placeholder="{{ __('Enter amount') }}"
                                     class="bg-transparent text-(--alt-gold) placeholder-(--alt-gold)/30 w-full outline-none text-lg font-heading font-semibold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                                 <span class="text-(--alt-beige-muted) font-medium shrink-0">HUF</span>
                                 <span x-show="custom" class="text-(--alt-beige-muted)/60 text-sm shrink-0" x-text="'(~€' + Math.round(parseInt(custom || 0) / 400) + ')'"></span>
@@ -666,7 +664,7 @@
                     </div>
 
                     <a :href="href" :class="valid ? '' : 'opacity-50 pointer-events-none'" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) text-(--alt-navy-deeper) font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
-                        Register Now
+                        {{ __('Register Now') }}
                     </a>
                 </div>
             </div>
@@ -693,24 +691,23 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                 </div>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Serve With Us!</h2>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">{{ __('Serve With Us!') }}</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto mb-6"></div>
                 <p class="text-(--alt-beige-muted) text-lg max-w-2xl mx-auto mb-4">
-                    Be a part of what God is doing in Hungary and in Europe &amp; sign up to volunteer at the event.
-                    You can choose to serve in:
+                    {!! __('Be a part of what God is doing in Hungary and in Europe & sign up to volunteer at the event. You can choose to serve in:') !!}
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center gap-3 mb-6 max-w-2xl mx-auto">
                     @foreach (['Childcare', 'Ushers', 'Registration', 'Merch', 'Hospitality', 'Tech & Media'] as $role)
-                        <span class="px-4 py-2 bg-(--alt-beige)/5 border border-(--alt-beige)/10 rounded-full text-(--alt-beige-muted) text-sm">{{ $role }}</span>
+                        <span class="px-4 py-2 bg-(--alt-beige)/5 border border-(--alt-beige)/10 rounded-full text-(--alt-beige-muted) text-sm">{{ __($role) }}</span>
                     @endforeach
                 </div>
 
-                <p class="text-(--alt-gold) font-heading font-semibold text-lg mb-8">Every volunteer can participate with a discounted supporter ticket and will receive a complimentary event t-shirt.</p>
+                <p class="text-(--alt-gold) font-heading font-semibold text-lg mb-8">{{ __('Every volunteer can participate with a discounted supporter ticket and will receive a complimentary event t-shirt.') }}</p>
 
                 <a href="{{ route('volunteer') }}"
                     class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) hover:from-(--alt-gold-light) hover:to-(--alt-gold) text-(--alt-navy-deeper) font-heading font-bold text-xl uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
-                    Apply to Volunteer
+                    {{ __('Apply to Volunteer') }}
                     <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -734,11 +731,11 @@
             {{-- Section Header --}}
             <div class="text-center mb-16">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-(--alt-gold) bg-(--alt-gold)/10 border border-(--alt-gold)/30 rounded-full mb-4">
-                    FAQ
+                    {{ __('FAQ') }}
                 </span>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Questions & Answers</h2>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">{{ __('Questions & Answers') }}</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto mb-6"></div>
-                <p class="text-(--alt-beige-muted) text-lg">Everything you need to know about Europe Revival 2026</p>
+                <p class="text-(--alt-beige-muted) text-lg">{{ __('Everything you need to know about Europe Revival 2026') }}</p>
             </div>
 
             {{-- FAQ Accordion --}}
@@ -747,7 +744,7 @@
                     <x-home.faq-item :faq="$faq" :index="$index + 1" wire:key="faq-{{ $faq->id }}">
                         @if ($faq->category === 'volunteer')
                             <a href="{{ route('volunteer') }}" class="inline-flex items-center gap-2 text-(--alt-gold) mt-4 hover:underline">
-                                Apply Now
+                                {{ __('Apply Now') }}
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
@@ -768,10 +765,10 @@
 
             {{-- Contact CTA --}}
             <div class="mt-12 text-center">
-                <p class="text-(--alt-beige-muted) mb-4">Still have questions?</p>
+                <p class="text-(--alt-beige-muted) mb-4">{{ __('Still have questions?') }}</p>
                 <a href="mailto:info@iriseuroperevival.com"
                     class="text-(--alt-gold) hover:text-(--alt-gold-light) font-heading font-medium transition-colors">
-                    Contact us at info@iriseuroperevival.com
+                    {{ __('Contact us at info@iriseuroperevival.com') }}
                 </a>
             </div>
         </div>
@@ -790,22 +787,22 @@
 
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
             {{-- Script accent --}}
-            <p class="font-script text-(--alt-gold-light) text-3xl md:text-6xl mb-4">the nations gather</p>
+            <p class="font-script text-(--alt-gold-light) text-3xl md:text-6xl mb-4">{{ __('the nations gather') }}</p>
 
             <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">
-                Encounter Jesus<br>
-                <span class="text-transparent bg-clip-text bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light)">Catch on Fire</span>
+                {{ __('Encounter Jesus') }}<br>
+                <span class="text-transparent bg-clip-text bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light)">{{ __('Catch on Fire') }}</span>
             </h2>
             <p class="text-xl md:text-2xl text-(--alt-beige-muted) mb-4 max-w-2xl mx-auto font-heading font-medium">
-                Revival awaits. Be a part of what God is doing in Europe!
+                {{ __('Revival awaits. Be a part of what God is doing in Europe!') }}
             </p>
             <p class="text-lg text-(--alt-beige-muted)/60 mb-10 max-w-2xl mx-auto">
-                Don't miss out! Join thousands of believers from across Europe for three days that could change your life forever.
+                {{ __("Don't miss out! Join thousands of believers from across Europe for three days that could change your life forever.") }}
             </p>
 
             <a href="{{ route('register') }}"
                 class="group inline-flex items-center gap-3 px-10 py-5 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) hover:from-(--alt-gold-light) hover:to-(--alt-gold) text-(--alt-navy-deeper) font-heading font-bold text-xl uppercase tracking-wider rounded-full transition-all duration-300 shadow-lg hover:scale-105">
-                Register Now
+                {{ __('Register Now') }}
                 <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -815,7 +812,7 @@
                 <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                October 23-25, 2026 &bull; Budapest, BOK Hall, Hungary
+                {{ __('October 23-25, 2026 • Budapest, BOK Hall, Hungary') }}
             </p>
         </div>
     </section>
@@ -827,14 +824,14 @@
         <div class="max-w-7xl mx-auto px-4">
             @if ($this->mainSponsor)
                 <div class="text-center mb-16">
-                    <span class="text-(--alt-beige-muted)/60 text-sm font-heading uppercase tracking-[0.2em] mb-4 block">Presented by</span>
+                    <span class="text-(--alt-beige-muted)/60 text-sm font-heading uppercase tracking-[0.2em] mb-4 block">{{ __('Presented by') }}</span>
                     <x-home.sponsor-logo :sponsor="$this->mainSponsor" size="main" />
                 </div>
             @endif
 
             @if ($this->partnerSponsors->isNotEmpty())
                 <div class="text-center mb-8">
-                    <span class="text-(--alt-beige-muted)/60 text-sm font-heading uppercase tracking-[0.2em]">Partner Organizations</span>
+                    <span class="text-(--alt-beige-muted)/60 text-sm font-heading uppercase tracking-[0.2em]">{{ __('Partner Organizations') }}</span>
                 </div>
                 <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
                     @foreach ($this->partnerSponsors as $sponsor)

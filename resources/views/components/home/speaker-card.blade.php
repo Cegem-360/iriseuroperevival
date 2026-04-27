@@ -7,12 +7,12 @@
         <div class="speaker-card-content">
             @if ($workshopTopic)
                 <span class="badge-amber mb-2">{{ $workshopTopic }}</span>
-            @elseif ($speaker->title)
-                <span class="badge-{{ $speaker->is_featured ? 'amber' : 'info' }} mb-2">{{ $speaker->title }}</span>
+            @elseif ($speaker->t('title'))
+                <span class="badge-{{ $speaker->is_featured ? 'amber' : 'info' }} mb-2">{{ $speaker->t('title') }}</span>
             @endif
             <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-bold text-white">{{ $speaker->name }}</h3>
-            @if ($speaker->organization)
-                <p class="text-white/60 text-sm">{{ $speaker->organization }}</p>
+            @if ($speaker->t('organization'))
+                <p class="text-white/60 text-sm">{{ $speaker->t('organization') }}</p>
             @endif
         </div>
         @if ($showArrow)
@@ -27,7 +27,7 @@
     </a>
 
     {{-- Bio Overlay --}}
-    @if ($speaker->bio)
+    @if ($speaker->t('bio'))
         <div
             class="absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             {{-- Blur layer - always blurred, opacity transitions --}}
@@ -42,12 +42,12 @@
             <div
                 class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                 <h4 class="text-white font-bold">{{ $speaker->name }}</h4>
-                @if ($speaker->title)
-                    <span class="text-sky-400 text-xs font-medium mb-3">{{ $speaker->title }}</span>
+                @if ($speaker->t('title'))
+                    <span class="text-sky-400 text-xs font-medium mb-3">{{ $speaker->t('title') }}</span>
                 @endif
                 <div class="relative flex-1 min-h-0">
                     <p class="text-white/80 text-sm leading-relaxed overflow-y-auto h-full pb-12"
-                        style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->bio }}
+                        style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->t('bio') }}
                     </p>
                 </div>
             </div>

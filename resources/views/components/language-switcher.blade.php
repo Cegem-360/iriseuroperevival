@@ -6,7 +6,6 @@
     $locales = [
         'en' => ['name' => 'English', 'short' => 'EN', 'flag' => '🇬🇧'],
         'hu' => ['name' => 'Magyar', 'short' => 'HU', 'flag' => '🇭🇺'],
-        'de' => ['name' => 'Deutsch', 'short' => 'DE', 'flag' => '🇩🇪'],
     ];
 @endphp
 

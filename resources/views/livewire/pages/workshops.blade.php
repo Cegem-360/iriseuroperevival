@@ -45,25 +45,25 @@
 
                                 <!-- Title -->
                                 <h3 class="text-lg font-bold mb-2 group-hover:text-sky-400 transition-colors">
-                                    {{ Str::before($workshop->title, ' - ') }}
+                                    {{ Str::before($workshop->t('title'), ' - ') }}
                                 </h3>
 
                                 <!-- Short Description -->
-                                @if($workshop->short_description)
+                                @if($workshop->t('short_description'))
                                     @if(str_contains($workshop->short_description, 'Only those who'))
-                                        @php [$desc, $restriction] = explode('Only those', $workshop->short_description, 2); @endphp
+                                        @php [$desc, $restriction] = explode('Only those', $workshop->t('short_description'), 2); @endphp
                                         <p class="text-white/50 text-sm mb-2">{{ trim($desc) }}</p>
-                                        <p class="text-primary-400 text-sm font-medium mb-4">Only those{{ $restriction }}</p>
+                                        <p class="text-primary-400 text-sm font-medium mb-4">{{ __('Only those') }}{{ $restriction }}</p>
                                     @else
-                                        <p class="text-white/50 text-sm mb-4">{{ $workshop->short_description }}</p>
+                                        <p class="text-white/50 text-sm mb-4">{{ $workshop->t('short_description') }}</p>
                                     @endif
                                 @endif
 
                                 <!-- Full Workshop Description -->
-                                @if($workshop->description)
+                                @if($workshop->t('description'))
                                     <div class="mb-4">
                                         <h4 class="text-xs font-semibold uppercase tracking-wider text-sky-400 mb-2">{{ __('About the workshop') }}</h4>
-                                        <div class="text-white/70 text-sm leading-relaxed whitespace-pre-line">{{ $workshop->description }}</div>
+                                        <div class="text-white/70 text-sm leading-relaxed whitespace-pre-line">{{ $workshop->t('description') }}</div>
                                     </div>
                                 @endif
 
@@ -93,16 +93,16 @@
                                             <a href="{{ route('speaker.show', $workshop->speaker->slug) }}" class="text-white font-semibold hover:text-sky-400 transition-colors">
                                                 {{ $workshop->leader_name }}
                                             </a>
-                                            @if($workshop->speaker->organization)
-                                                <p class="text-primary-400 text-xs font-medium mt-0.5">{{ $workshop->speaker->organization }}</p>
+                                            @if($workshop->speaker->t('organization'))
+                                                <p class="text-primary-400 text-xs font-medium mt-0.5">{{ $workshop->speaker->t('organization') }}</p>
                                             @endif
                                         @else
                                             <p class="text-white font-semibold">{{ $workshop->leader_name }}</p>
                                         @endif
                                     </div>
                                 </div>
-                                @if($workshop->speaker && $workshop->speaker->bio)
-                                    <p class="text-white/60 text-sm leading-relaxed whitespace-pre-line">{{ $workshop->speaker->bio }}</p>
+                                @if($workshop->speaker && $workshop->speaker->t('bio'))
+                                    <p class="text-white/60 text-sm leading-relaxed whitespace-pre-line">{{ $workshop->speaker->t('bio') }}</p>
                                 @endif
                             </div>
                         </div>

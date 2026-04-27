@@ -52,7 +52,7 @@
             {{-- CTA Button --}}
             <div class="hidden lg:flex items-center gap-4">
                 {{-- Language Switcher --}}
-               {{--  <x-language-switcher variant="dropdown" /> --}}
+                <x-language-switcher variant="dropdown" />
 
                 {{-- Register Button --}}
                 <a href="{{ route('register') }}"

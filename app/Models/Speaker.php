@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Database\Factories\SpeakerFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,7 +16,7 @@ use Override;
 class Speaker extends Model
 {
     /** @use HasFactory<SpeakerFactory> */
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'uuid',
@@ -60,16 +60,6 @@ class Speaker extends Model
     public function workshops(): HasMany
     {
         return $this->hasMany(Workshop::class);
-    }
-
-    protected function translated(): Attribute
-    {
-        return Attribute::make(get: function (string $attribute, ?string $locale = null) {
-            $locale = $locale ?? app()->getLocale();
-            $translations = $this->translations ?? [];
-
-            return $translations[$locale][$attribute] ?? $this->$attribute;
-        });
     }
 
     #[Scope]

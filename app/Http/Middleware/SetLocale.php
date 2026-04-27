@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -16,7 +17,7 @@ class SetLocale
      *
      * @var array<string>
      */
-    protected array $supportedLocales = ['en', 'hu', 'de'];
+    protected array $supportedLocales = ['en', 'hu'];
 
     /**
      * Handle an incoming request.
@@ -28,6 +29,7 @@ class SetLocale
         $locale = $this->determineLocale($request);
 
         App::setLocale($locale);
+        Carbon::setLocale($locale);
 
         return $next($request);
     }

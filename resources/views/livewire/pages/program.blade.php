@@ -36,9 +36,9 @@
                                     ? 'bg-sky-400 text-navy-800'
                                     : 'text-white/70 hover:text-white' }}"
                         >
-                            <span class="hidden sm:inline">{{ $dayDate->format('l') }}</span>
-                            <span class="sm:hidden">{{ $dayDate->format('D') }}</span>
-                            <span class="ml-1 text-xs opacity-75">{{ $dayDate->format('M j') }}</span>
+                            <span class="hidden sm:inline">{{ $dayDate->translatedFormat('l') }}</span>
+                            <span class="sm:hidden">{{ $dayDate->translatedFormat('D') }}</span>
+                            <span class="ml-1 text-xs opacity-75">{{ $dayDate->translatedFormat('M j') }}</span>
                         </button>
                     @endforeach
                 </div>
@@ -140,22 +140,22 @@
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <h3 class="text-lg font-bold">{{ $item->title }}</h3>
-                                                    @if($item->location)
+                                                    <h3 class="text-lg font-bold">{{ $item->t('title') }}</h3>
+                                                    @if($item->t('location'))
                                                         <p class="text-white/40 text-sm flex items-center gap-1">
                                                             <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                                             </svg>
-                                                            {{ $item->location }}
+                                                            {{ $item->t('location') }}
                                                         </p>
                                                     @endif
                                                 </div>
                                             </div>
 
                                             <!-- Description -->
-                                            @if($item->description)
-                                                <p class="text-white/50 text-sm mb-4">{{ $item->description }}</p>
+                                            @if($item->t('description'))
+                                                <p class="text-white/50 text-sm mb-4">{{ $item->t('description') }}</p>
                                             @endif
 
                                             <!-- Speaker -->
@@ -172,8 +172,8 @@
                                                         <a href="{{ route('speaker.show', $item->speaker->slug) }}" class="text-white font-medium hover:text-sky-400 transition-colors">
                                                             {{ $item->speaker->name }}
                                                         </a>
-                                                        @if($item->speaker->title)
-                                                            <p class="text-white/40 text-sm">{{ $item->speaker->title }}</p>
+                                                        @if($item->speaker->t('title'))
+                                                            <p class="text-white/40 text-sm">{{ $item->speaker->t('title') }}</p>
                                                         @endif
                                                     </div>
                                                 </div>

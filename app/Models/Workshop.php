@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTranslations;
 use Database\Factories\WorkshopFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -17,7 +18,7 @@ use Override;
 class Workshop extends Model
 {
     /** @use HasFactory<WorkshopFactory> */
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'uuid',
@@ -75,16 +76,6 @@ class Workshop extends Model
         $maxAllowed = (int) ceil(($this->capacity ?? 0) * 1.1);
 
         return $this->registrations()->count() >= $maxAllowed;
-    }
-
-    protected function translated(): Attribute
-    {
-        return Attribute::make(get: function (string $attribute, ?string $locale = null) {
-            $locale = $locale ?? app()->getLocale();
-            $translations = $this->translations ?? [];
-
-            return $translations[$locale][$attribute] ?? $this->$attribute;
-        });
     }
 
     protected function formattedDuration(): Attribute

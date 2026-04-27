@@ -3,11 +3,11 @@
     <section class="bg-navy-950 pt-24 pb-4">
         <div class="max-w-7xl mx-auto px-4">
             <nav class="flex items-center gap-2 text-sm">
-                <a href="{{ route('home') }}" class="text-white/50 hover:text-white transition-colors">Home</a>
+                <a href="{{ route('home') }}" class="text-white/50 hover:text-white transition-colors">{{ __('Home') }}</a>
                 <svg class="w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
-                <a href="{{ route('speakers') }}" class="text-white/50 hover:text-white transition-colors">Speakers</a>
+                <a href="{{ route('speakers') }}" class="text-white/50 hover:text-white transition-colors">{{ __('Speakers') }}</a>
                 <svg class="w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -33,22 +33,22 @@
 
                 {{-- Info --}}
                 <div class="lg:py-8">
-                    @if($speaker->title)
+                    @if($speaker->t('title'))
                         <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-primary-400 bg-primary-500/10 border border-primary-500/30 rounded-full mb-4">
-                            {{ $speaker->title }}
+                            {{ $speaker->t('title') }}
                         </span>
                     @endif
 
                     <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ $speaker->name }}</h1>
 
-                    @if($speaker->organization || $speaker->country)
+                    @if($speaker->t('organization') || $speaker->country)
                         <div class="flex flex-wrap items-center gap-4 mb-6">
-                            @if($speaker->organization)
+                            @if($speaker->t('organization'))
                                 <div class="flex items-center gap-2 text-white/60">
                                     <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                     </svg>
-                                    <span>{{ $speaker->organization }}</span>
+                                    <span>{{ $speaker->t('organization') }}</span>
                                 </div>
                             @endif
                             @if($speaker->country)
@@ -64,14 +64,14 @@
                     @endif
 
                     {{-- Bio --}}
-                    @if($speaker->bio)
-                        <div class="text-white/70 leading-relaxed whitespace-pre-line mb-8">{{ $speaker->bio }}</div>
+                    @if($speaker->t('bio'))
+                        <div class="text-white/70 leading-relaxed whitespace-pre-line mb-8">{{ $speaker->t('bio') }}</div>
                     @endif
 
                     {{-- Social Links --}}
                     @if($speaker->social_links && count($speaker->social_links) > 0)
                         <div class="mb-8">
-                            <h3 class="text-sm font-semibold text-white/50 uppercase tracking-wider mb-4">Connect</h3>
+                            <h3 class="text-sm font-semibold text-white/50 uppercase tracking-wider mb-4">{{ __('Connect') }}</h3>
                             <div class="flex flex-wrap gap-3">
                                 @foreach($speaker->social_links as $platform => $url)
                                     @if($url)
@@ -122,13 +122,13 @@
                     {{-- CTA --}}
                     <div class="flex flex-wrap gap-4">
                         <a href="{{ route('register') }}" class="btn-primary">
-                            Register for Conference
+                            {{ __('Register for Conference') }}
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
                         </a>
                         <a href="{{ route('speakers') }}" class="btn-secondary">
-                            View All Speakers
+                            {{ __('View All Speakers') }}
                         </a>
                     </div>
                 </div>
@@ -141,8 +141,8 @@
         <section class="py-20 bg-navy-900">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-white mb-4">Other Speakers</h2>
-                    <p class="text-white/50">Discover more anointed ministers at Europe Revival 2026</p>
+                    <h2 class="text-3xl font-bold text-white mb-4">{{ __('Other Speakers') }}</h2>
+                    <p class="text-white/50">{{ __('Discover more anointed ministers at Europe Revival 2026') }}</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
