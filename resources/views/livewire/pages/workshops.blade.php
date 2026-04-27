@@ -22,81 +22,95 @@
                 <p class="text-white/50 max-w-md mx-auto">{{ __('We are preparing an amazing lineup of interactive workshops. Stay tuned for announcements!') }}</p>
             </div>
         @else
-            <!-- Workshops Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Workshops List (full-width cards) -->
+            <div class="space-y-6">
                 @foreach($workshops as $workshop)
                     <div wire:key="workshop-{{ $workshop->id }}" class="group bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden hover:border-sky-400/30 transition-colors">
-                        <div class="p-6 flex flex-col h-full">
-                            <!-- Icon & Schedule Badge -->
-                            <div class="flex items-start justify-between mb-4">
-                                <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center shrink-0">
-                                    <svg class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                    </svg>
-                                </div>
-                                @if($workshop->schedule_note)
-                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-ocean-500/10 text-ocean-400 border border-ocean-500/20">
-                                        {{ $workshop->schedule_note }}
-                                    </span>
-                                @endif
-                            </div>
-
-                            <!-- Title -->
-                            <h3 class="text-lg font-bold mb-2 group-hover:text-sky-400 transition-colors">
-                                {{ Str::before($workshop->title, ' - ') }}
-                            </h3>
-
-                            <!-- Short Description -->
-                            @if($workshop->short_description)
-                                @if(str_contains($workshop->short_description, 'Only those who'))
-                                    @php [$desc, $restriction] = explode('Only those', $workshop->short_description, 2); @endphp
-                                    <p class="text-white/50 text-sm mb-2">{{ trim($desc) }}</p>
-                                    <p class="text-primary-400 text-sm font-medium mb-4">Only those{{ $restriction }}</p>
-                                @else
-                                    <p class="text-white/50 text-sm mb-4 line-clamp-2">{{ $workshop->short_description }}</p>
-                                @endif
-                            @endif
-
-                            <div class="mt-auto">
-                            <!-- Duration -->
-                            @if($workshop->formatted_duration)
-                                <div class="flex items-center gap-1.5 text-white/40 text-xs mb-4">
-                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    {{ $workshop->formatted_duration }}
-                                </div>
-                            @endif
-
-                            <!-- Leader -->
-                            <div class="flex items-center gap-4 pt-4 border-t border-navy-600">
-                                @if($workshop->speaker && $workshop->speaker->photo_path)
-                                    <img src="{{ Vite::asset('resources/' . $workshop->speaker->photo_path) }}" alt="{{ $workshop->leader_name }}" class="w-24 h-24 rounded-xl object-cover object-top">
-                                @else
-                                    <div class="w-24 h-24 rounded-xl bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-2xl">
-                                        {{ substr($workshop->leader_name ?? 'W', 0, 1) }}
+                        <div class="grid md:grid-cols-2 gap-6 p-6">
+                            <!-- Left: Workshop info -->
+                            <div class="flex flex-col">
+                                <!-- Icon & Schedule Badge -->
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center shrink-0">
+                                        <svg class="w-5 h-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                        </svg>
                                     </div>
-                                @endif
-                                <div>
-                                    @if($workshop->speaker)
-                                        <a href="{{ route('speaker.show', $workshop->speaker->slug) }}" class="text-white font-medium hover:text-sky-400 transition-colors">
-                                            {{ $workshop->leader_name }}
-                                        </a>
-                                        @if($workshop->speaker->organization)
-                                            <p class="text-primary-400 text-xs font-medium">{{ $workshop->speaker->organization }}</p>
-                                        @endif
-                                    @else
-                                        <p class="text-white font-medium">{{ $workshop->leader_name }}</p>
+                                    @if($workshop->schedule_note)
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-ocean-500/10 text-ocean-400 border border-ocean-500/20">
+                                            {{ $workshop->schedule_note }}
+                                        </span>
                                     @endif
                                 </div>
+
+                                <!-- Title -->
+                                <h3 class="text-lg font-bold mb-2 group-hover:text-sky-400 transition-colors">
+                                    {{ Str::before($workshop->title, ' - ') }}
+                                </h3>
+
+                                <!-- Short Description -->
+                                @if($workshop->short_description)
+                                    @if(str_contains($workshop->short_description, 'Only those who'))
+                                        @php [$desc, $restriction] = explode('Only those', $workshop->short_description, 2); @endphp
+                                        <p class="text-white/50 text-sm mb-2">{{ trim($desc) }}</p>
+                                        <p class="text-primary-400 text-sm font-medium mb-4">Only those{{ $restriction }}</p>
+                                    @else
+                                        <p class="text-white/50 text-sm mb-4">{{ $workshop->short_description }}</p>
+                                    @endif
+                                @endif
+
+                                <!-- Full Workshop Description -->
+                                @if($workshop->description)
+                                    <div class="mb-4">
+                                        <h4 class="text-xs font-semibold uppercase tracking-wider text-sky-400 mb-2">{{ __('About the workshop') }}</h4>
+                                        <div class="text-white/70 text-sm leading-relaxed whitespace-pre-line">{{ $workshop->description }}</div>
+                                    </div>
+                                @endif
+
+                                <!-- Duration -->
+                                @if($workshop->formatted_duration)
+                                    <div class="flex items-center gap-1.5 text-white/40 text-xs mt-auto pt-4">
+                                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        {{ $workshop->formatted_duration }}
+                                    </div>
+                                @endif
                             </div>
+
+                            <!-- Right: Speaker -->
+                            <div class="md:border-l md:border-navy-600 md:pl-6 pt-4 md:pt-0 border-t md:border-t-0 border-navy-600">
+                                <div class="flex items-start gap-4 mb-4">
+                                    @if($workshop->speaker && $workshop->speaker->photo_path)
+                                        <img src="{{ Vite::asset('resources/' . $workshop->speaker->photo_path) }}" alt="{{ $workshop->leader_name }}" class="w-24 h-24 rounded-xl object-cover object-top shrink-0">
+                                    @else
+                                        <div class="w-24 h-24 rounded-xl bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-2xl shrink-0">
+                                            {{ substr($workshop->leader_name ?? 'W', 0, 1) }}
+                                        </div>
+                                    @endif
+                                    <div class="flex-1 min-w-0">
+                                        @if($workshop->speaker)
+                                            <a href="{{ route('speaker.show', $workshop->speaker->slug) }}" class="text-white font-semibold hover:text-sky-400 transition-colors">
+                                                {{ $workshop->leader_name }}
+                                            </a>
+                                            @if($workshop->speaker->organization)
+                                                <p class="text-primary-400 text-xs font-medium mt-0.5">{{ $workshop->speaker->organization }}</p>
+                                            @endif
+                                        @else
+                                            <p class="text-white font-semibold">{{ $workshop->leader_name }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                @if($workshop->speaker && $workshop->speaker->bio)
+                                    <p class="text-white/60 text-sm leading-relaxed whitespace-pre-line">{{ $workshop->speaker->bio }}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
                 @endforeach
 
                 {{-- Additional workshops coming soon --}}
-                <div class="bg-navy-700/30 rounded-xl border border-navy-600 border-dashed flex items-center justify-center p-8 min-h-64">
+                <div class="bg-navy-700/30 rounded-xl border border-navy-600 border-dashed flex items-center justify-center p-8 min-h-32">
                     <div class="text-center">
                         <div class="w-12 h-12 rounded-lg bg-primary-500/10 flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

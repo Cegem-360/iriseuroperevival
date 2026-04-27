@@ -221,7 +221,7 @@
                     <h3 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">Workshop Leaders</h3>
                     <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto mb-6"></div>
                     <p class="text-(--alt-beige-muted) text-lg max-w-3xl mx-auto">
-                        Reserve your spot at the workshops. Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.
+                        Reserve your spot at the workshops. <br>Inspiring talks and hands-on activations from global leaders with years of experience in ministry, marketplace, social-justice and arts background.
                     </p>
                 </div>
                 @php
