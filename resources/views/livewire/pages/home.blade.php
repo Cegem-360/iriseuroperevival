@@ -794,7 +794,7 @@
                 <span class="text-transparent bg-clip-text bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light)">{{ __('Catch on Fire') }}</span>
             </h2>
             <p class="text-xl md:text-2xl text-(--alt-beige-muted) mb-4 max-w-2xl mx-auto font-heading font-medium">
-                {{ __('Revival awaits. Be a part of what God is doing in Europe!') }}
+                {!! nl2br(e(__('Revival awaits. Be a part of what God is doing in Europe!'))) !!}
             </p>
             <p class="text-lg text-(--alt-beige-muted)/60 mb-10 max-w-2xl mx-auto">
                 {{ __("Don't miss out! Join thousands of believers from across Europe for three days that could change your life forever.") }}
