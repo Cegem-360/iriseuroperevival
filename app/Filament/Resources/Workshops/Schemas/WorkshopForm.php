@@ -87,6 +87,7 @@ class WorkshopForm
                     ->schema([
                         FileUpload::make('image_path')
                             ->image()
+                            ->disk('public')
                             ->directory('workshops')
                             ->imageEditor()
                             ->columnSpanFull(),

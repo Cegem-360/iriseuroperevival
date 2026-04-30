@@ -63,6 +63,7 @@ class ProductForm
                     ->schema([
                         FileUpload::make('image_path')
                             ->image()
+                            ->disk('public')
                             ->directory('products')
                             ->imageEditor()
                             ->columnSpanFull(),

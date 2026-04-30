@@ -56,6 +56,7 @@ class SpeakerForm
                             ->columnSpanFull(),
                         FileUpload::make('photo_path')
                             ->image()
+                            ->disk('public')
                             ->directory('speakers')
                             ->imageEditor()
                             ->columnSpanFull(),
