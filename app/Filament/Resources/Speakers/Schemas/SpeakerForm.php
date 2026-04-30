@@ -10,7 +10,10 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 
 class SpeakerForm
@@ -75,6 +78,39 @@ class SpeakerForm
                             ->default(0)
                             ->minValue(0),
                     ]),
+                Section::make('Translations')
+                    ->description('Per-language overrides. Leave empty to fall back to the base fields above.')
+                    ->collapsed()
+                    ->schema([
+                        Tabs::make('translations_tabs')
+                            ->columnSpanFull()
+                            ->tabs([
+                                Tab::make('English')
+                                    ->schema(self::translationFields('en')),
+                                Tab::make('Magyar')
+                                    ->schema(self::translationFields('hu')),
+                                Tab::make('Deutsch')
+                                    ->schema(self::translationFields('de')),
+                            ]),
+                    ]),
             ]);
+    }
+
+    /**
+     * @return array<int, Component>
+     */
+    protected static function translationFields(string $locale): array
+    {
+        return [
+            TextInput::make("translations.{$locale}.title")
+                ->label('Title')
+                ->maxLength(255),
+            TextInput::make("translations.{$locale}.organization")
+                ->label('Organization')
+                ->maxLength(255),
+            Textarea::make("translations.{$locale}.bio")
+                ->label('Bio')
+                ->rows(5),
+        ];
     }
 }
