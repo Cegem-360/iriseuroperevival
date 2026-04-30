@@ -12,7 +12,10 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 
 class WorkshopForm
@@ -99,6 +102,40 @@ class WorkshopForm
                             ->default(0)
                             ->minValue(0),
                     ]),
+                Section::make('Translations')
+                    ->description('Per-language overrides. Leave empty to fall back to the base fields above.')
+                    ->collapsed()
+                    ->schema([
+                        Tabs::make('translations_tabs')
+                            ->columnSpanFull()
+                            ->tabs([
+                                Tab::make('English')
+                                    ->schema(self::translationFields('en')),
+                                Tab::make('Magyar')
+                                    ->schema(self::translationFields('hu')),
+                                Tab::make('Deutsch')
+                                    ->schema(self::translationFields('de')),
+                            ]),
+                    ]),
             ]);
+    }
+
+    /**
+     * @return array<int, Component>
+     */
+    protected static function translationFields(string $locale): array
+    {
+        return [
+            TextInput::make("translations.{$locale}.title")
+                ->label('Title')
+                ->maxLength(255),
+            Textarea::make("translations.{$locale}.short_description")
+                ->label('Short Description')
+                ->rows(2)
+                ->maxLength(500),
+            Textarea::make("translations.{$locale}.description")
+                ->label('Description')
+                ->rows(5),
+        ];
     }
 }
