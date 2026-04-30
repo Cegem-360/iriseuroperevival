@@ -81,8 +81,8 @@
                             <!-- Right: Speaker -->
                             <div class="md:border-l md:border-navy-600 md:pl-6 pt-4 md:pt-0 border-t md:border-t-0 border-navy-600">
                                 <div class="flex items-start gap-4 mb-4">
-                                    @if($workshop->speaker && $workshop->speaker->photo_path)
-                                        <img src="{{ Vite::asset('resources/' . $workshop->speaker->photo_path) }}" alt="{{ $workshop->leader_name }}" class="w-24 h-24 rounded-xl object-cover object-top shrink-0">
+                                    @if($workshop->speaker && $workshop->speaker->photo_url)
+                                        <img src="{{ $workshop->speaker->photo_url }}" alt="{{ $workshop->leader_name }}" class="w-24 h-24 rounded-xl object-cover object-top shrink-0">
                                     @else
                                         <div class="w-24 h-24 rounded-xl bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-2xl shrink-0">
                                             {{ substr($workshop->leader_name ?? 'W', 0, 1) }}

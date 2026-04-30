@@ -5,9 +5,10 @@ declare(strict_types=1);
 use App\Livewire\Pages\Workshops;
 use App\Models\Speaker;
 use App\Models\Workshop;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 describe('workshops page', function () {
     it('renders workshops page successfully', function () {
@@ -19,6 +20,24 @@ describe('workshops page', function () {
     it('shows empty state when no workshops', function () {
         Livewire::test(Workshops::class)
             ->assertSee('Workshop Details Coming Soon');
+    });
+
+    it('renders speaker photo from a Filament-uploaded path', function () {
+        $speaker = Speaker::factory()->create([
+            'name' => 'Uploaded Speaker',
+            'photo_path' => 'speakers/01KQEQW52YBDBKSVPGG0QMSAMJ.jpg',
+        ]);
+
+        Workshop::factory()->create([
+            'title' => 'Workshop With Uploaded Speaker',
+            'speaker_id' => $speaker->id,
+            'leader_name' => $speaker->name,
+            'is_published' => true,
+        ]);
+
+        Livewire::test(Workshops::class)
+            ->assertSee('Workshop With Uploaded Speaker')
+            ->assertSee('/storage/speakers/01KQEQW52YBDBKSVPGG0QMSAMJ.jpg');
     });
 
     it('displays workshops', function () {

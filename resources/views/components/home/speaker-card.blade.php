@@ -2,7 +2,7 @@
 
 <div class="relative group/card block">
     <a href="{{ route('speaker.show', $speaker->slug) }}" class="speaker-card group block">
-        <img src="{{ $speaker->photo_path ? Vite::asset('resources/' . $speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
+        <img src="{{ $speaker->photo_url ?? Vite::asset('resources/images/speakers/placeholder.webp') }}"
             alt="{{ $speaker->name }}">
         <div class="speaker-card-content">
             @if ($workshopTopic)

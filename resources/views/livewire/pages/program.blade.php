@@ -161,8 +161,8 @@
                                             <!-- Speaker -->
                                             @if($item->speaker)
                                                 <div class="flex items-center gap-4 pt-4 border-t border-navy-600">
-                                                    @if($item->speaker->photo_path)
-                                                        <img src="{{ Vite::asset('resources/' . $item->speaker->photo_path) }}" alt="{{ $item->speaker->name }}" class="w-24 h-24 rounded-xl object-cover object-top">
+                                                    @if($item->speaker->photo_url)
+                                                        <img src="{{ $item->speaker->photo_url }}" alt="{{ $item->speaker->name }}" class="w-24 h-24 rounded-xl object-cover object-top">
                                                     @else
                                                         <div class="w-24 h-24 rounded-xl bg-sky-400/20 flex items-center justify-center text-sky-400 font-semibold text-2xl">
                                                             {{ substr($item->speaker->name, 0, 1) }}

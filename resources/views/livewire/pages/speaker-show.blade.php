@@ -23,7 +23,7 @@
                 {{-- Photo --}}
                 <div class="relative max-w-xs">
                     <div class="aspect-3/4 rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ $speaker->photo_path ? Vite::asset('resources/' . $speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
+                        <img src="{{ $speaker->photo_url ?? Vite::asset('resources/images/speakers/placeholder.webp') }}"
                              alt="{{ $speaker->name }}"
                              class="w-full h-full object-cover">
                     </div>
@@ -151,7 +151,7 @@
                            class="group relative overflow-hidden rounded-2xl bg-navy-800/50 border border-navy-700 hover:border-primary-500/50 transition-all duration-300"
                            wire:key="other-{{ $otherSpeaker->id }}">
                             <div class="aspect-3/4 overflow-hidden">
-                                <img src="{{ $otherSpeaker->photo_path ? Vite::asset('resources/' . $otherSpeaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp') }}"
+                                <img src="{{ $otherSpeaker->photo_url ?? Vite::asset('resources/images/speakers/placeholder.webp') }}"
                                      alt="{{ $otherSpeaker->name }}"
                                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-linear-to-t from-navy-900 via-navy-900/20 to-transparent"></div>

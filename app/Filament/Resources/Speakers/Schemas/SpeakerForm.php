@@ -41,7 +41,8 @@ class SpeakerForm
                         Select::make('type')
                             ->options([
                                 'speaker' => 'Speaker',
-                                'worship_leader' => 'Worship Leader',
+                                'workshop_leader' => 'Workshop leader',
+                                'worship_leader' => 'Worship leader',
                                 'host' => 'Host',
                             ])
                             ->default('speaker')

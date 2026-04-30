@@ -56,7 +56,6 @@ namespace App\Models{
  * @property array<array-key, mixed>|null $translations
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- * @property-read mixed $translated
  * @method static \Database\Factories\FaqFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Faq newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Faq newQuery()
@@ -97,13 +96,13 @@ namespace App\Models{
  * @property string|null $notes
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- * @property-read int|float $discount_in_euros
+ * @property-read int|float $discount_in_huf
  * @property-read string $formatted_total
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $items
  * @property-read int|null $items_count
  * @property-read \App\Models\PromotionCode|null $promotionCode
- * @property-read int|float $subtotal_in_euros
- * @property-read int|float $total_in_euros
+ * @property-read int|float $subtotal_in_huf
+ * @property-read int|float $total_in_huf
  * @method static \Database\Factories\OrderFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order newQuery()
@@ -186,7 +185,7 @@ namespace App\Models{
  * @property-read string $formatted_price
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
  * @property-read int|null $order_items_count
- * @property-read int|float $price_in_euros
+ * @property-read int|float $price_in_huf
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product active()
  * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product inStock()
@@ -309,8 +308,11 @@ namespace App\Models{
  * @property array<array-key, mixed>|null $service_areas
  * @property bool $has_served_before
  * @property string|null $previous_service_description
- * @property bool $wants_to_evangelize
+ * @property int $wants_to_evangelize
+ * @property int $want_to_healing_room
+ * @property int $want_to_prophet_room
  * @property-read string $formatted_amount
+ * @property-read string $formatted_ticket_type
  * @property-read string $full_name
  * @property-read bool $is_approved
  * @property-read bool $is_paid
@@ -386,19 +388,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereWantToHealingRoom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereWantToProphetRoom($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Registration whereWantsToEvangelize($value)
  */
 	class Registration extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * @method static \Database\Factories\RoomFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Room newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Room newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Room query()
- */
-	class Room extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -418,7 +412,6 @@ namespace App\Models{
  * @property bool $is_published
  * @property int $sort_order
  * @property-read \App\Models\Speaker|null $speaker
- * @property-read mixed $translated
  * @method static \Database\Factories\ScheduleItemFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduleItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduleItem newQuery()
@@ -463,9 +456,9 @@ namespace App\Models{
  * @property array<array-key, mixed>|null $translations
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
+ * @property-read string|null $photo_url
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ScheduleItem> $scheduleItems
  * @property-read int|null $schedule_items_count
- * @property-read mixed $translated
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Workshop> $workshops
  * @property-read int|null $workshops_count
  * @method static \Database\Factories\SpeakerFactory factory($count = null, $state = [])
@@ -541,7 +534,7 @@ namespace App\Models{
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
  * @property-read string $formatted_price
- * @property-read int|float $price_in_euros
+ * @property-read int|float $price_in_huf
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TicketPrice active()
  * @method static \Database\Factories\TicketPriceFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TicketPrice forTier(string $tier)
@@ -630,7 +623,6 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Registration> $registrations
  * @property-read int|null $registrations_count
  * @property-read \App\Models\Speaker|null $speaker
- * @property-read mixed $translated
  * @method static \Database\Factories\WorkshopFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Workshop newQuery()

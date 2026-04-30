@@ -21,7 +21,7 @@
     $hasDesignerPhoto = $altPhoto || $altWorkshopPhoto;
     $photoSrc = $hasDesignerPhoto
         ? Vite::asset('resources/' . ($altPhoto ?? $altWorkshopPhoto))
-        : ($speaker->photo_path ? Vite::asset('resources/' . $speaker->photo_path) : Vite::asset('resources/images/speakers/placeholder.webp'));
+        : ($speaker->photo_url ?? Vite::asset('resources/images/speakers/placeholder.webp'));
 @endphp
 
 <div class="relative group/card block" x-data="{ bioOpen: false }">
