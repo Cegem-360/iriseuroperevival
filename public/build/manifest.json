@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DotG5snr.css",
+    "file": "assets/app-DzyhKWkA.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -140,21 +140,49 @@
     "file": "assets/speaker-mel-CX3tzI4s.webp",
     "src": "resources/images/alt-style/speakers/speaker-mel.webp"
   },
+  "resources/images/alt-style/workshop-leaders/alumni.webp": {
+    "file": "assets/alumni-B6P-kVT4.webp",
+    "src": "resources/images/alt-style/workshop-leaders/alumni.webp"
+  },
   "resources/images/alt-style/workshop-leaders/baoyan.webp": {
     "file": "assets/baoyan-xk83PAHo.webp",
     "src": "resources/images/alt-style/workshop-leaders/baoyan.webp"
   },
+  "resources/images/alt-style/workshop-leaders/britton.webp": {
+    "file": "assets/britton-DHtdWG9x.webp",
+    "src": "resources/images/alt-style/workshop-leaders/britton.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/gava.webp": {
+    "file": "assets/gava-CC_oiTgj.webp",
+    "src": "resources/images/alt-style/workshop-leaders/gava.webp"
+  },
   "resources/images/alt-style/workshop-leaders/gokee.webp": {
-    "file": "assets/gokee-CqFT-mTj.webp",
+    "file": "assets/gokee-B5_sziIt.webp",
     "src": "resources/images/alt-style/workshop-leaders/gokee.webp"
   },
+  "resources/images/alt-style/workshop-leaders/kate.webp": {
+    "file": "assets/kate-B6WeerG1.webp",
+    "src": "resources/images/alt-style/workshop-leaders/kate.webp"
+  },
   "resources/images/alt-style/workshop-leaders/katey.webp": {
-    "file": "assets/katey-CEnG_tT8.webp",
+    "file": "assets/katey-C3Kboq4k.webp",
     "src": "resources/images/alt-style/workshop-leaders/katey.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/sousa.webp": {
+    "file": "assets/sousa-CCXrcCys.webp",
+    "src": "resources/images/alt-style/workshop-leaders/sousa.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/taslim.webp": {
+    "file": "assets/taslim-Xol7frgk.webp",
+    "src": "resources/images/alt-style/workshop-leaders/taslim.webp"
   },
   "resources/images/alt-style/workshop-leaders/tine.webp": {
     "file": "assets/tine-UoHTofxy.webp",
     "src": "resources/images/alt-style/workshop-leaders/tine.webp"
+  },
+  "resources/images/alt-style/workshop-leaders/tineke.webp": {
+    "file": "assets/tineke-zr4MTc7Q.webp",
+    "src": "resources/images/alt-style/workshop-leaders/tineke.webp"
   },
   "resources/images/alt-style/znft8q.webp": {
     "file": "assets/znft8q-G2pSL-tg.webp",

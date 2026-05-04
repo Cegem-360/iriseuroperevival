@@ -190,14 +190,42 @@
                     </p>
                 </div>
                 @php
-                    $altWorkshopSlugs = ['mary-pat-gokee', 'katey-maddux', 'tineke-bouwman'];
-                    $altWorkshopLeaders = $this->workshopLeaders->filter(fn ($s) => in_array($s->slug, $altWorkshopSlugs));
+                    $workshopCards = [
+                        ['slug' => 'david-gava', 'photo' => 'images/alt-style/workshop-leaders/gava.webp', 'topic' => 'Power Evangelism, Revival Harvest', 'workshop' => 'power-evangelism'],
+                        ['slug' => 'mary-pat-gokee', 'photo' => 'images/alt-style/workshop-leaders/gokee.webp', 'topic' => 'Passion, Purpose, Fire', 'workshop' => 'missions'],
+                        ['slug' => 'baoyan-lam', 'photo' => 'images/alt-style/workshop-leaders/taslim.webp', 'topic' => 'Marketplace Missions', 'workshop' => 'marketplace-missions'],
+                        ['slug' => 'dr-kate', 'photo' => 'images/alt-style/workshop-leaders/kate.webp', 'topic' => 'The Beautiful Heart of Jesus: Set Free Through Creative Movement', 'workshop' => 'prophetic-arts'],
+                        ['slug' => 'brian-valerie', 'photo' => 'images/alt-style/workshop-leaders/britton.webp', 'topic' => 'The Burning Generation: Living Like Jesus', 'workshop' => 'father-heart-of-god'],
+                        ['slug' => 'tineke-bouwman', 'photo' => 'images/alt-style/workshop-leaders/tineke.webp', 'topic' => 'Prophetic Voice', 'workshop' => 'prophetic-ministry'],
+                        ['slug' => 'katey-maddux', 'photo' => 'images/alt-style/workshop-leaders/katey.webp', 'topic' => 'Pioneering in Human Trafficking', 'workshop' => 'human-trafficking-awareness'],
+                        ['slug' => 'fernando-sousa', 'photo' => 'images/alt-style/workshop-leaders/sousa.webp', 'topic' => 'Freedom from Homosexuality', 'workshop' => null],
+                        ['slug' => 'iris-global-leaders', 'photo' => 'images/alt-style/workshop-leaders/alumni.webp', 'topic' => 'Iris Harvest School Alumni Gathering', 'workshop' => 'iris-global-alumni-gathering'],
+                    ];
+                    $workshopSpeakers = \App\Models\Speaker::query()
+                        ->whereIn('slug', collect($workshopCards)->pluck('slug'))
+                        ->get()
+                        ->keyBy('slug');
+                    $workshopBySlug = \App\Models\Workshop::query()
+                        ->whereIn('slug', collect($workshopCards)->pluck('workshop')->filter())
+                        ->get()
+                        ->keyBy('slug');
                 @endphp
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                    @foreach ($altWorkshopLeaders as $speaker)
-                        <div wire:key="workshop-{{ $speaker->id }}">
-                            <x-home.speaker-card-alt :speaker="$speaker" :showArrow="false" :workshopTopic="$speaker->workshops->first()?->title" />
-                        </div>
+                    @foreach ($workshopCards as $i => $card)
+                        @php
+                            $speaker = $workshopSpeakers->get($card['slug']);
+                            $workshop = $card['workshop'] ? $workshopBySlug->get($card['workshop']) : null;
+                        @endphp
+                        @if ($speaker)
+                            <div wire:key="workshop-{{ $speaker->id }}" @class(['md:col-start-2' => $i === 8])>
+                                <x-home.speaker-card-alt
+                                    :speaker="$speaker"
+                                    :showArrow="false"
+                                    :portraitPath="$card['photo']"
+                                    :workshopTopic="__($card['topic'])"
+                                    :workshopDescription="$workshop?->t('description')" />
+                            </div>
+                        @endif
                     @endforeach
                     {{-- Coming Soon placeholder --}}
                     <div class="relative overflow-hidden rounded-2xl border border-(--alt-beige)/10 bg-(--alt-navy)/50 flex items-center justify-center" style="aspect-ratio: 5/6;">

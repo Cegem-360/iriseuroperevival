@@ -1,4 +1,4 @@
-@props(['speaker', 'showArrow' => true, 'workshopTopic' => null, 'titleOverride' => null])
+@props(['speaker', 'showArrow' => true, 'workshopTopic' => null, 'titleOverride' => null, 'portraitPath' => null, 'workshopDescription' => null])
 
 @php
     // Map speaker slugs to designer portrait files
@@ -9,36 +9,26 @@
         'david-gava' => 'images/alt-style/speakers/speaker-gava.webp',
     ];
 
-    // Map workshop leader slugs to designer portrait files
-    $altWorkshopPortraits = [
-        'baoyan-lam' => 'images/alt-style/workshop-leaders/baoyan.webp',
-        'mary-pat-gokee' => 'images/alt-style/workshop-leaders/gokee.webp',
-        'katey-maddux' => 'images/alt-style/workshop-leaders/katey.webp',
-        'tineke-bouwman' => 'images/alt-style/workshop-leaders/tine.webp',
-    ];
-
-    $altPhoto = $altPortraits[$speaker->slug] ?? null;
-    $altWorkshopPhoto = $altWorkshopPortraits[$speaker->slug] ?? null;
-    $hasDesignerPhoto = $altPhoto || $altWorkshopPhoto;
-    $photoSrc = $hasDesignerPhoto
-        ? Vite::asset('resources/' . ($altPhoto ?? $altWorkshopPhoto))
+    $resolvedPortrait = $portraitPath ?? ($altPortraits[$speaker->slug] ?? null);
+    $hasDesignerPhoto = (bool) $resolvedPortrait;
+    $photoSrc = $resolvedPortrait
+        ? Vite::asset('resources/' . $resolvedPortrait)
         : ($speaker->photo_url ?? Vite::asset('resources/images/speakers/placeholder.webp'));
+    $overlayHeading = $workshopTopic ?? $speaker->name;
+    $overlaySubheading = $workshopTopic ? null : ($titleOverride ?? $speaker->t('title'));
+    $overlayBody = $workshopDescription ?? $speaker->t('bio');
 @endphp
 
 <div class="relative group/card block" x-data="{ bioOpen: false }">
     <a href="{{ route('speaker.show', $speaker->slug) }}"
-        class="{{ $altWorkshopPhoto ? 'relative overflow-hidden rounded-2xl bg-navy-800 cursor-pointer block' : 'speaker-card group block' }}{{ $altPhoto ? ' no-gradient' : '' }}"
-        style="border: 1px solid rgba(200, 160, 80, 0.15);{{ $altWorkshopPhoto ? ' aspect-ratio: 5/6;' : '' }}{{ $altPhoto ? ' aspect-ratio: 5/6;' : '' }}">
+        class="speaker-card group block{{ $hasDesignerPhoto ? ' no-gradient' : '' }}"
+        style="border: 1px solid rgba(200, 160, 80, 0.15); aspect-ratio: 5/6;">
         <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}"
-            class="absolute inset-0 w-full h-full object-cover {{ $altPhoto ? 'sepia-[.2]' : '' }}"
-            style="{{ $altWorkshopPhoto ? 'transition: transform 700ms;' : '' }}">
-        @if ($altWorkshopPhoto)
-            {{-- Designer workshop images have topic text baked in — no overlay needed --}}
-        @else
-            <div class="speaker-card-content {{ $altPhoto ? 'text-right items-end max-w-[85%] ml-auto' : '' }}">
-                @if ($workshopTopic)
-                    <span class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-(--alt-gold)/20 text-(--alt-gold) border border-(--alt-gold)/30 font-heading uppercase tracking-wider mb-2">{{ $workshopTopic }}</span>
-                @endif
+            class="absolute inset-0 w-full h-full object-cover {{ $hasDesignerPhoto ? 'sepia-[.2]' : '' }}">
+        <div class="speaker-card-content {{ $hasDesignerPhoto ? 'text-right items-end max-w-[85%] ml-auto' : '' }}">
+            @if ($workshopTopic)
+                <h3 class="text-lg font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $workshopTopic }}</h3>
+            @else
                 <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->name }}</h3>
                 @if ($titleOverride ?? $speaker->t('title'))
                     <p class="text-(--alt-beige-muted) text-sm">{{ $titleOverride ?? $speaker->t('title') }}</p>
@@ -46,8 +36,8 @@
                 @if ($speaker->t('organization'))
                     <p class="text-(--alt-beige-muted) text-sm">{!! strip_tags($speaker->t('organization'), '<br>') !!}</p>
                 @endif
-            </div>
-        @endif
+            @endif
+        </div>
         @if ($showArrow)
             <div class="absolute top-4 right-4 w-10 h-10 bg-(--alt-gold) rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20 hidden lg:flex">
                 <svg class="w-5 h-5 text-(--alt-navy-deeper)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,33 +48,33 @@
     </a>
 
     {{-- Mobile Bio Button --}}
-    @if ($speaker->t('bio'))
+    @if ($overlayBody)
         <button @click.prevent="bioOpen = true"
             class="lg:hidden absolute top-6 right-3 z-20 px-4 py-2 bg-sky-700 rounded-full flex items-center justify-center shadow-md">
-            <span class="text-white text-sm font-heading font-bold uppercase tracking-wider">Bio</span>
+            <span class="text-white text-sm font-heading font-bold uppercase tracking-wider">{{ $workshopDescription ? 'Info' : 'Bio' }}</span>
         </button>
     @endif
 
     {{-- Desktop Bio Overlay (hover) --}}
-    @if ($speaker->t('bio'))
+    @if ($overlayBody)
         <div class="hidden lg:block absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none group-hover/card:pointer-events-auto">
             <div class="absolute inset-0 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-(--alt-navy-deeper)/95 via-(--alt-navy)/90 to-(--alt-navy-dark)/95 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
+            <div class="absolute inset-0 bg-linear-to-b from-(--alt-navy-deeper)/95 via-(--alt-navy)/90 to-(--alt-navy-dark)/95 opacity-0 group-hover/card:opacity-100 transition-opacity duration-400 ease-in-out"></div>
             <div class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->name }}</h4>
-                @if ($titleOverride ?? $speaker->t('title'))
-                    <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $titleOverride ?? $speaker->t('title') }}</span>
+                <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $overlayHeading }}</h4>
+                @if ($overlaySubheading)
+                    <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider mb-3">{{ $overlaySubheading }}</span>
                 @endif
                 <div class="relative flex-1 min-h-0">
-                    <p class="text-(--alt-beige-muted) text-sm leading-relaxed overflow-y-auto h-full pb-12"
-                        style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $speaker->t('bio') }}</p>
+                    <p class="text-(--alt-beige-muted) text-sm leading-relaxed overflow-y-auto h-full pb-12 whitespace-pre-line"
+                        style="mask-image: linear-gradient(to bottom, black 70%, transparent 95%);">{{ $overlayBody }}</p>
                 </div>
             </div>
         </div>
     @endif
 
     {{-- Mobile Bio Modal --}}
-    @if ($speaker->t('bio'))
+    @if ($overlayBody)
         <template x-teleport="body">
             <div x-show="bioOpen" x-cloak
                 class="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -107,23 +97,23 @@
                     x-transition:leave-end="opacity-0 scale-95">
                     {{-- Speaker Photo --}}
                     <div class="relative h-48 shrink-0">
-                        <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}" class="w-full h-full object-cover {{ $altPhoto ? 'sepia-[.2]' : '' }}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-(--alt-navy-dark) to-transparent"></div>
+                        <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}" class="w-full h-full object-cover {{ $hasDesignerPhoto ? 'sepia-[.2]' : '' }}">
+                        <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-dark) to-transparent"></div>
                         <button @click="bioOpen = false" class="absolute top-3 right-3 w-8 h-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
                         <div class="absolute bottom-3 left-4 right-4">
-                            <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige) text-lg">{{ $speaker->name }}</h4>
-                            @if ($titleOverride ?? $speaker->t('title'))
-                                <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider">{{ $titleOverride ?? $speaker->t('title') }}</span>
+                            <h4 class="font-heading font-bold uppercase tracking-wide text-(--alt-beige) text-lg">{{ $overlayHeading }}</h4>
+                            @if ($overlaySubheading)
+                                <span class="text-(--alt-gold) text-xs font-heading font-medium uppercase tracking-wider">{{ $overlaySubheading }}</span>
                             @endif
                         </div>
                     </div>
-                    {{-- Bio --}}
+                    {{-- Body --}}
                     <div class="p-5 overflow-y-auto">
-                        <p class="text-(--alt-beige-muted) text-sm leading-relaxed">{{ $speaker->t('bio') }}</p>
+                        <p class="text-(--alt-beige-muted) text-sm leading-relaxed whitespace-pre-line">{{ $overlayBody }}</p>
                     </div>
                 </div>
             </div>
