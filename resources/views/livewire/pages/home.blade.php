@@ -73,7 +73,7 @@
                     {{-- Thumbnail --}}
                     <template x-if="!playing">
                         <div class="absolute inset-0 cursor-pointer" @click="playing = true">
-                            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
+                            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/promo-video-cover.webp') }}"
                                 alt="Europe Revival 2026"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-black/5 flex items-center justify-center">
@@ -334,7 +334,7 @@
                         {{-- Thumbnail --}}
                         <template x-if="!playing">
                             <div class="absolute inset-0 cursor-pointer" @click="playing = true">
-                                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}"
+                                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/promo-video-cover.webp') }}"
                                     alt="Europe Revival 2026"
                                     class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-black/5 flex items-center justify-center">
