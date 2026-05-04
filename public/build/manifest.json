@@ -12,6 +12,10 @@
     "file": "assets/ER-colours-ChCmU5s8.jpg",
     "src": "resources/images/ER-colours.jpg"
   },
+  "resources/images/alt-style/awakening-worship.webp": {
+    "file": "assets/awakening-worship-4T0BPtsN.webp",
+    "src": "resources/images/alt-style/awakening-worship.webp"
+  },
   "resources/images/alt-style/awakeningmusic.webp": {
     "file": "assets/awakeningmusic-Cxc_nRK6.webp",
     "src": "resources/images/alt-style/awakeningmusic.webp"
@@ -107,6 +111,14 @@
   "resources/images/alt-style/image.webp": {
     "file": "assets/image-C_mSIH4_.webp",
     "src": "resources/images/alt-style/image.webp"
+  },
+  "resources/images/alt-style/iris-europe-worship.webp": {
+    "file": "assets/iris-europe-worship-BDjwxRcH.webp",
+    "src": "resources/images/alt-style/iris-europe-worship.webp"
+  },
+  "resources/images/alt-style/mountain-people.webp": {
+    "file": "assets/mountain-people-BQMFVr7L.webp",
+    "src": "resources/images/alt-style/mountain-people.webp"
   },
   "resources/images/alt-style/mountainpeopleworship.webp": {
     "file": "assets/mountainpeopleworship-nF7ooVux.webp",

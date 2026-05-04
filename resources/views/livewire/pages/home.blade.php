@@ -149,53 +149,29 @@
             </div>
 
             {{-- Worship Team Cards --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-                {{-- Awakening Music --}}
-                @if ($this->worshipTeams->isNotEmpty())
-                    @php $awakeningTeam = $this->worshipTeams->first(); @endphp
-                    <a href="{{ route('speaker.show', $awakeningTeam->slug) }}"
+            @php
+                $worshipImages = [
+                    'awakening-music' => 'images/alt-style/awakening-worship.webp',
+                    'mountain-people-worship' => 'images/alt-style/mountain-people.webp',
+                    'iris-europe-worship' => 'images/alt-style/iris-europe-worship.webp',
+                ];
+            @endphp
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                @foreach ($this->worshipTeams as $team)
+                    <a href="{{ route('speaker.show', $team->slug) }}"
                         class="group relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark) hover:border-(--alt-gold)/30 transition-all duration-300" style="aspect-ratio: 16/9;">
-                        <img src="{{ Vite::asset('resources/images/alt-style/awakeningmusic.webp') }}"
-                            alt="{{ $awakeningTeam->name }}"
+                        <img src="{{ Vite::asset('resources/' . ($worshipImages[$team->slug] ?? 'images/alt-style/awakening-worship.webp')) }}"
+                            alt="{{ $team->name }}"
                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-5">
-                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $awakeningTeam->name }}</h4>
-                            @if ($awakeningTeam->t('organization'))
-                                <p class="text-(--alt-beige-muted) text-sm">{{ $awakeningTeam->t('organization') }}</p>
+                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $team->name }}</h4>
+                            @if ($team->t('organization'))
+                                <p class="text-(--alt-beige-muted) text-sm">{{ $team->t('organization') }}</p>
                             @endif
                         </div>
                     </a>
-                @endif
-
-                {{-- Mountain People Worship --}}
-                @if ($this->worshipTeams->count() > 1)
-                    @php $mountainTeam = $this->worshipTeams->get(1); @endphp
-                    <a href="{{ route('speaker.show', $mountainTeam->slug) }}"
-                        class="group relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark) hover:border-(--alt-gold)/30 transition-all duration-300" style="aspect-ratio: 16/9;">
-                        <img src="{{ Vite::asset('resources/images/alt-style/mountainpeopleworship.webp') }}"
-                            alt="{{ $mountainTeam->name }}"
-                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-5">
-                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $mountainTeam->name }}</h4>
-                            @if ($mountainTeam->t('organization'))
-                                <p class="text-(--alt-beige-muted) text-sm">{{ $mountainTeam->t('organization') }}</p>
-                            @endif
-                        </div>
-                    </a>
-                @else
-                    {{-- Fallback if Mountain People Worship not in DB yet --}}
-                    <div class="group relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark)" style="aspect-ratio: 16/9;">
-                        <img src="{{ Vite::asset('resources/images/alt-style/mountainpeopleworship.webp') }}"
-                            alt="Mountain People Worship"
-                            class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-5">
-                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">Mountain People Worship</h4>
-                        </div>
-                    </div>
-                @endif
+                @endforeach
             </div>
         </div>
     </section>
