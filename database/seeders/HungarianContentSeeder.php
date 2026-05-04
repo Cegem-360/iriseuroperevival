@@ -37,7 +37,7 @@ class HungarianContentSeeder extends Seeder
             $translations = $model->translations ?? [];
             $translations['hu'] = array_filter(
                 array_merge($translations['hu'] ?? [], $hu),
-                fn ($v) => $v !== null && $v !== ''
+                fn ($v) => $v !== null && $v !== '',
             );
             $model->translations = $translations;
             $model->save();
@@ -50,29 +50,34 @@ class HungarianContentSeeder extends Seeder
             'mel-tari' => [
                 'title' => 'Evangelista',
                 'organization' => '„Like a Mighty Wind” c. könyv szerzője',
-                'bio' => "Az indonéz születésű Mel Tari – akit sokan csak Papa Melnek hívnak – egy valódi hadvezér a hitben. Papa Mel Isten küldöttje, tele szenvedéllyel. A nemzetek felé szolgál, tömegeket küld ki az aratás mezejére, lángra lobbantva az ébredés tüzét azáltal, hogy megerősít, pártfogol, isteni kapcsolatokat teremt és építi Krisztus testét. Rendszeres előadója nyári táborainknak a 2021-es kezdetek óta. Papa Mel a „Like a Mighty Wind” c. könyv szerzője, amely világszerte milliókra volt hatással.",
+                'bio' => 'Az indonéz születésű Mel Tari – akit sokan csak Papa Melnek hívnak – egy valódi hadvezér a hitben. Papa Mel Isten küldöttje, tele szenvedéllyel. A nemzetek felé szolgál, tömegeket küld ki az aratás mezejére, lángra lobbantva az ébredés tüzét azáltal, hogy megerősít, pártfogol, isteni kapcsolatokat teremt és építi Krisztus testét. Rendszeres előadója nyári táborainknak a 2021-es kezdetek óta. Papa Mel a „Like a Mighty Wind” c. könyv szerzője, amely világszerte milliókra volt hatással.',
             ],
             'heidi-baker' => [
                 'title' => 'Misszionárius',
                 'organization' => 'Iris Global társalapítója',
-                'bio' => "Heidi legnagyobb szenvedélye, hogy Isten kézzelfogható jelenlétében éljen, hogy bemutassa az Ő dicsőségét, jelenlétét és szeretetét mind a Krisztus Testében, mind a haldokló világban. Rolland és Heidi Baker 1980-ban alapították az Iris Ministries-t, amely ma Iris Global néven ismert. 1995-ben a világ akkori legszegényebb országába, Mozambikba kaptak elhívást, ahol komoly próbatételekkel szembesültek. Elhagyott utcagyerekek felé kezdtek odaadóan szolgálni, és ahogy a Szent Szellem csodálatosan megnyilvánult rajtuk keresztül, az ébredés elterjedt Mozambik mind a tíz tartományába. Heidi – akit ezrek ma már csak Mama Heidiként ismernek – egy széleskörű szolgálatot vezet, amelyhez bibliaiskolák, kórházak, árvaellátás és egy többezer gyülekezetet magába foglaló gyülekezethálózat tartozik.",
+                'bio' => 'Heidi legnagyobb szenvedélye, hogy Isten kézzelfogható jelenlétében éljen, hogy bemutassa az Ő dicsőségét, jelenlétét és szeretetét mind a Krisztus Testében, mind a haldokló világban. Rolland és Heidi Baker 1980-ban alapították az Iris Ministries-t, amely ma Iris Global néven ismert. 1995-ben a világ akkori legszegényebb országába, Mozambikba kaptak elhívást, ahol komoly próbatételekkel szembesültek. Elhagyott utcagyerekek felé kezdtek odaadóan szolgálni, és ahogy a Szent Szellem csodálatosan megnyilvánult rajtuk keresztül, az ébredés elterjedt Mozambik mind a tíz tartományába. Heidi – akit ezrek ma már csak Mama Heidiként ismernek – egy széleskörű szolgálatot vezet, amelyhez bibliaiskolák, kórházak, árvaellátás és egy többezer gyülekezetet magába foglaló gyülekezethálózat tartozik.',
+            ],
+            'ben-fitzgerald' => [
+                'title' => 'Evangélista, Pásztor',
+                'organization' => 'Awakening Gyülekezet pásztora',
+                'bio' => "Ben Fitzgerald szenvedélyesen szereti Jézust! Az Awakening Europe mozgalom valamint az Awakening gyülekezetek vezetője. Ez a mozgalom egész Európában hirdeti az evangéliumot stadion rendezvényeken, városi evangelizációkon és iskolákban. Ben Ausztráliából származik, Melbourne városából. 2002-ben egy nagyon nehéz időszakában egy személyes találkozása volt Jézussal, ami teljesen megváltoztatta az életét. Azóta egy dolog hajtja: hogy bemutassa Jézust az embereknek és elvigye a Királyság örömhírét a nemzetekhez.\n\nŐ és csapata abban segítenek, hogy az emberek felkészüljenek az evangélium megosztására, új gyülekezeteket indítsanak és Európában egy tiszta szívű, imádó nemzedék nőjön fel.\n\nA Biblia a Galata 5:1-ben így fogalmaz: „a szabadságban, amire minket Krisztus megszabadított, álljatok meg és ne kötelezzétek meg ismét magatokat szolgaságnak igájával!” Ben szívügye, hogy segítsen az embereknek Isten szabadságában és az Istentől kapott identitásuk teljességében élni. Mélyen hiszi, hogy a nemzetek jövője olyan elkötelezett hívők által formálódik, akik szabadon élnek és bátran beszélnek Jézusról.",
             ],
             'david-gava' => [
                 'title' => 'Misszionárius',
                 'organization' => 'Kerusso társalapítója',
-                'bio' => "David eredetileg Zimbabwéből származik, jelenleg Svédországban él feleségével, Ingelával és két gyermekükkel. Misszionárius és a Kerusso Ministry alapítója Svédországban, valamint a Kerusso School alapítója Brazíliában, amelyet családjával együtt vezet. Több, mint két évtizede hirdeti a feltámadást és osztja meg az emberekkel erőteljes bizonyságát arról, hogy Isten meggyógyította őt egy súlyos beszédhibából, amely 21 éves koráig ellehetetlenítette számára a nyilvános beszédet. Azóta élő bizonyítéka annak, hogy Istennel semmi sem lehetetlen. Szolgáló szívű vezető, aki alázattal és szelídséggel, a Királytól kapott bölcsességgel bátorítja és vezeti az ébredésért elkötelezett embereket a világ különböző nemzeteiben.",
+                'bio' => 'David eredetileg Zimbabwéből származik, jelenleg Svédországban él feleségével, Ingelával és két gyermekükkel. Misszionárius és a Kerusso Ministry alapítója Svédországban, valamint a Kerusso School alapítója Brazíliában, amelyet családjával együtt vezet. Több, mint két évtizede hirdeti a feltámadást és osztja meg az emberekkel erőteljes bizonyságát arról, hogy Isten meggyógyította őt egy súlyos beszédhibából, amely 21 éves koráig ellehetetlenítette számára a nyilvános beszédet. Azóta élő bizonyítéka annak, hogy Istennel semmi sem lehetetlen. Szolgáló szívű vezető, aki alázattal és szelídséggel, a Királytól kapott bölcsességgel bátorítja és vezeti az ébredésért elkötelezett embereket a világ különböző nemzeteiben.',
             ],
             'mary-pat-gokee' => [
-                'bio' => "Mary Pat Gokee férjével együtt a Frontline Ministries International alapítói és vezető szolgálói, amely missziós, tanítási és lelki ébredést célzó munkát végez világszerte. Aktívan szolgál prédikátorként, tanítóként és missziós vezetőként az FMI keretein belül. Férjével együtt vezetik a Frontline Worship Center nevű gyülekezetet. A szolgálata kiterjed nemzetközi csapatmissziókra, gyülekezetalapításra, lelki ébredés elindítására szerte a világon. Emellett teret ad gyógyító alkalmaknak, képzéseknek és hitben növekedni vágyó hívők mentorálásának.",
+                'bio' => 'Mary Pat Gokee férjével együtt a Frontline Ministries International alapítói és vezető szolgálói, amely missziós, tanítási és lelki ébredést célzó munkát végez világszerte. Aktívan szolgál prédikátorként, tanítóként és missziós vezetőként az FMI keretein belül. Férjével együtt vezetik a Frontline Worship Center nevű gyülekezetet. A szolgálata kiterjed nemzetközi csapatmissziókra, gyülekezetalapításra, lelki ébredés elindítására szerte a világon. Emellett teret ad gyógyító alkalmaknak, képzéseknek és hitben növekedni vágyó hívők mentorálásának.',
             ],
             'baoyan-lam' => [
                 'bio' => "Lam Baoyan és Rudy Taslim misszionáriusok és építészek, a Living Oaks és a Genesis Architects alapítói, akik Szingapúrban élnek, de világszerte szolgálnak. Erős háttérrel rendelkeznek az építészet, az üzleti élet és a gazdasági szféra területén, és emellett elkötelezettek abban, hogy bemutassák: a szakmai kiválóság és Isten Királyságának értékei együtt képesek nemzeteket formálni és megváltoztatni.\n\nMunkájukban a tervezést, a stratégiai gondolkodást és a társadalmi felelősségvállalást ötvözik, hogy fenntartható megoldásokat hozzanak létre nehéz, válság sújtotta és háborús területeken is.\n\nHelyi gyülekezetekkel és vezetőkkel együttműködve kutakat, iskolákat, menedékhelyeket és közösségi épületeket hoznak létre, különösen olyan régiókban, ahol háború vagy kényszer elvándorlás zajlik. Emellett szívügyük a szegények és kiszolgáltatott emberek segítése, mert hisznek abban, hogy a valódi változás egyszerre kell, hogy rendszerszintű és szeretetteljes legyen.\n\nNemzetközileg elismertek humanitárius építészeti munkájukért, valamint azért, ahogyan összekapcsolják az üzleti világot és a missziót – gyakorlati módon hozva reményt, méltóságot és helyreállítást a rászoruló közösségekbe.",
             ],
             'katey-maddux' => [
-                'bio' => "Katey Maddux Isten királyságának építője, aki elkötelezte magát, hogy segítsen a nőknek szabadságban, tisztán látásban, bátor engedelmességben élni és felfedezni Isten életükre és családjukra vonatkozó tervét. A Kingdom Business Collective alapítója, ami egy keresztény női vállalkozói és vezetői közösség, valamint alapítója a Mighty Warrior International nonprofit szervezetnek, ami az emberkereskedelem és a kizsákmányolás elleni küzdelem megelőzésére, a tudatosság növelésére és megoldási stratégiákra összpontosít. Munkája az üzleti élet, a szolgálat és a globális misszióra terjed ki, partneri kapcsolatokkal szerte a világon: Egyesült Államokban, Európában, Afrikában és Ázsiában.",
+                'bio' => 'Katey Maddux Isten királyságának építője, aki elkötelezte magát, hogy segítsen a nőknek szabadságban, tisztán látásban, bátor engedelmességben élni és felfedezni Isten életükre és családjukra vonatkozó tervét. A Kingdom Business Collective alapítója, ami egy keresztény női vállalkozói és vezetői közösség, valamint alapítója a Mighty Warrior International nonprofit szervezetnek, ami az emberkereskedelem és a kizsákmányolás elleni küzdelem megelőzésére, a tudatosság növelésére és megoldási stratégiákra összpontosít. Munkája az üzleti élet, a szolgálat és a globális misszióra terjed ki, partneri kapcsolatokkal szerte a világon: Egyesült Államokban, Európában, Afrikában és Ázsiában.',
             ],
             'tineke-bouwman' => [
-                'bio' => "Tineke Bouwman egy úttörő, és a Lighthouse Ministries alapítója a hollandiai Rillandban. Egy prófétai hang a mai generáció számára, aki áttörést hoz és tüzet gyújt azok szívében, akik felé szolgál. Felszabadítja az embereket arra, hogy belépjenek az elhívásukba. A Lighthouse egy olyan szolgálat, ami az Istentől kapott prófétai kinyilatkoztatásból született. Ez egy Családi Otthon (fiatalok számára egy lakóközösség), egy imaház, egy gyülekezet és egy oktatási központ. Ami egy egyszerű igennel kezdődött, mára pedig már prófétai mozgalommá nőtte ki magát. Tineke egy olyan Jézusért égő generációt nevelt fel, ami megérti az Istennel való bensőséges kapcsolat értékét. Nemzetközi szinten dolgozik vezetők tanácsadójaként és oktatójaként. Amikor éppen nem a nemzetek felé szolgál, akkor öt gyermek (köztük egy nevelt lány) édesanyjaként és nyolc unoka nagymamájaként nagyon hálás, hogy élvezheti a családja társaságát.",
+                'bio' => 'Tineke Bouwman egy úttörő, és a Lighthouse Ministries alapítója a hollandiai Rillandban. Egy prófétai hang a mai generáció számára, aki áttörést hoz és tüzet gyújt azok szívében, akik felé szolgál. Felszabadítja az embereket arra, hogy belépjenek az elhívásukba. A Lighthouse egy olyan szolgálat, ami az Istentől kapott prófétai kinyilatkoztatásból született. Ez egy Családi Otthon (fiatalok számára egy lakóközösség), egy imaház, egy gyülekezet és egy oktatási központ. Ami egy egyszerű igennel kezdődött, mára pedig már prófétai mozgalommá nőtte ki magát. Tineke egy olyan Jézusért égő generációt nevelt fel, ami megérti az Istennel való bensőséges kapcsolat értékét. Nemzetközi szinten dolgozik vezetők tanácsadójaként és oktatójaként. Amikor éppen nem a nemzetek felé szolgál, akkor öt gyermek (köztük egy nevelt lány) édesanyjaként és nyolc unoka nagymamájaként nagyon hálás, hogy élvezheti a családja társaságát.',
             ],
             'brian-valerie' => [
                 'bio' => "Brian Britton a Harvest Family Network alapítója és vezetője, amelynek világszerte vannak tagjai. Virginiában hosszú éveken át lelkipásztorként szolgált egy ébredési légkörű gyülekezetben, emellett több mint 24 éve szolgál misszionáriusként, evangélistaként és vendégelőadóként. Nemzetközi szolgálatokban is részt vesz az IRIS Global szervezet munkáján keresztül, amelyet Heidi és Rolland Baker misszionáriusok alapítottak, valamint több nonprofit szervezet vezetésében is szerepet vállal. Feleségével, Valerie-vel együtt a Regent University-n szerzett gyakorlati teológiai mesterdiplomát és jelenleg Williamsburgban (USA) élnek.\n\nValerie Britton prófétai és tanítói területen szolgál. Az Egyesült Államokban valamint nemzetközileg is szolgál vendégelőadóként. Üzenetének középpontjában az Atya szeretete áll, és arra bátorítja a hívőket, hogy valóban Isten gyermekeiként éljenek.",
@@ -261,7 +266,7 @@ class HungarianContentSeeder extends Seeder
             $translations = $item->translations ?? [];
             $translations['hu'] = array_filter(
                 array_merge($translations['hu'] ?? [], $hu),
-                fn ($v) => $v !== null && $v !== ''
+                fn ($v) => $v !== null && $v !== '',
             );
             $item->translations = $translations;
             $item->save();
@@ -300,7 +305,7 @@ class HungarianContentSeeder extends Seeder
                 'question' => 'Hogyan jelentkezhetek önkéntesnek?',
                 'answer' => 'Megnyílt az önkéntes jelentkezés! Töltsd ki a jelentkezési lapot, és mondd el, hogyan szeretnél szolgálni. Minden önkéntes kedvezményes támogatói jeggyel vehet részt az eseményen, és ajándék rendezvénypólót kap. A jelentkezési határidő 2026. szeptember 1.',
             ],
-            "Where can I stay if I'm coming for multiple days?" => [
+            'Where can I stay if I\'m coming for multiple days?' => [
                 'question' => 'Hol tudok megszállni, ha több napra érkezem?',
                 'answer' => 'Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Az eseményhez közeledve majd megosztjuk az ajánlott szállások listáját.',
             ],
@@ -318,7 +323,7 @@ class HungarianContentSeeder extends Seeder
             $translations = $faq->translations ?? [];
             $translations['hu'] = array_filter(
                 array_merge($translations['hu'] ?? [], $hu),
-                fn ($v) => $v !== null && $v !== ''
+                fn ($v) => $v !== null && $v !== '',
             );
             $faq->translations = $translations;
             $faq->save();

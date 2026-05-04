@@ -5,6 +5,7 @@
     $altPortraits = [
         'heidi-baker' => 'images/alt-style/speakers/speaker-heidi.webp',
         'mel-tari' => 'images/alt-style/speakers/speaker-mel.webp',
+        'ben-fitzgerald' => 'images/alt-style/speakers/speaker-ben.webp',
         'david-gava' => 'images/alt-style/speakers/speaker-gava.webp',
     ];
 
@@ -27,7 +28,7 @@
 <div class="relative group/card block" x-data="{ bioOpen: false }">
     <a href="{{ route('speaker.show', $speaker->slug) }}"
         class="{{ $altWorkshopPhoto ? 'relative overflow-hidden rounded-2xl bg-navy-800 cursor-pointer block' : 'speaker-card group block' }}{{ $altPhoto ? ' no-gradient' : '' }}"
-        style="border: 1px solid rgba(200, 160, 80, 0.15);{{ $altWorkshopPhoto ? ' aspect-ratio: 5/6;' : '' }}{{ $altPhoto ? ' aspect-ratio: 1/1;' : '' }}">
+        style="border: 1px solid rgba(200, 160, 80, 0.15);{{ $altWorkshopPhoto ? ' aspect-ratio: 5/6;' : '' }}{{ $altPhoto ? ' aspect-ratio: 5/6;' : '' }}">
         <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}"
             class="absolute inset-0 w-full h-full object-cover {{ $altPhoto ? 'sepia-[.2]' : '' }}"
             style="{{ $altWorkshopPhoto ? 'transition: transform 700ms;' : '' }}">

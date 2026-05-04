@@ -26,7 +26,7 @@
 
             {{-- Description --}}
             <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
-                {{ __('A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.') }}
+                {!! __('A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.') !!}
             </p>
 
             {{-- Title Image --}}
@@ -40,7 +40,7 @@
             <h1 class="sr-only">Europe Revival Budapest 2026</h1>
 
             {{-- Scripture Verse --}}
-            <p class="font-winter text-xl md:text-2xl text-neutral-900 max-w-2xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
+            <p class="text-xl md:text-2xl text-neutral-700 font-bold max-w-2xl mx-auto mb-10 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
                 {!! __('“No eye has seen, no ear has heard, no mind has imagined what the Lord has prepared for those who love Him.”') !!}
             </p>
 
@@ -55,7 +55,7 @@
                     </svg>
                 </a>
                 <button @click="$dispatch('open-vision-modal')"
-                    class="group inline-flex items-center gap-3 px-8 py-4 bg-gray-500/10 hover:bg-gray-500/20 backdrop-blur-sm border border-gray-500/20 text-gray-600 md:bg-(--alt-beige)/10 md:hover:bg-(--alt-beige)/20 md:border-(--alt-beige)/20 md:text-(--alt-beige) font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300">
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-gray-500/10 hover:bg-gray-500/20 backdrop-blur-sm border border-gray-500/20 text-gray-700 md:bg-(--alt-beige)/10 md:hover:bg-(--alt-beige)/20 md:border-(--alt-beige)/20 md:text-gray-700 font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300">
                     <span class="w-10 h-10 bg-gray-500/15 md:bg-(--alt-beige)/20 rounded-full flex items-center justify-center group-hover:bg-gray-500/25 md:group-hover:bg-(--alt-beige)/30 transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -121,22 +121,11 @@
                 </p>
             </div>
 
-            {{-- Speakers Grid (2x2) --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto">
+            {{-- Speakers Grid (1 row of 4) --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 @foreach ($this->featuredSpeakers as $speaker)
                     <x-home.speaker-card-alt :speaker="$speaker" wire:key="speaker-{{ $speaker->id }}" />
                 @endforeach
-                {{-- Coming Soon placeholder --}}
-                <div class="relative overflow-hidden rounded-2xl border border-(--alt-beige)/10 bg-(--alt-navy)/50 flex items-center justify-center" style="aspect-ratio: 1/1;">
-                    <div class="text-center p-6">
-                        <div class="w-16 h-16 bg-(--alt-gold)/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-(--alt-gold)/20">
-                            <svg class="w-8 h-8 text-(--alt-gold)/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
-                            </svg>
-                        </div>
-                        <p class="font-heading text-lg font-bold uppercase tracking-wide text-(--alt-beige)/40">{{ __('and more to be announced') }}</p>
-                    </div>
-                </div>
             </div>
 
         </div>

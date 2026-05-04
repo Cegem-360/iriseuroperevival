@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-C_3Bm5C3.css",
+    "file": "assets/app-DotG5snr.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -112,16 +112,20 @@
     "file": "assets/mountainpeopleworship-nF7ooVux.webp",
     "src": "resources/images/alt-style/mountainpeopleworship.webp"
   },
+  "resources/images/alt-style/speakers/speaker-ben.webp": {
+    "file": "assets/speaker-ben-BjBkWnCg.webp",
+    "src": "resources/images/alt-style/speakers/speaker-ben.webp"
+  },
   "resources/images/alt-style/speakers/speaker-gava.webp": {
-    "file": "assets/speaker-gava-CfPuWDHF.webp",
+    "file": "assets/speaker-gava-Dd4qpQUh.webp",
     "src": "resources/images/alt-style/speakers/speaker-gava.webp"
   },
   "resources/images/alt-style/speakers/speaker-heidi.webp": {
-    "file": "assets/speaker-heidi-CtfNjWa9.webp",
+    "file": "assets/speaker-heidi-DEAdrtft.webp",
     "src": "resources/images/alt-style/speakers/speaker-heidi.webp"
   },
   "resources/images/alt-style/speakers/speaker-mel.webp": {
-    "file": "assets/speaker-mel-BbIeq61B.webp",
+    "file": "assets/speaker-mel-CX3tzI4s.webp",
     "src": "resources/images/alt-style/speakers/speaker-mel.webp"
   },
   "resources/images/alt-style/workshop-leaders/baoyan.webp": {
@@ -305,7 +309,7 @@
     "src": "resources/images/textures/transition-subtle.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app-taXXq4rK.js",
+    "file": "assets/app-BuG9aa18.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

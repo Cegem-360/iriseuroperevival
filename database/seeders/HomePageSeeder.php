@@ -47,6 +47,18 @@ class HomePageSeeder extends Seeder
                 'sort_order' => 2,
             ],
             [
+                'name' => 'Ben Fitzgerald',
+                'slug' => 'ben-fitzgerald',
+                'title' => 'Evangelist, Pastor',
+                'organization' => 'Pastor of the Awakening Church',
+                'country' => 'Australia',
+                'bio' => "Ben Fitzgerald is a passionate lover of Jesus and the senior leader of Awakening Europe and Awakening churches, a movement that champions the Gospel across Europe through stadium events, city-wide outreaches, and training schools. Originally from Melbourne, Australia, Pastor Ben met Jesus in an encounter that deeply changed him in 2002 while he lived in deep brokenness. Since then he has lived passionately about one thing – showing the world Jesus in his everyday life and taking the good news of the Kingdom to the nations. He and the team are helping many people be equipped to share the Gospel, plant new churches, and raise up a company of pure worshippers in Europe.\n\nGalatians 5:1 says \"It is for freedom that Christ has set us free.\" In line with that mission, Ben loves to equip people to live in God's fullness of freedom and identity. He has a deep conviction that the future of nations will be transformed by radical believers living free and proclaiming Jesus boldly.",
+                'photo_path' => 'images/alt-style/speakers/speaker-ben.webp',
+                'type' => 'speaker',
+                'is_featured' => true,
+                'sort_order' => 3,
+            ],
+            [
                 'name' => 'David Gava',
                 'slug' => 'david-gava',
                 'title' => 'Speaker',
@@ -56,7 +68,7 @@ class HomePageSeeder extends Seeder
                 'photo_path' => 'images/speakers/david-gava.webp',
                 'type' => 'speaker',
                 'is_featured' => true,
-                'sort_order' => 3,
+                'sort_order' => 4,
             ],
             [
                 'name' => 'Pastor Josef',
@@ -68,7 +80,7 @@ class HomePageSeeder extends Seeder
                 'photo_path' => 'images/speakers/pastor-josef.webp',
                 'type' => 'speaker',
                 'is_featured' => false,
-                'sort_order' => 4,
+                'sort_order' => 5,
             ],
             // Workshop Leaders
             [
