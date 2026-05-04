@@ -191,7 +191,7 @@
                 </div>
                 @php
                     $workshopCards = [
-                        ['slug' => 'david-gava', 'photo' => 'images/alt-style/workshop-leaders/gava.webp', 'topic' => 'Power Evangelism, Revival Harvest', 'workshop' => 'power-evangelism'],
+                        ['slug' => 'david-gava', 'photo' => 'images/alt-style/workshop-leaders/gava.webp', 'topic' => 'Power Evangelism, Revival Harvest', 'workshop' => ['power-evangelism', 'revival-harvest']],
                         ['slug' => 'mary-pat-gokee', 'photo' => 'images/alt-style/workshop-leaders/gokee.webp', 'topic' => 'Passion, Purpose, Fire', 'workshop' => 'missions'],
                         ['slug' => 'baoyan-lam', 'photo' => 'images/alt-style/workshop-leaders/taslim.webp', 'topic' => 'Marketplace Missions', 'workshop' => 'marketplace-missions'],
                         ['slug' => 'dr-kate', 'photo' => 'images/alt-style/workshop-leaders/kate.webp', 'topic' => 'The Beautiful Heart of Jesus: Set Free Through Creative Movement', 'workshop' => 'prophetic-arts'],
@@ -205,8 +205,9 @@
                         ->whereIn('slug', collect($workshopCards)->pluck('slug'))
                         ->get()
                         ->keyBy('slug');
+                    $workshopSlugs = collect($workshopCards)->pluck('workshop')->flatten()->filter();
                     $workshopBySlug = \App\Models\Workshop::query()
-                        ->whereIn('slug', collect($workshopCards)->pluck('workshop')->filter())
+                        ->whereIn('slug', $workshopSlugs)
                         ->get()
                         ->keyBy('slug');
                 @endphp
@@ -214,7 +215,11 @@
                     @foreach ($workshopCards as $i => $card)
                         @php
                             $speaker = $workshopSpeakers->get($card['slug']);
-                            $workshop = $card['workshop'] ? $workshopBySlug->get($card['workshop']) : null;
+                            $cardWorkshopSlugs = (array) ($card['workshop'] ?? []);
+                            $cardDescriptions = collect($cardWorkshopSlugs)
+                                ->map(fn ($slug) => $workshopBySlug->get($slug)?->t('description'))
+                                ->filter()
+                                ->implode("\n\n");
                         @endphp
                         @if ($speaker)
                             <div wire:key="workshop-{{ $speaker->id }}" @class(['md:col-start-2' => $i === 8])>
@@ -223,7 +228,7 @@
                                     :showArrow="false"
                                     :portraitPath="$card['photo']"
                                     :workshopTopic="__($card['topic'])"
-                                    :workshopDescription="$workshop?->t('description')" />
+                                    :workshopDescription="$cardDescriptions ?: null" />
                             </div>
                         @endif
                     @endforeach
@@ -510,7 +515,7 @@
 
                     <div class="mt-8 text-center">
                         <a href="{{ route('program') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-(--alt-gold)/30 hover:border-(--alt-gold)/60 hover:bg-(--alt-gold)/5 text-(--alt-beige) font-heading font-semibold uppercase tracking-wider rounded-full transition-all duration-300">
-                            View Event Program
+                            {{ __('View Event Program') }}
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>

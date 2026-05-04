@@ -83,7 +83,7 @@ class HungarianContentSeeder extends Seeder
                 'bio' => "Brian Britton a Harvest Family Network alapítója és vezetője, amelynek világszerte vannak tagjai. Virginiában hosszú éveken át lelkipásztorként szolgált egy ébredési légkörű gyülekezetben, emellett több mint 24 éve szolgál misszionáriusként, evangélistaként és vendégelőadóként. Nemzetközi szolgálatokban is részt vesz az IRIS Global szervezet munkáján keresztül, amelyet Heidi és Rolland Baker misszionáriusok alapítottak, valamint több nonprofit szervezet vezetésében is szerepet vállal. Feleségével, Valerie-vel együtt a Regent University-n szerzett gyakorlati teológiai mesterdiplomát és jelenleg Williamsburgban (USA) élnek.\n\nValerie Britton prófétai és tanítói területen szolgál. Az Egyesült Államokban valamint nemzetközileg is szolgál vendégelőadóként. Üzenetének középpontjában az Atya szeretete áll, és arra bátorítja a hívőket, hogy valóban Isten gyermekeiként éljenek.",
             ],
             'dr-kate' => [
-                // Hungarian doc didn't include Dr. Kate's bio — leave empty so English shows
+                'bio' => "Dr. Kate Hartman 1994-ben egy életét megváltoztató álomban kapta küldetését az Úr Jézustól, és több mint 25 éve felszentelt szolgálóként teljes idejű szolgálatban áll. Több megszerzett doktori fokozattal rendelkezik. Dr. Hartman keresztény egyetemet és otthontanulást támogató programot alapított, férjével, Greggel együtt pedig több gyülekezetet plántáltak és pásztoroltak.\n\nDr. Hartman számos apostoli vezetői csapatban szolgált országos és nemzetközi szinten – vezetőket képezve imádságban, belső gyógyulásban, dicsőítő táncban, evangelizációban, tanítványozásban, oktatásban és közösségfejlesztésben. Tapasztalt előadó pásztori konferenciákon és ébredési alkalmakon, és vándorszolgálata, a Life Spirit Fire Ministries keretein belül messiási rendezvényeket szervez, öt kontinensen érintve közösségeket.",
             ],
         ]);
     }
@@ -93,61 +93,78 @@ class HungarianContentSeeder extends Seeder
         $this->setHu(Workshop::class, 'slug', [
             'power-evangelism' => [
                 'title' => 'Evangélizáció hatalommal - David Gava',
+                'short_description' => 'Tanuld meg, hogyan lépj ki bátran, és hirdesd az evangéliumot úgy, hogy jelek és csodák kísérjék.',
                 'description' => 'Nem csak beszéd, hanem erő. Amikor az evangélium megelevenedik: Isten jelenléte gyógyít, szabadít és természetfeletti áttörést hoz.',
             ],
             'revival-harvest' => [
                 'title' => 'Ébredés és aratás - David Gava',
+                'short_description' => 'Evangelizáció a Szent Szellem erejével.',
                 'description' => "Szenvedélyesen vágysz arra, hogy lásd az elveszettek megtérését, a Szent Szellem tüzétől lángra lobbanva?\n\nEljött az idő az aratásra – készülj fel rá!\n\nA Szent Szellem kész arra, hogy az életedet teljesen átformálja, hogy az életed többé ne hétköznapi legyen, hanem az Isten Királyságának az ereje formálja át minden területen.",
             ],
             'missions' => [
                 'title' => 'Szenvedély, Cél, Tűz - Mary Pat Gokee',
+                'short_description' => 'Kapj víziót a globális misszióra, és tanulj meg gyakorlati lépéseket, hogyan válaszolj az elhívásra.',
                 'description' => "Szeretnél több iránymutatást és célt találni az életedben? Szeretnél nagyobb szenvedéllyel élni Istenért? Szeretnéd komolyabban követni Jézust? Szeretnél mélyebb kapcsolatba kerülni a Szent Szellemmel? Ha igen, akkor ez az előadás neked szól.\n\nTanuld meg, hogyan élj sértődés nélküli életet és járj megbocsátásban. Ismerd meg, hogyan állj helyt a lelki harcokban és győzz Isten gyermekeként. Az evangelizáció cselekvő útján kezdesz elindulni, és kulcsokat kapsz arra, hogyan láss másokat természetfeletti módon meggyógyulni és szabadulni. Megtapasztalod, milyen egy együttérző, küldetésben élő élet a mindennapokban.\n\nArra lettél teremtve, hogy teljes szívedből szeresd Istent, és segíts másokat is erre vezetni. Csatlakozz hozzánk a frontvonalon!",
             ],
             'missions-sunday' => [
                 'title' => 'Szenvedély, Cél, Tűz - Mary Pat Gokee',
+                'short_description' => 'Kapj víziót a globális misszióra, és tanulj meg gyakorlati lépéseket, hogyan válaszolj az elhívásra.',
                 'description' => "Szeretnél több iránymutatást és célt találni az életedben? Szeretnél nagyobb szenvedéllyel élni Istenért? Szeretnéd komolyabban követni Jézust? Szeretnél mélyebb kapcsolatba kerülni a Szent Szellemmel? Ha igen, akkor ez az előadás neked szól.\n\nTanuld meg, hogyan élj sértődés nélküli életet és járj megbocsátásban. Ismerd meg, hogyan állj helyt a lelki harcokban és győzz Isten gyermekeként. Az evangelizáció cselekvő útján kezdesz elindulni, és kulcsokat kapsz arra, hogyan láss másokat természetfeletti módon meggyógyulni és szabadulni. Megtapasztalod, milyen egy együttérző, küldetésben élő élet a mindennapokban.\n\nArra lettél teremtve, hogy teljes szívedből szeresd Istent, és segíts másokat is erre vezetni. Csatlakozz hozzánk a frontvonalon!",
             ],
             'marketplace-missions' => [
                 'title' => 'Üzleti misszió - Baoyan Lam & Rudy Taslim',
+                'short_description' => 'Alakítsd át a munkahelyedet missziós területté, és integráld a hitet az üzleti életbe.',
                 'description' => "Lam és Rudy Taslim tapasztalt üzleti múlttal rendelkező vezetők, akik világszerte indítottak humanitárius, fejlesztési és üzleti projekteket. Bár egy kis országból származnak, megtapasztalták, hogy Isten Királyságának elvei nem a mérettől függenek – képesek életeket és közösségeket megváltoztatni: újjáépíteni városokat, helyreállítani emberi méltóságot, és reményt hozni a világ legkülönbözőbb pontjaira, emberek ezreinek életét érintve.\n\nÉzsaiás 61 látására építve egyetlen küldetés vezérli őket: építeni, megújítani és helyreállítani. Valós, megrázó és inspiráló történeteken keresztül – háborús övezetekből, nehéz sorsú közösségekből és globális kezdeményezésekből – megmutatják, hogyan válhat a munkád, a befolyásod és az erőforrásaid valódi változást hozó eszközzé.\n\nEz az alkalom segít meglátni, hogyan tud Isten használni a vállalkozásban, innovációban és vezetésben, hogy kapukat nyisson, kultúrát formáljon és életeket változtasson meg.\n\nEz nem csak egy előadás. Ez egy meghívás egy életmódra: hogy céllal élj, hogy a munkahelyed oltár legyen, a munkád istentisztelet, és az életed része legyen annak a nagyobb tervnek, amellyel Isten gyógyulást, szabadságot és helyreállítást hoz a világba.\n\nHa valaha is érezted, hogy a munkád több lehet ennél – akkor ezt az alkalmat nem érdemes kihagynod.",
             ],
             'marketplace-missions-sunday' => [
                 'title' => 'Üzleti misszió - Baoyan Lam & Rudy Taslim',
+                'short_description' => 'Alakítsd át a munkahelyedet missziós területté, és integráld a hitet az üzleti életbe.',
                 'description' => "Lam és Rudy Taslim tapasztalt üzleti múlttal rendelkező vezetők, akik világszerte indítottak humanitárius, fejlesztési és üzleti projekteket. Bár egy kis országból származnak, megtapasztalták, hogy Isten Királyságának elvei nem a mérettől függenek – képesek életeket és közösségeket megváltoztatni: újjáépíteni városokat, helyreállítani emberi méltóságot, és reményt hozni a világ legkülönbözőbb pontjaira, emberek ezreinek életét érintve.\n\nÉzsaiás 61 látására építve egyetlen küldetés vezérli őket: építeni, megújítani és helyreállítani. Valós, megrázó és inspiráló történeteken keresztül – háborús övezetekből, nehéz sorsú közösségekből és globális kezdeményezésekből – megmutatják, hogyan válhat a munkád, a befolyásod és az erőforrásaid valódi változást hozó eszközzé.\n\nEz az alkalom segít meglátni, hogyan tud Isten használni a vállalkozásban, innovációban és vezetésben, hogy kapukat nyisson, kultúrát formáljon és életeket változtasson meg.\n\nEz nem csak egy előadás. Ez egy meghívás egy életmódra: hogy céllal élj, hogy a munkahelyed oltár legyen, a munkád istentisztelet, és az életed része legyen annak a nagyobb tervnek, amellyel Isten gyógyulást, szabadságot és helyreállítást hoz a világba.\n\nHa valaha is érezted, hogy a munkád több lehet ennél – akkor ezt az alkalmat nem érdemes kihagynod.",
             ],
             'human-trafficking-awareness' => [
                 'title' => 'Emberkereskedelem elleni küzdelem - Katey Maddux',
+                'short_description' => 'Tudatosság, megelőzés és stratégiai megoldások a kizsákmányolás elleni harcban.',
                 'description' => "Az emberkereskedelem egy nagyon összetett probléma, amire nincs egy gyors megoldás. Olyan jelenség, amihez tisztánlátásra, alázatra és kitartásra van szükség.\n\nSokan úgy gondolják, hogy az emberkereskedelem az csak elrabolt emberekről szól, a legtöbb esetben azonban csalásról, félelemről és manipulációról van szó. Gyakran a mindennapi életünkben észrevétlenül történik.\n\nEzen az előadásban Katey Maddux saját nemzetközi tapasztalatai alapján mutatja be, hogyan lehet ezen a területen segíteni. Beszél arról, milyen nehéz dolgozni különböző országokban és és miért fontos a hosszú távú jelenlét, a bizalom kiépítése és az együttműködés másokkal.\n\nSzó lesz arról is, hogy ebben a munkában nagyon fontos a bölcsesség, az alázat és a kitartás – különösen akkor, amikor bonyolultak a helyzetek, és az eredmények nem jönnek gyorsan.\n\nEz az alkalom azoknak szól, akik szeretnének segíteni az emberkereskedelem megelőzésében, felszámolásában, az áldozatok támogatásában vagy akár imában és együttműködésben.\n\nHa úgy érzed, hogy egy nehéz és fontos területre hív az Isten, ahol nem mindig látszik azonnal az eredmény, de mégis kitartóan jelen kell lenni, akkor ez az előadás neked szól.\n\nHa úgy érzed, hogy ott kell építened, ahol nincs kész út, bölcsességgel kell helytállnod a nehéz helyzetekben, és egy nálad nagyobb ügyet kell hűséggel hordoznod, ez az alkalom segít, hogy tisztánlátással és erővel tudj elindulni.",
             ],
             'human-trafficking-awareness-sunday' => [
                 'title' => 'Emberkereskedelem elleni küzdelem - Katey Maddux',
+                'short_description' => 'Tudatosság, megelőzés és stratégiai megoldások a kizsákmányolás elleni harcban.',
                 'description' => "Az emberkereskedelem egy nagyon összetett probléma, amire nincs egy gyors megoldás. Olyan jelenség, amihez tisztánlátásra, alázatra és kitartásra van szükség.\n\nSokan úgy gondolják, hogy az emberkereskedelem az csak elrabolt emberekről szól, a legtöbb esetben azonban csalásról, félelemről és manipulációról van szó. Gyakran a mindennapi életünkben észrevétlenül történik.\n\nEzen az előadásban Katey Maddux saját nemzetközi tapasztalatai alapján mutatja be, hogyan lehet ezen a területen segíteni. Beszél arról, milyen nehéz dolgozni különböző országokban és és miért fontos a hosszú távú jelenlét, a bizalom kiépítése és az együttműködés másokkal.\n\nSzó lesz arról is, hogy ebben a munkában nagyon fontos a bölcsesség, az alázat és a kitartás – különösen akkor, amikor bonyolultak a helyzetek, és az eredmények nem jönnek gyorsan.\n\nEz az alkalom azoknak szól, akik szeretnének segíteni az emberkereskedelem megelőzésében, felszámolásában, az áldozatok támogatásában vagy akár imában és együttműködésben.\n\nHa úgy érzed, hogy egy nehéz és fontos területre hív az Isten, ahol nem mindig látszik azonnal az eredmény, de mégis kitartóan jelen kell lenni, akkor ez az előadás neked szól.\n\nHa úgy érzed, hogy ott kell építened, ahol nincs kész út, bölcsességgel kell helytállnod a nehéz helyzetekben, és egy nálad nagyobb ügyet kell hűséggel hordoznod, ez az alkalom segít, hogy tisztánlátással és erővel tudj elindulni.",
             ],
             'father-heart-of-god' => [
                 'title' => 'Az égő generáció: Élni úgy, mint Jézus - Brian & Valerie Britton',
+                'short_description' => 'Tapasztald meg a mennyei Atya mély, feltétel nélküli szeretetét.',
                 'description' => "Isten rendkívüli erőteljesen kijelenti magát ennek a nemzedéknek. Ezen az előadáson azt vizsgáljuk, hogy hogyan lehet a mi időnkben – a káosz és az ébredés közepette – gyakorlatilag Krisztushoz hasonló életet élni.\n\nSok szív már lángra lobbant Jézusért, de a kérdés az, hogyan tudjuk ezt a lángot nemcsak megélni, hanem tovább is vinni az életünkben és küldetésünkben – úgy, hogy Isten világossága és dicsősége egyre inkább betöltse a földet?\n\nEz az előadás segít abban, hogy ne csak átélői, hanem hordozói is legyünk Isten munkájának ebben az időben.\n\nHa szeretnél egy olyan életet, hogy ne csak megtapasztald Isten munkáját, hanem te magad is aktív hordozója legyél ebben az időben, akkor itt a helyed.",
             ],
             'father-heart-of-god-sunday' => [
                 'title' => 'Az égő generáció: Élni úgy, mint Jézus - Brian & Valerie Britton',
+                'short_description' => 'Tapasztald meg a mennyei Atya mély, feltétel nélküli szeretetét.',
                 'description' => "Isten rendkívüli erőteljesen kijelenti magát ennek a nemzedéknek. Ezen az előadáson azt vizsgáljuk, hogy hogyan lehet a mi időnkben – a káosz és az ébredés közepette – gyakorlatilag Krisztushoz hasonló életet élni.\n\nSok szív már lángra lobbant Jézusért, de a kérdés az, hogyan tudjuk ezt a lángot nemcsak megélni, hanem tovább is vinni az életünkben és küldetésünkben – úgy, hogy Isten világossága és dicsősége egyre inkább betöltse a földet?\n\nEz az előadás segít abban, hogy ne csak átélői, hanem hordozói is legyünk Isten munkájának ebben az időben.\n\nHa szeretnél egy olyan életet, hogy ne csak megtapasztald Isten munkáját, hanem te magad is aktív hordozója legyél ebben az időben, akkor itt a helyed.",
             ],
             'prophetic-ministry' => [
                 'title' => 'Prófétai hang - Tineke Bouwman',
-                // Description: client doc says "Várjuk a leírást" — leave empty, English shows
+                'short_description' => 'Növekedj a prófétai ajándékban, és tanuld meg, hogyan szolgálj pontossággal és szeretettel.',
+                'description' => 'Tineke Bouwman tapasztalt prófétai hangja megtanít arra, hogyan halljuk tisztán Isten hangját, hogyan adjunk át prófétai szavakat pontossággal és szeretettel, és hogyan növekedjünk ebben a fontos ajándékban Krisztus testének építésére.',
             ],
             'prophetic-ministry-sunday' => [
                 'title' => 'Prófétai hang - Tineke Bouwman',
+                'short_description' => 'Növekedj a prófétai ajándékban, és tanuld meg, hogyan szolgálj pontossággal és szeretettel.',
+                'description' => 'Tineke Bouwman tapasztalt prófétai hangja megtanít arra, hogyan halljuk tisztán Isten hangját, hogyan adjunk át prófétai szavakat pontossággal és szeretettel, és hogyan növekedjünk ebben a fontos ajándékban Krisztus testének építésére.',
             ],
             'prophetic-arts' => [
-                // Doc only references this as part of workshop topic list — no full Hungarian description given.
-                // Title is "Jézus csodálatos szíve: kreatív mozgás általi szabadság" per the doc's workshop list
                 'title' => 'Jézus csodálatos szíve: Szabadság kreatív mozgás által - Dr. Kate Hartman',
+                'short_description' => 'Fejezd ki az imádást és a prófétai kijelentést kreatív és vizuális művészeteken keresztül.',
+                'description' => 'Csatlakozz Dr. Kate Hartman-höz egy átformáló prófétai workshopra, amelynek középpontjában az Úr Jézus Krisztus áll – aki a lelked szerelmese, a megtört szívek gyógyítója és az összetört álmok helyreállítója. Tapasztald meg mély jelenlétét, miközben a Szent Szellem vezetésével a belső gyógyulás és az újonnan megtalált szabadság útjára lépsz a kreatív mozgás által. Engedd el a múltat, és lépj be egy dicsőséges, kegyelemmel és reménnyel teli jövőbe, ahogy találkozol Jézus csodálatos szívével.',
             ],
             'prophetic-arts-sunday' => [
                 'title' => 'Jézus csodálatos szíve: Szabadság kreatív mozgás által - Dr. Kate Hartman',
+                'short_description' => 'Fejezd ki az imádást és a prófétai kijelentést kreatív és vizuális művészeteken keresztül.',
+                'description' => 'Csatlakozz Dr. Kate Hartman-höz egy átformáló prófétai workshopra, amelynek középpontjában az Úr Jézus Krisztus áll – aki a lelked szerelmese, a megtört szívek gyógyítója és az összetört álmok helyreállítója. Tapasztald meg mély jelenlétét, miközben a Szent Szellem vezetésével a belső gyógyulás és az újonnan megtalált szabadság útjára lépsz a kreatív mozgás által. Engedd el a múltat, és lépj be egy dicsőséges, kegyelemmel és reménnyel teli jövőbe, ahogy találkozol Jézus csodálatos szívével.',
             ],
             'iris-global-alumni-gathering' => [
-                'title' => 'Iris Global tanulói részére találkozó',
+                'title' => 'Iris Harvest School – egykori tanulók találkozója',
+                'short_description' => 'Különleges találkozó az Iris Global Harvest School of Missions egykori hallgatói számára. Csak azok jelentkezhetnek, akik tanultak az Iris Globalban.',
+                'description' => 'Heidi Baker és az Iris misszionáriusok különleges találkozót tartanak az Iris Global Harvest School of Missions egykori hallgatói számára. Kapcsolódj újra, oszd meg a bizonyságodat, és frissüljetek meg együtt.',
             ],
         ]);
     }
@@ -312,6 +329,14 @@ class HungarianContentSeeder extends Seeder
             'How can I support the work of Iris?' => [
                 'question' => 'Hogyan támogathatom az Iris munkáját?',
                 'answer' => 'Ha szeretnéd támogatni az Iris küldetését, további információkat az iriskrakow.org oldalon találsz. Nagylelkűséged hozzájárul az Európa-szerte végzett munkánkhoz, segít fényt hozni a sötétségbe, gyógyulást a megtörteknek és Isten szeretetét azoknak, akiket senki sem szeret.',
+            ],
+            'How do I apply for the Ministry Team?' => [
+                'question' => 'Hogyan jelentkezhetek a szolgálócsapatba?',
+                'answer' => 'A szolgálócsapatba való jelentkezés nyitva van! A jelentkezéshez ki kell töltened a jelentkezési lapot a bizonyságoddal és pásztori ajánlással együtt. A jóváhagyott csapattagok ingyenes részvételt kapnak a konferencián cserébe a gyógyító szobákban, prófétai szolgálatban vagy gyakorlati segítségnyújtásban való szolgálatért. Jelentkezési határidő: 2026. szeptember 1.',
+            ],
+            'Where will the conference be held?' => [
+                'question' => 'Hol kerül megrendezésre a konferencia?',
+                'answer' => 'A Europe Revival 2026 Budapesten kerül megrendezésre. A pontos helyszín és cím hamarosan elérhető lesz. Maradj velünk a frissítésekért!',
             ],
         ];
 

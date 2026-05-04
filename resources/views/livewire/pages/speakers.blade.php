@@ -7,9 +7,9 @@
                 <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
                     Europe Revival 2026
                 </span>
-                <h1 class="text-4xl md:text-6xl font-bold uppercase mb-6">Our Speakers</h1>
+                <h1 class="text-4xl md:text-6xl font-bold uppercase mb-6">{{ __('Our Speakers') }}</h1>
                 <p class="text-xl text-white/50 max-w-2xl mx-auto">
-                    Meet the anointed men and women of God who will be ministering at Europe Revival 2026.
+                    {{ __('Meet the anointed men and women of God who will be ministering at Europe Revival 2026.') }}
                 </p>
             </div>
         </div>
@@ -21,11 +21,11 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
                     <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
-                        Featured Speakers
+                        {{ __('Featured Speakers') }}
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Speakers</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ __('Speakers') }}</h2>
                     <p class="text-white/50 max-w-xl mx-auto">
-                        Powerful voices bringing messages of revival, healing, and transformation
+                        {{ __('Powerful voices bringing messages of revival, healing, and transformation') }}
                     </p>
                 </div>
 
@@ -44,11 +44,11 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
                     <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
-                        Workshop Leaders
+                        {{ __('Workshop Leaders') }}
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Expert Teachers</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ __('Expert Teachers') }}</h2>
                     <p class="text-white/50 max-w-xl mx-auto">
-                        Leading interactive sessions on specialized topics
+                        {{ __('Leading interactive sessions on specialized topics') }}
                     </p>
                 </div>
 
@@ -67,11 +67,11 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-12">
                     <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sky-400 bg-sky-400/10 border border-sky-400/30 rounded-full mb-4">
-                        Worship Leaders
+                        {{ __('Worship Leaders') }}
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Anointed Worshippers</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ __('Anointed Worshippers') }}</h2>
                     <p class="text-white/50 max-w-xl mx-auto">
-                        Creating an atmosphere for encounter with God
+                        {{ __('Creating an atmosphere for encounter with God') }}
                     </p>
                 </div>
 
@@ -93,12 +93,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h2 class="text-2xl font-bold mb-4">Speaker Announcements Coming Soon</h2>
+                <h2 class="text-2xl font-bold mb-4">{{ __('Speaker Announcements Coming Soon') }}</h2>
                 <p class="text-white/50 mb-8">
-                    We're excited to announce our lineup of incredible speakers. Check back soon for updates!
+                    {{ __("We're excited to announce our lineup of incredible speakers. Check back soon for updates!") }}
                 </p>
                 <a href="{{ route('home') }}#speakers" class="btn-primary">
-                    Back to Home
+                    {{ __('Back to Home') }}
                 </a>
             </div>
         </section>
@@ -107,12 +107,12 @@
     {{-- CTA Section --}}
     <section class="py-20 bg-navy-950">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">Don't Miss This Opportunity</h2>
+            <h2 class="text-3xl font-bold mb-4">{{ __("Don't Miss This Opportunity") }}</h2>
             <p class="text-white/50 mb-8">
-                Register now to secure your spot and experience these powerful ministers in person.
+                {{ __('Register now to secure your spot and experience these powerful ministers in person.') }}
             </p>
             <a href="{{ route('register') }}" class="btn-primary">
-                Register Now
+                {{ __('Register Now') }}
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>

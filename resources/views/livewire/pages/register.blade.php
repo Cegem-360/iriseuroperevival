@@ -14,8 +14,8 @@
                 October 23-25, 2026 • Budapest
             </span>
 
-            <h1 class="text-4xl md:text-5xl font-bold uppercase mb-4">{!! str_replace(' for ', ' for<br>', $title) !!}</h1>
-            <p class="text-xl text-white/60">{{ $subtitle }}</p>
+            <h1 class="text-4xl md:text-5xl font-bold uppercase mb-4">{!! str_replace(' for ', ' for<br>', __($title)) !!}</h1>
+            <p class="text-xl text-white/60">{{ __($subtitle) }}</p>
         </div>
     </div>
 

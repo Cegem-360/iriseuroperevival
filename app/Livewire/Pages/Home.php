@@ -96,9 +96,9 @@ class Home extends Component
 
             return [
                 'date' => $day,
-                'formatted_date' => $date->format('l, M j'),
-                'short_date' => $date->format('M j'),
-                'day_name' => $date->format('l'),
+                'formatted_date' => $date->translatedFormat('l, M j'),
+                'short_date' => $date->translatedFormat('M j'),
+                'day_name' => $date->translatedFormat('l'),
                 'is_training_day' => $date->format('Y-m-d') === '2026-10-22',
                 'items' => $items,
             ];

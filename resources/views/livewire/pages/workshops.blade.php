@@ -38,7 +38,7 @@
                                     </div>
                                     @if($workshop->schedule_note)
                                         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-ocean-500/10 text-ocean-400 border border-ocean-500/20">
-                                            {{ $workshop->schedule_note }}
+                                            {{ __($workshop->schedule_note) }}
                                         </span>
                                     @endif
                                 </div>
@@ -50,12 +50,16 @@
 
                                 <!-- Short Description -->
                                 @if($workshop->t('short_description'))
-                                    @if(str_contains($workshop->short_description, 'Only those who'))
-                                        @php [$desc, $restriction] = explode('Only those', $workshop->t('short_description'), 2); @endphp
-                                        <p class="text-white/50 text-sm mb-2">{{ trim($desc) }}</p>
-                                        <p class="text-primary-400 text-sm font-medium mb-4">{{ __('Only those') }}{{ $restriction }}</p>
-                                    @else
-                                        <p class="text-white/50 text-sm mb-4">{{ $workshop->t('short_description') }}</p>
+                                    @php
+                                        $shortDesc = $workshop->t('short_description');
+                                        $hasAlumniRestriction = str_contains($workshop->short_description, 'Only those who');
+                                        $cleanShortDesc = $hasAlumniRestriction
+                                            ? trim(preg_replace('/\s*(Only those who|Csak azok jelentkezhetnek).*$/u', '', $shortDesc))
+                                            : $shortDesc;
+                                    @endphp
+                                    <p class="text-white/50 text-sm mb-2">{{ $cleanShortDesc }}</p>
+                                    @if($hasAlumniRestriction)
+                                        <p class="text-primary-400 text-sm font-medium mb-4">{{ __('Only those who were students at Iris Global are eligible to apply.') }}</p>
                                     @endif
                                 @endif
 
@@ -128,7 +132,7 @@
                     <h3 class="text-xl font-semibold">{{ __('Ready to join?') }}</h3>
                     <p class="text-white/60 text-sm">{{ __('Register now to secure your spot in these transformative workshops.') }}</p>
                     <p class="text-primary-400 font-semibold text-base">
-                        {{ __('You can sign up for workshops after registering for the event. Before the event, we will send you an email with the details, where you can choose the topic that interests you most.') }}
+                        {!! __('You can sign up for workshops after registering for the event. Before the event, we will send you an email with the details, where you can choose the topic that interests you most. <br>Please also check your spam folder for messages as well!') !!}
                     </p>
                     <a href="{{ route('register') }}" class="btn-primary whitespace-nowrap mt-2">
                         {{ __('Register Now') }}
