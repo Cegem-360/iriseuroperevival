@@ -25,7 +25,7 @@
         style="border: 1px solid rgba(200, 160, 80, 0.15); aspect-ratio: 5/6;">
         <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}"
             class="absolute inset-0 w-full h-full object-cover {{ $hasDesignerPhoto ? 'sepia-[.2]' : '' }}">
-        <div class="speaker-card-content {{ $hasDesignerPhoto ? 'text-right items-end max-w-[85%] ml-auto' : '' }}">
+        <div class="speaker-card-content {{ $hasDesignerPhoto ? 'text-right items-end max-w-[95%] ml-auto' : '' }}">
             @if ($workshopTopic)
                 <h3 class="text-lg font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $workshopTopic }}</h3>
             @else
