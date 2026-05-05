@@ -8,7 +8,8 @@
         'main' => 'h-20 md:h-28',
         default => 'h-12 md:h-16',
     };
-    $invertClass = str_contains(strtolower($sponsor->name), 'mighty warrior') ? 'invert' : '';
+    $invertNames = ['mighty warrior', 'awakening'];
+    $invertClass = collect($invertNames)->contains(fn ($n) => str_contains(strtolower($sponsor->name), $n)) ? 'invert' : '';
 
     // Handle both Vite assets (resources/...) and storage paths
     if ($sponsor->logo_path) {
