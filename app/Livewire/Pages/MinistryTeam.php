@@ -146,16 +146,16 @@ class MinistryTeam extends Component implements HasSchemas
                             ->required()
                             ->searchable()
                             ->options([
-                                'Hungary' => 'Hungary',
-                                'Germany' => 'Germany',
-                                'Austria' => 'Austria',
-                                'Romania' => 'Romania',
-                                'Slovakia' => 'Slovakia',
-                                'Czech Republic' => 'Czech Republic',
-                                'Poland' => 'Poland',
-                                'United Kingdom' => 'United Kingdom',
-                                'United States' => 'United States',
-                                'Other' => 'Other',
+                                'Hungary' => __('Hungary'),
+                                'Germany' => __('Germany'),
+                                'Austria' => __('Austria'),
+                                'Romania' => __('Romania'),
+                                'Slovakia' => __('Slovakia'),
+                                'Czech Republic' => __('Czech Republic'),
+                                'Poland' => __('Poland'),
+                                'United Kingdom' => __('United Kingdom'),
+                                'United States' => __('United States'),
+                                'Other' => __('Other'),
                             ])
                             ->placeholder(__('Select country')),
 
@@ -185,15 +185,15 @@ class MinistryTeam extends Component implements HasSchemas
                     ->label(__('Languages You Speak'))
                     ->required()
                     ->options([
-                        'English' => 'English',
-                        'Hungarian' => 'Hungarian',
-                        'German' => 'German',
-                        'Romanian' => 'Romanian',
-                        'Spanish' => 'Spanish',
-                        'French' => 'French',
-                        'Portuguese' => 'Portuguese',
-                        'Russian' => 'Russian',
-                        'Other' => 'Other',
+                        'English' => __('English'),
+                        'Hungarian' => __('Hungarian'),
+                        'German' => __('German'),
+                        'Romanian' => __('Romanian'),
+                        'Spanish' => __('Spanish'),
+                        'French' => __('French'),
+                        'Portuguese' => __('Portuguese'),
+                        'Russian' => __('Russian'),
+                        'Other' => __('Other'),
                     ])
                     ->columns(3)
                     ->gridDirection('row'),
@@ -415,15 +415,15 @@ class MinistryTeam extends Component implements HasSchemas
                     ->label(__('Languages You Speak'))
                     ->required()
                     ->options([
-                        'English' => 'English',
-                        'Hungarian' => 'Hungarian',
-                        'German' => 'German',
-                        'Romanian' => 'Romanian',
-                        'Spanish' => 'Spanish',
-                        'French' => 'French',
-                        'Portuguese' => 'Portuguese',
-                        'Russian' => 'Russian',
-                        'Other' => 'Other',
+                        'English' => __('English'),
+                        'Hungarian' => __('Hungarian'),
+                        'German' => __('German'),
+                        'Romanian' => __('Romanian'),
+                        'Spanish' => __('Spanish'),
+                        'French' => __('French'),
+                        'Portuguese' => __('Portuguese'),
+                        'Russian' => __('Russian'),
+                        'Other' => __('Other'),
                     ])
                     ->columns(3)
                     ->gridDirection('row'),
@@ -442,7 +442,7 @@ class MinistryTeam extends Component implements HasSchemas
             ->description(__('Review and confirm your registration'))
             ->icon('heroicon-o-check-circle')
             ->schema([
-                Section::make('Registration Summary')
+                Section::make(__('Registration Summary'))
                     ->schema([
                         \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
                     ]),

@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-XkHEuKE7.css",
+    "file": "assets/app-CTw_8BKW.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -103,6 +103,10 @@
   "resources/images/alt-style/backgrounds/stadium-background.webp": {
     "file": "assets/stadium-background-BmQpIna3.webp",
     "src": "resources/images/alt-style/backgrounds/stadium-background.webp"
+  },
+  "resources/images/alt-style/backgrounds/three-days-bg.webp": {
+    "file": "assets/three-days-bg-BD0FKdZG.webp",
+    "src": "resources/images/alt-style/backgrounds/three-days-bg.webp"
   },
   "resources/images/alt-style/backgrounds/world-map.webp": {
     "file": "assets/world-map-t7o2_-Ny.webp",
@@ -264,9 +268,29 @@
     "file": "assets/MWI-Logo-CQG69RjW.png",
     "src": "resources/images/partner-logos/MWI-Logo.png"
   },
+  "resources/images/partner-logos/awakening.webp": {
+    "file": "assets/awakening-DTT2hFOv.webp",
+    "src": "resources/images/partner-logos/awakening.webp"
+  },
+  "resources/images/partner-logos/harvest.webp": {
+    "file": "assets/harvest-CMnKTAwg.webp",
+    "src": "resources/images/partner-logos/harvest.webp"
+  },
   "resources/images/partner-logos/iris-global.png": {
     "file": "assets/iris-global-vBXXd2Xc.png",
     "src": "resources/images/partner-logos/iris-global.png"
+  },
+  "resources/images/partner-logos/iris-lisbon.webp": {
+    "file": "assets/iris-lisbon-Berh3Un3.webp",
+    "src": "resources/images/partner-logos/iris-lisbon.webp"
+  },
+  "resources/images/partner-logos/iris-uk.webp": {
+    "file": "assets/iris-uk-D8tW7Enj.webp",
+    "src": "resources/images/partner-logos/iris-uk.webp"
+  },
+  "resources/images/partner-logos/pray-california.webp": {
+    "file": "assets/pray-california-D_KfEZoL.webp",
+    "src": "resources/images/partner-logos/pray-california.webp"
   },
   "resources/images/speakers/HeidiD.webp": {
     "file": "assets/HeidiD-mV-5KhTR.webp",

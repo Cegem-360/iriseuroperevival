@@ -136,16 +136,16 @@ class RegistrationForm extends Component implements HasSchemas
                             ->required()
                             ->searchable()
                             ->options([
-                                'Hungary' => 'Hungary',
-                                'Germany' => 'Germany',
-                                'Austria' => 'Austria',
-                                'Romania' => 'Romania',
-                                'Slovakia' => 'Slovakia',
-                                'Czech Republic' => 'Czech Republic',
-                                'Poland' => 'Poland',
-                                'United Kingdom' => 'United Kingdom',
-                                'United States' => 'United States',
-                                'Other' => 'Other',
+                                'Hungary' => __('Hungary'),
+                                'Germany' => __('Germany'),
+                                'Austria' => __('Austria'),
+                                'Romania' => __('Romania'),
+                                'Slovakia' => __('Slovakia'),
+                                'Czech Republic' => __('Czech Republic'),
+                                'Poland' => __('Poland'),
+                                'United Kingdom' => __('United Kingdom'),
+                                'United States' => __('United States'),
+                                'Other' => __('Other'),
                             ])
                             ->placeholder(__('Select country')),
 
@@ -175,15 +175,15 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label(__('Languages You Speak'))
                     ->required()
                     ->options([
-                        'English' => 'English',
-                        'Hungarian' => 'Hungarian',
-                        'German' => 'German',
-                        'Romanian' => 'Romanian',
-                        'Spanish' => 'Spanish',
-                        'French' => 'French',
-                        'Portuguese' => 'Portuguese',
-                        'Russian' => 'Russian',
-                        'Other' => 'Other',
+                        'English' => __('English'),
+                        'Hungarian' => __('Hungarian'),
+                        'German' => __('German'),
+                        'Romanian' => __('Romanian'),
+                        'Spanish' => __('Spanish'),
+                        'French' => __('French'),
+                        'Portuguese' => __('Portuguese'),
+                        'Russian' => __('Russian'),
+                        'Other' => __('Other'),
                     ])
                     ->columns(3)
                     ->gridDirection('row'),
@@ -343,8 +343,8 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label(__('Access Duration'))
                     ->required()
                     ->options([
-                        '1_day' => '1 Day',
-                        '3_days' => '3 Days',
+                        '1_day' => __('1 Day'),
+                        '3_days' => __('3 Days'),
                     ])
                     ->default('1_day')
                     ->live()
@@ -359,20 +359,20 @@ class RegistrationForm extends Component implements HasSchemas
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
                             '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(15000 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
-                            'custom' => 'Custom amount',
+                            'custom' => __('Custom amount'),
                         ]
                         : [
                             '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(7500 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
-                            'custom' => 'Custom amount',
+                            'custom' => __('Custom amount'),
                         ])
                     ->descriptions(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
-                            '15000' => 'This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.',
-                            'custom' => 'Thank you for choosing to support the event with a custom amount!',
+                            '15000' => __('This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.'),
+                            'custom' => __('Thank you for choosing to support the event with a custom amount!'),
                         ]
                         : [
-                            '7500' => 'This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.',
-                            'custom' => 'Thank you for choosing to support the event with a custom amount!',
+                            '7500' => __('This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.'),
+                            'custom' => __('Thank you for choosing to support the event with a custom amount!'),
                         ])
                     ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '15000' : '7500')
                     ->live(),
@@ -396,7 +396,7 @@ class RegistrationForm extends Component implements HasSchemas
                         : '')
                     ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom' && is_numeric($get('ticket_custom_amount'))),
 
-                Section::make('Order Summary')
+                Section::make(__('Order Summary'))
                     ->schema([
                         \Filament\Schemas\Components\View::make('livewire.registration-form.partials.order-summary'),
                     ]),
@@ -414,15 +414,15 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label(__('Languages You Speak'))
                     ->required()
                     ->options([
-                        'English' => 'English',
-                        'Hungarian' => 'Hungarian',
-                        'German' => 'German',
-                        'Romanian' => 'Romanian',
-                        'Spanish' => 'Spanish',
-                        'French' => 'French',
-                        'Portuguese' => 'Portuguese',
-                        'Russian' => 'Russian',
-                        'Other' => 'Other',
+                        'English' => __('English'),
+                        'Hungarian' => __('Hungarian'),
+                        'German' => __('German'),
+                        'Romanian' => __('Romanian'),
+                        'Spanish' => __('Spanish'),
+                        'French' => __('French'),
+                        'Portuguese' => __('Portuguese'),
+                        'Russian' => __('Russian'),
+                        'Other' => __('Other'),
                     ])
                     ->columns(3)
                     ->gridDirection('row'),
@@ -432,12 +432,12 @@ class RegistrationForm extends Component implements HasSchemas
                     ->helperText(__('Select the areas where you would like to serve (you can choose more than one)'))
                     ->required()
                     ->options([
-                        'Childcare' => 'Childcare',
-                        'Ushers' => 'Ushers',
-                        'Registration' => 'Registration',
-                        'Merch' => 'Merch',
-                        'Hospitality' => 'Hospitality',
-                        'Tech & Media' => 'Tech & Media',
+                        'Childcare' => __('Childcare'),
+                        'Ushers' => __('Ushers'),
+                        'Registration' => __('Registration'),
+                        'Merch' => __('Merch'),
+                        'Hospitality' => __('Hospitality'),
+                        'Tech & Media' => __('Tech & Media'),
                     ])
                     ->columns(2)
                     ->gridDirection('row'),
@@ -462,7 +462,7 @@ class RegistrationForm extends Component implements HasSchemas
             ->description(__('Review and confirm your registration'))
             ->icon('heroicon-o-check-circle')
             ->schema([
-                Section::make('Registration Summary')
+                Section::make(__('Registration Summary'))
                     ->schema([
                         \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
                     ]),

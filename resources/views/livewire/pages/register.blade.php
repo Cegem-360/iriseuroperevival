@@ -11,10 +11,10 @@
         <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
             {{-- Badge --}}
             <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-primary-400 bg-primary-500/10 border border-primary-500/30 rounded-full mb-6">
-                October 23-25, 2026 • Budapest
+                {{ __('October 23-25, 2026 • Budapest') }}
             </span>
 
-            <h1 class="text-4xl md:text-5xl font-bold uppercase mb-4">{!! str_replace(' for ', ' for<br>', __($title)) !!}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold uppercase mb-4">{!! __($title) !!}</h1>
             <p class="text-xl text-white/60">{{ __($subtitle) }}</p>
         </div>
     </div>

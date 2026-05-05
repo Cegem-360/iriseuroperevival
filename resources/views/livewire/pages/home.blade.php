@@ -142,9 +142,15 @@
                     alt="Deep Worship — Inspired Prayer"
                     class="absolute inset-0 w-full h-full object-cover object-bottom">
                 <div class="absolute inset-0 flex items-center justify-center px-8">
-                    <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-title.webp') }}"
-                        alt="The nations gather — Deep Worship, Inspired Prayer"
-                        class="max-w-56 md:max-w-sm lg:max-w-md w-full">
+                    @if (app()->getLocale() === 'hu')
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) text-center drop-shadow-lg">
+                            Mély dicsőítés
+                        </h2>
+                    @else
+                        <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/deep-worship-title.webp') }}"
+                            alt="The nations gather — Deep Worship, Inspired Prayer"
+                            class="max-w-56 md:max-w-sm lg:max-w-md w-full">
+                    @endif
                 </div>
             </div>
 
@@ -368,7 +374,7 @@
     <section id="schedule" class="pt-50 pb-16 relative overflow-hidden" x-data="{ activeTab: 'main' }">
         {{-- Background: open-up (triumphal arch) --}}
         <div class="absolute inset-0">
-            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/open-up.webp') }}" alt=""
+            <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/three-days-bg.webp') }}" alt=""
                 class="absolute inset-0 w-full object-contain object-top"
                 style="mask-image: linear-gradient(to bottom, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);">
             <div class="absolute inset-0 bg-(--alt-navy-dark)/80"></div>
@@ -424,7 +430,7 @@
                                     </div>
                                     <div>
                                         <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ __('Ministry Team Training Day') }}</h3>
-                                        <p class="text-(--alt-beige-muted)">{{ $trainingDay['formatted_date'] }} &middot; 10:00am–5:00pm</p>
+                                        <p class="text-(--alt-beige-muted)">{{ $trainingDay['formatted_date'] }} &middot; 10:00–17:00</p>
                                         <p class="text-(--alt-beige-muted)/60 text-sm">{{ __('Speaker: David Gava & Ministry team leaders') }}</p>
                                     </div>
                                 </div>
@@ -433,7 +439,7 @@
                                     @foreach ($trainingDay['items'] as $item)
                                         <div class="flex gap-4 p-4 bg-(--alt-navy-deeper)/30 rounded-xl">
                                             <span class="text-(--alt-gold) font-heading font-semibold w-28 shrink-0">
-                                                {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }}–{{ \Carbon\Carbon::parse($item->end_time)->format('g:ia') }}
+                                                {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }}–{{ \Carbon\Carbon::parse($item->end_time)->format('H:i') }}
                                             </span>
                                             <div>
                                                 <h4 class="text-(--alt-beige) font-medium">{{ $item->t('title') }}</h4>
@@ -494,8 +500,8 @@
                                         @endphp
                                         <div class="border-l-2 {{ $borderColor }} pl-4">
                                             <span class="{{ $textColor }} text-sm font-heading font-semibold">
-                                                {{ \Carbon\Carbon::parse($item->start_time)->format('g:ia') }} -
-                                                {{ \Carbon\Carbon::parse($item->end_time)->format('g:ia') }}
+                                                {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }} -
+                                                {{ \Carbon\Carbon::parse($item->end_time)->format('H:i') }}
                                             </span>
                                             <h4 class="text-(--alt-beige) font-medium">{{ $item->t('title') }}</h4>
                                             @if ($item->speaker)

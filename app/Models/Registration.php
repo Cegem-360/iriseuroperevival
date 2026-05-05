@@ -230,11 +230,11 @@ class Registration extends Model
     public static function formatTicketType(?string $ticketType): string
     {
         return match ($ticketType) {
-            '1_day' => '1 Day Supporter Pass',
-            '3_days' => '3 Day Supporter Pass',
-            'individual' => 'Individual Pass',
-            'team' => 'Team Pass',
-            default => 'Standard Pass',
+            '1_day' => __('1 Day Supporter Pass'),
+            '3_days' => __('3 Day Supporter Pass'),
+            'individual' => __('Individual Pass'),
+            'team' => __('Team Pass'),
+            default => __('Standard Pass'),
         };
     }
 
