@@ -42,7 +42,7 @@ it('translates content to hungarian when locale is hu', function (): void {
     $this->withSession(['locale' => 'hu'])
         ->get('/');
 
-    expect(__('Home'))->toBe('Kezdolap');
+    expect(__('Home'))->toBe('Kezdőlap');
 });
 
 it('shows english content by default', function (): void {

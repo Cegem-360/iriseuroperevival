@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CTw_8BKW.css",
+    "file": "assets/app-CfA77fxF.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -368,6 +368,10 @@
     "file": "assets/mighty-warrior-international-BxA-bwDI.svg",
     "src": "resources/images/sponsors/mighty-warrior-international.svg"
   },
+  "resources/images/sponsors/placeholder.svg": {
+    "file": "assets/placeholder-DPEzyCgo.svg",
+    "src": "resources/images/sponsors/placeholder.svg"
+  },
   "resources/images/textures/noise.png": {
     "file": "assets/noise-DqweEHLi.png",
     "src": "resources/images/textures/noise.png"
@@ -377,7 +381,7 @@
     "src": "resources/images/textures/transition-subtle.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BuG9aa18.js",
+    "file": "assets/app-CcNNqum8.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

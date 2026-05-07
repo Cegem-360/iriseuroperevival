@@ -28,30 +28,30 @@
 
 <dl class="space-y-3">
     <div class="flex justify-between">
-        <dt class="text-white/60">Name</dt>
+        <dt class="text-white/60">{{ __('Name') }}</dt>
         <dd class="text-white font-medium">{{ $firstName }} {{ $lastName }}</dd>
     </div>
     <div class="flex justify-between">
-        <dt class="text-white/60">Email</dt>
+        <dt class="text-white/60">{{ __('Email') }}</dt>
         <dd class="text-white font-medium">{{ $email }}</dd>
     </div>
     @if($phone)
         <div class="flex justify-between">
-            <dt class="text-white/60">Phone</dt>
+            <dt class="text-white/60">{{ __('Phone') }}</dt>
             <dd class="text-white font-medium">{{ $phone }}</dd>
         </div>
     @endif
     <div class="flex justify-between">
-        <dt class="text-white/60">Location</dt>
+        <dt class="text-white/60">{{ __('Location') }}</dt>
         <dd class="text-white font-medium">{{ $city }}, {{ $country }}</dd>
     </div>
     @if($type === 'attendee')
         <div class="border-t border-navy-600 pt-3 flex justify-between">
-            <dt class="text-white/60">Pass</dt>
+            <dt class="text-white/60">{{ __('Pass') }}</dt>
             <dd class="text-white font-medium">{{ $durationLabel }}</dd>
         </div>
         <div class="flex justify-between text-lg font-bold">
-            <dt class="text-primary-400">Total</dt>
+            <dt class="text-primary-400">{{ __('Total') }}</dt>
             <dd class="text-primary-400">{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}</dd>
         </div>
     @endif

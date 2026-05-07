@@ -399,7 +399,11 @@
     "Registration Summary": "Regisztráció összegzése",
     "Registration Complete!": "Sikeres regisztráció!",
     "Application Submitted!": "Jelentkezés elküldve!",
-    "Thank You for Applying!": "Köszönjük a jelentkezést!",
+    "Thank You for Applying!": "Köszönjük a jelentkezésedet!",
+    "Thank you, :name! Your registration has been confirmed. A confirmation email has been sent to :email": "Kedves :name! A regisztrációdat visszaigazoltuk. Visszaigazoló e-mailt küldtünk a :email címre.",
+    "Thank you for applying to join the Ministry Team, :name! Your application is being reviewed. We'll contact you at :email within 7 business days.": "Kedves :name! Köszönjük, hogy jelentkeztél a Szolgálócsapatba. A jelentkezésedet feldolgozzuk, és 7 munkanapon belül felvesszük veled a kapcsolatot a :email címen.",
+    "Thank you for your application, :name! Your application is being processed. We will soon send you a confirmation email about your application to :email.": "Kedves :name! Köszönjük, hogy jelentkeztél. A jelentkezésed feldolgozás alatt van. Hamarosan visszaigazoló e-mailt küldünk a :email címre.",
+    "Thank you, :name! We'll be in touch at :email soon.": "Kedves :name! Hamarosan felvesszük veled a kapcsolatot a :email címen.",
     "Thank You!": "Köszönjük!",
     "Confirmation #": "Visszaigazolás #",
     "Name": "Név",
@@ -486,5 +490,8 @@
     "You can simply reply to this email with your response.": "Egyszerűen válaszolhatsz erre az e-mailre.",
     "Thank you for your time and support.": "Köszönjük az idődet és a támogatásodat.",
     "Thank you for your interest in serving at Europe Revival 2026.": "Köszönjük az érdeklődésedet az Europe Revival 2026 szolgálatában.",
-    "October 23-25, 2026 • Budapest": "2026. október 23-25. • Budapest"
+    "October 23-25, 2026 • Budapest": "2026. október 23-25. • Budapest",
+    "Translators": "Tolmács",
+    "Pass": "Jegy",
+    "Ministry Team Guidelines": "Szolgálócsapat irányelvek"
 }

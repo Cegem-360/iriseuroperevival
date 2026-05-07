@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Speaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Speaker>
+ * @extends Factory<Speaker>
  */
 class SpeakerFactory extends Factory
 {
@@ -29,7 +30,7 @@ class SpeakerFactory extends Factory
             'organization' => fake()->company(),
             'country' => fake()->country(),
             'bio' => fake()->paragraphs(3, true),
-            'photo_path' => null,
+            'photo_path' => 'speakers/placeholder.jpg',
             'type' => fake()->randomElement(['speaker', 'worship_leader', 'host']),
             'is_featured' => fake()->boolean(20),
             'sort_order' => fake()->numberBetween(0, 100),

@@ -2,12 +2,18 @@
 
 declare(strict_types=1);
 
-use App\Livewire\Pages\SpeakerShow;
 use App\Livewire\Pages\Speakers;
+use App\Livewire\Pages\SpeakerShow;
 use App\Models\Speaker;
+use App\Models\Workshop;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    Speaker::query()->delete();
+});
 
 describe('speakers listing page', function () {
     it('renders speakers page successfully', function () {
@@ -115,6 +121,10 @@ describe('speaker detail page', function () {
 
         $otherSpeaker = Speaker::factory()->create([
             'name' => 'Other Speaker',
+        ]);
+
+        Workshop::factory()->create([
+            'speaker_id' => $otherSpeaker->id,
         ]);
 
         Livewire::test(SpeakerShow::class, ['slug' => 'main-speaker'])

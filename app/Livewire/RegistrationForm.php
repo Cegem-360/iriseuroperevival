@@ -438,6 +438,7 @@ class RegistrationForm extends Component implements HasSchemas
                         'Merch' => __('Merch'),
                         'Hospitality' => __('Hospitality'),
                         'Tech & Media' => __('Tech & Media'),
+                        'Translators' => __('Translators'),
                     ])
                     ->columns(2)
                     ->gridDirection('row'),
@@ -467,7 +468,7 @@ class RegistrationForm extends Component implements HasSchemas
                         \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
                     ]),
 
-                Section::make('Ministry Team Guidelines')
+                Section::make(__('Ministry Team Guidelines'))
                     ->description(__('Please read and accept the following guidelines'))
                     ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
                     ->schema([
