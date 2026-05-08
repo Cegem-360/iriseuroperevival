@@ -312,8 +312,8 @@
                                 </svg>
                             </button>
                             <div x-show="open === {{ $faq->id }}" x-cloak x-collapse class="px-6 pb-4">
-                                <div class="pl-13 prose prose-invert prose-sm max-w-none prose-a:text-sky-400 prose-a:no-underline hover:prose-a:underline text-white/50">
-                                    {!! Str::markdown($faq->t('answer')) !!}
+                                <div class="pl-13 text-white/50 space-y-3 [&_strong]:text-sky-400 [&_strong]:font-medium [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1 [&_a]:text-sky-400 [&_a]:underline-offset-2 hover:[&_a]:underline">
+                                    {!! $faq->t('answer') !!}
                                 </div>
                             </div>
                         </div>

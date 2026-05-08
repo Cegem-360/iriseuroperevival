@@ -9,30 +9,31 @@ return new class() extends Migration
 {
     public function up(): void
     {
+        // Stored as HTML so the Filament RichEditor in the admin can edit them directly.
         $faqs = [
             [
                 'question' => 'How should I arrange accommodation?',
-                'answer' => "The event will take place at BOK Sportcsarnok (1146 Budapest, Dózsa György út 1), so we recommend booking accommodation nearby or in a location with convenient access to public transport.\n\nDue to the scale of the event with several thousand participants, we are unable to provide accommodation for the ministry team. However, we have included a list of recommended places to stay in the area.\n\nList of recommended accommodation will be published soon!",
+                'answer' => '<p>The event will take place at BOK Sportcsarnok (1146 Budapest, Dózsa György út 1), so we recommend booking accommodation nearby or in a location with convenient access to public transport.</p><p>Due to the scale of the event with several thousand participants, we are unable to provide accommodation for the ministry team. However, we have included a list of recommended places to stay in the area.</p><p><strong>List of recommended accommodation will be published soon!</strong></p>',
                 'sort_order' => 1,
             ],
             [
                 'question' => 'Is food provided?',
-                'answer' => 'Meals are not included in the registration. There are many restaurants available in the area. (Between 5–10 euros)',
+                'answer' => '<p>Meals are not included in the registration. There are many restaurants available in the area. (Between 5–10 euros)</p>',
                 'sort_order' => 2,
             ],
             [
                 'question' => 'How do I get to the venue?',
-                'answer' => "Budapest is easily accessible by plane, train, and bus.\n\n- From the airport: take bus 100E to Deák Ferenc Square (~30 minutes)\n- Metro and tram lines are available near the venue\n- Parking is limited – public transport is recommended\n\nWe also suggest using [Uber](https://www.uber.com/global/en/cities/budapest/) or [Bolt](https://bolt.eu/en/cities/budapest/).",
+                'answer' => '<p>Budapest is easily accessible by plane, train, and bus.</p><ul><li>From the airport: take bus 100E to Deák Ferenc Square (~30 minutes)</li><li>Metro and tram lines are available near the venue</li><li>Parking is limited – public transport is recommended</li></ul><p>We also suggest using <a href="https://www.uber.com/global/en/cities/budapest/" target="_blank" rel="noopener">Uber</a> or <a href="https://bolt.eu/en/cities/budapest/" target="_blank" rel="noopener">Bolt</a>.</p>',
                 'sort_order' => 3,
             ],
             [
                 'question' => 'How does the application process work?',
-                'answer' => "- Fill out the online application form\n- We will contact your pastor for a reference\n- We review your application\n- You will be notified of the decision via email",
+                'answer' => '<ul><li>Fill out the online application form</li><li>We will contact your pastor for a reference</li><li>We review your application</li><li>You will be notified of the decision via email</li></ul>',
                 'sort_order' => 4,
             ],
             [
                 'question' => 'Why is a pastoral reference required?',
-                'answer' => "A pastoral reference ensures that Ministry Team members are active, committed members of a local church.\n\nYour pastor confirms:\n\n- Your church affiliation\n- The practice of your faith in your daily life\n- Your suitability for ministry",
+                'answer' => '<p>A pastoral reference ensures that Ministry Team members are active, committed members of a local church.</p><p>Your pastor confirms:</p><ul><li>Your church affiliation</li><li>The practice of your faith in your daily life</li><li>Your suitability for ministry</li></ul>',
                 'sort_order' => 5,
             ],
         ];
