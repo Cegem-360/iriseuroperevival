@@ -221,13 +221,13 @@ class RegistrationForm extends Component implements HasSchemas
                 Grid::make(2)
                     ->schema([
                         TextInput::make('pastor_name')
-                            ->label('Senior Pastor\'s Name')
+                            ->label(__('Senior Pastor\'s Name'))
                             ->required()
                             ->maxLength(200)
                             ->placeholder('Pastor\'s full name'),
 
                         TextInput::make('pastor_email')
-                            ->label('Pastor\'s Email')
+                            ->label(__('Pastor\'s Email'))
                             ->email()
                             ->required()
                             ->maxLength(255)
@@ -243,7 +243,7 @@ class RegistrationForm extends Component implements HasSchemas
             ->icon('heroicon-o-heart')
             ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
-                Section::make('Spiritual Requirements')
+                Section::make(__('Spiritual Requirements'))
                     ->schema([
                         Checkbox::make('is_born_again')
                             ->label(__('I am a born-again believer'))
@@ -269,9 +269,9 @@ class RegistrationForm extends Component implements HasSchemas
                     ->maxLength(3000)
                     ->rows(6)
                     ->placeholder(__('Please share your testimony and calling to ministry (minimum 100 characters)...'))
-                    ->helperText(fn ($state) => strlen($state ?? '') . '/3000 characters'),
+                    ->helperText(fn ($state) => strlen($state ?? '') . ' / ' . __(':n characters', ['n' => 3000])),
 
-                Section::make('Ministry Training')
+                Section::make(__('Ministry Training'))
                     ->schema([
                         Checkbox::make('attended_ministry_school')
                             ->label(__('I have attended a ministry/Bible school'))
@@ -284,7 +284,7 @@ class RegistrationForm extends Component implements HasSchemas
                             ->visible(fn ($get) => $get('attended_ministry_school')),
                     ]),
 
-                Section::make('References')
+                Section::make(__('References'))
                     ->description(__('Please provide two references who can vouch for your character and ministry readiness.'))
                     ->schema([
                         Grid::make(2)
@@ -320,7 +320,7 @@ class RegistrationForm extends Component implements HasSchemas
                             ]),
                     ]),
 
-                Section::make('Invitation')
+                Section::make(__('Invitation'))
                     ->collapsed()
                     ->schema([
                         TextInput::make('invited_by')

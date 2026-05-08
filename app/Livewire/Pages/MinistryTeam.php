@@ -11,6 +11,7 @@ use App\Services\StripeService;
 use Exception;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -33,13 +34,13 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Layout('components.layouts.app')]
+#[Layout('components.layouts.ministry')]
 #[Title('Ministry Team - Europe Revival 2026')]
 class MinistryTeam extends Component implements HasSchemas
 {
     use InteractsWithSchemas;
 
-    public string $type = 'attendee';
+    public string $type = 'ministry';
 
     public ?string $error = null;
 
@@ -47,12 +48,12 @@ class MinistryTeam extends Component implements HasSchemas
 
     public bool $processing = false;
 
-    public function mount(string $type = 'attendee'): void
+    public function mount(string $type = 'ministry'): void
     {
-        $this->type = $type;
+        $this->type = 'ministry';
 
         $this->form->fill([
-            'registration_type' => $type,
+            'registration_type' => 'ministry',
             'ticket_type' => 'individual',
             'ticket_quantity' => 1,
         ]);
@@ -62,9 +63,10 @@ class MinistryTeam extends Component implements HasSchemas
     {
         return $schema
             ->components([
+                Hidden::make('registration_type')->default('ministry'),
                 Wizard::make($this->getWizardSteps())
                     ->submitAction(new HtmlString(view('livewire.registration-form.partials.submit-button', [
-                        'type' => $this->data['registration_type'] ?? 'attendee',
+                        'type' => 'ministry',
                     ])->render())),
             ])
             ->statePath('data');
@@ -72,36 +74,15 @@ class MinistryTeam extends Component implements HasSchemas
 
     protected function getWizardSteps(): array
     {
+        // Page is dedicated to Ministry Team applicants — no registration-type step,
+        // no ticket/volunteer steps. Wizard goes straight from Personal Info to Confirmation.
         return [
-            $this->getRegistrationTypeStep(),
             $this->getPersonalInfoStep(),
             $this->getMinistryDetailsStep(),
             $this->getChurchInfoStep(),
             $this->getTestimonyStep(),
-            $this->getTicketSelectionStep(),
-            $this->getVolunteerDetailsStep(),
             $this->getConfirmationStep(),
         ];
-    }
-
-    protected function getRegistrationTypeStep(): Step
-    {
-        return Step::make(__('Registration Type'))
-            ->description(__('How would you like to join us?'))
-            ->icon('heroicon-o-identification')
-            ->schema([
-                Radio::make('registration_type')
-                    ->label(__('Select your registration type'))
-                    ->required()
-                    ->options([
-                        'ministry' => 'Ministry Team',
-                    ])
-                    ->descriptions([
-                        'attendee' => 'Attend the conference as a participant. Purchase tickets for yourself or your group.',
-                        'volunteer' => 'Serve as a volunteer. Discounted pass, meals during shifts, and more.',
-                    ])
-                    ->live(),
-            ]);
     }
 
     protected function getPersonalInfoStep(): Step
@@ -176,7 +157,7 @@ class MinistryTeam extends Component implements HasSchemas
             ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
                 TextInput::make('citizenship')
-                    ->label(__('Citizenship'))
+                    ->label(__('Nationality'))
                     ->required()
                     ->maxLength(100)
                     ->placeholder(__('e.g. Hungarian, German, etc.')),
@@ -231,13 +212,13 @@ class MinistryTeam extends Component implements HasSchemas
                 Grid::make(2)
                     ->schema([
                         TextInput::make('pastor_name')
-                            ->label('Senior Pastor\'s Name')
+                            ->label(__('Senior Pastor\'s Name'))
                             ->required()
                             ->maxLength(200)
                             ->placeholder('Pastor\'s full name'),
 
                         TextInput::make('pastor_email')
-                            ->label('Pastor\'s Email')
+                            ->label(__('Pastor\'s Email'))
                             ->email()
                             ->required()
                             ->maxLength(255)
@@ -253,7 +234,7 @@ class MinistryTeam extends Component implements HasSchemas
             ->icon('heroicon-o-heart')
             ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
-                Section::make('Spiritual Requirements')
+                Section::make(__('Spiritual Requirements'))
                     ->schema([
                         Checkbox::make('is_born_again')
                             ->label(__('I am a born-again believer'))
@@ -274,14 +255,12 @@ class MinistryTeam extends Component implements HasSchemas
 
                 Textarea::make('testimony')
                     ->label(__('Your Testimony'))
-                    ->required()
-                    ->minLength(100)
                     ->maxLength(3000)
                     ->rows(6)
-                    ->placeholder(__('Please share your testimony and calling to ministry (minimum 100 characters)...'))
-                    ->helperText(fn ($state) => strlen($state ?? '') . '/3000 characters'),
+                    ->placeholder(__('Share as much or as little as you like.'))
+                    ->helperText(fn ($state) => strlen($state ?? '') . ' / ' . __(':n characters', ['n' => 3000])),
 
-                Section::make('Ministry Training')
+                Section::make(__('Ministry Training'))
                     ->schema([
                         Checkbox::make('attended_ministry_school')
                             ->label(__('I have attended a ministry/Bible school'))
@@ -294,7 +273,7 @@ class MinistryTeam extends Component implements HasSchemas
                             ->visible(fn ($get) => $get('attended_ministry_school')),
                     ]),
 
-                Section::make('References')
+                Section::make(__('References'))
                     ->description(__('Please provide two references who can vouch for your character and ministry readiness.'))
                     ->schema([
                         Grid::make(2)
@@ -330,7 +309,7 @@ class MinistryTeam extends Component implements HasSchemas
                             ]),
                     ]),
 
-                Section::make('Invitation')
+                Section::make(__('Invitation'))
                     ->collapsed()
                     ->schema([
                         TextInput::make('invited_by')
@@ -447,7 +426,7 @@ class MinistryTeam extends Component implements HasSchemas
                         \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
                     ]),
 
-                Section::make('Ministry Team Guidelines')
+                Section::make(__('Ministry Team Guidelines'))
                     ->description(__('Please read and accept the following guidelines'))
                     ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
                     ->schema([

@@ -1,4 +1,7 @@
-{{-- resources/views/components/navigation.blade.php --}}
+{{-- Ministry-team-only navigation. Cross-links to the public site for SPEAKERS / WORKSHOPS / PROGRAM (Option 1 from the client brief), keeps the Vision modal local, and the right-side CTA jumps to the in-page apply form. --}}
+@php
+    $publicSite = 'https://iriseuroperevival.com';
+@endphp
 <header x-data="{
     scrolled: false,
     mobileMenuOpen: false,
@@ -13,62 +16,52 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="flex items-center justify-between h-24">
-            {{-- Logo --}}
-            <a href="{{ route('home') }}" class="shrink-0">
+            {{-- Logo (no link to home — the page is invitation-only and shouldn't expose itself by linking back) --}}
+            <a href="{{ $publicSite }}" class="shrink-0">
                 <img src="{{ Vite::asset('resources/images/iris-logo-white.webp') }}"
                      alt="Europe Revival 2026"
                      class="h-16 md:h-18 opacity-90 transition-all duration-300"
-                     :class="scrolled ? 'h-12 md:h-14' : 'h-16 md:h-18'"
+                     :class="scrolled ? 'h-12 md:h-14' : 'h-16 md:h-18'">
             </a>
 
-            {{-- Desktop Navigation --}}
+            {{-- Desktop Navigation: VISION (modal) + 3 cross-links to the public site --}}
             <div class="hidden lg:flex items-center gap-8">
                 <a href="#" @click.prevent="$dispatch('open-vision-modal')" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
                     {{ __('Vision') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="{{ route('home') }}#speakers" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
+                <a href="{{ $publicSite }}/#speakers" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
                     {{ __('Speakers') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="{{ route('home') }}#workshops" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
+                <a href="{{ $publicSite }}/#workshops" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
                     {{ __('Workshops') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="{{ route('home') }}#schedule" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
+                <a href="{{ $publicSite }}/#schedule" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
                     {{ __('Program') }}
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="{{ route('home') }}#pricing" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    {{ __('Tickets') }}
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
-                </a>
-                <a href="{{ route('home') }}#volunteer" class="uppercase tracking-wider text-white/70 hover:text-white font-medium text-sm transition-colors relative group">
-                    {{ __('Join as a Volunteer') }}
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
                 </a>
             </div>
 
-            {{-- CTA Button --}}
+            {{-- CTA: Join as a Ministry Team --}}
             <div class="hidden lg:flex items-center gap-4">
-                {{-- Language Switcher --}}
                 <x-language-switcher variant="dropdown" />
 
-                {{-- Register Button --}}
-                <a href="{{ route('register') }}"
+                <a href="#apply"
                    class="group inline-flex items-center gap-2 px-6 py-2.5 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-semibold text-base rounded-full transition-all duration-300 shadow-lg shadow-[#EE9B14]/20 hover:shadow-[#EE9B14]/30">
-                    {{ __('Register Now') }}
+                    {{ __('Join as a Ministry Team') }}
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                     </svg>
                 </a>
             </div>
 
-            {{-- Mobile Register + Menu Button --}}
+            {{-- Mobile CTA + Menu --}}
             <div class="lg:hidden flex items-center gap-3">
-                <a href="{{ route('register') }}"
+                <a href="#apply"
                    class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-semibold text-sm rounded-full transition-all duration-300 shadow-lg shadow-[#EE9B14]/20">
-                    {{ __('Register Now') }}
+                    {{ __('Join') }}
                 </a>
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
                     class="w-10 h-10 flex items-center justify-center text-white">
@@ -95,22 +88,18 @@
          style="display: none;">
         <div class="max-w-7xl mx-auto px-4 py-6 space-y-4">
             <button @click="$dispatch('open-vision-modal'); mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5 w-full text-left">{{ __('Vision') }}</button>
-            <a href="{{ route('home') }}#speakers" @click="mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Speakers') }}</a>
-            <a href="{{ route('home') }}#workshops" @click="mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
-            <a href="{{ route('home') }}#schedule" @click="mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
-            <a href="{{ route('home') }}#pricing" @click="mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Tickets') }}</a>
-            <a href="{{ route('home') }}#volunteer" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Join as a Volunteer') }}</a>
+            <a href="{{ $publicSite }}/#speakers" @click="mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Speakers') }}</a>
+            <a href="{{ $publicSite }}/#workshops" @click="mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Workshops') }}</a>
+            <a href="{{ $publicSite }}/#schedule" @click="mobileMenuOpen = false" class="block py-3 uppercase tracking-wide text-white/80 hover:text-white font-medium border-b border-white/5">{{ __('Program') }}</a>
 
-            {{-- Language Options --}}
             <div class="py-3 border-b border-white/5">
                 <x-language-switcher variant="inline" />
             </div>
 
-            {{-- Mobile CTA --}}
             <div class="pt-4">
-                <a href="{{ route('register') }}" @click="mobileMenuOpen = false"
+                <a href="#apply" @click="mobileMenuOpen = false"
                    class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-bold rounded-full">
-                    {{ __('Register Now') }}
+                    {{ __('Join as a Ministry Team') }}
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -119,4 +108,3 @@
         </div>
     </div>
 </header>
-

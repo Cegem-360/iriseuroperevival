@@ -4,25 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex,nofollow">
 
-    <title>@yield('title', 'Europe Revival 2026 - Encounter Jesus. Catch on Fire.')</title>
-    <meta name="description" content="@yield('description', 'Europe Revival 2026 - A 3-day conference for everyone seeking revival. October 23-25, 2026 in Budapest, Hungary.')">
+    <title>@yield('title', 'Ministry Team — Europe Revival 2026')</title>
+    <meta name="description" content="@yield('description', 'Ministry Team landing page for Europe Revival 2026. Invitation only.')">
 
-    {{-- Favicon --}}
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 
-    {{-- Fonts: Azo Sans (headings via Adobe Fonts) + Abuget (script font) --}}
     <link rel="stylesheet" href="https://use.typekit.net/win4vqd.css">
     <link href="https://fonts.cdnfonts.com/css/abuget" rel="stylesheet">
 
-    {{-- Styles --}}
     @filamentStyles
     @vite('resources/css/app.css')
 
     <style>
         [x-cloak] { display: none !important; }
 
-        /* Alt style overrides */
         .font-heading { font-family: 'azo-sans-web', sans-serif; }
         .font-script { font-family: 'Abuget', cursive; }
 
@@ -35,7 +32,6 @@
         }
         .font-winter { font-family: 'For Winter', cursive; }
 
-        /* Beige/cream color tokens */
         :root {
             --alt-beige: #F5E6D0;
             --alt-beige-light: #FAF3EB;
@@ -51,19 +47,17 @@
     @stack('styles')
 </head>
 <body class="bg-(--alt-navy-deeper) text-(--alt-beige) antialiased font-sans">
-    {{-- Navigation --}}
-    <x-layouts.partials.navigation />
+    {{-- Page-specific navigation (no Tickets / Volunteer items, JOIN AS A MINISTRY TEAM CTA) --}}
+    <x-layouts.partials.navigation-ministry />
 
-    {{-- Main Content --}}
     <main>
         {{ $slot ?? '' }}
         @yield('content')
     </main>
 
-    {{-- Footer --}}
     <x-layouts.partials.footer />
 
-    {{-- Vision Modal (See the Vision) --}}
+    {{-- Vision Modal — same content as the public layout, kept here so the VISION nav item works locally --}}
     @include('components.layouts.partials.vision-modal')
 
     @filamentScripts

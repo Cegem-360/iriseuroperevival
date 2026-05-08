@@ -31,7 +31,7 @@
                 </p>
             @elseif($registration->type === 'ministry')
                 <p class="text-white/70 text-lg mb-6">
-                    {!! __("Thank you for applying to join the Ministry Team, :name! Your application is being reviewed. We'll contact you at :email within 7 business days.", ['name' => e($registration->first_name), 'email' => '<span class="text-primary-400">' . e($registration->email) . '</span>']) !!}
+                    {!! __('Thank you for applying to join the Ministry Team, :name! Your application is currently under review. We will get back to you soon at :email.', ['name' => e($registration->first_name), 'email' => '<span class="text-primary-400">' . e($registration->email) . '</span>']) !!}
                 </p>
             @elseif($registration->type === 'volunteer')
                 <p class="text-white/70 text-lg mb-6">
@@ -102,19 +102,19 @@
                         <svg class="w-5 h-5 text-primary-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span>{{ __('Your references will be contacted for verification') }}</span>
+                        <span>{{ __('Your pastor / reference will be contacted for verification.') }}</span>
                     </li>
                     <li class="flex items-start gap-3">
                         <svg class="w-5 h-5 text-primary-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span>{{ __('Expect a response within 7 business days') }}</span>
+                        <span>{{ __('You can expect a response within one month.') }}</span>
                     </li>
                     <li class="flex items-start gap-3">
                         <svg class="w-5 h-5 text-primary-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
-                        <span>{{ __('If approved, arrive by October 21st for training') }}</span>
+                        <span>{{ __('If approved, arrive by October 21st for training.') }}</span>
                     </li>
                 @elseif($registration->type === 'volunteer')
                     <li class="flex items-start gap-3">
