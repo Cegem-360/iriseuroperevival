@@ -338,6 +338,27 @@ class HungarianContentSeeder extends Seeder
                 'question' => 'Hol kerül megrendezésre a konferencia?',
                 'answer' => 'A Europe Revival 2026 Budapesten kerül megrendezésre. A pontos helyszín és cím hamarosan elérhető lesz. Maradj velünk a frissítésekért!',
             ],
+            // Ministry-team page FAQs (category = 'ministry')
+            'How should I arrange accommodation?' => [
+                'question' => 'Hogyan oldjam meg a szállást?',
+                'answer' => "Az esemény a BOK Sportcsarnokban (1146 Budapest, Dózsa György út 1) kerül megrendezésre, ezért a közelben vagy jól megközelíthető tömegközlekedéssel elérhető helyen javasoljuk a szállásfoglalást.\n\nA több ezer fős esemény mérete miatt nem tudunk szállást biztosítani a szolgálati csapat számára, azonban mellékeljük a környéken ajánlott szálláshelyek listáját.\n\nSzálláshely lista kiírása hamarosan!",
+            ],
+            'Is food provided?' => [
+                'question' => 'Van étkezés biztosítva?',
+                'answer' => 'Az étkezés nem része a regisztrációnak, viszont a környéken számos étterem található. (Kb. 5–10 euró között)',
+            ],
+            'How do I get to the venue?' => [
+                'question' => 'Hogyan jutok el a helyszínre?',
+                'answer' => "Budapest könnyen megközelíthető repülővel, vonattal és busszal egyaránt.\n\n- Repülőtérről: 100E busz a Deák térig (~30 perc)\n- Metró és villamos a helyszín közelében\n- Parkolás korlátozott — tömegközlekedés ajánlott\n\nJavasoljuk az [Uber](https://www.uber.com/global/en/cities/budapest/) vagy a [Bolt](https://bolt.eu/en/cities/budapest/) használatát.",
+            ],
+            'How does the application process work?' => [
+                'question' => 'Hogyan zajlik a jelentkezés?',
+                'answer' => "- Töltsd ki az online jelentkezési űrlapot\n- Megkeressük a lelkipásztorodat referenciáért\n- Elbíráljuk a jelentkezésedet\n- E-mailben értesítünk a döntésről",
+            ],
+            'Why is a pastoral reference required?' => [
+                'question' => 'Miért kell lelkipásztori ajánlás?',
+                'answer' => "A lelkipásztori ajánlás biztosítja, hogy a szolgálati csapat tagjai aktív, beépült tagjai egy helyi gyülekezetnek.\n\nA lelkipásztorod igazolja:\n\n- A gyülekezeti hovatartozásod\n- A hited gyakorlása a mindennapokban\n- Alkalmasságod a szolgálatra",
+            ],
         ];
 
         foreach ($faqs as $englishQuestion => $hu) {

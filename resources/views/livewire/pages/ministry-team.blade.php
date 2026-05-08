@@ -294,138 +294,32 @@
                 </p>
             </div>
 
-            <div class="space-y-4" x-data="{ open: null }">
-                {{-- How should I arrange accommodation? --}}
-                <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
-                    <button @click="open = open === 1 ? null : 1" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            @if ($this->faqs->isNotEmpty())
+                <div class="space-y-4" x-data="{ open: null }">
+                    @foreach ($this->faqs as $faq)
+                        <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden" wire:key="faq-{{ $faq->id }}">
+                            <button @click="open = open === {{ $faq->id }} ? null : {{ $faq->id }}" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-white font-semibold">{{ $faq->t('question') }}</span>
+                                </div>
+                                <svg class="w-5 h-5 text-white/40 transition-transform" :class="{ 'rotate-180': open === {{ $faq->id }} }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
+                            </button>
+                            <div x-show="open === {{ $faq->id }}" x-cloak x-collapse class="px-6 pb-4">
+                                <div class="pl-13 prose prose-invert prose-sm max-w-none prose-a:text-sky-400 prose-a:no-underline hover:prose-a:underline text-white/50">
+                                    {!! Str::markdown($faq->t('answer')) !!}
+                                </div>
                             </div>
-                            <span class="text-white font-semibold">{{ __('How should I arrange accommodation?') }}</span>
                         </div>
-                        <svg class="w-5 h-5 text-white/40 transition-transform" :class="{ 'rotate-180': open === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div x-show="open === 1" x-cloak x-collapse class="px-6 pb-4">
-                        <div class="pl-13 text-white/50 space-y-2">
-                            <p>{{ __('The event will take place at BOK Sportcsarnok (1146 Budapest, Dózsa György út 1), so we recommend booking accommodation nearby or in a location with convenient access to public transport.') }}</p>
-                            <p>{{ __('Due to the scale of the event with several thousand participants, we are unable to provide accommodation for the ministry team. However, we have included a list of recommended places to stay in the area.') }}</p>
-                            <p class="text-sky-400 font-medium mt-3">{{ __('List of recommended accommodation will be published soon!') }}</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-
-                {{-- Is food provided? --}}
-                <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
-                    <button @click="open = open === 2 ? null : 2" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                </svg>
-                            </div>
-                            <span class="text-white font-semibold">{{ __('Is food provided?') }}</span>
-                        </div>
-                        <svg class="w-5 h-5 text-white/40 transition-transform" :class="{ 'rotate-180': open === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div x-show="open === 2" x-cloak x-collapse class="px-6 pb-4">
-                        <div class="pl-13 text-white/50 space-y-2">
-                            <p>{{ __('Meals are not included in the registration. There are many restaurants available in the area. (Between 5–10 euros)') }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- How do I get to the venue? --}}
-                <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
-                    <button @click="open = open === 3 ? null : 3" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                                </svg>
-                            </div>
-                            <span class="text-white font-semibold">{{ __('How do I get to the venue?') }}</span>
-                        </div>
-                        <svg class="w-5 h-5 text-white/40 transition-transform" :class="{ 'rotate-180': open === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div x-show="open === 3" x-cloak x-collapse class="px-6 pb-4">
-                        <div class="pl-13 text-white/50 space-y-2">
-                            <p>{{ __('Budapest is easily accessible by plane, train, and bus.') }}</p>
-                            <ul class="list-disc list-inside space-y-1 mt-3">
-                                <li>{{ __('From the airport: take bus 100E to Deák Ferenc Square (~30 minutes)') }}</li>
-                                <li>{{ __('Metro and tram lines are available near the venue') }}</li>
-                                <li>{{ __('Parking is limited – public transport is recommended') }}</li>
-                            </ul>
-                            <p class="mt-3">
-                                {!! __('We also suggest using <a href=":uber" target="_blank" rel="noopener" class="text-sky-400 hover:underline">Uber</a> or <a href=":bolt" target="_blank" rel="noopener" class="text-sky-400 hover:underline">Bolt</a>.', ['uber' => 'https://www.uber.com/global/en/cities/budapest/', 'bolt' => 'https://bolt.eu/en/cities/budapest/']) !!}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- How does the application process work? --}}
-                <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
-                    <button @click="open = open === 4 ? null : 4" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <span class="text-white font-semibold">{{ __('How does the application process work?') }}</span>
-                        </div>
-                        <svg class="w-5 h-5 text-white/40 transition-transform" :class="{ 'rotate-180': open === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div x-show="open === 4" x-cloak x-collapse class="px-6 pb-4">
-                        <div class="pl-13 text-white/50 space-y-2">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>{{ __('Fill out the online application form') }}</li>
-                                <li>{{ __('We will contact your pastor for a reference') }}</li>
-                                <li>{{ __('We review your application') }}</li>
-                                <li>{{ __('You will be notified of the decision via email') }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Why is a pastoral reference required? --}}
-                <div class="bg-navy-700/50 rounded-xl border border-navy-600 overflow-hidden">
-                    <button @click="open = open === 5 ? null : 5" type="button" class="w-full px-6 py-4 text-left flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                </svg>
-                            </div>
-                            <span class="text-white font-semibold">{{ __('Why is a pastoral reference required?') }}</span>
-                        </div>
-                        <svg class="w-5 h-5 text-white/40 transition-transform" :class="{ 'rotate-180': open === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div x-show="open === 5" x-cloak x-collapse class="px-6 pb-4">
-                        <div class="pl-13 text-white/50 space-y-2">
-                            <p>{{ __('A pastoral reference ensures that Ministry Team members are active, committed members of a local church.') }}</p>
-                            <p class="mt-2">{{ __('Your pastor confirms:') }}</p>
-                            <ul class="list-disc list-inside space-y-1 mt-3">
-                                <li>{{ __('Your church affiliation') }}</li>
-                                <li>{{ __('The practice of your faith in your daily life') }}</li>
-                                <li>{{ __('Your suitability for ministry') }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
     </section>
 

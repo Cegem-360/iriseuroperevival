@@ -6,6 +6,7 @@ namespace App\Livewire\Pages;
 
 use App\Mail\MinistryApplicationReceived;
 use App\Mail\RegistrationConfirmation;
+use App\Models\Faq;
 use App\Models\Registration;
 use App\Services\StripeService;
 use Exception;
@@ -26,10 +27,12 @@ use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -580,6 +583,16 @@ class MinistryTeam extends Component implements HasSchemas
         $pricePerTicket = $stripeService->getTicketPrice($ticketType, $stripeService->getCurrentPricingTier());
 
         return Number::currency(($pricePerTicket * $quantity) / 100, 'HUF', app()->getLocale(), precision: 0);
+    }
+
+    #[Computed]
+    public function faqs(): Collection
+    {
+        return Faq::query()
+            ->published()
+            ->ofCategory('ministry')
+            ->ordered()
+            ->get();
     }
 
     public function render(): View

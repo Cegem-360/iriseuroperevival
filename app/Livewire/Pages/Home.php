@@ -75,6 +75,7 @@ class Home extends Component
     {
         return Faq::query()
             ->published()
+            ->where('category', '!=', 'ministry')
             ->ordered()
             ->get();
     }
