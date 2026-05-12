@@ -187,6 +187,18 @@ class MinistryTeam extends Component implements HasSchemas
                     ->required()
                     ->maxLength(255)
                     ->placeholder(__('Your current occupation')),
+                CheckboxList::make('ministry_areas')
+                    ->helperText(__('You can select multiple ministry areas!'))
+                    ->options([
+                        'evangalism_team_leader' => __('Evangelism Team Leader'),
+                        'healing_room' => __('Healing Rooms'),
+                        'prophetic_room' => __('Prophetic Rooms'),
+                        'prayer_team' => __('Prayer Team'),
+                        'hospitality_team' => __('Hospitality Team'),
+                    ])
+                    ->required()
+                    ->translateLabel()
+                    ->label('Ministry areas'),
             ]);
     }
 
@@ -523,6 +535,7 @@ class MinistryTeam extends Component implements HasSchemas
             $registrationData['citizenship'] = $data['citizenship'];
             $registrationData['languages'] = $data['languages'];
             $registrationData['occupation'] = $data['occupation'];
+            $registrationData['ministry_areas'] = $data['ministry_areas'];
             $registrationData['church_name'] = $data['church_name'];
             $registrationData['church_city'] = $data['church_city'];
             $registrationData['pastor_name'] = $data['pastor_name'];

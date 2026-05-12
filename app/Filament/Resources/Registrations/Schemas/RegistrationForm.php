@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Registrations\Schemas;
 
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -98,6 +99,8 @@ class RegistrationForm
                         Textarea::make('languages')
                             ->label('Languages')
                             ->helperText('Enter languages as JSON array'),
+
+                        CheckboxList::make('ministry_areas'),
                         TextInput::make('occupation')
                             ->maxLength(255),
                         TextInput::make('church_name')
