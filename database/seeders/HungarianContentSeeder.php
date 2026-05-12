@@ -340,6 +340,10 @@ class HungarianContentSeeder extends Seeder
             ],
             // Ministry-team page FAQs (category = 'ministry') — stored as HTML so the
             // Filament RichEditor in the admin can edit them directly.
+            'Where will the one-day training take place?' => [
+                'question' => 'Hol lesz az 1 napos tréning nap?',
+                'answer' => '<p>A tréning nap helyszínét e-mailen fogjuk kiküldeni azoknak, akiknek a jelentkezését elfogadtuk.</p>',
+            ],
             'How should I arrange accommodation?' => [
                 'question' => 'Hogyan oldjam meg a szállást?',
                 'answer' => '<p>Az esemény a BOK Sportcsarnokban (1146 Budapest, Dózsa György út 1) kerül megrendezésre, ezért a közelben vagy jól megközelíthető tömegközlekedéssel elérhető helyen javasoljuk a szállásfoglalást.</p><p>A több ezer fős esemény mérete miatt nem tudunk szállást biztosítani a szolgálati csapat számára, azonban mellékeljük a környéken ajánlott szálláshelyek listáját.</p><p><strong>Szálláshely lista kiírása hamarosan!</strong></p>',

@@ -40,7 +40,7 @@
                     <div class="text-white/70 text-base">{{ __('training') }}</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-sky-400">9+</div>
+                    <div class="text-3xl font-bold text-sky-400">5+</div>
                     <div class="text-white/70 text-base">{{ __('ministry areas') }}</div>
                 </div>
                 <div class="text-center">
@@ -113,11 +113,33 @@
                     </div>
                 </div>
 
-                {{-- Image (caption removed per client; image swapped to a worship/encounter still) --}}
-                <div class="relative">
+                {{-- Promo video (same player as the home page hero — placeholder until the client supplies a Ministry-team-specific promo) --}}
+                <div class="relative" x-data="{ playing: false }">
                     <div class="absolute -inset-4 bg-linear-to-r from-sky-400/20 to-primary-500/20 rounded-2xl blur-2xl"></div>
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-navy-700">
-                        <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/catch-on-fire.webp') }}" alt="" class="w-full h-full object-cover">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-navy-700">
+                        <template x-if="!playing">
+                            <div class="absolute inset-0 cursor-pointer" @click="playing = true">
+                                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/promo-video-cover.webp') }}"
+                                    alt="Europe Revival 2026"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/5 flex items-center justify-center">
+                                    <div class="w-20 h-20 bg-(--alt-beige)/10 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-(--alt-beige)/20 hover:scale-110 transition-transform duration-300">
+                                        <svg class="w-8 h-8 text-(--alt-beige) ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <template x-if="playing">
+                            <iframe
+                                src="https://www.youtube.com/embed/7OXlvlUA2GA?autoplay=1&rel=0"
+                                class="absolute inset-0 w-full h-full"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
+                        </template>
                     </div>
                 </div>
             </div>
