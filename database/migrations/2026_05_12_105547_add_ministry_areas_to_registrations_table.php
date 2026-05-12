@@ -13,7 +13,7 @@ return new class() extends Migration
      */
     public function up(): void
     {
-        Schema::table('registration', function (Blueprint $table) {
+        Schema::table('registrations', function (Blueprint $table) {
             $table->json('ministry_areas')->nullable()->after('occupation');
         });
     }
