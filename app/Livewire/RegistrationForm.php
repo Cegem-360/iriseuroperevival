@@ -605,7 +605,7 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function calculateAmount(array $data): int
     {
-        $priceOption = $data['ticket_price_option'] ?? '7500';
+        $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
         $ticketDuration = $data['ticket_duration'] ?? '1_day';
 
         if ($priceOption === 'custom') {
@@ -628,7 +628,7 @@ class RegistrationForm extends Component implements HasSchemas
     public function getFormattedPrice(): string
     {
         $data = $this->data ?? [];
-        $priceOption = $data['ticket_price_option'] ?? '7500';
+        $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
 
         if ($priceOption === 'custom') {
             $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);

@@ -2,7 +2,7 @@
     $livewire = $getLivewire();
     $data = $livewire->data ?? [];
     $ticketDuration = $data['ticket_duration'] ?? '1_day';
-    $priceOption = $data['ticket_price_option'] ?? '7500';
+    $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
     $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
 
     $minCustom = $ticketDuration === '3_days' ? 15000 : 7500;

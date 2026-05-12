@@ -32,3 +32,22 @@ it('clears custom amount when switching ticket duration', function (): void {
         ->set('data.ticket_duration', '3_days')
         ->assertSet('data.ticket_custom_amount', null);
 });
+
+it('formats 15000 HUF total when price option is stored as integer (Filament numeric option key)', function (): void {
+    $component = Livewire::test(RegistrationForm::class, ['type' => 'attendee'])
+        ->set('data.ticket_duration', '3_days')
+        ->set('data.ticket_price_option', 15000);
+
+    $formatted = $component->instance()->getFormattedPrice();
+
+    expect($formatted)->toContain('15')
+        ->and($formatted)->not->toMatch('/7[\s,]?500/');
+});
+
+it('formats 7500 HUF total when price option is stored as integer for 1-day', function (): void {
+    $component = Livewire::test(RegistrationForm::class, ['type' => 'attendee'])
+        ->set('data.ticket_duration', '1_day')
+        ->set('data.ticket_price_option', 7500);
+
+    expect($component->instance()->getFormattedPrice())->toContain('7');
+});
