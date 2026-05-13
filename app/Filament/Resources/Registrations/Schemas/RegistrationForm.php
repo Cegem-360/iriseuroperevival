@@ -100,7 +100,17 @@ class RegistrationForm
                             ->label('Languages')
                             ->helperText('Enter languages as JSON array'),
 
-                        CheckboxList::make('ministry_areas'),
+                        CheckboxList::make('ministry_areas')
+                            ->helperText(__('You can select multiple ministry areas!'))
+                            ->options([
+                                'evangalism_team_leader' => __('Evangelism Team Leader'),
+                                'healing_room' => __('Healing Rooms'),
+                                'prophetic_room' => __('Prophetic Rooms'),
+                                'prayer_team' => __('Prayer Team'),
+                                'hospitality_team' => __('Hospitality Team'),
+                            ])
+                            ->translateLabel()
+                            ->label('Ministry areas'),
                         TextInput::make('occupation')
                             ->maxLength(255),
                         TextInput::make('church_name')
