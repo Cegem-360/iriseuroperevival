@@ -13,6 +13,10 @@ return new class() extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('promotion_codes')) {
+            return;
+        }
+
         Schema::create('promotion_codes', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
