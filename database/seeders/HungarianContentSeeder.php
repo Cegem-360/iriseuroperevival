@@ -177,7 +177,7 @@ class HungarianContentSeeder extends Seeder
                 'title' => 'Regisztráció',
             ]],
             ['2026-10-22', 'Ministry Team Training Day', [
-                'title' => 'Szolgálói Csapat Felkészítő nap',
+                'title' => 'Szolgálati csapat felkészítő nap',
                 'description' => 'David Gava és az Iris Ministry csapat vezetői képzést tartanak az eseményen szolgálók és az önkéntesek számára. (Közben ebédszünet.)',
             ]],
             ['2026-10-22', 'Lunch Break', [

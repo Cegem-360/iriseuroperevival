@@ -113,13 +113,23 @@
                     </div>
                 </div>
 
-                {{-- Promo video (same player as the home page hero — placeholder until the client supplies a Ministry-team-specific promo) --}}
+                {{-- Client-supplied image (replaces the temporary promo-video placeholder, per Dóri 2026-05-20). --}}
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-linear-to-r from-sky-400/20 to-primary-500/20 rounded-2xl blur-2xl"></div>
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-navy-700">
+                        <img src="{{ Vite::asset('resources/images/alt-style/ministry-team-promo.webp') }}"
+                            alt=""
+                            class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                {{-- Promo-video player kept around in case the client meant "swap the cover, keep the video" — uncomment this block and delete the static image above to restore.
                 <div class="relative" x-data="{ playing: false }">
                     <div class="absolute -inset-4 bg-linear-to-r from-sky-400/20 to-primary-500/20 rounded-2xl blur-2xl"></div>
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-navy-700">
                         <template x-if="!playing">
                             <div class="absolute inset-0 cursor-pointer" @click="playing = true">
-                                <img src="{{ Vite::asset('resources/images/alt-style/backgrounds/promo-video-cover.webp') }}"
+                                <img src="{{ Vite::asset('resources/images/alt-style/ministry-team-promo.webp') }}"
                                     alt="Europe Revival 2026"
                                     class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-black/5 flex items-center justify-center">
@@ -142,6 +152,7 @@
                         </template>
                     </div>
                 </div>
+                --}}
             </div>
         </div>
     </section>
