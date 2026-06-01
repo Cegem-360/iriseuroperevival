@@ -132,12 +132,12 @@ class HungarianContentSeeder extends Seeder
                 'description' => "Az emberkereskedelem egy nagyon összetett probléma, amire nincs egy gyors megoldás. Olyan jelenség, amihez tisztánlátásra, alázatra és kitartásra van szükség.\n\nSokan úgy gondolják, hogy az emberkereskedelem az csak elrabolt emberekről szól, a legtöbb esetben azonban csalásról, félelemről és manipulációról van szó. Gyakran a mindennapi életünkben észrevétlenül történik.\n\nEzen az előadásban Katey Maddux saját nemzetközi tapasztalatai alapján mutatja be, hogyan lehet ezen a területen segíteni. Beszél arról, milyen nehéz dolgozni különböző országokban és és miért fontos a hosszú távú jelenlét, a bizalom kiépítése és az együttműködés másokkal.\n\nSzó lesz arról is, hogy ebben a munkában nagyon fontos a bölcsesség, az alázat és a kitartás – különösen akkor, amikor bonyolultak a helyzetek, és az eredmények nem jönnek gyorsan.\n\nEz az alkalom azoknak szól, akik szeretnének segíteni az emberkereskedelem megelőzésében, felszámolásában, az áldozatok támogatásában vagy akár imában és együttműködésben.\n\nHa úgy érzed, hogy egy nehéz és fontos területre hív az Isten, ahol nem mindig látszik azonnal az eredmény, de mégis kitartóan jelen kell lenni, akkor ez az előadás neked szól.\n\nHa úgy érzed, hogy ott kell építened, ahol nincs kész út, bölcsességgel kell helytállnod a nehéz helyzetekben, és egy nálad nagyobb ügyet kell hűséggel hordoznod, ez az alkalom segít, hogy tisztánlátással és erővel tudj elindulni.",
             ],
             'father-heart-of-god' => [
-                'title' => 'Jézusért rajongó generáció: Élni úgy, mint Jézus - Brian & Valerie Britton',
+                'title' => 'Jézusért lángoló generáció: Élj úgy mint Jézus - Brian & Valerie Britton',
                 'short_description' => 'Tapasztald meg a mennyei Atya mély, feltétel nélküli szeretetét.',
                 'description' => "Isten rendkívüli erőteljesen kijelenti magát ennek a nemzedéknek. Ezen az előadáson azt vizsgáljuk, hogy hogyan lehet a mi időnkben – a káosz és az ébredés közepette – gyakorlatilag Krisztushoz hasonló életet élni.\n\nSok szív már lángra lobbant Jézusért, de a kérdés az, hogyan tudjuk ezt a lángot nemcsak megélni, hanem tovább is vinni az életünkben és küldetésünkben – úgy, hogy Isten világossága és dicsősége egyre inkább betöltse a földet?\n\nEz az előadás segít abban, hogy ne csak átélői, hanem hordozói is legyünk Isten munkájának ebben az időben.\n\nHa szeretnél egy olyan életet, hogy ne csak megtapasztald Isten munkáját, hanem te magad is aktív hordozója legyél ebben az időben, akkor itt a helyed.",
             ],
             'father-heart-of-god-sunday' => [
-                'title' => 'Jézusért rajongó generáció: Élni úgy, mint Jézus - Brian & Valerie Britton',
+                'title' => 'Jézusért lángoló generáció: Élj úgy mint Jézus - Brian & Valerie Britton',
                 'short_description' => 'Tapasztald meg a mennyei Atya mély, feltétel nélküli szeretetét.',
                 'description' => "Isten rendkívüli erőteljesen kijelenti magát ennek a nemzedéknek. Ezen az előadáson azt vizsgáljuk, hogy hogyan lehet a mi időnkben – a káosz és az ébredés közepette – gyakorlatilag Krisztushoz hasonló életet élni.\n\nSok szív már lángra lobbant Jézusért, de a kérdés az, hogyan tudjuk ezt a lángot nemcsak megélni, hanem tovább is vinni az életünkben és küldetésünkben – úgy, hogy Isten világossága és dicsősége egyre inkább betöltse a földet?\n\nEz az előadás segít abban, hogy ne csak átélői, hanem hordozói is legyünk Isten munkájának ebben az időben.\n\nHa szeretnél egy olyan életet, hogy ne csak megtapasztald Isten munkáját, hanem te magad is aktív hordozója legyél ebben az időben, akkor itt a helyed.",
             ],
@@ -223,7 +223,7 @@ class HungarianContentSeeder extends Seeder
             ]],
             ['2026-10-24', 'Workshops', [
                 'title' => 'Workshopok',
-                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus csodálatos szíve: kreatív mozgás általi szabadság; Prófétai hang; Jézusért égő generáció: Élni úgy, mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
+                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus csodálatos szíve: kreatív mozgás általi szabadság; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-24', 'Saturday Evening Session', [
@@ -262,7 +262,7 @@ class HungarianContentSeeder extends Seeder
             ]],
             ['2026-10-25', 'Workshops', [
                 'title' => 'Workshopok',
-                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus csodálatos szíve: kreatív mozgás általi szabadság; Prófétai hang; Jézusért égő generáció: Élni úgy, mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
+                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus csodálatos szíve: kreatív mozgás általi szabadság; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-25', 'Closing Session', [
