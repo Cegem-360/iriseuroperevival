@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-kDjrbKsN.css",
+    "file": "assets/app-CUagCY74.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -385,7 +385,7 @@
     "src": "resources/images/textures/transition-subtle.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BuG9aa18.js",
+    "file": "assets/app-CcNNqum8.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
