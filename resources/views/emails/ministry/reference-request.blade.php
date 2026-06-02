@@ -12,7 +12,7 @@
 
 **{{ __('Name') }}:** {{ $registration->full_name }}
 **{{ __('Church') }}:** {{ $registration->church_name ?? 'N/A' }}
-**{{ __('City') }}:** {{ $registration->city }}, {{ $registration->country }}
+**{{ __('City') }}:** {{ $registration->city }}, {{ $registration->country?->value }}
 </x-mail::panel>
 
 {{ __('Please respond to this email with your reference, including:') }}

@@ -79,7 +79,7 @@ class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeading
             $registration->last_name,
             $registration->email,
             $registration->phone,
-            $registration->country,
+            $registration->country?->value,
             $registration->city,
             $registration->ticket_type,
             $registration->ticket_quantity,

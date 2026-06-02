@@ -106,7 +106,7 @@ class StripeService
     {
         return array_filter([
             'city' => $registration->city,
-            'country' => $this->countryToIsoCode($registration->country),
+            'country' => $this->countryToIsoCode($registration->country?->value),
         ]);
     }
 

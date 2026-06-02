@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Registrations\Schemas;
 
+use App\Enums\Country;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
@@ -38,9 +39,11 @@ class RegistrationForm
                             ->label('Phone')
                             ->tel()
                             ->maxLength(30),
-                        TextInput::make('country')
-                            ->required()
-                            ->maxLength(100),
+                        Select::make('country')
+                            ->options(Country::class)
+                            ->optionsLimit(Country::count())
+                            ->searchable()
+                            ->required(),
                         TextInput::make('city')
                             ->required()
                             ->maxLength(100),

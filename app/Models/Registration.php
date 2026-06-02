@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\Country;
 use App\Mail\MinistryApplicationApproved;
 use App\Mail\MinistryApplicationRejected;
 use App\Mail\PaymentConfirmation;
@@ -350,6 +351,7 @@ class Registration extends Model
     protected function casts(): array
     {
         return [
+            'country' => Country::class,
             'languages' => 'array',
             'service_areas' => 'array',
             'has_served_before' => 'boolean',

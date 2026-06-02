@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\Country;
 use App\Models\Registration;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -30,7 +31,7 @@ class RegistrationFactory extends Factory
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->phoneNumber(),
-            'country' => fake()->countryCode(),
+            'country' => fake()->randomElement(Country::cases())->value,
             'city' => fake()->city(),
             'ticket_type' => fake()->randomElement(['individual', 'team']),
             'ticket_quantity' => 1,

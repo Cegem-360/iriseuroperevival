@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Enums\Country;
 use App\Mail\MinistryApplicationReceived;
 use App\Mail\RegistrationConfirmation;
 use App\Models\Registration;
 use App\Services\StripeService;
-use App\Support\CountryList;
 use Exception;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
@@ -136,8 +136,8 @@ class RegistrationForm extends Component implements HasSchemas
                             ->label(__('Country'))
                             ->required()
                             ->searchable()
-                            ->options(CountryList::options())
-                            ->optionsLimit(CountryList::count())
+                            ->options(Country::class)
+                            ->optionsLimit(Country::count())
                             ->placeholder(__('Select country')),
 
                         TextInput::make('city')
