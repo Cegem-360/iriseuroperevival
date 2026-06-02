@@ -3,11 +3,13 @@
 declare(strict_types=1);
 
 use App\Livewire\Pages\MinistryTeam;
+use App\Mail\MinistryApplicationReceived;
 use App\Models\Registration;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 it('renders the ministry team page successfully', function () {
     $this->get('/ministry-team')
@@ -16,21 +18,21 @@ it('renders the ministry team page successfully', function () {
 });
 
 it('displays all service area cards', function () {
+    app()->setLocale('hu');
+
     Livewire::test(MinistryTeam::class)
         ->assertSee('Evangelizációs csoportvezető')
-        ->assertSee('Gyógyító szobák')
-        ->assertSee('Prófétai szobák')
-        ->assertSee('Dicsőítő csapat')
+        ->assertSee('Ima a gyógyulásért')
+        ->assertSee('Prófétai ima szolgálat')
         ->assertSee('Ima csapat')
-        ->assertSee('Gyermek szolgálat')
-        ->assertSee('Fogadó szolgálat')
-        ->assertSee('Technikai csapat')
-        ->assertSee('Fordítók');
+        ->assertSee('Vendégfogadás');
 });
 
 it('displays the training day schedule', function () {
+    app()->setLocale('hu');
+
     Livewire::test(MinistryTeam::class)
-        ->assertSee('Tréning Nap')
+        ->assertSee('Tréning nap')
         ->assertSee('2026. október 22.')
         ->assertSee('David Gava');
 });
@@ -68,6 +70,7 @@ it('creates a ministry registration with valid data', function () {
             'citizenship' => 'Hungarian',
             'languages' => ['English', 'Hungarian'],
             'occupation' => 'Pastor',
+            'ministry_areas' => ['prayer_team'],
             'church_name' => 'Test Gyülekezet',
             'church_city' => 'Budapest',
             'pastor_name' => 'Pál Pásztor',
@@ -111,6 +114,7 @@ it('sends confirmation email after ministry submission', function () {
             'citizenship' => 'Hungarian',
             'languages' => ['English', 'Hungarian'],
             'occupation' => 'Pastor',
+            'ministry_areas' => ['prayer_team'],
             'church_name' => 'Test Gyülekezet',
             'church_city' => 'Budapest',
             'pastor_name' => 'Pál Pásztor',
@@ -128,7 +132,7 @@ it('sends confirmation email after ministry submission', function () {
         ->call('submit')
         ->assertRedirect();
 
-    Mail::assertQueued(\App\Mail\MinistryApplicationReceived::class, function ($mail) {
+    Mail::assertQueued(MinistryApplicationReceived::class, function ($mail) {
         return $mail->hasTo('janos@example.com');
     });
 });
