@@ -101,4 +101,12 @@ class CountryList
 
         return $options;
     }
+
+    /**
+     * Total number of country options, including "Other".
+     */
+    public static function count(): int
+    {
+        return count(self::options());
+    }
 }

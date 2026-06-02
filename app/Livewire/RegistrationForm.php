@@ -137,6 +137,7 @@ class RegistrationForm extends Component implements HasSchemas
                             ->required()
                             ->searchable()
                             ->options(CountryList::options())
+                            ->optionsLimit(CountryList::count())
                             ->placeholder(__('Select country')),
 
                         TextInput::make('city')

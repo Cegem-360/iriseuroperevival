@@ -24,6 +24,11 @@ it('includes distant non-European countries', function (): void {
     expect($options)->toHaveKeys(['Japan', 'Australia', 'Brazil', 'South Africa']);
 });
 
+it('reports the total option count matching options()', function (): void {
+    expect(CountryList::count())->toBe(count(CountryList::options()))
+        ->and(CountryList::count())->toBeGreaterThan(190);
+});
+
 it('does not duplicate priority countries', function (): void {
     $keys = array_keys(CountryList::options());
 
