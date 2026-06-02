@@ -617,8 +617,8 @@
                                 <span class="text-(--alt-beige-muted) font-medium shrink-0">HUF</span>
                                 <span x-show="custom" class="text-(--alt-beige-muted)/60 text-sm shrink-0" x-text="'(~€' + Math.round(parseInt(custom || 0) / 400) + ')'"></span>
                             </div>
-                            <p class="text-(--alt-beige-muted) text-xs mt-1">If you would like to support the event with an amount exceeding {{ Number::currency(7500, 'HUF', app()->getLocale(), 0) }}.</p>
-                            <p x-show="custom && parseInt(custom) <= 7500" class="text-red-400 text-xs mt-1">Minimum {{ Number::currency(7501, 'HUF', app()->getLocale(), 0) }}</p>
+                            <p class="text-(--alt-beige-muted) text-xs mt-1">{{ __('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency(7500, 'HUF', app()->getLocale(), 0)]) }}</p>
+                            <p x-show="custom && parseInt(custom) <= 7500" class="text-red-400 text-xs mt-1">{{ __('Minimum :amount', ['amount' => Number::currency(7501, 'HUF', app()->getLocale(), 0)]) }}</p>
                         </div>
                     </div>
 
@@ -662,8 +662,8 @@
                                 <span class="text-(--alt-beige-muted) font-medium shrink-0">HUF</span>
                                 <span x-show="custom" class="text-(--alt-beige-muted)/60 text-sm shrink-0" x-text="'(~€' + Math.round(parseInt(custom || 0) / 400) + ')'"></span>
                             </div>
-                            <p class="text-(--alt-beige-muted) text-xs mt-1">If you would like to support the event with an amount exceeding {{ Number::currency(15000, 'HUF', app()->getLocale(), 0) }}.</p>
-                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">Minimum {{ Number::currency(15001, 'HUF', app()->getLocale(), 0) }}</p>
+                            <p class="text-(--alt-beige-muted) text-xs mt-1">{{ __('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency(15000, 'HUF', app()->getLocale(), 0)]) }}</p>
+                            <p x-show="custom && parseInt(custom) <= 15000" class="text-red-400 text-xs mt-1">{{ __('Minimum :amount', ['amount' => Number::currency(15001, 'HUF', app()->getLocale(), 0)]) }}</p>
                         </div>
                     </div>
 
