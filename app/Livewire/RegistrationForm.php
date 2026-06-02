@@ -8,6 +8,7 @@ use App\Mail\MinistryApplicationReceived;
 use App\Mail\RegistrationConfirmation;
 use App\Models\Registration;
 use App\Services\StripeService;
+use App\Support\CountryList;
 use Exception;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
@@ -135,18 +136,7 @@ class RegistrationForm extends Component implements HasSchemas
                             ->label(__('Country'))
                             ->required()
                             ->searchable()
-                            ->options([
-                                'Hungary' => __('Hungary'),
-                                'Germany' => __('Germany'),
-                                'Austria' => __('Austria'),
-                                'Romania' => __('Romania'),
-                                'Slovakia' => __('Slovakia'),
-                                'Czech Republic' => __('Czech Republic'),
-                                'Poland' => __('Poland'),
-                                'United Kingdom' => __('United Kingdom'),
-                                'United States' => __('United States'),
-                                'Other' => __('Other'),
-                            ])
+                            ->options(CountryList::options())
                             ->placeholder(__('Select country')),
 
                         TextInput::make('city')

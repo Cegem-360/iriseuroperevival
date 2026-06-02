@@ -8,6 +8,7 @@ use App\Models\Registration;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -42,6 +43,7 @@ class VolunteerApplicationRejected extends Mailable implements ShouldQueue
             markdown: 'emails.volunteer.rejected',
             with: [
                 'registration' => $this->registration,
+                'reason' => $this->registration->rejection_reason,
             ],
         );
     }
@@ -49,7 +51,7 @@ class VolunteerApplicationRejected extends Mailable implements ShouldQueue
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {

@@ -70,7 +70,9 @@ class PendingApprovalsWidget extends TableWidget
                     ->form([
                         Textarea::make('reason')
                             ->label('Rejection Reason')
-                            ->required(),
+                            ->required()
+                            ->rows(18)
+                            ->default(fn (Registration $record): string => str_replace(':name', $record->first_name, config('rejection.default'))),
                     ])
                     ->action(function (Registration $record, array $data): void {
                         $record->reject(Auth::id(), $data['reason']);

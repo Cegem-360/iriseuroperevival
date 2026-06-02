@@ -201,7 +201,8 @@ class RegistrationsTable
                         Textarea::make('reason')
                             ->label('Rejection Reason')
                             ->required()
-                            ->placeholder('Please provide a reason for rejection...'),
+                            ->rows(18)
+                            ->default(fn (Registration $record): string => str_replace(':name', $record->first_name, config('rejection.default'))),
                     ])
                     ->visible(fn (Registration $record): bool => in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval')
                     ->action(function (Registration $record, array $data): void {

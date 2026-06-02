@@ -10,6 +10,7 @@ use App\Mail\PaymentConfirmation;
 use App\Mail\RefundProcessed;
 use App\Mail\RegistrationConfirmation;
 use App\Mail\TicketPurchaseConfirmation;
+use App\Mail\VolunteerApplicationRejected;
 use App\Models\Order;
 use App\Models\Registration;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -68,8 +69,51 @@ it('renders ministry application rejected email with reason', function (): void 
 
     $mailable = new MinistryApplicationRejected($registration);
 
-    $mailable->assertSeeInHtml($registration->first_name);
     $mailable->assertSeeInHtml('Incomplete application');
+});
+
+it('renders ministry rejected email with the bilingual default letter when no reason is set', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'ministry',
+        'first_name' => 'Jane',
+        'status' => 'rejected',
+        'rejection_reason' => null,
+    ]);
+
+    $mailable = new MinistryApplicationRejected($registration);
+
+    $mailable->assertSeeInHtml('Kedves Jane!');
+    $mailable->assertSeeInHtml('Köszönjük, hogy jelentkeztél');
+    $mailable->assertSeeInHtml('Dear Jane,');
+    $mailable->assertSeeInHtml('Europe Revival Organizers');
+});
+
+it('renders volunteer rejected email with the bilingual default letter when no reason is set', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'volunteer',
+        'first_name' => 'Mark',
+        'status' => 'rejected',
+        'rejection_reason' => null,
+    ]);
+
+    $mailable = new VolunteerApplicationRejected($registration);
+
+    $mailable->assertSeeInHtml('Kedves Mark!');
+    $mailable->assertSeeInHtml('Dear Mark,');
+    $mailable->assertSeeInHtml('Áldással és szeretettel');
+});
+
+it('renders volunteer rejected email with the admin-edited reason when set', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'volunteer',
+        'first_name' => 'Mark',
+        'status' => 'rejected',
+        'rejection_reason' => 'Custom edited message from admin',
+    ]);
+
+    $mailable = new VolunteerApplicationRejected($registration);
+
+    $mailable->assertSeeInHtml('Custom edited message from admin');
 });
 
 it('renders payment confirmation email with human-readable ticket type', function (): void {
