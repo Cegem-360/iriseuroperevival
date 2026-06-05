@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 
 test('admin users can access the profile page', function (): void {
-    $user = User::factory()->create(['is_admin' => true]);
+    $user = User::factory()->admin()->create();
 
     $this->actingAs($user)
         ->get(route('filament.admin.auth.profile'))
@@ -21,7 +21,7 @@ test('guests are redirected from the profile page', function (): void {
 });
 
 test('non-admin users cannot access the profile page', function (): void {
-    $user = User::factory()->create(['is_admin' => false]);
+    $user = User::factory()->create();
 
     $this->actingAs($user)
         ->get(route('filament.admin.auth.profile'))
@@ -29,8 +29,7 @@ test('non-admin users cannot access the profile page', function (): void {
 });
 
 test('admin can update their name and email', function (): void {
-    $user = User::factory()->create([
-        'is_admin' => true,
+    $user = User::factory()->admin()->create([
         'name' => 'Old Name',
         'email' => 'old@example.com',
     ]);
@@ -52,8 +51,7 @@ test('admin can update their name and email', function (): void {
 });
 
 test('admin can change their password with current password confirmation', function (): void {
-    $user = User::factory()->create([
-        'is_admin' => true,
+    $user = User::factory()->admin()->create([
         'password' => Hash::make('password'),
     ]);
 
@@ -74,7 +72,7 @@ test('admin can change their password with current password confirmation', funct
 });
 
 test('name and email are required', function (): void {
-    $user = User::factory()->create(['is_admin' => true]);
+    $user = User::factory()->admin()->create();
 
     $this->actingAs($user);
 

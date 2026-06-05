@@ -75,7 +75,7 @@ final class Login extends BasePage
 
         $user = Auth::user();
 
-        if ($user && ! $user->isAdmin()) {
+        if ($user && $user->role === null) {
             $this->redirect(route('home'));
 
             return null;

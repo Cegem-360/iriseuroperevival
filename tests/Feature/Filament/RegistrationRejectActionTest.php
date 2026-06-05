@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 
 beforeEach(function (): void {
-    $this->actingAs(User::factory()->create(['is_admin' => true]));
+    $this->actingAs(User::factory()->admin()->create());
 });
 
 it('pre-fills the reject reason with the bilingual default letter', function (): void {

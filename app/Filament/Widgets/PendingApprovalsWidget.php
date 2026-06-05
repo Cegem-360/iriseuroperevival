@@ -54,6 +54,7 @@ class PendingApprovalsWidget extends TableWidget
                     ->icon('heroicon-o-check')
                     ->color('success')
                     ->requiresConfirmation()
+                    ->visible(fn (): bool => Auth::user()?->canManageApplications() ?? false)
                     ->action(function (Registration $record): void {
                         $record->approve(Auth::id());
 
@@ -67,6 +68,7 @@ class PendingApprovalsWidget extends TableWidget
                     ->icon('heroicon-o-x-mark')
                     ->color('danger')
                     ->requiresConfirmation()
+                    ->visible(fn (): bool => Auth::user()?->canManageApplications() ?? false)
                     ->form([
                         Textarea::make('reason')
                             ->label('Rejection Reason')

@@ -8,7 +8,7 @@ use App\Models\User;
 use Livewire\Livewire;
 
 test('admin can save translations for a speaker', function (): void {
-    $admin = User::factory()->create(['is_admin' => true]);
+    $admin = User::factory()->admin()->create();
     $speaker = Speaker::factory()->create([
         'title' => 'Original Title',
         'organization' => 'Original Org',

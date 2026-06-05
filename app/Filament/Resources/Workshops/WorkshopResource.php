@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Workshops;
 
+use App\Filament\Concerns\AdminOnlyResource;
 use App\Filament\Resources\Workshops\Pages\CreateWorkshop;
 use App\Filament\Resources\Workshops\Pages\EditWorkshop;
 use App\Filament\Resources\Workshops\Pages\ListWorkshops;
@@ -20,6 +21,8 @@ use UnitEnum;
 
 class WorkshopResource extends Resource
 {
+    use AdminOnlyResource;
+
     protected static ?string $model = Workshop::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;

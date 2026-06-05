@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Speakers;
 
+use App\Filament\Concerns\AdminOnlyResource;
 use App\Filament\Resources\Speakers\Pages\CreateSpeaker;
 use App\Filament\Resources\Speakers\Pages\EditSpeaker;
 use App\Filament\Resources\Speakers\Pages\ListSpeakers;
@@ -20,6 +21,8 @@ use UnitEnum;
 
 class SpeakerResource extends Resource
 {
+    use AdminOnlyResource;
+
     protected static ?string $model = Speaker::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;

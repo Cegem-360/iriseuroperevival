@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\TicketPrices;
 
+use App\Filament\Concerns\AdminOnlyResource;
 use App\Filament\Resources\TicketPrices\Pages\CreateTicketPrice;
 use App\Filament\Resources\TicketPrices\Pages\EditTicketPrice;
 use App\Filament\Resources\TicketPrices\Pages\ListTicketPrices;
@@ -20,6 +21,8 @@ use UnitEnum;
 
 class TicketPriceResource extends Resource
 {
+    use AdminOnlyResource;
+
     protected static ?string $model = TicketPrice::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTicket;

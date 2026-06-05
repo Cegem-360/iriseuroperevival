@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Faqs;
 
+use App\Filament\Concerns\AdminOnlyResource;
 use App\Filament\Resources\Faqs\Pages\CreateFaq;
 use App\Filament\Resources\Faqs\Pages\EditFaq;
 use App\Filament\Resources\Faqs\Pages\ListFaqs;
@@ -20,6 +21,8 @@ use UnitEnum;
 
 class FaqResource extends Resource
 {
+    use AdminOnlyResource;
+
     protected static ?string $model = Faq::class;
 
     protected static ?string $modelLabel = 'FAQ';

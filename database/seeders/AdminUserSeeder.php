@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -20,14 +21,14 @@ class AdminUserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'password' => Hash::make('password'),
-                'is_admin' => true,
+                'role' => UserRole::Admin,
                 'email_verified_at' => now(),
             ],
         );
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@admin.com',
-            'is_admin' => true,
+            'role' => UserRole::Admin,
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);

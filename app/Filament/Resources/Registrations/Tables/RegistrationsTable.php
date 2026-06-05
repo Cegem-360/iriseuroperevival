@@ -152,6 +152,7 @@ class RegistrationsTable
                     ->label('Send Email')
                     ->icon('heroicon-o-envelope')
                     ->color('info')
+                    ->visible(fn (): bool => self::canManageApplications())
                     ->modalHeading(fn (Registration $record) => "Send Email to {$record->full_name}")
                     ->form([
                         TextInput::make('subject')
@@ -182,7 +183,7 @@ class RegistrationsTable
                     ->requiresConfirmation()
                     ->modalHeading('Approve Registration')
                     ->modalDescription(fn (Registration $record): string => "Are you sure you want to approve this {$record->type} application?")
-                    ->visible(fn (Registration $record): bool => in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval')
+                    ->visible(fn (Registration $record): bool => self::canManageApplications() && in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval')
                     ->action(function (Registration $record): void {
                         $record->approve(Auth::id());
 
@@ -204,7 +205,7 @@ class RegistrationsTable
                             ->rows(18)
                             ->default(fn (Registration $record): string => str_replace(':name', $record->first_name, config('rejection.default'))),
                     ])
-                    ->visible(fn (Registration $record): bool => in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval')
+                    ->visible(fn (Registration $record): bool => self::canManageApplications() && in_array($record->type, ['ministry', 'volunteer']) && $record->status === 'pending_approval')
                     ->action(function (Registration $record, array $data): void {
                         $record->reject(Auth::id(), $data['reason']);
 
@@ -311,7 +312,7 @@ class RegistrationsTable
                 ])
                     ->label('References')
                     ->icon('heroicon-o-user-group')
-                    ->visible(fn (Registration $record): bool => $record->type === 'ministry'),
+                    ->visible(fn (Registration $record): bool => self::canManageApplications() && $record->type === 'ministry'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
@@ -319,6 +320,7 @@ class RegistrationsTable
                         ->label('Send Email')
                         ->icon('heroicon-o-envelope')
                         ->color('info')
+                        ->visible(fn (): bool => self::canManageApplications())
                         ->modalHeading('Send Email to Selected Registrations')
                         ->form([
                             TextInput::make('subject')
@@ -380,6 +382,7 @@ class RegistrationsTable
                         ->icon('heroicon-o-check')
                         ->color('success')
                         ->requiresConfirmation()
+                        ->visible(fn (): bool => self::canManageApplications())
                         ->action(function (Collection $records): void {
                             $count = 0;
                             $records->each(function (Registration $record) use (&$count): void {
@@ -396,7 +399,8 @@ class RegistrationsTable
                                 ->send();
                         })
                         ->deselectRecordsAfterCompletion(),
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->visible(fn (): bool => Auth::user()?->isAdmin() ?? false),
                 ]),
                 Action::make('export_all_csv')
                     ->label('Export All (CSV)')
@@ -427,5 +431,13 @@ class RegistrationsTable
             ])
             ->striped()
             ->paginated([10, 25, 50, 100]);
+    }
+
+    /**
+     * Determine if the authenticated user may approve or reject applications.
+     */
+    protected static function canManageApplications(): bool
+    {
+        return Auth::user()?->role?->canManageApplications() ?? false;
     }
 }

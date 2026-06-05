@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -15,6 +16,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 
+/**
+ * @property ?UserRole $role
+ */
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
@@ -29,7 +33,7 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
-        'is_admin',
+        'role',
     ];
 
     /**
@@ -54,7 +58,7 @@ class User extends Authenticatable implements FilamentUser
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'is_admin' => 'boolean',
+            'role' => UserRole::class,
         ];
     }
 
@@ -63,7 +67,7 @@ class User extends Authenticatable implements FilamentUser
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->is_admin;
+        return $this->role !== null;
     }
 
     /**
@@ -79,11 +83,51 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * Determine if the user is an admin.
+     * Determine if the user is an administrator.
      */
     public function isAdmin(): bool
     {
-        return $this->is_admin;
+        return $this->role === UserRole::Admin;
+    }
+
+    /**
+     * Determine if the user is a ministry manager.
+     */
+    public function isMinistryManager(): bool
+    {
+        return $this->role === UserRole::MinistryManager;
+    }
+
+    /**
+     * Determine if the user is a coordinator.
+     */
+    public function isCoordinator(): bool
+    {
+        return $this->role === UserRole::Coordinator;
+    }
+
+    /**
+     * Determine if the user holds at least the given role's privileges.
+     */
+    public function hasRoleAtLeast(UserRole $role): bool
+    {
+        return $this->role !== null && $this->role->atLeast($role);
+    }
+
+    /**
+     * Determine if the user may approve or reject applications.
+     */
+    public function canManageApplications(): bool
+    {
+        return $this->role?->canManageApplications() ?? false;
+    }
+
+    /**
+     * Determine if the user is confined to the registrations area.
+     */
+    public function isLimitedToRegistrations(): bool
+    {
+        return $this->role?->isLimitedToRegistrations() ?? false;
     }
 
     /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\ScheduleItems;
 
+use App\Filament\Concerns\AdminOnlyResource;
 use App\Filament\Resources\ScheduleItems\Pages\CreateScheduleItem;
 use App\Filament\Resources\ScheduleItems\Pages\EditScheduleItem;
 use App\Filament\Resources\ScheduleItems\Pages\ListScheduleItems;
@@ -20,6 +21,8 @@ use UnitEnum;
 
 class ScheduleItemResource extends Resource
 {
+    use AdminOnlyResource;
+
     protected static ?string $model = ScheduleItem::class;
 
     protected static ?string $modelLabel = 'Schedule Item';

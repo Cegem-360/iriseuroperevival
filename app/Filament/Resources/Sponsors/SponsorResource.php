@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\Sponsors;
 
+use App\Filament\Concerns\AdminOnlyResource;
 use App\Filament\Resources\Sponsors\Pages\CreateSponsor;
 use App\Filament\Resources\Sponsors\Pages\EditSponsor;
 use App\Filament\Resources\Sponsors\Pages\ListSponsors;
@@ -20,6 +21,8 @@ use UnitEnum;
 
 class SponsorResource extends Resource
 {
+    use AdminOnlyResource;
+
     protected static ?string $model = Sponsor::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice;

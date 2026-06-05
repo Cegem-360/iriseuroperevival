@@ -11,7 +11,7 @@ use App\Services\StripeService;
 use Livewire\Livewire;
 
 beforeEach(function () {
-    $this->actingAs(User::factory()->create());
+    $this->actingAs(User::factory()->admin()->create());
     TicketPrice::query()->delete();
 });
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\PromotionCodes;
 
+use App\Filament\Concerns\AdminOnlyResource;
 use App\Filament\Resources\PromotionCodes\Pages\CreatePromotionCode;
 use App\Filament\Resources\PromotionCodes\Pages\EditPromotionCode;
 use App\Filament\Resources\PromotionCodes\Pages\ListPromotionCodes;
@@ -20,6 +21,8 @@ use UnitEnum;
 
 class PromotionCodeResource extends Resource
 {
+    use AdminOnlyResource;
+
     protected static ?string $model = PromotionCode::class;
 
     protected static ?string $modelLabel = 'Promotion Code';

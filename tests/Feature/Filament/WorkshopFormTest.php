@@ -8,7 +8,7 @@ use App\Models\Workshop;
 use Livewire\Livewire;
 
 test('admin can save translations for a workshop', function (): void {
-    $admin = User::factory()->create(['is_admin' => true]);
+    $admin = User::factory()->admin()->create();
     $workshop = Workshop::factory()->create([
         'title' => 'Original Title',
         'short_description' => 'Original short',
