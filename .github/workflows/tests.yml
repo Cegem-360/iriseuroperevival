@@ -39,9 +39,6 @@ jobs:
       - name: Install Node Dependencies
         run: npm i
 
-      - name: Add Flux Credentials Loaded From ENV
-        run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
-
       - name: Add Filament Credentials Loaded From ENV
         run: composer config http-basic.packages.filamentphp.com "${{ secrets.FILAMENT_USERNAME }}" "${{ secrets.FILAMENT_LICENSE_KEY }}"
 
