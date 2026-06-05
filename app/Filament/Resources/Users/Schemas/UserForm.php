@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Enums\UserRole;
+use App\Models\User;
+use DateTimeInterface;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +36,13 @@ class UserForm
                             ->required()
                             ->native(false)
                             ->helperText('Administrators manage users; ministry managers approve applications; coordinators have read-only operational access.'),
+                        Toggle::make('email_verified_at')
+                            ->label('Email verified')
+                            ->default(true)
+                            ->formatStateUsing(fn ($state): bool => filled($state))
+                            ->dehydrateStateUsing(fn (bool $state, ?User $record): ?DateTimeInterface => $state
+                                ? ($record?->email_verified_at ?? now())
+                                : null),
                     ]),
                 Section::make('Password')
                     ->columns(1)

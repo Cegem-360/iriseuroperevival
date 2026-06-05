@@ -120,3 +120,51 @@ test('admins can promote a coordinator to ministry manager', function (): void {
 
     expect($target->refresh()->role)->toBe(UserRole::MinistryManager);
 });
+
+test('newly created users are verified by default', function (): void {
+    actingAs(User::factory()->admin()->create());
+
+    Livewire::test(CreateUser::class)
+        ->fillForm([
+            'name' => 'Verified User',
+            'email' => 'verified@example.com',
+            'role' => UserRole::Coordinator->value,
+            'password' => 'secret-password',
+        ])
+        ->call('create')
+        ->assertHasNoFormErrors();
+
+    expect(User::query()->where('email', 'verified@example.com')->sole()->email_verified_at)->not->toBeNull();
+});
+
+test('admins can revoke a users email verification', function (): void {
+    actingAs(User::factory()->admin()->create());
+
+    $target = User::factory()->coordinator()->create();
+    expect($target->email_verified_at)->not->toBeNull();
+
+    Livewire::test(EditUser::class, ['record' => $target->getRouteKey()])
+        ->fillForm([
+            'email_verified_at' => false,
+        ])
+        ->call('save')
+        ->assertHasNoFormErrors();
+
+    expect($target->refresh()->email_verified_at)->toBeNull();
+});
+
+test('editing keeps the original verification timestamp', function (): void {
+    actingAs(User::factory()->admin()->create());
+
+    $verifiedAt = now()->subMonth()->startOfDay();
+    $target = User::factory()->coordinator()->create(['email_verified_at' => $verifiedAt]);
+
+    Livewire::test(EditUser::class, ['record' => $target->getRouteKey()])
+        ->fillForm([
+            'name' => 'Still Verified',
+        ])
+        ->call('save')
+        ->assertHasNoFormErrors();
+
+    expect($target->refresh()->email_verified_at->equalTo($verifiedAt))->toBeTrue();
+});
