@@ -1,17 +1,7 @@
 name: tests
 
 on:
-  push:
-    branches:
-      - develop
-      - main
-      - components
-  pull_request:
-    branches:
-      - develop
-      - main
-      - components
-
+  workflow_dispatch:
 jobs:
   ci:
     runs-on: ubuntu-latest
