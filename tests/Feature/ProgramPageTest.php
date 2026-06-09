@@ -5,9 +5,10 @@ declare(strict_types=1);
 use App\Livewire\Pages\Program;
 use App\Models\ScheduleItem;
 use App\Models\Speaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 describe('program page', function () {
     it('renders program page successfully', function () {

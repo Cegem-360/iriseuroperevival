@@ -19,7 +19,7 @@ class UpdateContentFromBriefSeeder extends Seeder
     private function updateSpeakers(): void
     {
         $bios = [
-            'heidi-baker' => "Heidi's greatest passion is to live in the manifest presence of God and to carry His glory, presence and love to His body and a lost and dying world. She longs to see others laying their lives down for the sake of the Gospel and coming home to the Father's love. Rolland and Heidi Baker founded Iris Ministries, now Iris Global, in 1980. In 1995, they were called to the poorest country in the world at the time, Mozambique, and faced an extreme test of the Gospel. They began by pouring out their lives among abandoned street children, and as the Holy Spirit moved miraculously in many ways, a revival movement spread to adults, pastors, churches and then throughout the villages all across Mozambique's ten provinces. Heidi is now \"Mama Aida\" to thousands of people, and oversees a broad holistic ministry that includes Iris university, Bible schools, medical clinics, church-based orphan care, well drilling, food aid, primary and secondary schools, farms, widow's programs, and outreaches that include a network of thousands of churches and prayer houses. She earned her BA and MA degrees from S.C.C., Vanguard University and her PhD from Kings College, University of London. Heidi is calling for a passionate tribe of true believers in Jesus who will pour out their lives for love's sake, empowered by the Holy Spirit to bring people of all ages home to the Father's embrace!",
+            'heidi-baker' => 'Heidi\'s greatest passion is to live in the manifest presence of God and to carry His glory, presence and love to His body and a lost and dying world. She longs to see others laying their lives down for the sake of the Gospel and coming home to the Father\'s love. Rolland and Heidi Baker founded Iris Ministries, now Iris Global, in 1980. In 1995, they were called to the poorest country in the world at the time, Mozambique, and faced an extreme test of the Gospel. They began by pouring out their lives among abandoned street children, and as the Holy Spirit moved miraculously in many ways, a revival movement spread to adults, pastors, churches and then throughout the villages all across Mozambique\'s ten provinces. Heidi is now "Mama Aida" to thousands of people, and oversees a broad holistic ministry that includes Iris university, Bible schools, medical clinics, church-based orphan care, well drilling, food aid, primary and secondary schools, farms, widow\'s programs, and outreaches that include a network of thousands of churches and prayer houses. She earned her BA and MA degrees from S.C.C., Vanguard University and her PhD from Kings College, University of London. Heidi is calling for a passionate tribe of true believers in Jesus who will pour out their lives for love\'s sake, empowered by the Holy Spirit to bring people of all ages home to the Father\'s embrace!',
 
             'mel-tari' => "Indonesian born Mel Tari—affectionately known as \"Papa Mel\"—is a general of the faith.\n\nWith a passionate zeal for God, Papa Mel is a sent out one that sprinkles the nations—and in turn—sends out masses into the harvest field, stoking the fires of revival through empowering, championing, divinely connecting, and building up the body. As the \"Papa\", he has been speaking at Iris Europe camps since their inception in 2021.\n\nPapa Mel is the author of \"Like a Mighty Wind\" that has inspired millions across the world.\n\nRolland's best man in his marriage to Heidi in 1980, Papa Mel's enduring friendship through all seasons shows us what is possible when you run together long distance.",
 
@@ -44,7 +44,7 @@ class UpdateContentFromBriefSeeder extends Seeder
         $updates = [
             'power-evangelism' => [
                 'title' => 'Power Evangelism - David Gava',
-                'description' => "Showing God's love and presence through His healing power, deliverance, prophetic words, and making the Gospel tangible by anticipating supernatural breakthrough, not merely through words but through the power of the Holy Spirit.",
+                'description' => 'Showing God\'s love and presence through His healing power, deliverance, prophetic words, and making the Gospel tangible by anticipating supernatural breakthrough, not merely through words but through the power of the Holy Spirit.',
             ],
             'revival-harvest' => [
                 'title' => 'Revival Harvest - David Gava',
@@ -52,11 +52,11 @@ class UpdateContentFromBriefSeeder extends Seeder
             ],
             'prophetic-arts' => [
                 'title' => 'The Beautiful Heart of Jesus: Set Free Through Creative Movement - Dr. Kate Hartman',
-                'description' => "You are invited to join Dr. Kate Hartman for a transformative prophetic workshop focused on the Lord Jesus Christ, the Lover of your soul, the Healer of the brokenhearted, and the Restorer of shattered dreams. Experience His profound presence as you embark on a Holy Spirit-led journey of inner healing and newfound freedom through creative movement. Let go of the past and step into a glorious future filled with grace and hope as you encounter the beautiful heart of Jesus.",
+                'description' => 'You are invited to join Dr. Kate Hartman for a transformative prophetic workshop focused on the Lord Jesus Christ, the Lover of your soul, the Healer of the brokenhearted, and the Restorer of shattered dreams. Experience His profound presence as you embark on a Holy Spirit-led journey of inner healing and newfound freedom through creative movement. Let go of the past and step into a glorious future filled with grace and hope as you encounter the beautiful heart of Jesus.',
             ],
             'prophetic-arts-sunday' => [
                 'title' => 'The Beautiful Heart of Jesus: Set Free Through Creative Movement - Dr. Kate Hartman',
-                'description' => "You are invited to join Dr. Kate Hartman for a transformative prophetic workshop focused on the Lord Jesus Christ, the Lover of your soul, the Healer of the brokenhearted, and the Restorer of shattered dreams. Experience His profound presence as you embark on a Holy Spirit-led journey of inner healing and newfound freedom through creative movement. Let go of the past and step into a glorious future filled with grace and hope as you encounter the beautiful heart of Jesus.",
+                'description' => 'You are invited to join Dr. Kate Hartman for a transformative prophetic workshop focused on the Lord Jesus Christ, the Lover of your soul, the Healer of the brokenhearted, and the Restorer of shattered dreams. Experience His profound presence as you embark on a Holy Spirit-led journey of inner healing and newfound freedom through creative movement. Let go of the past and step into a glorious future filled with grace and hope as you encounter the beautiful heart of Jesus.',
             ],
             'missions' => [
                 'title' => 'Passion, Purpose, and Fire - Mary Pat Gokee',
@@ -84,11 +84,11 @@ class UpdateContentFromBriefSeeder extends Seeder
             ],
             'father-heart-of-god' => [
                 'title' => 'The Burning Generation: Living Like Jesus - Brian & Valerie Britton',
-                'description' => "God is revealing Himself so powerfully in this generation. This workshop will explore how to practically live like Christ in these days of both chaos and awakening. Many hearts have been set aflame in this season, but how do we effectively carry that Fire into our lives and mission to see His Light and the knowledge of His Glory cover the earth.",
+                'description' => 'God is revealing Himself so powerfully in this generation. This workshop will explore how to practically live like Christ in these days of both chaos and awakening. Many hearts have been set aflame in this season, but how do we effectively carry that Fire into our lives and mission to see His Light and the knowledge of His Glory cover the earth.',
             ],
             'father-heart-of-god-sunday' => [
                 'title' => 'The Burning Generation: Living Like Jesus - Brian & Valerie Britton',
-                'description' => "God is revealing Himself so powerfully in this generation. This workshop will explore how to practically live like Christ in these days of both chaos and awakening. Many hearts have been set aflame in this season, but how do we effectively carry that Fire into our lives and mission to see His Light and the knowledge of His Glory cover the earth.",
+                'description' => 'God is revealing Himself so powerfully in this generation. This workshop will explore how to practically live like Christ in these days of both chaos and awakening. Many hearts have been set aflame in this season, but how do we effectively carry that Fire into our lives and mission to see His Light and the knowledge of His Glory cover the earth.',
             ],
         ];
 

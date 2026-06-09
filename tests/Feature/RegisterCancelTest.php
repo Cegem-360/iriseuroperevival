@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Livewire\Pages\RegisterCancel;
 use App\Models\Registration;
 use App\Services\StripeService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Livewire\Livewire;
 
 it('renders the cancel page for a valid registration', function () {
@@ -19,7 +20,7 @@ it('renders the cancel page for a valid registration', function () {
 
 it('throws ModelNotFoundException for an invalid uuid', function () {
     Livewire::test(RegisterCancel::class, ['uuid' => 'non-existent-uuid']);
-})->throws(Illuminate\Database\Eloquent\ModelNotFoundException::class);
+})->throws(ModelNotFoundException::class);
 
 it('calls StripeService and redirects on retry payment', function () {
     $registration = Registration::factory()->attendee()->create();

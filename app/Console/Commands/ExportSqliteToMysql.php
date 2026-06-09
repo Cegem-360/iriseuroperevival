@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -30,11 +32,11 @@ class ExportSqliteToMysql extends Command
         $outputPath = base_path($this->option('output'));
         $pdo = DB::connection('sqlite')->getPdo();
 
-        $tables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name")
+        $tables = $pdo->query('SELECT name FROM sqlite_master WHERE type=\'table\' AND name NOT LIKE \'sqlite_%\' ORDER BY name')
             ->fetchAll(\PDO::FETCH_COLUMN);
 
         $sql = "-- SQLite to MySQL data export\n";
-        $sql .= "-- Generated: ".now()->toDateTimeString()."\n";
+        $sql .= '-- Generated: ' . now()->toDateTimeString() . "\n";
         $sql .= "-- Import: mysql -u root iriseuroperevival < database/mysql_import.sql\n\n";
         $sql .= "SET FOREIGN_KEY_CHECKS = 0;\n\n";
 
@@ -51,7 +53,7 @@ class ExportSqliteToMysql extends Command
                 continue;
             }
 
-            $sql .= "-- {$table} (".count($rows)." rows)\n";
+            $sql .= "-- {$table} (" . count($rows) . " rows)\n";
             $sql .= "TRUNCATE TABLE `{$table}`;\n";
 
             foreach ($rows as $row) {
@@ -64,7 +66,7 @@ class ExportSqliteToMysql extends Command
                     return $pdo->quote((string) $value);
                 }, array_values($row));
 
-                $columnList = '`'.implode('`, `', $columns).'`';
+                $columnList = '`' . implode('`, `', $columns) . '`';
                 $valueList = implode(', ', $values);
                 $sql .= "INSERT INTO `{$table}` ({$columnList}) VALUES ({$valueList});\n";
             }

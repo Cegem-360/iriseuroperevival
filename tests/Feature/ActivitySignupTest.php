@@ -6,9 +6,10 @@ use App\Livewire\ActivitySignupForm;
 use App\Livewire\Pages\ActivitySignup;
 use App\Models\ActivitySignup as ActivitySignupModel;
 use App\Models\Workshop;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 describe('activity signup pages', function () {
     it('renders the workshop signup page', function () {

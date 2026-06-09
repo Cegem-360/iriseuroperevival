@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'reset' => 'A jelszavad sikeresen alaphelyzetbe lett állítva.',
     'sent' => 'Elküldtük a jelszó-visszaállító e-mailt.',

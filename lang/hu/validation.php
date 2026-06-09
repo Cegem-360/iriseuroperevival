@@ -1,7 +1,8 @@
 <?php
 
-return [
+declare(strict_types=1);
 
+return [
     'accepted' => 'A :attribute mező elfogadása kötelező.',
     'accepted_if' => 'A :attribute mező elfogadása kötelező, ha :other értéke :value.',
     'active_url' => 'A :attribute mező nem érvényes URL.',
@@ -160,5 +161,4 @@ return [
     ],
 
     'attributes' => [],
-
 ];
