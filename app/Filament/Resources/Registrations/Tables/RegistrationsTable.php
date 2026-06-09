@@ -137,8 +137,6 @@ class RegistrationsTable
                     ->label('Ticket Type')
                     ->options([
                         'individual' => 'Standard',
-                        'team' => 'Group',
-                        'vip' => 'VIP',
                         'volunteer' => 'Volunteer',
                     ]),
                 SelectFilter::make('country')
@@ -406,6 +404,7 @@ class RegistrationsTable
                     ->label('Export All (CSV)')
                     ->icon('heroicon-o-document-arrow-down')
                     ->color('gray')
+                    ->visible(fn (): bool => Auth::user()?->isAdmin() ?? false)
                     ->action(function (): BinaryFileResponse {
                         $filename = 'all-registrations-' . now()->format('Y-m-d-His') . '.csv';
 
@@ -419,6 +418,7 @@ class RegistrationsTable
                     ->label('Export All (Excel)')
                     ->icon('heroicon-o-document-arrow-down')
                     ->color('success')
+                    ->visible(fn (): bool => Auth::user()?->isAdmin() ?? false)
                     ->action(function (): BinaryFileResponse {
                         $filename = 'all-registrations-' . now()->format('Y-m-d-His') . '.xlsx';
 

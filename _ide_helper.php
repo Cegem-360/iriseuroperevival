@@ -28234,6 +28234,12 @@ namespace Filament\Resources\Pages {
      */
     class ListRecords extends \Filament\Resources\Pages\Page {
             }
+    /**
+     * @template TModel of Model = Model
+     * @property-read Schema $form
+     */
+    class ViewRecord extends \Filament\Resources\Pages\Page {
+            }
     }
 
 namespace Filament\Pages {
@@ -28390,6 +28396,25 @@ namespace App\Filament\Resources\TicketPrices\Pages {
             }
     }
 
+namespace App\Filament\Resources\Users\Pages {
+    /**
+     */
+    class CreateUser extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditUser extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListUsers extends \Filament\Resources\Pages\ListRecords {
+            }
+    /**
+     */
+    class ViewUser extends \Filament\Resources\Pages\ViewRecord {
+            }
+    }
+
 namespace App\Filament\Resources\Workshops\Pages {
     /**
      */
@@ -28428,6 +28453,13 @@ namespace Filament\Auth\Pages {
      * @property-read Schema $multiFactorChallengeForm
      */
     class Login extends \Filament\Pages\SimplePage {
+            }
+    }
+
+namespace App\Filament\Pages {
+    /**
+     */
+    class Dashboard extends \Filament\Pages\Dashboard {
             }
     }
 
