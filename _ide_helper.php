@@ -25534,6 +25534,305 @@ namespace Illuminate\Database\Eloquent\Relations {
             }
     }
 
+namespace App\Filament\Resources\Faqs\Pages {
+    /**
+     */
+    class CreateFaq extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditFaq extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListFaqs extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace Filament\Resources\Pages {
+    /**
+     * @template TModel of Model = Model
+     * @property-read Schema $form
+     */
+    class CreateRecord extends \Filament\Resources\Pages\Page {
+            }
+    /**
+     */
+    class Page extends \Filament\Pages\Page {
+            }
+    /**
+     * @template TModel of Model = Model
+     * @property-read Schema $form
+     */
+    class EditRecord extends \Filament\Resources\Pages\Page {
+            }
+    /**
+     */
+    class ListRecords extends \Filament\Resources\Pages\Page {
+            }
+    /**
+     * @template TModel of Model = Model
+     * @property-read Schema $form
+     */
+    class ViewRecord extends \Filament\Resources\Pages\Page {
+            }
+    }
+
+namespace Filament\Pages {
+    /**
+     * @template TConfiguration of PageConfiguration = PageConfiguration
+     */
+    class Page extends \Filament\Pages\BasePage {
+            }
+    /**
+     */
+    class BasePage extends \Livewire\Component {
+            }
+    /**
+     */
+    class SimplePage extends \Filament\Pages\BasePage {
+            }
+    /**
+     */
+    class Dashboard extends \Filament\Pages\Page {
+            }
+    }
+
+namespace App\Filament\Resources\Orders\Pages {
+    /**
+     */
+    class CreateOrder extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditOrder extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListOrders extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\Products\Pages {
+    /**
+     */
+    class CreateProduct extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditProduct extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListProducts extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\PromotionCodes\Pages {
+    /**
+     */
+    class CreatePromotionCode extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditPromotionCode extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListPromotionCodes extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\Registrations\Pages {
+    /**
+     */
+    class CreateRegistration extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditRegistration extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListRegistrations extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\Registrations\RelationManagers {
+    /**
+     */
+    class WorkshopsRelationManager extends \Filament\Resources\RelationManagers\RelationManager {
+            }
+    }
+
+namespace Filament\Resources\RelationManagers {
+    /**
+     */
+    class RelationManager extends \Livewire\Component {
+            }
+    }
+
+namespace App\Filament\Resources\ScheduleItems\Pages {
+    /**
+     */
+    class CreateScheduleItem extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditScheduleItem extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListScheduleItems extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\Speakers\Pages {
+    /**
+     */
+    class CreateSpeaker extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditSpeaker extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListSpeakers extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\Sponsors\Pages {
+    /**
+     */
+    class CreateSponsor extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditSponsor extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListSponsors extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\TicketPrices\Pages {
+    /**
+     */
+    class CreateTicketPrice extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditTicketPrice extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListTicketPrices extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Resources\Users\Pages {
+    /**
+     */
+    class CreateUser extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditUser extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListUsers extends \Filament\Resources\Pages\ListRecords {
+            }
+    /**
+     */
+    class ViewUser extends \Filament\Resources\Pages\ViewRecord {
+            }
+    }
+
+namespace App\Filament\Resources\Workshops\Pages {
+    /**
+     */
+    class CreateWorkshop extends \Filament\Resources\Pages\CreateRecord {
+            }
+    /**
+     */
+    class EditWorkshop extends \Filament\Resources\Pages\EditRecord {
+            }
+    /**
+     */
+    class ListWorkshops extends \Filament\Resources\Pages\ListRecords {
+            }
+    }
+
+namespace App\Filament\Pages\Auth {
+    /**
+     */
+    class EditProfile extends \Filament\Auth\Pages\EditProfile {
+            }
+    /**
+     */
+    class Login extends \Filament\Auth\Pages\Login {
+            }
+    }
+
+namespace Filament\Auth\Pages {
+    /**
+     * @property-read Schema $form
+     */
+    class EditProfile extends \Filament\Pages\Page {
+            }
+    /**
+     * @property-read Action $registerAction
+     * @property-read Schema $form
+     * @property-read Schema $multiFactorChallengeForm
+     */
+    class Login extends \Filament\Pages\SimplePage {
+            }
+    }
+
+namespace App\Filament\Pages {
+    /**
+     */
+    class Dashboard extends \Filament\Pages\Dashboard {
+            }
+    }
+
+namespace App\Filament\Widgets {
+    /**
+     */
+    class PendingApprovalsWidget extends \Filament\Widgets\TableWidget {
+            }
+    /**
+     */
+    class RegistrationStatsWidget extends \Filament\Widgets\StatsOverviewWidget {
+            }
+    /**
+     */
+    class RevenueChartWidget extends \Filament\Widgets\ChartWidget {
+            }
+    }
+
+namespace Filament\Widgets {
+    /**
+     */
+    class TableWidget extends \Filament\Widgets\Widget {
+            }
+    /**
+     */
+    class Widget extends \Livewire\Component {
+            }
+    /**
+     */
+    class StatsOverviewWidget extends \Filament\Widgets\Widget {
+            }
+    /**
+     */
+    class ChartWidget extends \Filament\Widgets\Widget {
+            }
+    }
+
 namespace Livewire\Features\SupportTesting {
     /**
      * @template TComponent of \Livewire\Component
@@ -28198,305 +28497,6 @@ namespace Livewire\Features\SupportTesting {
             }
     }
 
-namespace App\Filament\Resources\Faqs\Pages {
-    /**
-     */
-    class CreateFaq extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditFaq extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListFaqs extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace Filament\Resources\Pages {
-    /**
-     * @template TModel of Model = Model
-     * @property-read Schema $form
-     */
-    class CreateRecord extends \Filament\Resources\Pages\Page {
-            }
-    /**
-     */
-    class Page extends \Filament\Pages\Page {
-            }
-    /**
-     * @template TModel of Model = Model
-     * @property-read Schema $form
-     */
-    class EditRecord extends \Filament\Resources\Pages\Page {
-            }
-    /**
-     */
-    class ListRecords extends \Filament\Resources\Pages\Page {
-            }
-    /**
-     * @template TModel of Model = Model
-     * @property-read Schema $form
-     */
-    class ViewRecord extends \Filament\Resources\Pages\Page {
-            }
-    }
-
-namespace Filament\Pages {
-    /**
-     * @template TConfiguration of PageConfiguration = PageConfiguration
-     */
-    class Page extends \Filament\Pages\BasePage {
-            }
-    /**
-     */
-    class BasePage extends \Livewire\Component {
-            }
-    /**
-     */
-    class SimplePage extends \Filament\Pages\BasePage {
-            }
-    /**
-     */
-    class Dashboard extends \Filament\Pages\Page {
-            }
-    }
-
-namespace App\Filament\Resources\Orders\Pages {
-    /**
-     */
-    class CreateOrder extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditOrder extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListOrders extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\Products\Pages {
-    /**
-     */
-    class CreateProduct extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditProduct extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListProducts extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\PromotionCodes\Pages {
-    /**
-     */
-    class CreatePromotionCode extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditPromotionCode extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListPromotionCodes extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\Registrations\Pages {
-    /**
-     */
-    class CreateRegistration extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditRegistration extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListRegistrations extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\Registrations\RelationManagers {
-    /**
-     */
-    class WorkshopsRelationManager extends \Filament\Resources\RelationManagers\RelationManager {
-            }
-    }
-
-namespace Filament\Resources\RelationManagers {
-    /**
-     */
-    class RelationManager extends \Livewire\Component {
-            }
-    }
-
-namespace App\Filament\Resources\ScheduleItems\Pages {
-    /**
-     */
-    class CreateScheduleItem extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditScheduleItem extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListScheduleItems extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\Speakers\Pages {
-    /**
-     */
-    class CreateSpeaker extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditSpeaker extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListSpeakers extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\Sponsors\Pages {
-    /**
-     */
-    class CreateSponsor extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditSponsor extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListSponsors extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\TicketPrices\Pages {
-    /**
-     */
-    class CreateTicketPrice extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditTicketPrice extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListTicketPrices extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Resources\Users\Pages {
-    /**
-     */
-    class CreateUser extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditUser extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListUsers extends \Filament\Resources\Pages\ListRecords {
-            }
-    /**
-     */
-    class ViewUser extends \Filament\Resources\Pages\ViewRecord {
-            }
-    }
-
-namespace App\Filament\Resources\Workshops\Pages {
-    /**
-     */
-    class CreateWorkshop extends \Filament\Resources\Pages\CreateRecord {
-            }
-    /**
-     */
-    class EditWorkshop extends \Filament\Resources\Pages\EditRecord {
-            }
-    /**
-     */
-    class ListWorkshops extends \Filament\Resources\Pages\ListRecords {
-            }
-    }
-
-namespace App\Filament\Pages\Auth {
-    /**
-     */
-    class EditProfile extends \Filament\Auth\Pages\EditProfile {
-            }
-    /**
-     */
-    class Login extends \Filament\Auth\Pages\Login {
-            }
-    }
-
-namespace Filament\Auth\Pages {
-    /**
-     * @property-read Schema $form
-     */
-    class EditProfile extends \Filament\Pages\Page {
-            }
-    /**
-     * @property-read Action $registerAction
-     * @property-read Schema $form
-     * @property-read Schema $multiFactorChallengeForm
-     */
-    class Login extends \Filament\Pages\SimplePage {
-            }
-    }
-
-namespace App\Filament\Pages {
-    /**
-     */
-    class Dashboard extends \Filament\Pages\Dashboard {
-            }
-    }
-
-namespace App\Filament\Widgets {
-    /**
-     */
-    class PendingApprovalsWidget extends \Filament\Widgets\TableWidget {
-            }
-    /**
-     */
-    class RegistrationStatsWidget extends \Filament\Widgets\StatsOverviewWidget {
-            }
-    /**
-     */
-    class RevenueChartWidget extends \Filament\Widgets\ChartWidget {
-            }
-    }
-
-namespace Filament\Widgets {
-    /**
-     */
-    class TableWidget extends \Filament\Widgets\Widget {
-            }
-    /**
-     */
-    class Widget extends \Livewire\Component {
-            }
-    /**
-     */
-    class StatsOverviewWidget extends \Filament\Widgets\Widget {
-            }
-    /**
-     */
-    class ChartWidget extends \Filament\Widgets\Widget {
-            }
-    }
-
 namespace Illuminate\View {
     /**
      */
@@ -28707,6 +28707,10 @@ namespace App\Livewire\Pages {
     /**
      */
     class RegisterCancel extends \Livewire\Component {
+            }
+    /**
+     */
+    class ReferenceConfirmation extends \Livewire\Component {
             }
     /**
      */
