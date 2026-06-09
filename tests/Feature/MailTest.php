@@ -197,6 +197,36 @@ it('renders reference request email', function (): void {
     $mailable->assertSeeInHtml($registration->full_name);
 });
 
+it('renders reference request email in the selected locale', function (): void {
+    $registration = Registration::factory()->ministry()->create([
+        'reference_1_name' => 'Pastor Smith',
+        'reference_1_email' => 'pastor@example.com',
+    ]);
+
+    app()->setLocale('hu');
+
+    $mailable = new ReferenceRequest($registration, 1, 'Pastor Smith');
+
+    $mailable->assertSeeInHtml('Ajánlás kérés');
+    $mailable->assertSeeInHtml('Megerősítés');
+    $mailable->assertDontSeeInHtml('Reference Request');
+});
+
+it('pins the locale at construction so queued mail keeps it on the worker', function (): void {
+    $registration = Registration::factory()->ministry()->create([
+        'reference_1_name' => 'Pastor Smith',
+        'reference_1_email' => 'pastor@example.com',
+    ]);
+
+    app()->setLocale('hu');
+    $mailable = new ReferenceRequest($registration, 1, 'Pastor Smith');
+
+    app()->setLocale('en');
+
+    $mailable->assertSeeInHtml('Ajánlás kérés');
+    $mailable->assertDontSeeInHtml('Reference Request');
+});
+
 it('queues reference request email', function (): void {
     $registration = Registration::factory()->create(['type' => 'ministry']);
 

@@ -22,7 +22,9 @@ class OrderConfirmation extends Mailable implements ShouldQueue
      */
     public function __construct(
         public Order $order,
-    ) {}
+    ) {
+        $this->locale(app()->getLocale());
+    }
 
     /**
      * Get the message envelope.

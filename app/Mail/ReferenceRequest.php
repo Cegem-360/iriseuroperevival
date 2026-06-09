@@ -25,7 +25,9 @@ class ReferenceRequest extends Mailable implements ShouldQueue
         public Registration $registration,
         public int $referenceNumber,
         public string $referenceName,
-    ) {}
+    ) {
+        $this->locale(app()->getLocale());
+    }
 
     /**
      * Get the message envelope.
