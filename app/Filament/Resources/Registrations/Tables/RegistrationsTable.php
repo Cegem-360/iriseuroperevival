@@ -37,12 +37,14 @@ class RegistrationsTable
                 TextColumn::make('full_name')
                     ->label('Name')
                     ->searchable(['first_name', 'last_name'])
-                    ->sortable(['first_name']),
+                    ->sortable(['first_name'])
+                    ->toggleable(),
                 TextColumn::make('email')
                     ->label('Email')
                     ->searchable()
                     ->copyable()
-                    ->icon('heroicon-m-envelope'),
+                    ->icon('heroicon-m-envelope')
+                    ->toggleable(),
                 TextColumn::make('type')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -56,7 +58,8 @@ class RegistrationsTable
                         'ministry' => 'Ministry Team',
                         'volunteer' => 'Volunteer',
                         default => $state,
-                    }),
+                    })
+                    ->toggleable(),
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -76,7 +79,8 @@ class RegistrationsTable
                         'rejected' => 'Rejected',
                         'cancelled' => 'Cancelled',
                         default => $state,
-                    }),
+                    })
+                    ->toggleable(),
                 TextColumn::make('country')
                     ->searchable()
                     ->toggleable(),
@@ -108,12 +112,204 @@ class RegistrationsTable
                     ->boolean()
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
-                    ->getStateUsing(fn (Registration $record): bool => $record->paid_at !== null),
+                    ->getStateUsing(fn (Registration $record): bool => $record->paid_at !== null)
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->label('Registered')
                     ->dateTime('M j, Y')
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('uuid')
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('first_name')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('last_name')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('phone')
+                    ->icon('heroicon-m-phone')
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('city')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('ticket_quantity')
+                    ->label('Qty')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('citizenship')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('occupation')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('church_name')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('church_city')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('pastor_name')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('pastor_email')
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('ministry_school_name')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_1_name')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_1_email')
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_1_status')
+                    ->badge()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_1_response')
+                    ->limit(40)
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_2_name')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_2_email')
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_2_status')
+                    ->badge()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_2_response')
+                    ->limit(40)
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('stripe_session_id')
+                    ->limit(20)
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('stripe_payment_intent')
+                    ->limit(20)
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('stripe_customer_id')
+                    ->limit(20)
+                    ->copyable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('approved_by')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('rejected_by')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('rejection_reason')
+                    ->limit(40)
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('admin_notes')
+                    ->limit(40)
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('user_id')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('invited_by')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('testimony')
+                    ->limit(40)
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('previous_service_description')
+                    ->limit(40)
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('languages')
+                    ->badge()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('service_areas')
+                    ->badge()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('ministry_areas')
+                    ->badge()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('is_born_again')
+                    ->label('Born Again')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('is_spirit_filled')
+                    ->label('Spirit Filled')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('attended_ministry_school')
+                    ->label('Ministry School')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('has_served_before')
+                    ->label('Served Before')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('wants_to_evangelize')
+                    ->label('Evangelize')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('want_to_healing_room')
+                    ->label('Healing Room')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('want_to_prophet_room')
+                    ->label('Prophetic Room')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('approved_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('rejected_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_1_contacted_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_1_responded_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_2_contacted_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('reference_2_responded_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('confirmation_email_sent_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->reorderableColumns()
             ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('type')
