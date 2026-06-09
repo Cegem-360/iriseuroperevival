@@ -9,6 +9,7 @@ use App\Livewire\Pages\Home;
 use App\Livewire\Pages\MinistryTeam;
 use App\Livewire\Pages\Privacy;
 use App\Livewire\Pages\Program;
+use App\Livewire\Pages\ReferenceConfirmation;
 use App\Livewire\Pages\Register;
 use App\Livewire\Pages\RegisterCancel;
 use App\Livewire\Pages\RegisterSuccess;
@@ -54,6 +55,12 @@ Route::prefix('register')->group(function (): void {
     // Success & Cancel Pages
     Route::get('/success/{uuid}', RegisterSuccess::class)->name('register.success');
     Route::get('/cancel/{uuid}', RegisterCancel::class)->name('register.cancel');
+
+    // Reference Confirmation (signed link from reference request email)
+    Route::get('/reference/{registration:uuid}/{reference}', ReferenceConfirmation::class)
+        ->name('register.reference')
+        ->middleware('signed')
+        ->whereIn('reference', ['1', '2']);
 });
 
 // Stripe Webhook

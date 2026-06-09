@@ -7,6 +7,7 @@ use App\Mail\MinistryApplicationReceived;
 use App\Mail\MinistryApplicationRejected;
 use App\Mail\OrderConfirmation;
 use App\Mail\PaymentConfirmation;
+use App\Mail\ReferenceRequest;
 use App\Mail\RefundProcessed;
 use App\Mail\RegistrationConfirmation;
 use App\Mail\TicketPurchaseConfirmation;
@@ -179,6 +180,41 @@ it('renders order confirmation email', function (): void {
 
     $mailable->assertSeeInHtml('Test Customer');
     $mailable->assertSeeInHtml($order->uuid);
+});
+
+it('renders reference request email', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'ministry',
+        'first_name' => 'Jane',
+        'last_name' => 'Doe',
+        'reference_1_name' => 'Pastor Smith',
+        'reference_1_email' => 'pastor@example.com',
+    ]);
+
+    $mailable = new ReferenceRequest($registration, 1, 'Pastor Smith');
+
+    $mailable->assertSeeInHtml('Pastor Smith');
+    $mailable->assertSeeInHtml($registration->full_name);
+});
+
+it('queues reference request email', function (): void {
+    $registration = Registration::factory()->create(['type' => 'ministry']);
+
+    $mailable = new ReferenceRequest($registration, 1, 'Pastor Smith');
+
+    expect($mailable)->toBeInstanceOf(ShouldQueue::class);
+});
+
+it('renders reference request email with a signed confirmation url', function (): void {
+    $registration = Registration::factory()->ministry()->create([
+        'reference_1_name' => 'Pastor Smith',
+        'reference_1_email' => 'pastor@example.com',
+    ]);
+
+    $mailable = new ReferenceRequest($registration, 1, 'Pastor Smith');
+
+    $mailable->assertSeeInHtml('signature=', false);
+    $mailable->assertSeeInHtml($registration->uuid);
 });
 
 it('queues registration confirmation email', function (): void {

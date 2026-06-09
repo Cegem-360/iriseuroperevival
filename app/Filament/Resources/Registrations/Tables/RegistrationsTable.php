@@ -222,8 +222,7 @@ class RegistrationsTable
                         ->modalDescription(fn (Registration $record): string => "Send reference request email to {$record->reference_1_name} ({$record->reference_1_email})?")
                         ->visible(fn (Registration $record): bool => $record->type === 'ministry'
                             && $record->reference_1_email
-                            && $record->reference_1_status !== 'contacted'
-                            && $record->reference_1_status !== 'responded')
+                            && $record->reference_1_status === 'pending')
                         ->action(function (Registration $record): void {
                             Mail::to($record->reference_1_email)->queue(
                                 new ReferenceRequest($record, 1, $record->reference_1_name),
@@ -249,8 +248,7 @@ class RegistrationsTable
                         ->modalDescription(fn (Registration $record): string => "Send reference request email to {$record->reference_2_name} ({$record->reference_2_email})?")
                         ->visible(fn (Registration $record): bool => $record->type === 'ministry'
                             && $record->reference_2_email
-                            && $record->reference_2_status !== 'contacted'
-                            && $record->reference_2_status !== 'responded')
+                            && $record->reference_2_status === 'pending')
                         ->action(function (Registration $record): void {
                             Mail::to($record->reference_2_email)->queue(
                                 new ReferenceRequest($record, 2, $record->reference_2_name),

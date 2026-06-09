@@ -1,33 +1,34 @@
 <x-mail::message>
-# {{ __('Reference Request') }}
+# Ajánlás kérése / Reference Request
 
-{{ __('Dear') }} {{ $referenceName }},
+Kedves {{ $referenceName }}!
 
-{{ __(':name has applied to join the Ministry Team at Europe Revival 2026 and has listed you as a reference.', ['name' => $registration->full_name]) }}
+{{ $registration->full_name }} jelentkezett a Europe Revival 2026 szolgálói csapatába, és Önt adta meg ajánlóként. Hálásak lennénk, ha néhány percet szánna az ajánlás visszaigazolására.
 
-{{ __('We would greatly appreciate it if you could take a few minutes to provide a reference for this applicant.') }}
+Dear {{ $referenceName }},
+
+{{ $registration->full_name }} has applied to join the Ministry Team at Europe Revival 2026 and has listed you as a reference. We would greatly appreciate it if you could take a few minutes to confirm this reference.
 
 <x-mail::panel>
-**{{ __('Applicant Information') }}**
+**Jelentkező adatai / Applicant Information**
 
-**{{ __('Name') }}:** {{ $registration->full_name }}
-**{{ __('Church') }}:** {{ $registration->church_name ?? 'N/A' }}
-**{{ __('City') }}:** {{ $registration->city }}, {{ $registration->country?->value }}
+**Név / Name:** {{ $registration->full_name }}
+**Gyülekezet / Church:** {{ $registration->church_name ?? 'N/A' }}
+**Város / City:** {{ $registration->city }}, {{ $registration->country?->value }}
 </x-mail::panel>
 
-{{ __('Please respond to this email with your reference, including:') }}
+Kérjük, kattintson az alábbi gombra a megerősítéshez. Az oldalon megjegyzést is hozzáfűzhet.
 
-- {{ __('How long have you known the applicant?') }}
-- {{ __('In what capacity do you know them?') }}
-- {{ __('Can you vouch for their character and spiritual maturity?') }}
-- {{ __('Do you recommend them for ministry service?') }}
+Please click the button below to confirm. You can also add a comment on the page.
 
-{{ __('You can simply reply to this email with your response.') }}
+<x-mail::button :url="$confirmUrl">
+Megerősítés / Confirm
+</x-mail::button>
 
-{{ __('If you have any questions, please do not hesitate to contact us.') }}
+Ha bármilyen kérdése van, kérjük, vegye fel velünk a kapcsolatot. / If you have any questions, please do not hesitate to contact us.
 
-{{ __('Thank you for your time and support.') }}
+Köszönjük az idejét és a támogatását! / Thank you for your time and support.
 
-{{ __('Blessings') }},<br>
+Áldással / Blessings,<br>
 {{ config('app.name') }} {{ __('Team') }}
 </x-mail::message>

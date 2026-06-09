@@ -74,9 +74,11 @@ class Registration extends Model
         'reference_1_contacted_at',
         'reference_1_status',
         'reference_1_response',
+        'reference_1_responded_at',
         'reference_2_contacted_at',
         'reference_2_status',
         'reference_2_response',
+        'reference_2_responded_at',
 
         // Email Tracking
         'confirmation_email_sent_at',
@@ -365,7 +367,9 @@ class Registration extends Model
             'approved_at' => 'datetime',
             'rejected_at' => 'datetime',
             'reference_1_contacted_at' => 'datetime',
+            'reference_1_responded_at' => 'datetime',
             'reference_2_contacted_at' => 'datetime',
+            'reference_2_responded_at' => 'datetime',
             'confirmation_email_sent_at' => 'datetime',
         ];
     }

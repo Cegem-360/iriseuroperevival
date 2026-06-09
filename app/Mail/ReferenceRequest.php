@@ -12,6 +12,7 @@ use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class ReferenceRequest extends Mailable implements ShouldQueue
 {
@@ -47,9 +48,9 @@ class ReferenceRequest extends Mailable implements ShouldQueue
                 'registration' => $this->registration,
                 'referenceNumber' => $this->referenceNumber,
                 'referenceName' => $this->referenceName,
-                'responseUrl' => route('register.reference', [
-                    'uuid' => $this->registration->uuid,
-                    'ref' => $this->referenceNumber,
+                'confirmUrl' => URL::signedRoute('register.reference', [
+                    'registration' => $this->registration->uuid,
+                    'reference' => $this->referenceNumber,
                 ]),
             ],
         );
