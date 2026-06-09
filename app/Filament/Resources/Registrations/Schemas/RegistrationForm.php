@@ -73,6 +73,15 @@ class RegistrationForm
                             ])
                             ->required()
                             ->default('pending_payment'),
+                        Select::make('locale')
+                            ->label('Email Language')
+                            ->helperText('Language used for emails sent to this applicant')
+                            ->options([
+                                'hu' => 'Magyar',
+                                'en' => 'English',
+                            ])
+                            ->required()
+                            ->default('en'),
                         Select::make('ticket_type')
                             ->label('Pass Type')
                             ->options([

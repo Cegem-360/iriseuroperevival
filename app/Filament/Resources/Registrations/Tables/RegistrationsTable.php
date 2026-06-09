@@ -45,6 +45,20 @@ class RegistrationsTable
                     ->copyable()
                     ->icon('heroicon-m-envelope')
                     ->toggleable(),
+                TextColumn::make('locale')
+                    ->label('Email Language')
+                    ->badge()
+                    ->color(fn (?string $state): string => match ($state) {
+                        'hu' => 'success',
+                        'en' => 'info',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (?string $state): string => match ($state) {
+                        'hu' => 'Magyar',
+                        'en' => 'English',
+                        default => (string) $state,
+                    })
+                    ->toggleable(),
                 TextColumn::make('type')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
