@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +27,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->configureLanguageSwitch();
+    }
+
+    protected function configureLanguageSwitch(): void
+    {
+        LanguageSwitch::configureUsing(function (LanguageSwitch $switch): void {
+            $switch
+                ->locales(['hu', 'en'])
+                ->labels([
+                    'hu' => 'Magyar',
+                    'en' => 'English',
+                ]);
+        });
     }
 
     protected function configureDefaults(): void
