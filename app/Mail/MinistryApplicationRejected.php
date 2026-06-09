@@ -22,7 +22,9 @@ class MinistryApplicationRejected extends Mailable implements ShouldQueue
      */
     public function __construct(
         public Registration $registration,
-    ) {}
+    ) {
+        $this->locale($registration->locale ?: app()->getLocale());
+    }
 
     /**
      * Get the message envelope.

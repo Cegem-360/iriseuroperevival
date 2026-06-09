@@ -91,6 +91,21 @@ it('renders ministry rejected email with the bilingual default letter when no re
     $mailable->assertSeeInHtml('Europe Revival Organizers');
 });
 
+it('uses a hungarian subject for the ministry rejected email when the applicant locale is hungarian', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'ministry',
+        'locale' => 'hu',
+        'status' => 'rejected',
+        'rejection_reason' => 'Indok',
+    ]);
+
+    app()->setLocale('en');
+
+    $mailable = new MinistryApplicationRejected($registration);
+
+    $mailable->assertHasSubject('Szolgálócsapat jelentkezés frissítés - Europe Revival 2026');
+});
+
 it('renders volunteer rejected email with the bilingual default letter when no reason is set', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'volunteer',
