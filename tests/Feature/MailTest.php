@@ -200,7 +200,7 @@ it('uses a hungarian subject for the volunteer rejected email when the applicant
 
     $mailable = new VolunteerApplicationRejected($registration);
 
-    $mailable->assertHasSubject('Önkéntes jelentkezés frissítése - Europe Revival 2026');
+    $mailable->assertHasSubject('Önkéntes jelentkezés visszaigazolás - Europe Revival 2026');
 });
 
 it('renders payment confirmation email with human-readable ticket type', function (): void {
