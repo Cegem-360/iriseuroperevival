@@ -23,7 +23,7 @@ class MinistryApplicationApproved extends Mailable implements ShouldQueue
     public function __construct(
         public Registration $registration,
     ) {
-        $this->locale(app()->getLocale());
+        $this->locale($registration->locale ?: app()->getLocale());
     }
 
     /**

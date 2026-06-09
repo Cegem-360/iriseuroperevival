@@ -11,6 +11,8 @@ use App\Mail\ReferenceRequest;
 use App\Mail\RefundProcessed;
 use App\Mail\RegistrationConfirmation;
 use App\Mail\TicketPurchaseConfirmation;
+use App\Mail\VolunteerApplicationApproved;
+use App\Mail\VolunteerApplicationReceived;
 use App\Mail\VolunteerApplicationRejected;
 use App\Models\Order;
 use App\Models\Registration;
@@ -117,6 +119,75 @@ it('renders volunteer rejected email with the admin-edited reason when set', fun
     $mailable->assertSeeInHtml('Custom edited message from admin');
 });
 
+it('captures the applicant locale when a registration is created', function (): void {
+    app()->setLocale('hu');
+
+    $registration = Registration::factory()->create(['type' => 'volunteer']);
+
+    expect($registration->locale)->toBe('hu');
+});
+
+it('renders volunteer received email in english', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'volunteer',
+        'first_name' => 'Hegedus',
+        'locale' => 'en',
+    ]);
+
+    $mailable = new VolunteerApplicationReceived($registration);
+
+    $mailable->assertSeeInHtml('Dear Hegedus,');
+    $mailable->assertSeeInHtml('Thank you for your willingness to serve with us as a volunteer');
+    $mailable->assertSeeInHtml('We have received your application');
+});
+
+it('renders volunteer received email in the applicant hungarian locale even when app locale is english', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'volunteer',
+        'first_name' => 'Hegedus',
+        'locale' => 'hu',
+    ]);
+
+    app()->setLocale('en');
+
+    $mailable = new VolunteerApplicationReceived($registration);
+
+    $mailable->assertSeeInHtml('Köszönjük, hogy szeretnél velünk szolgálni önkéntesként');
+    $mailable->assertSeeInHtml('Megkaptuk a jelentkezésedet');
+    $mailable->assertDontSeeInHtml('Thank you for your willingness');
+});
+
+it('renders volunteer approved email in the applicant hungarian locale regardless of admin locale', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'volunteer',
+        'first_name' => 'Hegedus',
+        'locale' => 'hu',
+    ]);
+
+    app()->setLocale('en');
+
+    $mailable = new VolunteerApplicationApproved($registration);
+
+    $mailable->assertSeeInHtml('Örömmel értesítünk, hogy önkéntes jelentkezésedet elfogadtuk!');
+    $mailable->assertSeeInHtml('Iris Europe Revival 2026 csapata');
+    $mailable->assertDontSeeInHtml('We are pleased to inform you');
+});
+
+it('uses a hungarian subject for the volunteer rejected email when the applicant locale is hungarian', function (): void {
+    $registration = Registration::factory()->create([
+        'type' => 'volunteer',
+        'locale' => 'hu',
+        'status' => 'rejected',
+        'rejection_reason' => 'Indok',
+    ]);
+
+    app()->setLocale('en');
+
+    $mailable = new VolunteerApplicationRejected($registration);
+
+    $mailable->assertHasSubject('Önkéntes jelentkezés frissítése - Europe Revival 2026');
+});
+
 it('renders payment confirmation email with human-readable ticket type', function (): void {
     $registration = Registration::factory()->create([
         'type' => 'attendee',
@@ -197,13 +268,12 @@ it('renders reference request email', function (): void {
     $mailable->assertSeeInHtml($registration->full_name);
 });
 
-it('renders reference request email in the selected locale', function (): void {
+it('renders reference request email in the applicant locale', function (): void {
     $registration = Registration::factory()->ministry()->create([
+        'locale' => 'hu',
         'reference_1_name' => 'Pastor Smith',
         'reference_1_email' => 'pastor@example.com',
     ]);
-
-    app()->setLocale('hu');
 
     $mailable = new ReferenceRequest($registration, 1, 'Pastor Smith');
 
@@ -212,13 +282,13 @@ it('renders reference request email in the selected locale', function (): void {
     $mailable->assertDontSeeInHtml('Reference Request');
 });
 
-it('pins the locale at construction so queued mail keeps it on the worker', function (): void {
+it('pins the applicant locale so queued mail keeps it on the worker', function (): void {
     $registration = Registration::factory()->ministry()->create([
+        'locale' => 'hu',
         'reference_1_name' => 'Pastor Smith',
         'reference_1_email' => 'pastor@example.com',
     ]);
 
-    app()->setLocale('hu');
     $mailable = new ReferenceRequest($registration, 1, 'Pastor Smith');
 
     app()->setLocale('en');

@@ -26,7 +26,7 @@ class ReferenceRequest extends Mailable implements ShouldQueue
         public int $referenceNumber,
         public string $referenceName,
     ) {
-        $this->locale(app()->getLocale());
+        $this->locale($registration->locale ?: app()->getLocale());
     }
 
     /**

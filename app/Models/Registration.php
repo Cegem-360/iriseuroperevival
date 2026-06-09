@@ -36,6 +36,7 @@ class Registration extends Model
         'first_name',
         'last_name',
         'email',
+        'locale',
         'phone',
         'country',
         'city',
@@ -106,6 +107,10 @@ class Registration extends Model
         static::creating(function ($registration): void {
             if (empty($registration->uuid)) {
                 $registration->uuid = (string) Str::uuid();
+            }
+
+            if (empty($registration->locale)) {
+                $registration->locale = app()->getLocale();
             }
         });
     }

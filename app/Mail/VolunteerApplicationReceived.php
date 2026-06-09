@@ -13,7 +13,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VolunteerApplicationApproved extends Mailable implements ShouldQueue
+class VolunteerApplicationReceived extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -32,7 +32,7 @@ class VolunteerApplicationApproved extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('Your Volunteer Application Has Been Accepted! - Europe Revival 2026'),
+            subject: __('Volunteer Application Received - Europe Revival 2026'),
         );
     }
 
@@ -42,7 +42,7 @@ class VolunteerApplicationApproved extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.volunteer.approved',
+            markdown: 'emails.volunteer.received',
             with: [
                 'registration' => $this->registration,
             ],

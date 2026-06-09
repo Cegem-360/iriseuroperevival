@@ -22,7 +22,9 @@ class VolunteerApplicationRejected extends Mailable implements ShouldQueue
      */
     public function __construct(
         public Registration $registration,
-    ) {}
+    ) {
+        $this->locale($registration->locale ?: app()->getLocale());
+    }
 
     /**
      * Get the message envelope.
@@ -30,7 +32,7 @@ class VolunteerApplicationRejected extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Volunteer Application Update - Europe Revival 2026',
+            subject: __('Volunteer Application Update - Europe Revival 2026'),
         );
     }
 

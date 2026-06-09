@@ -6,7 +6,7 @@ namespace App\Livewire\Pages;
 
 use App\Enums\Country;
 use App\Mail\MinistryApplicationReceived;
-use App\Mail\RegistrationConfirmation;
+use App\Mail\VolunteerApplicationReceived;
 use App\Models\Faq;
 use App\Models\Registration;
 use App\Services\StripeService;
@@ -562,7 +562,7 @@ class MinistryTeam extends Component implements HasSchemas
         if ($registration->type === 'ministry') {
             Mail::to($registration->email)->queue(new MinistryApplicationReceived($registration));
         } elseif ($registration->type === 'volunteer') {
-            Mail::to($registration->email)->queue(new RegistrationConfirmation($registration));
+            Mail::to($registration->email)->queue(new VolunteerApplicationReceived($registration));
         }
 
         $registration->update(['confirmation_email_sent_at' => now()]);

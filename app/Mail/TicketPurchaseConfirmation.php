@@ -20,7 +20,7 @@ class TicketPurchaseConfirmation extends Mailable implements ShouldQueue
     public function __construct(
         public Registration $registration,
     ) {
-        $this->locale(app()->getLocale());
+        $this->locale($registration->locale ?: app()->getLocale());
     }
 
     public function envelope(): Envelope
