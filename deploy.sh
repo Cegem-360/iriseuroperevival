@@ -7,8 +7,8 @@
 # runs the production deploy steps. public/build is NOT committed to git — it
 # is built here.
 #
-# Invoked periodically by cron, e.g.:
-#   */5 * * * * /usr/bin/flock -n /home/iriseuro/deploy.lock \
+# Invoked every minute by cron (flock prevents overlapping runs):
+#   * * * * * /usr/bin/flock -n /home/iriseuro/deploy.lock \
 #     /home/iriseuro/repositories/iriseuroperevival/deploy.sh \
 #     >> /home/iriseuro/repositories/iriseuroperevival/storage/logs/deploy.log 2>&1
 
