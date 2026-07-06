@@ -276,6 +276,10 @@
     "file": "assets/awakening-y8ubgu37.webp",
     "src": "resources/images/partner-logos/awakening.webp"
   },
+  "resources/images/partner-logos/freedom-christian-university.webp": {
+    "file": "assets/freedom-christian-university-DjUImc8o.webp",
+    "src": "resources/images/partner-logos/freedom-christian-university.webp"
+  },
   "resources/images/partner-logos/harvest.webp": {
     "file": "assets/harvest-CMnKTAwg.webp",
     "src": "resources/images/partner-logos/harvest.webp"
@@ -293,8 +297,24 @@
     "src": "resources/images/partner-logos/iris-uk.webp"
   },
   "resources/images/partner-logos/pray-california.webp": {
-    "file": "assets/pray-california-D_KfEZoL.webp",
+    "file": "assets/pray-california-c3Gw0rZx.webp",
     "src": "resources/images/partner-logos/pray-california.webp"
+  },
+  "resources/images/partner-logos/pray-india.webp": {
+    "file": "assets/pray-india-B68ZFuoM.webp",
+    "src": "resources/images/partner-logos/pray-india.webp"
+  },
+  "resources/images/partner-logos/pray-migori.webp": {
+    "file": "assets/pray-migori-dEEEHe7p.webp",
+    "src": "resources/images/partner-logos/pray-migori.webp"
+  },
+  "resources/images/partner-logos/pray-pakistan.webp": {
+    "file": "assets/pray-pakistan-DUQg7SeN.webp",
+    "src": "resources/images/partner-logos/pray-pakistan.webp"
+  },
+  "resources/images/partner-logos/pray-sri-lanka.webp": {
+    "file": "assets/pray-sri-lanka-c_S0a0di.webp",
+    "src": "resources/images/partner-logos/pray-sri-lanka.webp"
   },
   "resources/images/speakers/HeidiD.webp": {
     "file": "assets/HeidiD-mV-5KhTR.webp",
