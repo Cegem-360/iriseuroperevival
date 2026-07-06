@@ -12,6 +12,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Testing
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,6 +26,21 @@ jobs:
             echo "go=false" >> "$GITHUB_OUTPUT"
             echo "::warning::Deploy secrets (DEPLOY_HOST/DEPLOY_USER/DEPLOY_PASSWORD) are not set — skipping deploy."
           fi
+
+      - name: Setup PHP
+        if: steps.guard.outputs.go == 'true'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+
+      - name: Configure Filament credentials
+        if: steps.guard.outputs.go == 'true'
+        run: composer config http-basic.packages.filamentphp.com "${{ secrets.FILAMENT_USERNAME }}" "${{ secrets.FILAMENT_LICENSE_KEY }}"
+
+      - name: Install PHP dependencies (needed for Filament vendor CSS)
+        if: steps.guard.outputs.go == 'true'
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Setup Node
         if: steps.guard.outputs.go == 'true'
