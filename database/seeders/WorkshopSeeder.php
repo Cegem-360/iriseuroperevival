@@ -18,7 +18,6 @@ class WorkshopSeeder extends Seeder
         Workshop::query()->delete();
 
         $davidGava = Speaker::query()->where('slug', 'david-gava')->first();
-        $heidi = Speaker::query()->where('slug', 'heidi-baker')->first();
         $maryPat = Speaker::query()->where('slug', 'mary-pat-gokee')->first();
         $katey = Speaker::query()->where('slug', 'katey-maddux')->first();
         $tineke = Speaker::query()->where('slug', 'tineke-bouwman')->first();
@@ -145,17 +144,6 @@ class WorkshopSeeder extends Seeder
                 'duration_minutes' => 90,
                 'difficulty_level' => 'all',
                 'sort_order' => 11,
-            ],
-            [
-                'title' => 'Iris Global Alumni Gathering',
-                'short_description' => 'A special reunion for Iris Harvest School of Missions alumni and friends.',
-                'description' => 'Heidi Baker and Iris missionaries host a special gathering for alumni of the Iris Global Harvest School of Missions. Reconnect, share testimonies, and be refreshed together.',
-                'leader_name' => 'Heidi Baker & Iris Missionaries',
-                'speaker_id' => $heidi?->id,
-                'schedule_note' => 'Sunday only',
-                'duration_minutes' => 90,
-                'difficulty_level' => 'all',
-                'sort_order' => 12,
             ],
         ];
 

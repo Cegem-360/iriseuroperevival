@@ -58,8 +58,11 @@ class RegistrationForm extends Component implements HasSchemas
 
         $fill = [
             'registration_type' => $type,
+            'ticket_kind' => 'individual',
             'ticket_duration' => in_array($duration, ['1_day', '3_days']) ? $duration : '1_day',
             'ticket_price_option' => in_array($price, ['7500', '15000', 'custom']) ? $price : ($duration === '3_days' ? '15000' : '7500'),
+            'group_duration' => '1_day',
+            'group_size' => 5,
         ];
 
         if ($price === 'custom' && $amount && (int) $amount > 15000) {
@@ -90,6 +93,7 @@ class RegistrationForm extends Component implements HasSchemas
             $this->getChurchInfoStep(),
             $this->getTestimonyStep(),
             $this->getTicketSelectionStep(),
+            $this->getStreetEvangelismStep(),
             $this->getVolunteerDetailsStep(),
             $this->getConfirmationStep(),
         ];
@@ -330,9 +334,24 @@ class RegistrationForm extends Component implements HasSchemas
             ->icon('heroicon-o-ticket')
             ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
             ->schema([
+                Radio::make('ticket_kind')
+                    ->label(__('Ticket Type'))
+                    ->required()
+                    ->options([
+                        'individual' => __('Individual Ticket'),
+                        'group' => __('Group Ticket (5+ people)'),
+                    ])
+                    ->descriptions([
+                        'individual' => __('A single ticket for one person.'),
+                        'group' => __('One purchase for a group of 5 or more people.'),
+                    ])
+                    ->default('individual')
+                    ->live(),
+
                 Radio::make('ticket_duration')
                     ->label(__('Access Duration'))
                     ->required()
+                    ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual')
                     ->options([
                         '1_day' => __('1 Day'),
                         '3_days' => __('3 Days'),
@@ -347,6 +366,7 @@ class RegistrationForm extends Component implements HasSchemas
                 Radio::make('ticket_price_option')
                     ->label(__('Choose Your Amount'))
                     ->required()
+                    ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual')
                     ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
                         ? [
                             '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(15000 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
@@ -376,7 +396,7 @@ class RegistrationForm extends Component implements HasSchemas
                     ->step(1)
                     ->placeholder(__('e.g. 20000'))
                     ->helperText(fn (Get $get): string => __('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency($get('ticket_duration') === '3_days' ? 15000 : 7500, 'HUF', app()->getLocale(), precision: 0)]))
-                    ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom')
+                    ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual' && $get('ticket_price_option') === 'custom')
                     ->live()
                     ->integer(),
 
@@ -385,12 +405,68 @@ class RegistrationForm extends Component implements HasSchemas
                     ->state(fn (Get $get): string => is_numeric($get('ticket_custom_amount'))
                         ? '≈ ' . Number::currency((int) $get('ticket_custom_amount') / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale())
                         : '')
-                    ->visible(fn (Get $get): bool => $get('ticket_price_option') === 'custom' && is_numeric($get('ticket_custom_amount'))),
+                    ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual' && $get('ticket_price_option') === 'custom' && is_numeric($get('ticket_custom_amount'))),
+
+                Radio::make('group_duration')
+                    ->label(__('Access Duration'))
+                    ->required()
+                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
+                    ->options([
+                        '1_day' => __(':price / person', ['price' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('1 Day'),
+                        '3_days' => __(':price / person', ['price' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('3 Days'),
+                    ])
+                    ->default('1_day')
+                    ->live()
+                    ->afterStateUpdated(function (Set $set, ?string $state): void {
+                        if ($state === '3_days') {
+                            $set('group_day', null);
+                        }
+                    }),
+
+                Radio::make('group_day')
+                    ->label(__('Which day?'))
+                    ->required()
+                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group' && ($get('group_duration') ?? '1_day') === '1_day')
+                    ->options([
+                        'friday' => __('Friday'),
+                        'saturday' => __('Saturday'),
+                        'sunday' => __('Sunday'),
+                    ])
+                    ->live(),
+
+                TextInput::make('group_size')
+                    ->label(__('Number of People'))
+                    ->numeric()
+                    ->required()
+                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
+                    ->minValue(5)
+                    ->step(1)
+                    ->default(5)
+                    ->placeholder(__('e.g. 5'))
+                    ->helperText(__('Minimum 5 people. Enter the total number of participants.'))
+                    ->live()
+                    ->integer(),
 
                 Section::make(__('Order Summary'))
                     ->schema([
                         \Filament\Schemas\Components\View::make('livewire.registration-form.partials.order-summary'),
                     ]),
+            ]);
+    }
+
+    protected function getStreetEvangelismStep(): Step
+    {
+        return Step::make(__('Street Evangelism'))
+            ->description(__('Join us on the streets'))
+            ->icon('heroicon-o-megaphone')
+            ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
+            ->schema([
+                Radio::make('wants_to_evangelize')
+                    ->label(__('Would you like to take part in street evangelism?'))
+                    ->helperText(__('It will take place during the day, in the breaks, so you won\'t miss the main lectures.'))
+                    ->required()
+                    ->boolean()
+                    ->default(false),
             ]);
     }
 
@@ -538,9 +614,24 @@ class RegistrationForm extends Component implements HasSchemas
         ];
 
         if ($this->type === 'attendee') {
-            $registrationData['ticket_type'] = $data['ticket_duration'];
-            $registrationData['ticket_quantity'] = 1;
+            $isGroup = ($data['ticket_kind'] ?? 'individual') === 'group';
+
+            if ($isGroup) {
+                $groupDuration = $data['group_duration'] ?? '1_day';
+
+                $registrationData['ticket_type'] = $groupDuration;
+                $registrationData['ticket_quantity'] = max(5, (int) ($data['group_size'] ?? 5));
+                $registrationData['is_group_ticket'] = true;
+                $registrationData['ticket_day'] = $groupDuration === '1_day' ? ($data['group_day'] ?? null) : null;
+            } else {
+                $registrationData['ticket_type'] = $data['ticket_duration'];
+                $registrationData['ticket_quantity'] = 1;
+                $registrationData['is_group_ticket'] = false;
+                $registrationData['ticket_day'] = null;
+            }
+
             $registrationData['amount'] = $this->calculateAmount($data);
+            $registrationData['wants_to_evangelize'] = (bool) ($data['wants_to_evangelize'] ?? false);
         }
 
         if ($this->type === 'volunteer') {
@@ -594,8 +685,23 @@ class RegistrationForm extends Component implements HasSchemas
         $registration->update(['confirmation_email_sent_at' => now()]);
     }
 
+    /**
+     * Per-person price (HUF) of a group ticket for the given access duration.
+     */
+    protected function groupPerPersonRate(string $groupDuration): int
+    {
+        return $groupDuration === '3_days' ? 15000 : 7500;
+    }
+
     protected function calculateAmount(array $data): int
     {
+        if (($data['ticket_kind'] ?? 'individual') === 'group') {
+            $rate = $this->groupPerPersonRate($data['group_duration'] ?? '1_day');
+            $size = max(5, (int) ($data['group_size'] ?? 5));
+
+            return $size * $rate * 100;
+        }
+
         $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
         $ticketDuration = $data['ticket_duration'] ?? '1_day';
 
@@ -616,24 +722,54 @@ class RegistrationForm extends Component implements HasSchemas
         };
     }
 
-    public function getFormattedPrice(): string
+    /**
+     * Structured summary of the currently selected ticket, shared by the order
+     * summary and confirmation partials.
+     *
+     * @return array{is_group: bool, duration: string, size: int, rate: int, day: ?string, amount_huf: int}
+     */
+    public function ticketSummary(): array
     {
         $data = $this->data ?? [];
-        $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
 
-        if ($priceOption === 'custom') {
-            $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
-            $ticketDuration = $data['ticket_duration'] ?? '1_day';
-            $minAmount = $ticketDuration === '3_days' ? 15001 : 7501;
-            $amountCents = $customAmount >= $minAmount ? $customAmount * 100 : 0;
-        } else {
-            $amountCents = match ($priceOption) {
-                '15000' => 1500000,
-                default => 750000,
-            };
+        if (($data['ticket_kind'] ?? 'individual') === 'group') {
+            $groupDuration = $data['group_duration'] ?? '1_day';
+            $rate = $this->groupPerPersonRate($groupDuration);
+            $size = max(5, (int) ($data['group_size'] ?? 5));
+
+            return [
+                'is_group' => true,
+                'duration' => $groupDuration,
+                'size' => $size,
+                'rate' => $rate,
+                'day' => $groupDuration === '1_day' ? ($data['group_day'] ?? null) : null,
+                'amount_huf' => $size * $rate,
+            ];
         }
 
-        return Number::currency($amountCents / 100, 'HUF', app()->getLocale(), precision: 0);
+        $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
+        $ticketDuration = $data['ticket_duration'] ?? '1_day';
+        $minCustom = $ticketDuration === '3_days' ? 15000 : 7500;
+
+        $amountHuf = match ($priceOption) {
+            '15000' => 15000,
+            'custom' => ($custom = (int) ($data['ticket_custom_amount'] ?? 0)) > $minCustom ? $custom : 0,
+            default => 7500,
+        };
+
+        return [
+            'is_group' => false,
+            'duration' => $ticketDuration,
+            'size' => 1,
+            'rate' => $amountHuf,
+            'day' => null,
+            'amount_huf' => $amountHuf,
+        ];
+    }
+
+    public function getFormattedPrice(): string
+    {
+        return Number::currency($this->ticketSummary()['amount_huf'], 'HUF', app()->getLocale(), precision: 0);
     }
 
     public function render(): Factory|View

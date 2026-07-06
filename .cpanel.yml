@@ -1,0 +1,15 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/iriseuro/repositories/iriseuroperevival
+    - export PHP=/opt/cpanel/ea-php84/root/usr/bin/php
+    - export COMPOSER=/usr/local/bin/composer
+    - cd $DEPLOYPATH
+    - $PHP $COMPOSER install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+    - $PHP artisan migrate --force
+    - $PHP artisan storage:link
+    - $PHP artisan config:cache
+    - $PHP artisan route:cache
+    - $PHP artisan view:cache
+    - $PHP artisan filament:optimize
+    - $PHP artisan queue:restart

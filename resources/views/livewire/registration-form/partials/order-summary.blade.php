@@ -1,31 +1,43 @@
 @php
     $livewire = $getLivewire();
-    $data = $livewire->data ?? [];
-    $ticketDuration = $data['ticket_duration'] ?? '1_day';
-    $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
-    $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
+    $summary = $livewire->ticketSummary();
 
-    $minCustom = $ticketDuration === '3_days' ? 15000 : 7500;
+    $durationLabel = \App\Models\Registration::formatTicketType($summary['duration']);
+    $amountHuf = $summary['amount_huf'];
 
-    $amountHuf = match ($priceOption) {
-        '15000' => 15000,
-        'custom' => $customAmount > $minCustom ? $customAmount : 0,
-        default => 7500,
-    };
-
-    $durationLabel = \App\Models\Registration::formatTicketType($ticketDuration);
+    $dayLabels = [
+        'friday' => __('Friday'),
+        'saturday' => __('Saturday'),
+        'sunday' => __('Sunday'),
+    ];
 @endphp
 
 <div class="space-y-4">
     <div class="space-y-2">
-        <div class="flex justify-between text-sm text-white/60">
-            <span>{{ $durationLabel }}</span>
-            @if($amountHuf > 0)
-                <span>{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}</span>
-            @else
-                <span class="text-white/30">—</span>
-            @endif
-        </div>
+        @if($summary['is_group'])
+            <div class="flex justify-between text-sm text-white/60">
+                <span>
+                    {{ __('Group Ticket') }} — {{ $durationLabel }}
+                    @if($summary['day'])
+                        ({{ $dayLabels[$summary['day']] ?? '' }})
+                    @endif
+                </span>
+                <span>{{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }} / {{ __('person') }}</span>
+            </div>
+            <div class="flex justify-between text-sm text-white/60">
+                <span>{{ __('Number of People') }}</span>
+                <span>{{ $summary['size'] }} × {{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }}</span>
+            </div>
+        @else
+            <div class="flex justify-between text-sm text-white/60">
+                <span>{{ $durationLabel }}</span>
+                @if($amountHuf > 0)
+                    <span>{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}</span>
+                @else
+                    <span class="text-white/30">—</span>
+                @endif
+            </div>
+        @endif
     </div>
 
     <div class="border-t border-navy-600 pt-3 flex justify-between text-lg font-bold">

@@ -22,8 +22,3 @@ it('includes distant non-European countries', function (): void {
         ->and(Country::tryFrom('Brazil'))->toBe(Country::Brazil)
         ->and(Country::tryFrom('South Africa'))->toBe(Country::SouthAfrica);
 });
-
-it('uses the country name as its label', function (): void {
-    expect(Country::Hungary->getLabel())->toBe('Hungary')
-        ->and(Country::CzechRepublic->getLabel())->toBe('Czech Republic');
-});

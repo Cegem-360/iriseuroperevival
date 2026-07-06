@@ -44,7 +44,10 @@ class Registration extends Model
         // Ticket Info (Attendees)
         'ticket_type',
         'ticket_quantity',
+        'is_group_ticket',
+        'ticket_day',
         'amount',
+        'wants_to_evangelize',
 
         // Volunteer Service Fields
         'service_areas',
@@ -362,6 +365,8 @@ class Registration extends Model
             'languages' => 'array',
             'service_areas' => 'array',
             'has_served_before' => 'boolean',
+            'wants_to_evangelize' => 'boolean',
+            'is_group_ticket' => 'boolean',
 
             'ministry_areas' => 'array',
             'is_born_again' => 'boolean',

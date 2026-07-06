@@ -10,19 +10,15 @@
     $country = $data['country'] ?? '';
 
     if ($type === 'attendee') {
-        $ticketDuration = $data['ticket_duration'] ?? '1_day';
-        $priceOption = $data['ticket_price_option'] ?? '7500';
-        $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
+        $summary = $livewire->ticketSummary();
+        $amountHuf = $summary['amount_huf'];
+        $durationLabel = \App\Models\Registration::formatTicketType($summary['duration']);
 
-        $minCustom = $ticketDuration === '3_days' ? 15000 : 7500;
-
-        $amountHuf = match ($priceOption) {
-            '15000' => 15000,
-            'custom' => $customAmount > $minCustom ? $customAmount : 0,
-            default => 7500,
-        };
-
-        $durationLabel = \App\Models\Registration::formatTicketType($ticketDuration);
+        $dayLabels = [
+            'friday' => __('Friday'),
+            'saturday' => __('Saturday'),
+            'sunday' => __('Sunday'),
+        ];
     }
 @endphp
 
@@ -48,7 +44,26 @@
     @if($type === 'attendee')
         <div class="border-t border-navy-600 pt-3 flex justify-between">
             <dt class="text-white/60">{{ __('Pass') }}</dt>
-            <dd class="text-white font-medium">{{ $durationLabel }}</dd>
+            <dd class="text-white font-medium">
+                @if($summary['is_group'])
+                    {{ __('Group Ticket') }} — {{ $durationLabel }}
+                    @if($summary['day'])
+                        ({{ $dayLabels[$summary['day']] ?? '' }})
+                    @endif
+                @else
+                    {{ $durationLabel }}
+                @endif
+            </dd>
+        </div>
+        @if($summary['is_group'])
+            <div class="flex justify-between">
+                <dt class="text-white/60">{{ __('Number of People') }}</dt>
+                <dd class="text-white font-medium">{{ $summary['size'] }} × {{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }}</dd>
+            </div>
+        @endif
+        <div class="flex justify-between">
+            <dt class="text-white/60">{{ __('Street Evangelism') }}</dt>
+            <dd class="text-white font-medium">{{ ($data['wants_to_evangelize'] ?? false) ? __('Yes') : __('No') }}</dd>
         </div>
         <div class="flex justify-between text-lg font-bold">
             <dt class="text-primary-400">{{ __('Total') }}</dt>

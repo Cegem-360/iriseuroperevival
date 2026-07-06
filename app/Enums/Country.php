@@ -209,10 +209,16 @@ enum Country: string implements HasLabel
 
     /**
      * Human-readable label, also used by Filament selects and columns.
+     *
+     * Localized via the per-locale `countries` translation file when a
+     * translation exists (e.g. Hungarian); falls back to the English name.
      */
     public function getLabel(): string
     {
-        return $this->value;
+        $key = "countries.{$this->value}";
+        $translated = __($key);
+
+        return $translated === $key ? $this->value : $translated;
     }
 
     /**
