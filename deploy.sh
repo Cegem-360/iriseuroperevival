@@ -3,8 +3,9 @@
 # Server-side auto-deploy script for iriseuroperevival.
 #
 # Pulls the latest commit from origin/main and, only when there is something
-# new, runs the production deploy steps. Front-end assets are built locally
-# and committed to git (the server has no Node), so no build step runs here.
+# new, installs dependencies, builds the front-end assets on the server, and
+# runs the production deploy steps. public/build is NOT committed to git — it
+# is built here.
 #
 # Invoked periodically by cron, e.g.:
 #   */5 * * * * /usr/bin/flock -n /home/iriseuro/deploy.lock \
@@ -17,7 +18,10 @@ cd "$(dirname "$(readlink -f "$0")")"
 
 PHP=/opt/cpanel/ea-php84/root/usr/bin/php
 COMPOSER=/usr/local/bin/composer
+NODE_BIN=/opt/alt/alt-nodejs22/root/usr/bin
 BRANCH=main
+
+export PATH="$NODE_BIN:$PATH"
 
 git fetch --quiet origin "$BRANCH"
 
@@ -33,6 +37,11 @@ echo "==== Deploy $(date '+%Y-%m-%d %H:%M:%S') : $LOCAL -> $REMOTE ===="
 git pull --ff-only origin "$BRANCH"
 
 "$PHP" "$COMPOSER" install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+# Build front-end assets on the server (needs vendor/ for Filament CSS).
+"$NODE_BIN/npm" ci --no-audit --no-fund
+"$NODE_BIN/npm" run build
+
 "$PHP" artisan migrate --force
 "$PHP" artisan storage:link || true
 "$PHP" artisan config:cache

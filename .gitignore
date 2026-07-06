@@ -24,3 +24,6 @@ yarn-error.log
 
 # Local source materials (logos, docs) — not deployed
 /.tmp
+
+# Built assets — built on the server by deploy.sh, not committed
+/public/build
