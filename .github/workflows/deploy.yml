@@ -9,6 +9,9 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -54,36 +57,41 @@ jobs:
           npm ci
           npm run build
 
+      - name: Commit built assets if changed
+        if: steps.guard.outputs.go == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/build
+          if git diff --cached --quiet; then
+            echo "No asset changes to commit."
+          else
+            git commit -m "Build assets [skip ci]"
+            git push --no-verify origin HEAD:main
+          fi
+
       - name: Install sshpass
         if: steps.guard.outputs.go == 'true'
-        run: sudo apt-get update && sudo apt-get install -y sshpass rsync
+        run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: Deploy to production
+      - name: Deploy on server
         if: steps.guard.outputs.go == 'true'
         env:
           SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          REPO_PATH: ${{ secrets.DEPLOY_PATH || '~/repositories/iriseuroperevival' }}
         run: |
-          SSH_OPTS="-o StrictHostKeyChecking=no -o ConnectTimeout=20"
-          # 1. Pull latest code on the server
-          sshpass -e ssh $SSH_OPTS "$DEPLOY_USER@$DEPLOY_HOST" \
-            "cd $REPO_PATH && git pull --ff-only origin main"
-          # 2. Upload the freshly built assets (server has no Node)
-          sshpass -e rsync -az --delete -e "ssh $SSH_OPTS" \
-            public/build/ "$DEPLOY_USER@$DEPLOY_HOST:$REPO_PATH/public/build/"
-          # 3. Run the production deploy steps
-          sshpass -e ssh $SSH_OPTS "$DEPLOY_USER@$DEPLOY_HOST" bash -s <<'REMOTE'
-            set -e
-            cd ~/repositories/iriseuroperevival
-            PHP=/opt/cpanel/ea-php84/root/usr/bin/php
-            $PHP /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
-            $PHP artisan migrate --force
-            $PHP artisan storage:link || true
-            $PHP artisan config:cache
-            $PHP artisan route:cache
-            $PHP artisan view:cache
-            $PHP artisan filament:optimize
-            $PHP artisan queue:restart
+          sshpass -e ssh -o StrictHostKeyChecking=no -o ConnectTimeout=20 "$DEPLOY_USER@$DEPLOY_HOST" bash -s <<'REMOTE'
+          set -e
+          cd ~/repositories/iriseuroperevival
+          git pull --ff-only origin main
+          PHP=/opt/cpanel/ea-php84/root/usr/bin/php
+          $PHP /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+          $PHP artisan migrate --force
+          $PHP artisan storage:link || true
+          $PHP artisan config:cache
+          $PHP artisan route:cache
+          $PHP artisan view:cache
+          $PHP artisan filament:optimize
+          $PHP artisan queue:restart
           REMOTE
