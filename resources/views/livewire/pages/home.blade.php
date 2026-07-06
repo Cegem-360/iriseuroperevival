@@ -205,7 +205,6 @@
                         ['slug' => 'tineke-bouwman', 'photo' => 'images/alt-style/workshop-leaders/tineke.webp', 'topic' => 'Prophetic Voice', 'workshop' => 'prophetic-ministry'],
                         ['slug' => 'katey-maddux', 'photo' => 'images/alt-style/workshop-leaders/katey.webp', 'topic' => 'Pioneering in Human Trafficking', 'workshop' => 'human-trafficking-awareness'],
                         ['slug' => 'fernando-sousa', 'photo' => 'images/alt-style/workshop-leaders/sousa.webp', 'topic' => 'Freedom from Homosexuality', 'workshop' => null],
-                        ['slug' => 'iris-global-leaders', 'photo' => 'images/alt-style/workshop-leaders/alumni.webp', 'topic' => 'Iris Harvest School Alumni Gathering', 'workshop' => 'iris-global-alumni-gathering'],
                     ];
                     $workshopSpeakers = \App\Models\Speaker::query()
                         ->whereIn('slug', collect($workshopCards)->pluck('slug'))

@@ -97,3 +97,10 @@ it('does not display inactive sponsors', function () {
     Livewire::test(Home::class)
         ->assertDontSee('Inactive Sponsor');
 });
+
+it('does not show the removed Iris Harvest School alumni workshop', function () {
+    $this->get('/')
+        ->assertStatus(200)
+        ->assertDontSee('iris-global-leaders')
+        ->assertDontSee('Alumni Gathering');
+});
