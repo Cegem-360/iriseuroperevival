@@ -7,21 +7,30 @@ namespace Database\Seeders;
 use App\Models\Speaker;
 use App\Models\Workshop;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class WorkshopSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * Idempotent: matches existing rows by `slug` and updates in place. Never
+     * calls `Workshop::query()->delete()` — a previous version of this seeder
+     * did, and running it in production on 2026-07-06 wiped every workshop's
+     * `translations`, `image_path`, and admin-panel edits. Recovered via the
+     * JetBackup snapshot on 2026-07-07; the destructive pattern is retired.
      */
     public function run(): void
     {
-        Workshop::query()->delete();
-
         $davidGava = Speaker::query()->where('slug', 'david-gava')->first();
         $maryPat = Speaker::query()->where('slug', 'mary-pat-gokee')->first();
         $katey = Speaker::query()->where('slug', 'katey-maddux')->first();
         $tineke = Speaker::query()->where('slug', 'tineke-bouwman')->first();
         $baoyan = Speaker::query()->where('slug', 'baoyan-lam')->first();
+        $drKate = Speaker::query()->where('slug', 'dr-kate')->first();
+        $yanRudy = Speaker::query()->where('slug', 'yan-rudy')->first();
+        $fernando = Speaker::query()->where('slug', 'fernando-sousa')->first();
+        $brianValerie = Speaker::query()->where('slug', 'brian-valerie')->first();
 
         $workshops = [
             [
@@ -51,7 +60,7 @@ class WorkshopSeeder extends Seeder
                 'short_description' => 'Express worship and prophetic revelation through creative arts and visual media.',
                 'description' => 'Discover how to tap into the creative flow of the Holy Spirit. This hands-on workshop explores painting, drawing, and other visual arts as expressions of worship and prophetic revelation.',
                 'leader_name' => 'Dr. Kate',
-                'speaker_id' => null,
+                'speaker_id' => $drKate?->id,
                 'schedule_note' => 'Saturday & Sunday',
                 'duration_minutes' => 90,
                 'difficulty_level' => 'all',
@@ -95,7 +104,7 @@ class WorkshopSeeder extends Seeder
                 'short_description' => 'Transform your workplace into a mission field and integrate faith with business.',
                 'description' => 'Yan & Rudy share how to carry the Kingdom of God into the marketplace. Discover how your business and professional skills can be used for eternal impact and how to be a missionary wherever you work.',
                 'leader_name' => 'Yan & Rudy',
-                'speaker_id' => null,
+                'speaker_id' => $yanRudy?->id,
                 'schedule_note' => 'Saturday & Sunday',
                 'duration_minutes' => 90,
                 'difficulty_level' => 'all',
@@ -128,7 +137,7 @@ class WorkshopSeeder extends Seeder
                 'short_description' => 'Walking in the freedom Christ purchased and helping others find their breakthrough.',
                 'description' => 'Fernando & Nathalia share powerful testimony and biblical teaching on finding freedom in Christ. Learn how to minister deliverance and inner healing with wisdom and compassion.',
                 'leader_name' => 'Fernando & Nathalia',
-                'speaker_id' => null,
+                'speaker_id' => $fernando?->id,
                 'schedule_note' => 'Saturday & Sunday',
                 'duration_minutes' => 90,
                 'difficulty_level' => 'all',
@@ -139,7 +148,7 @@ class WorkshopSeeder extends Seeder
                 'short_description' => 'Encounter the deep, unconditional love of your Heavenly Father.',
                 'description' => 'Brian & Valerie lead a transformative workshop on experiencing the Father\'s love. Discover the healing power of understanding your identity as a beloved child of God.',
                 'leader_name' => 'Brian & Valerie',
-                'speaker_id' => null,
+                'speaker_id' => $brianValerie?->id,
                 'schedule_note' => 'Saturday & Sunday',
                 'duration_minutes' => 90,
                 'difficulty_level' => 'all',
@@ -148,10 +157,15 @@ class WorkshopSeeder extends Seeder
         ];
 
         foreach ($workshops as $workshopData) {
-            Workshop::create([
-                ...$workshopData,
-                'is_published' => true,
-            ]);
+            $slug = Str::slug($workshopData['title']);
+
+            Workshop::updateOrCreate(
+                ['slug' => $slug],
+                [
+                    ...$workshopData,
+                    'is_published' => true,
+                ],
+            );
         }
     }
 }
