@@ -349,18 +349,26 @@ class RegistrationForm extends Component implements HasSchemas
                     ->default('individual')
                     ->live(),
 
-                TextInput::make('group_size')
-                    ->label(__('Number of People'))
-                    ->numeric()
-                    ->required()
-                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
-                    ->minValue(5)
-                    ->step(1)
-                    ->default(5)
-                    ->placeholder(__('e.g. 5'))
-                    ->helperText(__('Minimum 5 people. Enter the total number of participants.'))
-                    ->live()
-                    ->integer(),
+                Grid::make(3)
+                    ->schema([
+                        TextInput::make('group_size')
+                            ->label(__('Number of People'))
+                            ->numeric()
+                            ->required()
+                            ->minValue(5)
+                            ->step(1)
+                            ->default(5)
+                            ->placeholder(__('e.g. 5'))
+                            ->helperText(__('Minimum 5 people. Enter the total number of participants.'))
+                            ->live()
+                            ->integer()
+                            ->extraInputAttributes([
+                                'class' => '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
+                                'inputmode' => 'numeric',
+                            ])
+                            ->columnSpan(1),
+                    ])
+                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group'),
 
                 Radio::make('ticket_duration')
                     ->label(__('Access Duration'))
