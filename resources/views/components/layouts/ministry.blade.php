@@ -9,7 +9,11 @@
     <title>@yield('title', 'Ministry Team — Europe Revival 2026')</title>
     <meta name="description" content="@yield('description', 'Ministry Team landing page for Europe Revival 2026. Invitation only.')">
 
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
 
     <link rel="stylesheet" href="https://use.typekit.net/win4vqd.css">
     <link href="https://fonts.cdnfonts.com/css/abuget" rel="stylesheet">
