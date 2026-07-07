@@ -30,7 +30,12 @@
             </div>
         @else
             <div class="flex justify-between text-sm text-white/60">
-                <span>{{ $durationLabel }}</span>
+                <span>
+                    {{ $durationLabel }}
+                    @if($summary['day'])
+                        ({{ $dayLabels[$summary['day']] ?? '' }})
+                    @endif
+                </span>
                 @if($amountHuf > 0)
                     <span>{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}</span>
                 @else

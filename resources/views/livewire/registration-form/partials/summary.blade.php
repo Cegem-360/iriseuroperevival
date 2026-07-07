@@ -52,6 +52,9 @@
                     @endif
                 @else
                     {{ $durationLabel }}
+                    @if($summary['day'])
+                        ({{ $dayLabels[$summary['day']] ?? '' }})
+                    @endif
                 @endif
             </dd>
         </div>

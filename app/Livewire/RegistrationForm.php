@@ -23,6 +23,7 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Components\View as SchemaView;
 use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
@@ -361,7 +362,22 @@ class RegistrationForm extends Component implements HasSchemas
                     ->afterStateUpdated(function (Set $set, ?string $state): void {
                         $set('ticket_price_option', $state === '3_days' ? '15000' : '7500');
                         $set('ticket_custom_amount', null);
+
+                        if ($state === '3_days') {
+                            $set('individual_day', null);
+                        }
                     }),
+
+                Radio::make('individual_day')
+                    ->label(__('Which day?'))
+                    ->required()
+                    ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual' && ($get('ticket_duration') ?? '1_day') === '1_day')
+                    ->options([
+                        'friday' => __('Friday'),
+                        'saturday' => __('Saturday'),
+                        'sunday' => __('Sunday'),
+                    ])
+                    ->live(),
 
                 Radio::make('ticket_price_option')
                     ->label(__('Choose Your Amount'))
@@ -422,18 +438,6 @@ class RegistrationForm extends Component implements HasSchemas
                             $set('group_day', null);
                         }
                     }),
-
-                Radio::make('group_day')
-                    ->label(__('Which day?'))
-                    ->required()
-                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group' && ($get('group_duration') ?? '1_day') === '1_day')
-                    ->options([
-                        'friday' => __('Friday'),
-                        'saturday' => __('Saturday'),
-                        'sunday' => __('Sunday'),
-                    ])
-                    ->live(),
-
                 TextInput::make('group_size')
                     ->label(__('Number of People'))
                     ->numeric()
@@ -446,10 +450,20 @@ class RegistrationForm extends Component implements HasSchemas
                     ->helperText(__('Minimum 5 people. Enter the total number of participants.'))
                     ->live()
                     ->integer(),
+                Radio::make('group_day')
+                    ->label(__('Which day?'))
+                    ->required()
+                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group' && ($get('group_duration') ?? '1_day') === '1_day')
+                    ->options([
+                        'friday' => __('Friday'),
+                        'saturday' => __('Saturday'),
+                        'sunday' => __('Sunday'),
+                    ])
+                    ->live(),
 
                 Section::make(__('Order Summary'))
                     ->schema([
-                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.order-summary'),
+                        SchemaView::make('livewire.registration-form.partials.order-summary'),
                     ]),
             ]);
     }
@@ -532,14 +546,14 @@ class RegistrationForm extends Component implements HasSchemas
             ->schema([
                 Section::make(__('Registration Summary'))
                     ->schema([
-                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.summary'),
+                        SchemaView::make('livewire.registration-form.partials.summary'),
                     ]),
 
                 Section::make(__('Ministry Team Guidelines'))
                     ->description(__('Please read and accept the following guidelines'))
                     ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
                     ->schema([
-                        \Filament\Schemas\Components\View::make('livewire.registration-form.partials.ministry-guidelines'),
+                        SchemaView::make('livewire.registration-form.partials.ministry-guidelines'),
 
                         Checkbox::make('accepts_guidelines')
                             ->label(__('I accept the Ministry Team Guidelines'))
@@ -624,10 +638,12 @@ class RegistrationForm extends Component implements HasSchemas
                 $registrationData['is_group_ticket'] = true;
                 $registrationData['ticket_day'] = $groupDuration === '1_day' ? ($data['group_day'] ?? null) : null;
             } else {
-                $registrationData['ticket_type'] = $data['ticket_duration'];
+                $ticketDuration = $data['ticket_duration'] ?? '1_day';
+
+                $registrationData['ticket_type'] = $ticketDuration;
                 $registrationData['ticket_quantity'] = 1;
                 $registrationData['is_group_ticket'] = false;
-                $registrationData['ticket_day'] = null;
+                $registrationData['ticket_day'] = $ticketDuration === '1_day' ? ($data['individual_day'] ?? null) : null;
             }
 
             $registrationData['amount'] = $this->calculateAmount($data);
@@ -762,7 +778,7 @@ class RegistrationForm extends Component implements HasSchemas
             'duration' => $ticketDuration,
             'size' => 1,
             'rate' => $amountHuf,
-            'day' => null,
+            'day' => $ticketDuration === '1_day' ? ($data['individual_day'] ?? null) : null,
             'amount_huf' => $amountHuf,
         ];
     }

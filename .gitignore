@@ -27,3 +27,5 @@ yarn-error.log
 
 # Built assets — built on the server by deploy.sh, not committed
 /public/build
+_ide_helper.php
+_ide_helper_models.php
