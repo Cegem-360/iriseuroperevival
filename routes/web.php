@@ -38,8 +38,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Home::class)->name('home');
 Route::get('/program', Program::class)->name('program');
 Route::get('/workshops', Workshops::class)->name('workshops');
-Route::get('/speakers', Speakers::class)->name('speakers');
-Route::get('/speakers/{slug}', SpeakerShow::class)->name('speaker.show');
+// The /speakers index and per-speaker detail pages are disabled — 2026-07-07.
+// Nav "Speakers" links point at the home-page #speakers anchor, not these routes.
+// Route::get('/speakers', Speakers::class)->name('speakers');
+// Route::get('/speakers/{slug}', SpeakerShow::class)->name('speaker.show');
 Route::get('/ministry-team', MinistryTeam::class)->name('ministry-team');
 
 // Registration Routes
