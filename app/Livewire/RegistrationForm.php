@@ -10,7 +10,6 @@ use App\Mail\VolunteerApplicationReceived;
 use App\Models\Registration;
 use App\Services\StripeService;
 use Exception;
-use Filament\Actions\Action;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Hidden;
@@ -350,37 +349,11 @@ class RegistrationForm extends Component implements HasSchemas
                     ->default('individual')
                     ->live(),
 
-                TextInput::make('group_size')
-                    ->label(__('Number of People'))
-                    ->numeric()
-                    ->required()
-                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
-                    ->minValue(5)
-                    ->step(1)
-                    ->default(5)
-                    ->placeholder(__('e.g. 5'))
-                    ->helperText(__('Minimum 5 people. Enter the total number of participants.'))
-                    ->live()
-                    ->integer()
-                    ->extraAttributes(['class' => 'max-w-44'])
-                    ->extraInputAttributes([
-                        'class' => 'text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
-                        'inputmode' => 'numeric',
-                    ])
-                    ->prefixAction(
-                        Action::make('decrementGroupSize')
-                            ->icon('heroicon-m-minus')
-                            ->action(function (Get $get, Set $set): void {
-                                $set('group_size', max(5, (int) $get('group_size') - 1));
-                            }),
-                    )
-                    ->suffixAction(
-                        Action::make('incrementGroupSize')
-                            ->icon('heroicon-m-plus')
-                            ->action(function (Get $get, Set $set): void {
-                                $set('group_size', (int) $get('group_size') + 1);
-                            }),
-                    ),
+                SchemaView::make('livewire.registration-form.partials.group-size-stepper')
+                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group'),
+
+                Hidden::make('group_size')
+                    ->default(5),
 
                 Radio::make('ticket_duration')
                     ->label(__('Access Duration'))
