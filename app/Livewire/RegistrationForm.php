@@ -349,6 +349,19 @@ class RegistrationForm extends Component implements HasSchemas
                     ->default('individual')
                     ->live(),
 
+                TextInput::make('group_size')
+                    ->label(__('Number of People'))
+                    ->numeric()
+                    ->required()
+                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
+                    ->minValue(5)
+                    ->step(1)
+                    ->default(5)
+                    ->placeholder(__('e.g. 5'))
+                    ->helperText(__('Minimum 5 people. Enter the total number of participants.'))
+                    ->live()
+                    ->integer(),
+
                 Radio::make('ticket_duration')
                     ->label(__('Access Duration'))
                     ->required()
@@ -438,18 +451,6 @@ class RegistrationForm extends Component implements HasSchemas
                             $set('group_day', null);
                         }
                     }),
-                TextInput::make('group_size')
-                    ->label(__('Number of People'))
-                    ->numeric()
-                    ->required()
-                    ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
-                    ->minValue(5)
-                    ->step(1)
-                    ->default(5)
-                    ->placeholder(__('e.g. 5'))
-                    ->helperText(__('Minimum 5 people. Enter the total number of participants.'))
-                    ->live()
-                    ->integer(),
                 Radio::make('group_day')
                     ->label(__('Which day?'))
                     ->required()
