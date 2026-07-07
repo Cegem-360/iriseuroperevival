@@ -7,7 +7,6 @@ namespace Database\Seeders;
 use App\Models\Speaker;
 use App\Models\Workshop;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class WorkshopSeeder extends Seeder
 {
@@ -34,6 +33,7 @@ class WorkshopSeeder extends Seeder
 
         $workshops = [
             [
+                'slug' => 'power-evangelism',
                 'title' => 'Power Evangelism',
                 'short_description' => 'Learn to step out in boldness and share the Gospel with signs and wonders following.',
                 'description' => 'David Gava shares from years of front-line experience in power evangelism across nations. Learn how to hear the Holy Spirit for words of knowledge on the streets, pray for the sick, and lead people to Jesus with confidence and compassion.',
@@ -45,6 +45,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 1,
             ],
             [
+                'slug' => 'revival-harvest',
                 'title' => 'Revival Harvest',
                 'short_description' => 'Catch the fire of revival and learn how to sustain a harvest movement in your region.',
                 'description' => 'Building on decades of revival experience, David Gava teaches how to steward revival fire, disciple new believers, and build lasting fruit from harvest movements.',
@@ -56,9 +57,10 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 2,
             ],
             [
-                'title' => 'Prophetic Arts',
+                'slug' => 'prophetic-arts',
+                'title' => 'The Beautiful Heart of Jesus: Set Free Through Creative Movement',
                 'short_description' => 'Express worship and prophetic revelation through creative arts and visual media.',
-                'description' => 'Discover how to tap into the creative flow of the Holy Spirit. This hands-on workshop explores painting, drawing, and other visual arts as expressions of worship and prophetic revelation.',
+                'description' => 'Please join Dr. Kate Hartman for a transformative prophetic workshop focused on the Lord Jesus Christ, the Lover of your soul, the Healer of the brokenhearted, and the Restorer of shattered dreams. Experience His profound presence as you embark on a Holy Spirit-led journey of inner healing and newfound freedom through creative movement. Let go of the past and step into a glorious future filled with grace and hope as you encounter the beautiful heart of Jesus.',
                 'leader_name' => 'Dr. Kate',
                 'speaker_id' => $drKate?->id,
                 'schedule_note' => 'Saturday & Sunday',
@@ -67,6 +69,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 3,
             ],
             [
+                'slug' => 'prophetic-ministry',
                 'title' => 'Prophetic Ministry',
                 'short_description' => 'Grow in the prophetic gift and learn to minister with accuracy and love.',
                 'description' => 'Tineke Bouwman, a seasoned prophetic voice, teaches how to hear God\'s voice clearly, deliver prophetic words with accuracy and love, and grow in this vital gift for the building up of the body of Christ.',
@@ -78,6 +81,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 4,
             ],
             [
+                'slug' => 'pastoral-care',
                 'title' => 'Pastoral Care',
                 'short_description' => 'Practical wisdom for shepherding people through life\'s challenges with the heart of God.',
                 'description' => 'Alan & Jan bring years of pastoral experience to equip leaders in the art of caring for God\'s people. Learn practical tools for counseling, spiritual guidance, and building healthy church communities.',
@@ -89,6 +93,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 5,
             ],
             [
+                'slug' => 'missions',
                 'title' => 'Missions',
                 'short_description' => 'Catch a vision for global missions and learn practical steps to answer the call.',
                 'description' => 'Mary Pat Gokee shares from her experience with Iris Global to inspire and equip you for cross-cultural missions, whether short-term or long-term. Learn about the harvest fields and how you can participate.',
@@ -100,6 +105,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 6,
             ],
             [
+                'slug' => 'marketplace-missions',
                 'title' => 'Marketplace Missions',
                 'short_description' => 'Transform your workplace into a mission field and integrate faith with business.',
                 'description' => 'Yan & Rudy share how to carry the Kingdom of God into the marketplace. Discover how your business and professional skills can be used for eternal impact and how to be a missionary wherever you work.',
@@ -111,6 +117,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 7,
             ],
             [
+                'slug' => 'family',
                 'title' => 'Family',
                 'short_description' => 'Biblical foundations for building strong, God-centered families in today\'s world.',
                 'description' => 'Baoyan Lam brings wisdom and practical teaching on family and parenting from a biblical perspective. Learn how to build a God-honoring family culture and raise children who love Jesus.',
@@ -122,6 +129,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 8,
             ],
             [
+                'slug' => 'human-trafficking-awareness',
                 'title' => 'Human Trafficking Awareness',
                 'short_description' => 'Awareness, prevention, and strategic solutions in the fight against exploitation.',
                 'description' => 'Katey Maddux, founder of Mighty Warrior International, shares critical awareness about human trafficking and practical ways the church can engage in prevention, rescue, and restoration efforts.',
@@ -133,6 +141,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 9,
             ],
             [
+                'slug' => 'freedom-ministry',
                 'title' => 'Freedom Ministry',
                 'short_description' => 'Walking in the freedom Christ purchased and helping others find their breakthrough.',
                 'description' => 'Fernando & Nathalia share powerful testimony and biblical teaching on finding freedom in Christ. Learn how to minister deliverance and inner healing with wisdom and compassion.',
@@ -144,6 +153,7 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 10,
             ],
             [
+                'slug' => 'father-heart-of-god',
                 'title' => 'Father Heart of God',
                 'short_description' => 'Encounter the deep, unconditional love of your Heavenly Father.',
                 'description' => 'Brian & Valerie lead a transformative workshop on experiencing the Father\'s love. Discover the healing power of understanding your identity as a beloved child of God.',
@@ -157,7 +167,8 @@ class WorkshopSeeder extends Seeder
         ];
 
         foreach ($workshops as $workshopData) {
-            $slug = Str::slug($workshopData['title']);
+            $slug = $workshopData['slug'];
+            unset($workshopData['slug']);
 
             Workshop::updateOrCreate(
                 ['slug' => $slug],

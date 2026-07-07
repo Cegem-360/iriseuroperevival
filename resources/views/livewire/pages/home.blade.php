@@ -88,7 +88,7 @@
                     {{-- YouTube Embed --}}
                     <template x-if="playing">
                         <iframe
-                            src="https://www.youtube.com/embed/{{ app()->getLocale() === 'hu' ? 'na1zYGt9rjg' : 'VBrCtvqwPcc' }}?autoplay=1&rel=0"
+                            src="https://www.youtube.com/embed/{{ app()->getLocale() === 'hu' ? 'W8-ZfXE2oMs' : 'lyOojZSwY74' }}?autoplay=1&rel=0"
                             class="absolute inset-0 w-full h-full"
                             frameborder="0"
                             allow="autoplay; encrypted-media"
@@ -354,7 +354,7 @@
                         {{-- YouTube Embed --}}
                         <template x-if="playing">
                             <iframe
-                                src="https://www.youtube.com/embed/{{ app()->getLocale() === 'hu' ? 'na1zYGt9rjg' : 'VBrCtvqwPcc' }}?autoplay=1&rel=0"
+                                src="https://www.youtube.com/embed/{{ app()->getLocale() === 'hu' ? 'W8-ZfXE2oMs' : 'lyOojZSwY74' }}?autoplay=1&rel=0"
                                 class="absolute inset-0 w-full h-full"
                                 frameborder="0"
                                 allow="autoplay; encrypted-media"

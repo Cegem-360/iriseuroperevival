@@ -152,14 +152,14 @@ class HungarianContentSeeder extends Seeder
                 'description' => 'Tineke Bouwman tapasztalt prófétai hangja megtanít arra, hogyan halljuk tisztán Isten hangját, hogyan adjunk át prófétai szavakat pontossággal és szeretettel, és hogyan növekedjünk ebben a fontos ajándékban Krisztus testének építésére.',
             ],
             'prophetic-arts' => [
-                'title' => 'Jézus csodálatos szíve: Szabadság kreatív mozgás által - Dr. Kate Hartman',
+                'title' => 'Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által',
                 'short_description' => 'Fejezd ki az imádást és a prófétai kijelentést kreatív és vizuális művészeteken keresztül.',
-                'description' => 'Csatlakozz Dr. Kate Hartman-höz egy átformáló prófétai workshopra, amelynek középpontjában az Úr Jézus Krisztus áll – aki a lelked szerelmese, a megtört szívek gyógyítója és az összetört álmok helyreállítója. Tapasztald meg mély jelenlétét, miközben a Szent Szellem vezetésével a belső gyógyulás és az újonnan megtalált szabadság útjára lépsz a kreatív mozgás által. Engedd el a múltat, és lépj be egy dicsőséges, kegyelemmel és reménnyel teli jövőbe, ahogy találkozol Jézus csodálatos szívével.',
+                'description' => "Szeretettel hívunk Dr. Kate Hartman prófétai workshopjára, amelynek középpontjában Jézus Krisztus áll – aki szeretettel fordul hozzánk, meggyógyítja a megtört szívűeket és helyreállítja az összetört reményeket.\n\nFedezd fel az Ő jelenlétének valóságát, miközben a Szentlélek vezetésével a belső gyógyulás és a szabadság útjára lépsz a kreatív mozgás által. Hagyd magad mögött a múlt terheit és indulj el egy kegyelemmel és reménységgel teljes jövő felé, miközben egyre mélyebben megismered Jézus szívét.",
             ],
             'prophetic-arts-sunday' => [
-                'title' => 'Jézus csodálatos szíve: Szabadság kreatív mozgás által - Dr. Kate Hartman',
+                'title' => 'Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által',
                 'short_description' => 'Fejezd ki az imádást és a prófétai kijelentést kreatív és vizuális művészeteken keresztül.',
-                'description' => 'Csatlakozz Dr. Kate Hartman-höz egy átformáló prófétai workshopra, amelynek középpontjában az Úr Jézus Krisztus áll – aki a lelked szerelmese, a megtört szívek gyógyítója és az összetört álmok helyreállítója. Tapasztald meg mély jelenlétét, miközben a Szent Szellem vezetésével a belső gyógyulás és az újonnan megtalált szabadság útjára lépsz a kreatív mozgás által. Engedd el a múltat, és lépj be egy dicsőséges, kegyelemmel és reménnyel teli jövőbe, ahogy találkozol Jézus csodálatos szívével.',
+                'description' => "Szeretettel hívunk Dr. Kate Hartman prófétai workshopjára, amelynek középpontjában Jézus Krisztus áll – aki szeretettel fordul hozzánk, meggyógyítja a megtört szívűeket és helyreállítja az összetört reményeket.\n\nFedezd fel az Ő jelenlétének valóságát, miközben a Szentlélek vezetésével a belső gyógyulás és a szabadság útjára lépsz a kreatív mozgás által. Hagyd magad mögött a múlt terheit és indulj el egy kegyelemmel és reménységgel teljes jövő felé, miközben egyre mélyebben megismered Jézus szívét.",
             ],
             'iris-global-alumni-gathering' => [
                 'title' => 'Iris Harvest School – egykori tanulók találkozója',
@@ -223,7 +223,7 @@ class HungarianContentSeeder extends Seeder
             ]],
             ['2026-10-24', 'Workshops', [
                 'title' => 'Workshopok',
-                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus csodálatos szíve: kreatív mozgás általi szabadság; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
+                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus gyönyörű szíve: szabadságra jutni a kreatív mozgás által; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-24', 'Saturday Evening Session', [
@@ -262,7 +262,7 @@ class HungarianContentSeeder extends Seeder
             ]],
             ['2026-10-25', 'Workshops', [
                 'title' => 'Workshopok',
-                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus csodálatos szíve: kreatív mozgás általi szabadság; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
+                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus gyönyörű szíve: szabadságra jutni a kreatív mozgás által; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-25', 'Closing Session', [
