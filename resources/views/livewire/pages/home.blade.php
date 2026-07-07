@@ -600,7 +600,7 @@
                                 :class="selected === '7500' ? 'border-(--alt-beige) bg-(--alt-beige)' : 'border-(--alt-beige)/30 group-hover:border-(--alt-beige)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === '7500'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '7500' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">{{ Number::currency(7500, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(7500 / 400)) }})</span></span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '7500' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">{{ Number::currency(7500, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(7500 / 400)) }}) {{ __('/ person') }}</span></span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
@@ -645,7 +645,7 @@
                                 :class="selected === '15000' ? 'border-(--alt-gold) bg-(--alt-gold)' : 'border-(--alt-gold)/30 group-hover:border-(--alt-gold)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === '15000'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '15000' ? 'text-(--alt-gold)' : 'text-white/50'">{{ Number::currency(15000, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(15000 / 400)) }})</span></span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === '15000' ? 'text-(--alt-gold)' : 'text-white/50'">{{ Number::currency(15000, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(15000 / 400)) }}) {{ __('/ person') }}</span></span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
