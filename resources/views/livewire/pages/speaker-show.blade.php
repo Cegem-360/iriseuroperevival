@@ -7,7 +7,7 @@
                 <svg class="w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
-                <a href="{{ route('speakers') }}" class="text-white/50 hover:text-white transition-colors">{{ __('Speakers') }}</a>
+                <span class="text-white/50">{{ __('Speakers') }}</span>
                 <svg class="w-4 h-4 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -127,7 +127,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
                         </a>
-                        <a href="{{ route('speakers') }}" class="btn-secondary">
+                        <a href="{{ route('home') }}#speakers" class="btn-secondary">
                             {{ __('View All Speakers') }}
                         </a>
                     </div>
