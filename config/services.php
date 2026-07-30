@@ -45,4 +45,8 @@ return [
     'currency' => [
         'eur_huf_rate' => (int) env('EUR_HUF_RATE', 400),
     ],
+
+    'cooltix' => [
+        'event_id' => env('COOLTIX_EVENT_ID', '6a6888eb3a4d47563e2af1ae'),
+    ],
 ];

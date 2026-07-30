@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="https://use.typekit.net/win4vqd.css">
     <link href="https://fonts.cdnfonts.com/css/abuget" rel="stylesheet">
 
+    {{-- Cooltix ticketing widget --}}
+    @if (config('services.cooltix.event_id'))
+        <script src="https://static.cooltix.com/widget.js" defer></script>
+    @endif
+
     {{-- Styles --}}
     @filamentStyles
     @vite('resources/css/app.css')

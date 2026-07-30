@@ -54,6 +54,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </a>
+                <x-cooltix-button variant="navy" size="md" />
                 <button @click="$dispatch('open-vision-modal')"
                     class="group inline-flex items-center gap-3 px-8 py-4 bg-gray-500/10 hover:bg-gray-500/20 backdrop-blur-sm border border-gray-500/20 text-gray-700 md:bg-(--alt-beige)/10 md:hover:bg-(--alt-beige)/20 md:border-(--alt-beige)/20 md:text-gray-700 font-heading font-semibold text-lg uppercase tracking-wider rounded-full transition-all duration-300">
                     <span class="w-10 h-10 bg-gray-500/15 md:bg-(--alt-beige)/20 rounded-full flex items-center justify-center group-hover:bg-gray-500/25 md:group-hover:bg-(--alt-beige)/30 transition-colors">
@@ -670,6 +671,12 @@
                         {{ __('Register Now') }}
                     </a>
                 </div>
+            </div>
+
+            {{-- Cooltix ticket purchase --}}
+            <div class="mt-10 text-center">
+                <p class="text-(--alt-beige-muted) mb-4">{{ __('You can also buy your ticket through our ticketing partner.') }}</p>
+                <x-cooltix-button variant="outline" size="md" />
             </div>
 
             @endif

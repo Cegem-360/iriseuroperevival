@@ -54,6 +54,9 @@
                 {{-- Language Switcher --}}
                 <x-language-switcher variant="dropdown" />
 
+                {{-- Cooltix Tickets Button --}}
+                <x-cooltix-button variant="navy" size="sm" class="font-semibold" />
+
                 {{-- Register Button --}}
                 <a href="{{ route('register') }}"
                    class="group inline-flex items-center gap-2 px-6 py-2.5 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-semibold text-base rounded-full transition-all duration-300 shadow-lg shadow-[#EE9B14]/20 hover:shadow-[#EE9B14]/30">
@@ -107,7 +110,9 @@
             </div>
 
             {{-- Mobile CTA --}}
-            <div class="pt-4">
+            <div class="pt-4 space-y-3">
+                <x-cooltix-button variant="navy" size="sm" class="w-full" @click="mobileMenuOpen = false" />
+
                 <a href="{{ route('register') }}" @click="mobileMenuOpen = false"
                    class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#EE9B14] hover:bg-[#d88b10] text-white font-bold rounded-full">
                     {{ __('Register Now') }}
