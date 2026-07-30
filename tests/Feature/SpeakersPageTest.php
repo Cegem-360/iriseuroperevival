@@ -16,10 +16,9 @@ beforeEach(function () {
 });
 
 describe('speakers listing page', function () {
-    it('renders speakers page successfully', function () {
+    it('is not publicly routable', function () {
         $this->get('/speakers')
-            ->assertStatus(200)
-            ->assertSeeLivewire(Speakers::class);
+            ->assertStatus(404);
     });
 
     it('displays featured speakers', function () {

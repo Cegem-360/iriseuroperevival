@@ -64,26 +64,13 @@ it('prices a 3-day group at 15000 HUF per person and stores no day', function ()
         ->and((int) $registration->amount)->toBe(8 * 15000 * 100);
 });
 
-it('rejects a group smaller than 5 people', function (): void {
-    Livewire::test(RegistrationForm::class, ['type' => 'attendee'])
-        ->fillForm([
-            'first_name' => 'Anna',
-            'last_name' => 'Kovács',
-            'email' => 'small@example.com',
-            'phone' => '+36301234567',
-            'country' => 'Hungary',
-            'city' => 'Budapest',
-            'ticket_kind' => 'group',
-            'group_duration' => '1_day',
-            'group_day' => 'friday',
-            'group_size' => 3,
-            'wants_to_evangelize' => 0,
-            'accepts_terms' => true,
-        ])
-        ->call('submit')
-        ->assertHasFormErrors(['group_size']);
+it('clamps a group smaller than 5 people up to the 5 person minimum', function (): void {
+    submitGroupForm(['email' => 'small@example.com', 'group_duration' => '1_day', 'group_day' => 'friday', 'group_size' => 3]);
 
-    expect(Registration::query()->where('email', 'small@example.com')->exists())->toBeFalse();
+    $registration = Registration::query()->where('email', 'small@example.com')->firstOrFail();
+
+    expect($registration->ticket_quantity)->toBe(5)
+        ->and((int) $registration->amount)->toBe(5 * 7500 * 100);
 });
 
 it('stores the chosen day for a 1-day individual ticket', function (): void {
