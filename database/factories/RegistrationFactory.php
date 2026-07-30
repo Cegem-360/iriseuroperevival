@@ -30,7 +30,8 @@ class RegistrationFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
-            'phone' => fake()->phoneNumber(),
+            /** Faker's phoneNumber() sometimes yields formats the admin form's tel() rule rejects. */
+            'phone' => '+3630' . fake()->numerify('#######'),
             'country' => fake()->randomElement(Country::cases())->value,
             'city' => fake()->city(),
             'ticket_type' => fake()->randomElement(['individual', 'team']),
