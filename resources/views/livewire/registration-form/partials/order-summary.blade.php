@@ -36,12 +36,26 @@
                         ({{ $dayLabels[$summary['day']] ?? '' }})
                     @endif
                 </span>
-                @if($amountHuf > 0)
+                @if($summary['rate'] > 0 && $summary['size'] > 1)
+                    <span>{{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }} / {{ __('ticket') }}</span>
+                @elseif($amountHuf > 0)
                     <span>{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }}</span>
                 @else
                     <span class="text-white/30">—</span>
                 @endif
             </div>
+            @if($summary['size'] > 1)
+                <div class="flex justify-between text-sm text-white/60">
+                    <span>{{ __('Number of Tickets') }}</span>
+                    <span>
+                        @if($summary['rate'] > 0)
+                            {{ $summary['size'] }} × {{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }}
+                        @else
+                            {{ $summary['size'] }}
+                        @endif
+                    </span>
+                </div>
+            @endif
         @endif
     </div>
 

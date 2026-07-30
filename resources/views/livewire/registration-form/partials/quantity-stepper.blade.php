@@ -1,9 +1,17 @@
+@php
+    $field ??= 'group_size';
+    $min ??= 5;
+    $label ??= __('Number of People');
+    $helper ??= __('Minimum 5 people. Enter the total number of participants.');
+@endphp
+
 <div
     x-data="{
-        get value() { return Math.max(5, parseInt($wire.get('data.group_size') || 5, 10)); },
+        min: {{ (int) $min }},
+        get value() { return Math.max(this.min, parseInt($wire.get('data.{{ $field }}') || this.min, 10)); },
         set(v) {
-            const n = Math.max(5, parseInt(v, 10) || 5);
-            $wire.set('data.group_size', n);
+            const n = Math.max(this.min, parseInt(v, 10) || this.min);
+            $wire.set('data.{{ $field }}', n);
         },
         decrement() { this.set(this.value - 1); },
         increment() { this.set(this.value + 1); },
@@ -11,7 +19,7 @@
     class="space-y-1"
 >
     <label class="block text-sm font-medium text-white/90">
-        {{ __('Number of People') }}
+        {{ $label }}
         <sup class="text-danger-400">*</sup>
     </label>
 
@@ -19,7 +27,7 @@
         <button
             type="button"
             @click="decrement()"
-            :disabled="value <= 5"
+            :disabled="value <= min"
             class="w-10 flex items-center justify-center text-white/70 hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             aria-label="{{ __('Decrease') }}"
         >
@@ -50,7 +58,11 @@
         </button>
     </div>
 
+    @error('data.' . $field)
+        <p class="text-sm text-danger-400">{{ $message }}</p>
+    @enderror
+
     <p class="text-xs text-white/50">
-        {{ __('Minimum 5 people. Enter the total number of participants.') }}
+        {{ $helper }}
     </p>
 </div>

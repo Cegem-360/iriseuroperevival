@@ -63,6 +63,17 @@
                 <dt class="text-white/60">{{ __('Number of People') }}</dt>
                 <dd class="text-white font-medium">{{ $summary['size'] }} × {{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }}</dd>
             </div>
+        @elseif($summary['size'] > 1)
+            <div class="flex justify-between">
+                <dt class="text-white/60">{{ __('Number of Tickets') }}</dt>
+                <dd class="text-white font-medium">
+                    @if($summary['rate'] > 0)
+                        {{ $summary['size'] }} × {{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }}
+                    @else
+                        {{ $summary['size'] }}
+                    @endif
+                </dd>
+            </div>
         @endif
         <div class="flex justify-between">
             <dt class="text-white/60">{{ __('Street Evangelism') }}</dt>

@@ -62,6 +62,7 @@ class RegistrationForm extends Component implements HasSchemas
             'ticket_kind' => 'individual',
             'ticket_duration' => in_array($duration, ['1_day', '3_days']) ? $duration : '1_day',
             'ticket_price_option' => in_array($price, ['7500', '15000', 'custom']) ? $price : ($duration === '3_days' ? '15000' : '7500'),
+            'individual_quantity' => 1,
             'group_duration' => '1_day',
             'group_size' => 5,
         ];
@@ -349,11 +350,31 @@ class RegistrationForm extends Component implements HasSchemas
                     ->default('individual')
                     ->live(),
 
-                SchemaView::make('livewire.registration-form.partials.group-size-stepper')
+                SchemaView::make('livewire.registration-form.partials.quantity-stepper')
+                    ->viewData([
+                        'field' => 'individual_quantity',
+                        'min' => 1,
+                        'label' => __('Number of Tickets'),
+                        'helper' => __('How many tickets would you like to buy in this order?'),
+                    ])
+                    ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual'),
+
+                Hidden::make('individual_quantity')
+                    ->default(1)
+                    ->rules(['integer', 'min:1']),
+
+                SchemaView::make('livewire.registration-form.partials.quantity-stepper')
+                    ->viewData([
+                        'field' => 'group_size',
+                        'min' => 5,
+                        'label' => __('Number of People'),
+                        'helper' => __('Minimum 5 people. Enter the total number of participants.'),
+                    ])
                     ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group'),
 
                 Hidden::make('group_size')
-                    ->default(5),
+                    ->default(5)
+                    ->rules(['integer', 'min:5']),
 
                 Radio::make('ticket_duration')
                     ->label(__('Access Duration'))
@@ -414,10 +435,10 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label(__('Custom Amount (HUF)'))
                     ->numeric()
                     ->required()
-                    ->minValue(fn (Get $get): int => $get('ticket_duration') === '3_days' ? 15001 : 7501)
+                    ->minValue(fn (Get $get): int => $this->individualBaseTotal($get('ticket_duration') ?? '1_day', (int) ($get('individual_quantity') ?? 1)) + 1)
                     ->step(1)
                     ->placeholder(__('e.g. 20000'))
-                    ->helperText(fn (Get $get): string => __('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency($get('ticket_duration') === '3_days' ? 15000 : 7500, 'HUF', app()->getLocale(), precision: 0)]))
+                    ->helperText(fn (Get $get): string => __('If you would like to support the event with an amount exceeding :amount.', ['amount' => Number::currency($this->individualBaseTotal($get('ticket_duration') ?? '1_day', (int) ($get('individual_quantity') ?? 1)), 'HUF', app()->getLocale(), precision: 0)]))
                     ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual' && $get('ticket_price_option') === 'custom')
                     ->live()
                     ->integer(),
@@ -635,7 +656,7 @@ class RegistrationForm extends Component implements HasSchemas
                 $ticketDuration = $data['ticket_duration'] ?? '1_day';
 
                 $registrationData['ticket_type'] = $ticketDuration;
-                $registrationData['ticket_quantity'] = 1;
+                $registrationData['ticket_quantity'] = max(1, (int) ($data['individual_quantity'] ?? 1));
                 $registrationData['is_group_ticket'] = false;
                 $registrationData['ticket_day'] = $ticketDuration === '1_day' ? ($data['individual_day'] ?? null) : null;
             }
@@ -703,6 +724,15 @@ class RegistrationForm extends Component implements HasSchemas
         return $groupDuration === '3_days' ? 15000 : 7500;
     }
 
+    /**
+     * Standard price (HUF) of an individual order, before any extra support:
+     * the per-ticket rate multiplied by the number of tickets bought.
+     */
+    protected function individualBaseTotal(string $ticketDuration, int $quantity): int
+    {
+        return ($ticketDuration === '3_days' ? 15000 : 7500) * max(1, $quantity);
+    }
+
     protected function calculateAmount(array $data): int
     {
         if (($data['ticket_kind'] ?? 'individual') === 'group') {
@@ -714,10 +744,12 @@ class RegistrationForm extends Component implements HasSchemas
 
         $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
         $ticketDuration = $data['ticket_duration'] ?? '1_day';
+        $quantity = max(1, (int) ($data['individual_quantity'] ?? 1));
+        $baseTotal = $this->individualBaseTotal($ticketDuration, $quantity);
 
         if ($priceOption === 'custom') {
             $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
-            $minAmount = $ticketDuration === '3_days' ? 15001 : 7501;
+            $minAmount = $baseTotal + 1;
 
             if ($customAmount < $minAmount) {
                 throw new Exception("Custom amount must be at least {$minAmount} Ft.");
@@ -727,8 +759,8 @@ class RegistrationForm extends Component implements HasSchemas
         }
 
         return match ($priceOption) {
-            '15000' => 1500000,
-            default => 750000,
+            '15000' => 15000 * $quantity * 100,
+            default => 7500 * $quantity * 100,
         };
     }
 
@@ -759,19 +791,25 @@ class RegistrationForm extends Component implements HasSchemas
 
         $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
         $ticketDuration = $data['ticket_duration'] ?? '1_day';
-        $minCustom = $ticketDuration === '3_days' ? 15000 : 7500;
+        $quantity = max(1, (int) ($data['individual_quantity'] ?? 1));
+        $minCustom = $this->individualBaseTotal($ticketDuration, $quantity);
 
-        $amountHuf = match ($priceOption) {
+        /** @var int $rate Per-ticket rate; 0 for a custom amount, which is a whole-order total. */
+        $rate = match ($priceOption) {
             '15000' => 15000,
-            'custom' => ($custom = (int) ($data['ticket_custom_amount'] ?? 0)) > $minCustom ? $custom : 0,
+            'custom' => 0,
             default => 7500,
         };
+
+        $amountHuf = $priceOption === 'custom'
+            ? (($custom = (int) ($data['ticket_custom_amount'] ?? 0)) > $minCustom ? $custom : 0)
+            : $rate * $quantity;
 
         return [
             'is_group' => false,
             'duration' => $ticketDuration,
-            'size' => 1,
-            'rate' => $amountHuf,
+            'size' => $quantity,
+            'rate' => $rate,
             'day' => $ticketDuration === '1_day' ? ($data['individual_day'] ?? null) : null,
             'amount_huf' => $amountHuf,
         ];
