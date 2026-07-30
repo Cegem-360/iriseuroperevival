@@ -12,6 +12,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 
 class RegistrationForm
@@ -60,7 +61,8 @@ class RegistrationForm
                                 'volunteer' => 'Volunteer',
                             ])
                             ->required()
-                            ->default('attendee'),
+                            ->default('attendee')
+                            ->live(),
                         Select::make('status')
                             ->label('Status')
                             ->options([
@@ -89,20 +91,50 @@ class RegistrationForm
                                 'team' => 'Group (10+)',
                                 'vip' => 'VIP',
                                 'volunteer' => 'Volunteer',
-                            ]),
+                            ])
+                            ->visible(fn (Get $get): bool => $get('type') !== 'volunteer'),
                         TextInput::make('ticket_quantity')
                             ->label('Quantity')
                             ->numeric()
                             ->default(1)
-                            ->minValue(1),
+                            ->minValue(1)
+                            ->visible(fn (Get $get): bool => $get('type') !== 'volunteer'),
                         TextInput::make('amount')
                             ->label('Amount (Ft)')
                             ->numeric()
                             ->suffix('Ft')
                             ->formatStateUsing(fn ($state) => $state ? $state / 100 : null)
-                            ->dehydrateStateUsing(fn ($state) => $state ? $state * 100 : null),
+                            ->dehydrateStateUsing(fn ($state) => $state ? $state * 100 : null)
+                            ->visible(fn (Get $get): bool => $get('type') !== 'volunteer'),
                     ])
                     ->columns(2),
+
+                Section::make('Volunteer Application')
+                    ->description('The areas this volunteer applied to serve in')
+                    ->schema([
+                        CheckboxList::make('service_areas')
+                            ->label('Service Areas')
+                            ->options([
+                                'Childcare' => __('Childcare'),
+                                'Ushers' => __('Ushers'),
+                                'Registration' => __('Registration'),
+                                'Merch' => __('Merch'),
+                                'Hospitality' => __('Hospitality'),
+                                'Tech & Media' => __('Tech & Media'),
+                                'Translators' => __('Translators'),
+                            ])
+                            ->columns(2)
+                            ->gridDirection('row')
+                            ->columnSpanFull(),
+                        Toggle::make('has_served_before')
+                            ->label('Has Served Before'),
+                        Textarea::make('previous_service_description')
+                            ->label('Previous Service Experience')
+                            ->rows(3)
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2)
+                    ->visible(fn (Get $get): bool => $get('type') === 'volunteer'),
 
                 Section::make('Ministry Team Details')
                     ->schema([
@@ -141,7 +173,8 @@ class RegistrationForm
                     ])
                     ->columns(2)
                     ->collapsible()
-                    ->collapsed(),
+                    ->collapsed()
+                    ->visible(fn (Get $get): bool => $get('type') === 'ministry'),
 
                 Section::make('Spiritual Background')
                     ->schema([
@@ -161,7 +194,8 @@ class RegistrationForm
                     ])
                     ->columns(2)
                     ->collapsible()
-                    ->collapsed(),
+                    ->collapsed()
+                    ->visible(fn (Get $get): bool => $get('type') === 'ministry'),
 
                 Section::make('References')
                     ->schema([
@@ -218,7 +252,8 @@ class RegistrationForm
                     ])
                     ->columns(2)
                     ->collapsible()
-                    ->collapsed(),
+                    ->collapsed()
+                    ->visible(fn (Get $get): bool => $get('type') === 'ministry'),
 
                 Section::make('Payment Information')
                     ->schema([
@@ -233,7 +268,8 @@ class RegistrationForm
                     ])
                     ->columns(2)
                     ->collapsible()
-                    ->collapsed(),
+                    ->collapsed()
+                    ->visible(fn (Get $get): bool => $get('type') !== 'volunteer'),
 
                 Section::make('Approval Information')
                     ->schema([
@@ -254,7 +290,8 @@ class RegistrationForm
                     ])
                     ->columns(2)
                     ->collapsible()
-                    ->collapsed(),
+                    ->collapsed()
+                    ->visible(fn (Get $get): bool => $get('type') !== 'attendee'),
 
                 Section::make('Admin Notes')
                     ->schema([
