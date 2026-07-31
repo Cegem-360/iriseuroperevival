@@ -6,18 +6,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-it('loads the cooltix widget script on the home page', function () {
-    $this->get('/')
-        ->assertOk()
-        ->assertSee('https://static.cooltix.com/widget.js', false);
-});
-
-it('renders cooltix ticket buttons with the configured event id', function () {
+it('embeds the cooltix product iframe for the configured event id', function () {
     config()->set('services.cooltix.event_id', 'test-event-id');
 
     $this->get('/')
         ->assertOk()
-        ->assertSee('data-cooltix-event-products="test-event-id"', false);
+        ->assertSee('https://cooltix.com/widget/event-products/test-event-id', false);
+});
+
+it('opens the cooltix modal from the ticket buttons', function () {
+    $this->get('/')
+        ->assertOk()
+        ->assertSee('new CustomEvent(\'open-cooltix-modal\')', false)
+        ->assertSee('x-on:open-cooltix-modal.window', false);
 });
 
 it('hides the cooltix widget when no event id is configured', function () {
@@ -25,13 +26,14 @@ it('hides the cooltix widget when no event id is configured', function () {
 
     $this->get('/')
         ->assertOk()
-        ->assertDontSee('static.cooltix.com/widget.js', false)
-        ->assertDontSee('data-cooltix-event-products', false);
+        ->assertDontSee('cooltix.com/widget/event-products', false)
+        ->assertDontSee('open-cooltix-modal', false);
 });
 
 it('translates the ticket button label', function () {
     $this->withSession(['locale' => 'hu'])
         ->get('/')
         ->assertOk()
-        ->assertSee('Jegyek megtekintése', false);
+        ->assertSee('Jegyek megtekintése', false)
+        ->assertSee('locale=hu', false);
 });

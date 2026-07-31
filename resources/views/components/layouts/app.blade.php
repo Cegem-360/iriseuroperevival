@@ -19,11 +19,6 @@
     <link rel="stylesheet" href="https://use.typekit.net/win4vqd.css">
     <link href="https://fonts.cdnfonts.com/css/abuget" rel="stylesheet">
 
-    {{-- Cooltix ticketing widget --}}
-    @if (config('services.cooltix.event_id'))
-        <script src="https://static.cooltix.com/widget.js" defer></script>
-    @endif
-
     {{-- Styles --}}
     @filamentStyles
     @vite('resources/css/app.css')
@@ -73,7 +68,10 @@
     <x-layouts.partials.footer />
 
     {{-- Vision Modal (See the Vision) --}}
-    @include('components.layouts.partials.vision-modal')
+    <x-layouts.partials.vision-modal />
+
+    {{-- Cooltix ticket purchase modal --}}
+    <x-layouts.partials.cooltix-modal />
 
     @filamentScripts
     @vite('resources/js/app.js')

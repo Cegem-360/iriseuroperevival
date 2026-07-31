@@ -20,7 +20,8 @@
 
 @if ($eventId)
     <button type="button"
-        data-cooltix-event-products="{{ $eventId }}"
+        x-data
+        x-on:click="window.dispatchEvent(new CustomEvent('open-cooltix-modal'))"
         {{ $attributes->class([
             'group inline-flex items-center justify-center gap-2 font-heading font-bold rounded-full transition-all duration-300 cursor-pointer',
             $variants[$variant] ?? $variants['primary'],
