@@ -47,6 +47,6 @@ return [
     ],
 
     'cooltix' => [
-        'event_id' => env('COOLTIX_EVENT_ID', '6a709ca138906814095ba608'),
+        'event_id' => env('COOLTIX_EVENT_ID'),
     ],
 ];

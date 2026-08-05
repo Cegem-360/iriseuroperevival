@@ -15,6 +15,8 @@ it('embeds the cooltix product iframe for the configured event id', function () 
 });
 
 it('opens the cooltix modal from the ticket buttons', function () {
+    config()->set('services.cooltix.event_id', 'test-event-id');
+
     $this->get('/')
         ->assertOk()
         ->assertSee('new CustomEvent(\'open-cooltix-modal\')', false)
@@ -30,7 +32,18 @@ it('hides the cooltix widget when no event id is configured', function () {
         ->assertDontSee('open-cooltix-modal', false);
 });
 
+it('is disabled by default when the COOLTIX_EVENT_ID env var is absent', function () {
+    expect(config('services.cooltix.event_id'))->toBeNull();
+
+    $this->get('/')
+        ->assertOk()
+        ->assertDontSee('cooltix.com/widget/event-products', false)
+        ->assertDontSee('open-cooltix-modal', false);
+});
+
 it('translates the ticket button label', function () {
+    config()->set('services.cooltix.event_id', 'test-event-id');
+
     $this->withSession(['locale' => 'hu'])
         ->get('/')
         ->assertOk()
