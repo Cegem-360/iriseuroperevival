@@ -125,19 +125,32 @@ class RegistrationsTable
                         ->label('Pass')
                         ->badge()
                         ->color(fn (?string $state): string => match ($state) {
-                            'individual' => 'gray',
-                            'team' => 'info',
-                            'vip' => 'warning',
-                            'volunteer' => 'success',
+                            '1_day' => 'info',
+                            '3_days' => 'success',
                             default => 'gray',
                         })
                         ->formatStateUsing(fn (?string $state): string => match ($state) {
-                            'individual' => 'Standard',
-                            'team' => 'Group',
-                            'vip' => 'VIP',
-                            'volunteer' => 'Volunteer',
+                            '1_day' => '1 Day',
+                            '3_days' => '3 Days',
                             default => $state ?? '-',
                         })
+                        ->sortable()
+                        ->toggleable(),
+                    TextColumn::make('ticket_day')
+                        ->label('Day')
+                        ->badge()
+                        ->color(fn (?string $state): string => match ($state) {
+                            'friday' => 'warning',
+                            'saturday' => 'info',
+                            'sunday' => 'success',
+                            default => 'gray',
+                        })
+                        ->formatStateUsing(fn (?string $state, Registration $record): string => match (true) {
+                            $state !== null => ucfirst($state),
+                            $record->ticket_type === '3_days' => 'Fri–Sun',
+                            default => '—',
+                        })
+                        ->sortable()
                         ->toggleable(),
                     TextColumn::make('ticket_quantity')
                         ->label('Qty')
@@ -377,10 +390,17 @@ class RegistrationsTable
                         'cancelled' => 'Cancelled',
                     ]),
                 SelectFilter::make('ticket_type')
-                    ->label('Ticket Type')
+                    ->label('Pass')
                     ->options([
-                        'individual' => 'Standard',
-                        'volunteer' => 'Volunteer',
+                        '1_day' => '1 Day',
+                        '3_days' => '3 Days',
+                    ]),
+                SelectFilter::make('ticket_day')
+                    ->label('Day')
+                    ->options([
+                        'friday' => 'Friday',
+                        'saturday' => 'Saturday',
+                        'sunday' => 'Sunday',
                     ]),
                 SelectFilter::make('country')
                     ->searchable()
