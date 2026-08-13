@@ -49,9 +49,10 @@ class HomePageSeeder extends Seeder
                 'sort_order' => 99,
             ],
             [
-                // Hungarian pastor added 2026-08-13 to fill Heidi's slot in the
-                // featured lineup. Base name is EN; HungarianContentSeeder
-                // supplies the HU name/title/org/bio.
+                // Hungarian pastor added 2026-08-13 to replace Heidi.
+                // Base name is EN; HungarianContentSeeder supplies the HU
+                // name/title/org/bio. sort_order=10 places him last in the
+                // featured lineup, after the international speakers.
                 'name' => 'Zsolt Szilágyi',
                 'slug' => 'szilagyi-zsolt',
                 'title' => 'Pastor',
@@ -61,7 +62,7 @@ class HomePageSeeder extends Seeder
                 'photo_path' => 'images/speakers/szilagyi-zsolt.webp',
                 'type' => 'speaker',
                 'is_featured' => true,
-                'sort_order' => 2,
+                'sort_order' => 10,
             ],
             [
                 'name' => 'Ben Fitzgerald',
