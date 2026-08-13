@@ -39,7 +39,7 @@
             <h2 class="text-2xl font-semibold text-white mt-8 mb-4">{{ __('Contact') }}</h2>
             <p class="text-white/70">
                 {{ __('For questions about these terms, please contact us at') }}:
-                <a href="mailto:info@europeRevival.com" class="text-primary-400 hover:text-primary-300">info@europeRevival.com</a>
+                <a href="mailto:info@iriseuroperevival.com" class="text-primary-400 hover:text-primary-300">info@iriseuroperevival.com</a>
             </p>
         </div>
     </div>

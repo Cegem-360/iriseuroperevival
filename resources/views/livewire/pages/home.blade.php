@@ -161,6 +161,8 @@
                     'awakening-music' => 'images/alt-style/awakening-worship.webp',
                     'mountain-people-worship' => 'images/alt-style/mountain-people.webp',
                     'iris-europe-worship' => 'images/alt-style/iris-europe-worship.webp',
+                    'mennyei-imadok' => 'images/alt-style/mennyei-imadok.webp',
+                    'alabastrom-worship' => 'images/alt-style/alabastrom-worship.webp',
                 ];
             @endphp
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -168,11 +170,11 @@
                     <a href="{{ route('speaker.show', $team->slug) }}"
                         class="group relative rounded-2xl overflow-hidden border border-(--alt-beige)/10 bg-(--alt-navy-dark) hover:border-(--alt-gold)/30 transition-all duration-300" style="aspect-ratio: 16/9;">
                         <img src="{{ Vite::asset('resources/' . ($worshipImages[$team->slug] ?? 'images/alt-style/awakening-worship.webp')) }}"
-                            alt="{{ $team->name }}"
+                            alt="{{ $team->t('name') }}"
                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-deeper)/80 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-5">
-                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $team->name }}</h4>
+                            <h4 class="font-heading text-xl font-bold uppercase tracking-wide text-(--alt-beige)">{{ $team->t('name') }}</h4>
                             @if ($team->t('organization'))
                                 <p class="text-(--alt-beige-muted) text-sm">{{ $team->t('organization') }}</p>
                             @endif
@@ -205,7 +207,7 @@
                         ['slug' => 'brian-valerie', 'photo' => 'images/alt-style/workshop-leaders/britton.webp', 'topic' => 'The Burning Generation: Living Like Jesus', 'workshop' => 'father-heart-of-god'],
                         ['slug' => 'tineke-bouwman', 'photo' => 'images/alt-style/workshop-leaders/tineke.webp', 'topic' => 'Prophetic Voice', 'workshop' => 'prophetic-ministry'],
                         ['slug' => 'katey-maddux', 'photo' => 'images/alt-style/workshop-leaders/katey.webp', 'topic' => 'Pioneering in Human Trafficking', 'workshop' => 'human-trafficking-awareness'],
-                        ['slug' => 'fernando-sousa', 'photo' => 'images/alt-style/workshop-leaders/sousa.webp', 'topic' => 'Freedom from Homosexuality', 'workshop' => null],
+                        ['slug' => 'fernando-sousa', 'photo' => 'images/alt-style/workshop-leaders/sousa.webp', 'topic' => __('Finding your identity'), 'workshop' => 'freedom-ministry'],
                     ];
                     $workshopSpeakers = \App\Models\Speaker::query()
                         ->whereIn('slug', collect($workshopCards)->pluck('slug'))

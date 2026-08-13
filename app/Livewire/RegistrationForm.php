@@ -64,7 +64,7 @@ class RegistrationForm extends Component implements HasSchemas
             'ticket_price_option' => in_array($price, ['7500', '15000', 'custom']) ? $price : ($duration === '3_days' ? '15000' : '7500'),
             'individual_quantity' => 1,
             'group_duration' => '1_day',
-            'group_size' => 5,
+            'group_size' => 2,
         ];
 
         if ($price === 'custom' && $amount && (int) $amount > 15000) {
@@ -341,12 +341,13 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->options([
                         'individual' => __('Individual Ticket'),
-                        'group' => __('Group Ticket (5+ people)'),
+                        'group' => __('Group Ticket (2+ people)'),
                     ])
                     ->descriptions([
                         'individual' => __('A single ticket for one person.'),
-                        'group' => __('One purchase for a group of 5 or more people.'),
+                        'group' => __('One purchase for a group of 2 or more people.'),
                     ])
+                    ->helperText(__('Admission is free for children under the age of 12, and no registration is required.'))
                     ->default('individual')
                     ->live(),
 
@@ -366,15 +367,15 @@ class RegistrationForm extends Component implements HasSchemas
                 SchemaView::make('livewire.registration-form.partials.quantity-stepper')
                     ->viewData([
                         'field' => 'group_size',
-                        'min' => 5,
+                        'min' => 2,
                         'label' => __('Number of People'),
-                        'helper' => __('Minimum 5 people. Enter the total number of participants.'),
+                        'helper' => __('Minimum 2 people. Enter the total number of participants.'),
                     ])
                     ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group'),
 
                 Hidden::make('group_size')
-                    ->default(5)
-                    ->rules(['integer', 'min:5']),
+                    ->default(2)
+                    ->rules(['integer', 'min:2']),
 
                 Radio::make('ticket_duration')
                     ->label(__('Access Duration'))
@@ -649,7 +650,7 @@ class RegistrationForm extends Component implements HasSchemas
                 $groupDuration = $data['group_duration'] ?? '1_day';
 
                 $registrationData['ticket_type'] = $groupDuration;
-                $registrationData['ticket_quantity'] = max(5, (int) ($data['group_size'] ?? 5));
+                $registrationData['ticket_quantity'] = max(2, (int) ($data['group_size'] ?? 2));
                 $registrationData['is_group_ticket'] = true;
                 $registrationData['ticket_day'] = $groupDuration === '1_day' ? ($data['group_day'] ?? null) : null;
             } else {
@@ -737,7 +738,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         if (($data['ticket_kind'] ?? 'individual') === 'group') {
             $rate = $this->groupPerPersonRate($data['group_duration'] ?? '1_day');
-            $size = max(5, (int) ($data['group_size'] ?? 5));
+            $size = max(2, (int) ($data['group_size'] ?? 2));
 
             return $size * $rate * 100;
         }
@@ -777,7 +778,7 @@ class RegistrationForm extends Component implements HasSchemas
         if (($data['ticket_kind'] ?? 'individual') === 'group') {
             $groupDuration = $data['group_duration'] ?? '1_day';
             $rate = $this->groupPerPersonRate($groupDuration);
-            $size = max(5, (int) ($data['group_size'] ?? 5));
+            $size = max(2, (int) ($data['group_size'] ?? 2));
 
             return [
                 'is_group' => true,

@@ -30,6 +30,7 @@ class WorkshopSeeder extends Seeder
         $yanRudy = Speaker::query()->where('slug', 'yan-rudy')->first();
         $fernando = Speaker::query()->where('slug', 'fernando-sousa')->first();
         $brianValerie = Speaker::query()->where('slug', 'brian-valerie')->first();
+        $irisGlobalLeaders = Speaker::query()->where('slug', 'iris-global-leaders')->first();
 
         $workshops = [
             [
@@ -141,11 +142,14 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 9,
             ],
             [
+                // Slug kept as 'freedom-ministry' for URL/DB stability; the
+                // display title changed 2026-08-13 per client to reflect the
+                // workshop's actual focus.
                 'slug' => 'freedom-ministry',
-                'title' => 'Freedom Ministry',
-                'short_description' => 'Walking in the freedom Christ purchased and helping others find their breakthrough.',
-                'description' => 'Fernando & Nathalia share powerful testimony and biblical teaching on finding freedom in Christ. Learn how to minister deliverance and inner healing with wisdom and compassion.',
-                'leader_name' => 'Fernando & Nathalia',
+                'title' => 'Finding your identity',
+                'short_description' => 'Identity, calling, and walking with Jesus in a simple, honest, practical way.',
+                'description' => 'What if purpose is less about finding the "right thing" and more about becoming who God created you to be? In this workshop, we\'ll explore identity, calling, and what it looks like to walk with Jesus in a simple, honest, and practical way.',
+                'leader_name' => 'Fernando Sousa',
                 'speaker_id' => $fernando?->id,
                 'schedule_note' => 'Saturday & Sunday',
                 'duration_minutes' => 90,
@@ -163,6 +167,20 @@ class WorkshopSeeder extends Seeder
                 'duration_minutes' => 90,
                 'difficulty_level' => 'all',
                 'sort_order' => 11,
+            ],
+            [
+                // Restored 2026-08-13 per client. Was previously deleted
+                // 2026-07-07 at earlier client request that they then reversed.
+                'slug' => 'iris-global-alumni-gathering',
+                'title' => 'Iris Global Alumni Gathering',
+                'short_description' => 'A special gathering for former students of the Iris Global Harvest School of Missions.',
+                'description' => 'Heidi Baker and the Iris missionaries host a special reunion for alumni of the Iris Global Harvest School of Missions. Reconnect, share your testimony, and be refreshed together.',
+                'leader_name' => 'Iris Global leaders',
+                'speaker_id' => $irisGlobalLeaders?->id,
+                'schedule_note' => 'Saturday & Sunday',
+                'duration_minutes' => 90,
+                'difficulty_level' => 'all',
+                'sort_order' => 12,
             ],
         ];
 

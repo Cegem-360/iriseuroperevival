@@ -68,10 +68,25 @@ class HungarianContentSeeder extends Seeder
                 'bio' => 'David eredetileg Zimbabwéből származik, jelenleg Svédországban él feleségével, Ingelával és két gyermekükkel. Misszionárius és a Kerusso Ministry alapítója Svédországban, valamint a Kerusso School alapítója Brazíliában, amelyet családjával együtt vezet. Több, mint két évtizede hirdeti a feltámadást és osztja meg az emberekkel erőteljes bizonyságát arról, hogy Isten meggyógyította őt egy súlyos beszédhibából, amely 21 éves koráig ellehetetlenítette számára a nyilvános beszédet. Azóta élő bizonyítéka annak, hogy Istennel semmi sem lehetetlen. Szolgáló szívű vezető, aki alázattal és szelídséggel, a Királytól kapott bölcsességgel bátorítja és vezeti az ébredésért elkötelezett embereket a világ különböző nemzeteiben.',
             ],
             'mary-pat-gokee' => [
-                'bio' => 'Mary Pat Gokee férjével együtt a Frontline Ministries International alapítói és vezető szolgálói, amely missziós, tanítási és lelki ébredést célzó munkát végez világszerte. Aktívan szolgál prédikátorként, tanítóként és missziós vezetőként az FMI keretein belül. Férjével együtt vezetik a Frontline Worship Center nevű gyülekezetet. A szolgálata kiterjed nemzetközi csapatmissziókra, gyülekezetalapításra, lelki ébredés elindítására szerte a világon. Emellett teret ad gyógyító alkalmaknak, képzéseknek és hitben növekedni vágyó hívők mentorálásának.',
+                'bio' => "A szeretet és az imádat által indíttatva, Mary Pat Gokee teljes szívéből szereti az Úr Jézust, és egész életét ennek a szeretetnek a kifejezésére szánja. Együttérző szívvel fordul az elveszettek és a megtörtek felé, ahogyan azt a Márk 12:30–31 és a Máté 10:7–9 is tanítja. Szolgálata során a prófétai tűzzel végzett evangelizációban jár, amely magában foglalja a prófétai közbenjárást, a tanítást és a szellemi javak átadását, valamint a gyógyulás és szabadulás szolgálatát.\n\nMary Pat és férje, William Gokee, a Frontline Ministries International (FMI) társalapítói és társigazgatói, valamint az Egyesült Államok Ohio államában található Frontline Church társpásztorai. Emellett megalapították a Redemption for Life szolgálatot is, amelynek célja az emberkereskedelem és más súlyos bántalmazások által érintett emberek megmentése és helyreállítása.\n\n1995 óta úttörő szerepet töltenek be Isten Királyságának nemzetközi szolgálataiban. Mary Pat számára öröm és elhívás a missziók vezetése, misszionáriusok képzése, valamint gyülekezetek és szolgálatok elindítása. Tanítja a hívőket arra, hogyan éljenek természetfeletti módon, továbbá vezetőket, prófétai közbenjárókat és aratómunkásokat képez. Világszerte a frontvonalban hirdeti az evangéliumot.",
             ],
             'baoyan-lam' => [
-                'bio' => "Lam Baoyan és Rudy Taslim misszionáriusok és építészek, a Living Oaks és a Genesis Architects alapítói, akik Szingapúrban élnek, de világszerte szolgálnak. Erős háttérrel rendelkeznek az építészet, az üzleti élet és a gazdasági szféra területén, és emellett elkötelezettek abban, hogy bemutassák: a szakmai kiválóság és Isten Királyságának értékei együtt képesek nemzeteket formálni és megváltoztatni.\n\nMunkájukban a tervezést, a stratégiai gondolkodást és a társadalmi felelősségvállalást ötvözik, hogy fenntartható megoldásokat hozzanak létre nehéz, válság sújtotta és háborús területeken is.\n\nHelyi gyülekezetekkel és vezetőkkel együttműködve kutakat, iskolákat, menedékhelyeket és közösségi épületeket hoznak létre, különösen olyan régiókban, ahol háború vagy kényszer elvándorlás zajlik. Emellett szívügyük a szegények és kiszolgáltatott emberek segítése, mert hisznek abban, hogy a valódi változás egyszerre kell, hogy rendszerszintű és szeretetteljes legyen.\n\nNemzetközileg elismertek humanitárius építészeti munkájukért, valamint azért, ahogyan összekapcsolják az üzleti világot és a missziót – gyakorlati módon hozva reményt, méltóságot és helyreállítást a rászoruló közösségekbe.",
+                'bio' => "Lam Baoyan és Rudy Taslim misszionáriusok, építészek, valamint a Living Oaks és a Genesis Architects alapítói. Szingapúri központtal szolgálnak világszerte. Erős építészeti, üzleti és piaci háttérrel rendelkeznek, és elkötelezettek amellett, hogy bemutassák: a szakmai kiválóság és a Királyság értékei miként járulhatnak hozzá nemzetek átalakulásához. Tervezési szemléletüket, stratégiai gondolkodásukat és társadalmi elkötelezettségüket ötvözve fenntartható megoldásokat valósítanak meg összetett, válságokkal sújtott és háborúk által érintett környezetekben.\n\nMunkájuk része kutak, iskolák, menedékhelyek és közösségi infrastruktúrák építése helyi gyülekezetekkel és vezetőkkel együttműködésben, különösen olyan térségekben, amelyeket konfliktusok és elvándorlás sújtanak. Eközben folyamatosan elkötelezetten szolgálják a szegényeket és kiszolgáltatott helyzetben lévőket, mert hisznek abban, hogy a valódi és tartós átalakulásnak egyszerre kell rendszerszintűnek és együttérzőnek lennie.\n\nNemzetközileg is elismerik őket a humanitárius építészet területén végzett vezető szerepükért, valamint azért, hogy hidat építenek az üzleti világ és a missziói szolgálat között. Munkájukon keresztül kézzelfogható reményt, méltóságot és helyreállítást visznek a rászoruló közösségekbe.",
+            ],
+            'fernando-sousa' => [
+                'bio' => 'Fernando Sousa az Iris Global lisszaboni gyülekezetének lelkipásztora. Szenvedélyesen szereti Jézust, örömét leli abban, hogy másokat segítsen elhívásuk felfedezésében és tanítvánnyá válásukban, és egy jó csésze kávéra sosem mond nemet.',
+            ],
+            'szilagyi-zsolt' => [
+                'name' => 'Szilágyi Zsolt',
+                'title' => 'Pásztor',
+                'organization' => 'Szabadkeresztény Gyülekezet pásztora',
+                'bio' => "Szilágyi Zsolt Magyarországon a pásztori szolgálat mellett a Nemzeti Prófétai Mozgalom egyik vezetője, amit másod magával alapított közel húsz éve.\n\nTeljes szívvel hiszi, hogy egy mindent átváltoztató ébredés előtt áll a magyar egyház. Ennek a látásnak a megvalósításáért országszerte számos keresztény felekezetekkel dolgoznak együtt.",
+            ],
+            'mennyei-imadok' => [
+                'name' => 'Mennyei imádók',
+            ],
+            'alabastrom-worship' => [
+                'name' => 'Alabástrom dicsőítő csapat',
             ],
             'katey-maddux' => [
                 'bio' => 'Katey Maddux Isten királyságának építője, aki elkötelezte magát, hogy segítsen a nőknek szabadságban, tisztán látásban, bátor engedelmességben élni és felfedezni Isten életükre és családjukra vonatkozó tervét. A Kingdom Business Collective alapítója, ami egy keresztény női vállalkozói és vezetői közösség, valamint alapítója a Mighty Warrior International nonprofit szervezetnek, ami az emberkereskedelem és a kizsákmányolás elleni küzdelem megelőzésére, a tudatosság növelésére és megoldási stratégiákra összpontosít. Munkája az üzleti élet, a szolgálat és a globális misszióra terjed ki, partneri kapcsolatokkal szerte a világon: Egyesült Államokban, Európában, Afrikában és Ázsiában.',
@@ -165,6 +180,11 @@ class HungarianContentSeeder extends Seeder
                 'title' => 'Iris Harvest School – egykori tanulók találkozója',
                 'short_description' => 'Különleges találkozó az Iris Global Harvest School of Missions egykori hallgatói számára. Csak azok jelentkezhetnek, akik tanultak az Iris Globalban.',
                 'description' => 'Heidi Baker és az Iris misszionáriusok különleges találkozót tartanak az Iris Global Harvest School of Missions egykori hallgatói számára. Kapcsolódj újra, oszd meg a bizonyságodat, és frissüljetek meg együtt.',
+            ],
+            'freedom-ministry' => [
+                'title' => 'Találd meg az identitásod!',
+                'short_description' => 'Identitás, elhívás, és őszinte, gyakorlatias Jézussal járás.',
+                'description' => 'Mi lenne, ha az célunk kevésbé arról szólna, hogy megtaláljuk „mi a helyes", hanem arról, hogy azzá váljunk, akinek Isten megteremtett bennünket? Ebben a workshopban az identitásról, az elhívásról és arról beszélgetünk, mit jelent egyszerűen, őszintén és gyakorlatiasan Jézussal járni.',
             ],
         ]);
     }
@@ -304,15 +324,15 @@ class HungarianContentSeeder extends Seeder
             ],
             'Will there be a livestream available?' => [
                 'question' => 'Lesz élő közvetítés?',
-                'answer' => 'Igen! A közös alkalmakat élőben közvetítjük azok számára, akik nem tudnak személyesen részt venni. Ennek ellenére mindenkit bátorítunk a személyes részvételre, hogy megtapasztalhassátok az ébredés légkörét és hogy lehetőségetek legyen arra, hogy személyesen szolgáljanak felétek.',
+                'answer' => 'Nem. Mindenkit bátorítunk a személyes részvételre, hogy megtapasztalhassátok az ébredés légkörét és hogy lehetőségetek legyen arra, hogy személyesen szolgáljanak felétek.',
             ],
             'What languages will be available?' => [
                 'question' => 'Milyen nyelven kerül megrendezésre a konferencia?',
-                'answer' => 'A konferencia angol és magyar nyelven kerül megrendezésre, szinkrontolmácsolással német, román és orosz nyelvekre. A helyszínen tolmácseszközöket biztosítunk.',
+                'answer' => 'A konferencia angol és magyar nyelven kerül megrendezésre. Kérés esetén más nyelveken is tudunk tolmácsolást biztosítani. Amennyiben ilyen igényed van, kérjük, jelezd felénk a központi e-mail címünkön keresztül.',
             ],
             'Is childcare available?' => [
                 'question' => 'Biztosítanak gyermekfelügyeletet?',
-                'answer' => 'Igen, a közös alkalmak alatt lesz felügyelet gyermekprogram 4-12 éves korig. A 4 év alatti gyermekek szülői felügyelettel maradhatnak a gyermekszolgálatba. A gyermekfelügyeletre előzetes regisztráció szükséges.',
+                'answer' => 'Nem.',
             ],
             'Are meals included?' => [
                 'question' => 'Az ár magában foglalja az étkezéseket?',
@@ -324,20 +344,15 @@ class HungarianContentSeeder extends Seeder
             ],
             'Where can I stay if I\'m coming for multiple days?' => [
                 'question' => 'Hol tudok megszállni, ha több napra érkezem?',
-                'answer' => 'Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Az eseményhez közeledve majd megosztjuk az ajánlott szállások listáját.',
+                'answer' => 'Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Ha szeretnél segítséget kérni szállásügyben, erre az e-mail címre küld üzenetet: darainagy.judith@smart-travel.hu',
             ],
             'How can I support the work of Iris?' => [
                 'question' => 'Hogyan támogathatom az Iris munkáját?',
                 'answer' => 'Ha szeretnéd támogatni az Iris küldetését, további információkat az iriskrakow.org oldalon találsz. Nagylelkűséged hozzájárul az Európa-szerte végzett munkánkhoz, segít fényt hozni a sötétségbe, gyógyulást a megtörteknek és Isten szeretetét azoknak, akiket senki sem szeret.',
             ],
-            'How do I apply for the Ministry Team?' => [
-                'question' => 'Hogyan jelentkezhetek a szolgálócsapatba?',
-                'answer' => 'A szolgálócsapatba való jelentkezés nyitva van! A jelentkezéshez ki kell töltened a jelentkezési lapot a bizonyságoddal és pásztori ajánlással együtt. A jóváhagyott csapattagok ingyenes részvételt kapnak a konferencián cserébe a gyógyító szobákban, prófétai szolgálatban vagy gyakorlati segítségnyújtásban való szolgálatért. Jelentkezési határidő: 2026. szeptember 1.',
-            ],
-            'Where will the conference be held?' => [
-                'question' => 'Hol kerül megrendezésre a konferencia?',
-                'answer' => 'A Europe Revival 2026 Budapesten kerül megrendezésre. A pontos helyszín és cím hamarosan elérhető lesz. Maradj velünk a frissítésekért!',
-            ],
+            // "How do I apply for the Ministry Team?" and the duplicate
+            // "Where will the conference be held?" were removed from the FAQ
+            // table on 2026-08-13 per client — HU entries deleted accordingly.
             // Ministry-team page FAQs (category = 'ministry') — stored as HTML so the
             // Filament RichEditor in the admin can edit them directly.
             'Where will the one-day training take place?' => [
