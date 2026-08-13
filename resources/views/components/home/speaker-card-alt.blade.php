@@ -14,7 +14,7 @@
     $photoSrc = $resolvedPortrait
         ? Vite::asset('resources/' . $resolvedPortrait)
         : ($speaker->photo_url ?? Vite::asset('resources/images/speakers/placeholder.webp'));
-    $overlayHeading = $workshopTopic ?? $speaker->name;
+    $overlayHeading = $workshopTopic ?? $speaker->t('name');
     $overlaySubheading = $workshopTopic ? null : ($titleOverride ?? $speaker->t('title'));
     $overlayBody = $workshopDescription ?? $speaker->t('bio');
 @endphp
@@ -23,13 +23,13 @@
     <a href="{{ route('speaker.show', $speaker->slug) }}"
         class="speaker-card group block{{ $hasDesignerPhoto ? ' no-gradient' : '' }}"
         style="border: 1px solid rgba(200, 160, 80, 0.15); aspect-ratio: 5/6;">
-        <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}"
+        <img src="{{ $photoSrc }}" alt="{{ $speaker->t('name') }}"
             class="absolute inset-0 w-full h-full object-cover {{ $hasDesignerPhoto ? 'sepia-[.2]' : '' }}">
         <div class="speaker-card-content {{ $hasDesignerPhoto ? 'text-right items-end max-w-[95%] ml-auto' : '' }}">
             @if ($workshopTopic)
                 <h3 class="text-lg font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $workshopTopic }}</h3>
             @else
-                <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->name }}</h3>
+                <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-heading font-bold uppercase tracking-wide text-(--alt-beige)">{{ $speaker->t('name') }}</h3>
                 @if ($titleOverride ?? $speaker->t('title'))
                     <p class="text-(--alt-beige-muted) text-sm">{{ $titleOverride ?? $speaker->t('title') }}</p>
                 @endif
@@ -97,7 +97,7 @@
                     x-transition:leave-end="opacity-0 scale-95">
                     {{-- Speaker Photo --}}
                     <div class="relative h-48 shrink-0">
-                        <img src="{{ $photoSrc }}" alt="{{ $speaker->name }}" class="w-full h-full object-cover {{ $hasDesignerPhoto ? 'sepia-[.2]' : '' }}">
+                        <img src="{{ $photoSrc }}" alt="{{ $speaker->t('name') }}" class="w-full h-full object-cover {{ $hasDesignerPhoto ? 'sepia-[.2]' : '' }}">
                         <div class="absolute inset-0 bg-linear-to-t from-(--alt-navy-dark) to-transparent"></div>
                         <button @click="bioOpen = false" class="absolute top-3 right-3 w-8 h-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -3,14 +3,14 @@
 <div class="relative group/card block">
     <a href="{{ route('speaker.show', $speaker->slug) }}" class="speaker-card group block">
         <img src="{{ $speaker->photo_url ?? Vite::asset('resources/images/speakers/placeholder.webp') }}"
-            alt="{{ $speaker->name }}">
+            alt="{{ $speaker->t('name') }}">
         <div class="speaker-card-content">
             @if ($workshopTopic)
                 <span class="badge-amber mb-2">{{ $workshopTopic }}</span>
             @elseif ($speaker->t('title'))
                 <span class="badge-{{ $speaker->is_featured ? 'amber' : 'info' }} mb-2">{{ __($speaker->t("title")) }}</span>
             @endif
-            <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-bold text-white">{{ $speaker->name }}</h3>
+            <h3 class="text-{{ $speaker->is_featured ? 'xl' : 'lg' }} font-bold text-white">{{ $speaker->t('name') }}</h3>
             @if ($speaker->t('organization'))
                 <p class="text-white/60 text-sm">{{ $speaker->t('organization') }}</p>
             @endif
@@ -41,7 +41,7 @@
             {{-- Content layer --}}
             <div
                 class="absolute inset-0 p-5 flex flex-col opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                <h4 class="text-white font-bold">{{ $speaker->name }}</h4>
+                <h4 class="text-white font-bold">{{ $speaker->t('name') }}</h4>
                 @if ($speaker->t('title'))
                     <span class="text-sky-400 text-xs font-medium mb-3">{{ __($speaker->t("title")) }}</span>
                 @endif
