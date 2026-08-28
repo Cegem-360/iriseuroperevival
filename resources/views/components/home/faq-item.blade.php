@@ -12,7 +12,14 @@
     </button>
     <div x-show="openFaq === {{ $index }}" x-collapse>
         <div class="accordion-content">
-            <p class="text-white/70">{!! nl2br(e($faq->t('answer'))) !!}</p>
+            @php $answer = (string) $faq->t('answer'); @endphp
+            <div class="text-white/70">
+                @if (str_starts_with(ltrim($answer), '<'))
+                    {!! $answer !!}
+                @else
+                    <p>{!! nl2br(e($answer)) !!}</p>
+                @endif
+            </div>
             {{ $slot }}
         </div>
     </div>
