@@ -86,9 +86,7 @@ class Home extends Component
         $scheduleItems = ScheduleItem::query()
             ->published()
             ->with('speaker')
-            ->orderBy('day')
-            ->orderBy('start_time')
-            ->orderBy('sort_order')
+            ->ordered()
             ->get()
             ->groupBy(fn (ScheduleItem $item) => Carbon::parse($item->day)->format('Y-m-d'));
 

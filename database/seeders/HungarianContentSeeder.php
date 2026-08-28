@@ -244,15 +244,17 @@ class HungarianContentSeeder extends Seeder
                 'description' => 'Lehetőséged van részt venni utcai evangelizációban: több csapattal fogunk Budapest különböző pontjaira kimenni, hogy megosszuk az evangéliumot és lássuk, ahogy emberek átadják az életüket Jézusnak. A jelentkezés a regisztrációt követően lehetséges; az esemény előtt néhány héttel e-mailben küldünk értesítést, amelyben megtalálod a jelentkezési űrlapot.',
             ]],
             ['2026-10-24', 'Booths & Merch', [
-                'title' => 'Standok & Ajándéktárgyak',
-                'location' => 'Előcsarnok',
+                'title' => 'Kiállítói standok és ajándéktárgyak',
+                'location' => 'Folyosó',
             ]],
             ['2026-10-24', 'Workshops 1', [
                 'title' => 'Workshopok 1',
+                'description' => '(Szenvedély, Cél, Tűz; Evangélizáció hatalommal; Ébredés és aratás; Jézusért lángoló generáció: Élj úgy mint Jézus; Üzleti misszió; Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által; Prófétai hang; Emberkereskedelem elleni küzdelem; Találd meg az identitásod!)',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-24', 'Workshops 2', [
                 'title' => 'Workshopok 2',
+                'description' => '(Szenvedély, Cél, Tűz; Evangélizáció hatalommal; Ébredés és aratás; Jézusért lángoló generáció: Élj úgy mint Jézus; Üzleti misszió; Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által; Prófétai hang; Emberkereskedelem elleni küzdelem; Találd meg az identitásod!)',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-24', 'Saturday Evening Session', [
@@ -268,8 +270,8 @@ class HungarianContentSeeder extends Seeder
                 'location' => 'Nagyterem',
             ]],
             ['2026-10-25', 'Booths & Merch', [
-                'title' => 'Standok & Ajándéktárgyak',
-                'location' => 'Előcsarnok',
+                'title' => 'Kiállítói standok és ajándéktárgyak',
+                'location' => 'Folyosó',
             ]],
             ['2026-10-25', 'Closing Session', [
                 'title' => 'Záró alkalom',

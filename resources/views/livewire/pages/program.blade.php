@@ -110,7 +110,7 @@
                                     <!-- Time (Mobile: inline, Desktop: side) -->
                                     <div class="hidden md:block w-1/2 {{ $isEven ? 'pl-12 text-left' : 'pr-12 text-right' }}">
                                         <span class="{{ $textColor }} font-medium">
-                                            {{ $item->start_time->format('g:ia') }} - {{ $item->end_time->format('g:ia') }}
+                                            {{ $item->start_time->format('H:i') }} - {{ $item->end_time->format('H:i') }}
                                         </span>
                                     </div>
 
@@ -119,7 +119,7 @@
                                         <div class="bg-navy-700/50 rounded-xl border border-navy-600 p-6 hover:border-sky-400/30 transition-colors">
                                             <!-- Mobile Time -->
                                             <span class="md:hidden {{ $textColor }} font-medium text-sm block mb-2">
-                                                {{ $item->start_time->format('g:ia') }} - {{ $item->end_time->format('g:ia') }}
+                                                {{ $item->start_time->format('H:i') }} - {{ $item->end_time->format('H:i') }}
                                             </span>
 
                                             <!-- Type Badge & Title -->

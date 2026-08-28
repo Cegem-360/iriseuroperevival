@@ -71,7 +71,7 @@ class WorkshopSeeder extends Seeder
             ],
             [
                 'slug' => 'prophetic-ministry',
-                'title' => 'Prophetic Ministry',
+                'title' => 'Prophetic Voice',
                 'short_description' => 'Grow in the prophetic gift and learn to minister with accuracy and love.',
                 'description' => 'Tineke Bouwman, a seasoned prophetic voice, teaches how to hear God\'s voice clearly, deliver prophetic words with accuracy and love, and grow in this vital gift for the building up of the body of Christ.',
                 'leader_name' => 'Tineke Bouwman',

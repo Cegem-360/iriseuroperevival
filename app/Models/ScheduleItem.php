@@ -61,7 +61,10 @@ class ScheduleItem extends Model
     #[Scope]
     protected function ordered($query)
     {
-        return $query->orderBy('day')->orderBy('start_time');
+        // sort_order dominates so admin (or a seeder) can override the natural
+        // time-based order for a specific block. start_time is the fallback
+        // for items that share a sort_order.
+        return $query->orderBy('day')->orderBy('sort_order')->orderBy('start_time');
     }
 
     #[Scope]
