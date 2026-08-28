@@ -347,7 +347,6 @@ class RegistrationForm extends Component implements HasSchemas
                         'individual' => __('A single ticket for one person.'),
                         'group' => __('One purchase for a group of 2 or more people.'),
                     ])
-                    ->helperText(__('Admission is free for children under the age of 12, and no registration is required.'))
                     ->default('individual')
                     ->live(),
 

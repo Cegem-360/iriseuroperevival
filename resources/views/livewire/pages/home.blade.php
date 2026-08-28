@@ -675,9 +675,9 @@
                 </div>
             </div>
 
-            {{-- Cooltix ticket purchase --}}
+            {{-- Under-12 notice (client request 2026-08-28) --}}
             <div class="mt-10 text-center">
-                <p class="text-(--alt-beige-muted) mb-4">{{ __('You can also buy your ticket through our ticketing partner.') }}</p>
+                <p class="text-(--alt-beige) text-xl md:text-2xl font-semibold mb-4">{{ __('Children under the age of 12 do not need to register, and admission is free.') }}</p>
                 <x-cooltix-button variant="outline" size="md" />
             </div>
 

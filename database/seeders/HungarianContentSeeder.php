@@ -203,12 +203,19 @@ class HungarianContentSeeder extends Seeder
             ['2026-10-22', 'Lunch Break', [
                 'title' => 'Ebédszünet',
             ]],
-            ['2026-10-23', 'Pastors & Leaders Session', [
-                'title' => 'Pásztorok & Vezetők alkalma',
-                'description' => 'Különleges találkozó pásztorok, szolgálati vezetők és üzletemberek számára kávéval, teával és frissítőkkel. Az előadáson való részvétel csak meghívóval lehetséges.',
-            ]],
+            // Friday (2026-10-23) — reworked 2026-08-28 per Dóri: pastors' meeting
+            // removed; three new timeslots.
             ['2026-10-23', 'Opening Session', [
                 'title' => 'Nyitó alkalom',
+                'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
+                'location' => 'Nagyterem',
+            ]],
+            ['2026-10-23', 'Workshops', [
+                'title' => 'Workshopok',
+                'location' => 'Több helyiség',
+            ]],
+            ['2026-10-23', 'Friday Main Session', [
+                'title' => 'Péntek esti főalkalom',
                 'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
                 'location' => 'Nagyterem',
             ]],
@@ -217,9 +224,9 @@ class HungarianContentSeeder extends Seeder
                 'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
                 'location' => 'Nagyterem',
             ]],
-            ['2026-10-24', 'Interactive Q&A Session', [
-                'title' => 'Interaktív kérdezz&felelek alkalom',
-                'description' => 'Interaktív K&F alkalom különleges vendégekkel',
+            ['2026-10-24', 'Saturday Afternoon Session', [
+                'title' => 'Szombat délutáni alkalom',
+                'description' => 'Dicséret, Vendégelőadó',
                 'location' => 'Nagyterem',
             ]],
             ['2026-10-24', 'Healing Rooms', [
@@ -236,14 +243,16 @@ class HungarianContentSeeder extends Seeder
                 'title' => 'Utcai evangelizálás',
                 'description' => 'Lehetőséged van részt venni utcai evangelizációban: több csapattal fogunk Budapest különböző pontjaira kimenni, hogy megosszuk az evangéliumot és lássuk, ahogy emberek átadják az életüket Jézusnak. A jelentkezés a regisztrációt követően lehetséges; az esemény előtt néhány héttel e-mailben küldünk értesítést, amelyben megtalálod a jelentkezési űrlapot.',
             ]],
-            ['2026-10-24', 'Merch & Ministry Booths', [
-                'title' => 'Ajándéktárgyak standjai',
-                'description' => 'Vásárolj a kiállított szolgálati ajándéktárgyainkból és kapcsolódj partner szervezeteinkhez.',
+            ['2026-10-24', 'Booths & Merch', [
+                'title' => 'Standok & Ajándéktárgyak',
                 'location' => 'Előcsarnok',
             ]],
-            ['2026-10-24', 'Workshops', [
-                'title' => 'Workshopok',
-                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus gyönyörű szíve: szabadságra jutni a kreatív mozgás által; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
+            ['2026-10-24', 'Workshops 1', [
+                'title' => 'Workshopok 1',
+                'location' => 'Több helyiség',
+            ]],
+            ['2026-10-24', 'Workshops 2', [
+                'title' => 'Workshopok 2',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-24', 'Saturday Evening Session', [
@@ -251,39 +260,16 @@ class HungarianContentSeeder extends Seeder
                 'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
                 'location' => 'Nagyterem',
             ]],
+            // Sunday (2026-10-25) — reworked 2026-08-28 per Dóri: only three items.
+            // Prayer / evangelism / workshops removed from Sunday.
             ['2026-10-25', 'Sunday Morning Main Session', [
                 'title' => 'Vasárnap reggeli főalkalom',
                 'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
                 'location' => 'Nagyterem',
             ]],
-            ['2026-10-25', 'Sunday Afternoon Session', [
-                'title' => 'Vasárnap délutáni alkalom',
-                'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
-                'location' => 'Nagyterem',
-            ]],
-            ['2026-10-25', 'Healing Rooms', [
-                'title' => 'Ima szoba (Szolgálat gyógyulásért)',
-                'description' => "15 perces személyes szolgálati alkalmak előzetes regisztrációval érhetők el. A jelentkezés a regisztrációt követően lehetséges; az esemény előtt néhány héttel e-mailben küldünk értesítést, amelyben megtalálod a jelentkezési űrlapot.\n\nFelhívjuk a figyelmed, hogy a helyek száma korlátozott, a jelentkezéseket beérkezési sorrendben fogadjuk.",
-                'location' => 'Ima szoba',
-            ]],
-            ['2026-10-25', 'Prophetic Rooms', [
-                'title' => 'Ima szoba (Prófétai szolgálat)',
-                'description' => "15 perces személyes szolgálati alkalmak előzetes regisztrációval érhetők el. A jelentkezés a regisztrációt követően lehetséges; az esemény előtt néhány héttel e-mailben küldünk értesítést, amelyben megtalálod a jelentkezési űrlapot.\n\nFelhívjuk a figyelmed, hogy a helyek száma korlátozott, a jelentkezéseket beérkezési sorrendben fogadjuk.",
-                'location' => 'Ima szoba',
-            ]],
-            ['2026-10-25', 'Street Evangelism', [
-                'title' => 'Utcai evangelizálás',
-                'description' => 'Lehetőséged van részt venni utcai evangelizációban: több csapattal fogunk Budapest különböző pontjaira kimenni, hogy megosszuk az evangéliumot és lássuk, ahogy emberek átadják az életüket Jézusnak. A jelentkezés a regisztrációt követően lehetséges; az esemény előtt néhány héttel e-mailben küldünk értesítést, amelyben megtalálod a jelentkezési űrlapot.',
-            ]],
-            ['2026-10-25', 'Merch & Ministry Booths', [
-                'title' => 'Ajándéktárgyak standjai',
-                'description' => 'Vásárolj a kiállított szolgálati ajándéktárgyainkból és kapcsolódj partner szervezeteinkhez.',
+            ['2026-10-25', 'Booths & Merch', [
+                'title' => 'Standok & Ajándéktárgyak',
                 'location' => 'Előcsarnok',
-            ]],
-            ['2026-10-25', 'Workshops', [
-                'title' => 'Workshopok',
-                'description' => 'Különböző workshopok közül választhatsz: Szenvedély, cél, tűz; Evangélizálás hatalommal; Ébredés és aratás; Isten atyai szíve; Üzleti missziók; Jézus gyönyörű szíve: szabadságra jutni a kreatív mozgás által; Prófétai hang; Jézusért lángoló generáció: Élj úgy mint Jézus; Emberkereskedelem valamint Iris Global tanulói részére találkozó.',
-                'location' => 'Több helyiség',
             ]],
             ['2026-10-25', 'Closing Session', [
                 'title' => 'Záró alkalom',
@@ -345,6 +331,10 @@ class HungarianContentSeeder extends Seeder
             'Where can I stay if I\'m coming for multiple days?' => [
                 'question' => 'Hol tudok megszállni, ha több napra érkezem?',
                 'answer' => 'Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Ha szeretnél segítséget kérni szállásügyben, erre az e-mail címre küld üzenetet: darainagy.judith@smart-travel.hu',
+            ],
+            'Useful information for your stay' => [
+                'question' => 'Hasznos információk a tartózkodáshoz',
+                'answer' => '<p><a href="/downloads/budapest-useful-information.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Töltsd le a hasznos információkat: BUDAPEST – USEFUL INFORMATION FOR YOUR STAY.pdf</a></p>',
             ],
             'How can I support the work of Iris?' => [
                 'question' => 'Hogyan támogathatom az Iris munkáját?',
