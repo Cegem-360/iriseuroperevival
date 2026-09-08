@@ -8,7 +8,7 @@
                     <img src="{{ Vite::asset('resources/images/iris-krakow-logo.webp') }}" alt="Iris Krakow" class="h-14">
                 </a>
                 <p class="text-white/50 text-sm leading-relaxed max-w-md mb-6">
-                    {{ __('Europe Revival 2026 is brought to you by Iris Krakow, part of Iris Global, a Christ-centred missions organization bringing light to the darkness, healing to the broken and love to the unloved. One person at a time.') }}
+                    {{ __('Europe Revival 2026 is brought to you by Iris Krakow, part of Iris Global, a Christ-centred missions organization bringing light to the darkness, healing to the broken and love to the unloved.') }}
                 </p>
                 {{-- Social Links --}}
                 <div class="flex items-center gap-4">

@@ -26,7 +26,7 @@
 
             {{-- Description --}}
             <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
-                {!! __('A three-day gathering to encounter Jesus, fall deeply in love with Him, and be sent to carry His heart for the lost across Europe.') !!}
+                {!! __('Encounter Jesus and let your passion for Him be rekindled!<br>Discover God\'s calling and carry His love across Europe.') !!}
             </p>
 
             {{-- Title Image --}}
@@ -677,7 +677,10 @@
 
             {{-- Under-12 notice (client request 2026-08-28) --}}
             <div class="mt-10 text-center">
-                <p class="text-(--alt-beige) text-xl md:text-2xl font-semibold mb-4">{{ __('Children under the age of 12 do not need to register, and admission is free.') }}</p>
+                <p class="text-(--alt-beige) text-xl md:text-2xl font-semibold mb-2">{{ __('Children under the age of 12 do not need to register, and admission is free.') }}</p>
+                <p class="text-(--alt-beige-muted) mb-4">
+                    <a href="#faq" class="hover:text-(--alt-beige) underline underline-offset-2 transition-colors">{{ __('You can find the accommodation options in the "Question & Answers" section.') }}</a>
+                </p>
                 <x-cooltix-button variant="outline" size="md" />
             </div>
 

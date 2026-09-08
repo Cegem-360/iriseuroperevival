@@ -332,7 +332,7 @@ class HungarianContentSeeder extends Seeder
             ],
             'Where can I stay if I\'m coming for multiple days?' => [
                 'question' => 'Hol tudok megszállni, ha több napra érkezem?',
-                'answer' => 'Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Ha szeretnél segítséget kérni szállásügyben, erre az e-mail címre küld üzenetet: darainagy.judith@smart-travel.hu',
+                'answer' => '<p>Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Ha szeretnél segítséget kérni szállásügyben, erre az e-mail címre küld üzenetet: darainagy.judith@smart-travel.hu</p><p>A közelben az alábbi szálláshelyeket ajánljuk figyelmedbe: <a href="/downloads/accommodations-budapest-iris-2026.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Accomodations_Budapest_Iris_2026.pdf</a></p>',
             ],
             'Useful information for your stay' => [
                 'question' => 'Hasznos információk a tartózkodáshoz',

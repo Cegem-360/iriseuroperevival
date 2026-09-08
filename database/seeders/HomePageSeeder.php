@@ -306,7 +306,9 @@ class HomePageSeeder extends Seeder
             ],
             [
                 'question' => 'Where can I stay if I\'m coming for multiple days?',
-                'answer' => 'Budapest offers a wide range of accommodation options in different price categories, from affordable hostels and Airbnb apartments to hotels located near the venue. If you would like assistance with accommodation, please send an email to: darainagy.judith@smart-travel.hu.',
+                // Client 2026-09-08: added the nearby-accommodation PDF link.
+                // Stored as HTML — faq-item.blade.php renders answers that start with "<".
+                'answer' => '<p>Budapest offers a wide range of accommodation options in different price categories, from affordable hostels and Airbnb apartments to hotels located near the venue. If you would like assistance with accommodation, please send an email to: darainagy.judith@smart-travel.hu.</p><p>We recommend the following accommodation options nearby: <a href="/downloads/accommodations-budapest-iris-2026.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Accomodations_Budapest_Iris_2026.pdf</a></p>',
                 'category' => 'general',
                 'sort_order' => 4,
                 'is_published' => true,
