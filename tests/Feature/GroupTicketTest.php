@@ -64,7 +64,7 @@ it('prices a 3-day group at 15000 HUF per person and stores no day', function ()
         ->and((int) $registration->amount)->toBe(8 * 15000 * 100);
 });
 
-it('rejects a group smaller than 5 people even when the hidden field is tampered with', function (): void {
+it('rejects a group smaller than 2 people even when the hidden field is tampered with', function (): void {
     Livewire::test(RegistrationForm::class, ['type' => 'attendee'])
         ->fillForm([
             'first_name' => 'Anna',
@@ -76,7 +76,7 @@ it('rejects a group smaller than 5 people even when the hidden field is tampered
             'ticket_kind' => 'group',
             'group_duration' => '1_day',
             'group_day' => 'friday',
-            'group_size' => 3,
+            'group_size' => 1,
             'wants_to_evangelize' => 0,
             'accepts_terms' => true,
         ])
