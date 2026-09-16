@@ -35,7 +35,7 @@ class HomePageSeeder extends Seeder
                 'sort_order' => 1,
             ],
             [
-                // Added 2026-09-16 per Dóri. Takes the sort_order=2 slot.
+                // Added 2026-09-16 per Dóri. Last in the featured lineup.
                 'name' => 'Mattheus van der Steen',
                 'slug' => 'mattheus-van-der-steen',
                 'title' => 'Evangelist',
@@ -45,7 +45,7 @@ class HomePageSeeder extends Seeder
                 'photo_path' => 'images/speakers/mattheus-van-der-steen.webp',
                 'type' => 'speaker',
                 'is_featured' => true,
-                'sort_order' => 2,
+                'sort_order' => 11,
             ],
             [
                 // Heidi cannot attend; hidden from public via is_featured=false
