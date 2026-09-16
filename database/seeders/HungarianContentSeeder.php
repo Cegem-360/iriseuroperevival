@@ -273,6 +273,27 @@ class HungarianContentSeeder extends Seeder
                 'title' => 'Kiállítói standok és ajándéktárgyak',
                 'location' => 'Folyosó',
             ]],
+            // Re-added 2026-09-16 per Dóri — these were removed from Sunday on
+            // 2026-08-28 at her request, then requested back.
+            ['2026-10-25', 'Street Evangelism', [
+                'title' => 'Utcai evangelizálás',
+            ]],
+            ['2026-10-25', 'Workshops 1', [
+                'title' => 'Workshopok 1',
+                'location' => 'Több helyiség',
+            ]],
+            ['2026-10-25', 'Workshops 2', [
+                'title' => 'Workshopok 2',
+                'location' => 'Több helyiség',
+            ]],
+            ['2026-10-25', 'Healing Rooms', [
+                'title' => 'Ima szoba (Szolgálat gyógyulásért)',
+                'location' => 'Ima szoba',
+            ]],
+            ['2026-10-25', 'Prophetic Rooms', [
+                'title' => 'Ima szoba (Prófétai szolgálat)',
+                'location' => 'Ima szoba',
+            ]],
             ['2026-10-25', 'Closing Session', [
                 'title' => 'Záró alkalom',
                 'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
