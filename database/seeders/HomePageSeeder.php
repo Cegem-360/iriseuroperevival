@@ -25,7 +25,7 @@ class HomePageSeeder extends Seeder
             [
                 'name' => 'Mel Tari',
                 'slug' => 'mel-tari',
-                'title' => 'Special Guest',
+                'title' => 'Evangelist',
                 'organization' => 'Author, Like a Mighty Wind',
                 'country' => 'Indonesia',
                 'bio' => 'Indonesian born Mel Tari—affectionately known as "Papa Mel"—is a general of the faith. With a passionate zeal for God, Papa Mel is a sent out one that sprinkles the nations—and in turn—sends out masses into the harvest field, stoking the fires of revival through empowering, championing, divinely connecting, and building up the body. As the "Papa", he has been speaking at Iris Europe camps since their inception in 2021. Papa Mel is the author of "Like a Mighty Wind" that has inspired millions across the world.',
@@ -33,6 +33,19 @@ class HomePageSeeder extends Seeder
                 'type' => 'speaker',
                 'is_featured' => true,
                 'sort_order' => 1,
+            ],
+            [
+                // Added 2026-09-16 per Dóri. Takes the sort_order=2 slot.
+                'name' => 'Mattheus van der Steen',
+                'slug' => 'mattheus-van-der-steen',
+                'title' => 'Evangelist',
+                'organization' => 'Founder, Harvest Fields Network',
+                'country' => 'United States',
+                'bio' => "Mattheus van der Steen is a global evangelist, revivalist, and visionary leader with a burning passion to see Jesus glorified in every nation. From war zones in Kosovo to stadiums in Asia, his ministry has seen thousands saved, healed, and empowered by the Holy Spirit.\n\nHe is the founder of Harvest Fields Network and the School of Supernatural Heroes, a key leader in Europe Shall Be Saved, and part of the Empowered21 Global Council. Together with his wife Laura, he leads the EveryOne Thailand initiative and the Asia Shall Be Saved movement.\n\nNow based in Florida, USA, Mattheus helps oversee the Christ for All Nations School of Ministry, raising up a new generation of fire-filled evangelists. He is also a bestselling author of Dare to Dream, The Process, and The Power of Jesus' Blood Covenant.\n\nMattheus and Laura are parents to five children and are fully committed to revival, the harvest, and preparing the Church for the return of Jesus.\n\n\"This is not the time to play church—this is the time to shake nations!\" — Mattheus van der Steen",
+                'photo_path' => 'images/speakers/mattheus-van-der-steen.webp',
+                'type' => 'speaker',
+                'is_featured' => true,
+                'sort_order' => 2,
             ],
             [
                 // Heidi cannot attend; hidden from public via is_featured=false

@@ -52,6 +52,11 @@ class HungarianContentSeeder extends Seeder
                 'organization' => '„Like a Mighty Wind” c. könyv szerzője',
                 'bio' => 'Az indonéz születésű Mel Tari – akit sokan csak Papa Melnek hívnak – egy valódi hadvezér a hitben. Papa Mel Isten küldöttje, tele szenvedéllyel. A nemzetek felé szolgál, tömegeket küld ki az aratás mezejére, lángra lobbantva az ébredés tüzét azáltal, hogy megerősít, pártfogol, isteni kapcsolatokat teremt és építi Krisztus testét. Rendszeres előadója nyári táborainknak a 2021-es kezdetek óta. Papa Mel a „Like a Mighty Wind” c. könyv szerzője, amely világszerte milliókra volt hatással.',
             ],
+            'mattheus-van-der-steen' => [
+                'title' => 'Evangélista',
+                'organization' => 'A Harvest Fields Network alapítója',
+                'bio' => "Mattheus van der Steen nemzetközi evangélista, akinek szenvedélyes vágya, hogy Jézus minden nemzetben megdicsőüljön. A koszovói háborús övezetektől az ázsiai stadionokig szolgálata során ezrek tértek meg, gyógyultak meg és nyertek erőt a Szentlélek által.\n\nMattheus, a Harvest Fields Network és a School of Supernatural Heroes alapítója, az Europe Shall Be Saved egyik meghatározó vezetője, valamint az Empowered21 Global Council tagja. Feleségével, Laurával együtt vezeti az EveryOne Thailand kezdeményezést és az Asia Shall Be Saved mozgalmat.\n\nJelenleg az Egyesült Államokban, Floridában él, és részt vesz a Christ for All Nations School of Ministry felügyeletében, ahol a tűzzel és szenvedéllyel teljes evangélisták új generációját készítik fel a szolgálatra. Emellett a Dare to Dream, a The Process és a The Power of Jesus' Blood Covenant című sikerkönyvek szerzője.\n\nMattheus és Laura öt gyermek szülei, és teljes szívvel elkötelezettek az ébredés, az aratás, valamint az Egyház Jézus visszajövetelére való felkészítése mellett.\n\n„Ez nem az az idő, amikor csak eljátsszuk, hogy egyház vagyunk – ez az idő arra való, hogy megrázzuk a nemzeteket!” — Mattheus van der Steen",
+            ],
             'heidi-baker' => [
                 'title' => 'Misszionárius',
                 'organization' => 'Iris Global társalapítója',
