@@ -15,6 +15,13 @@
 3. {{ __('Keep an eye on your email for important updates') }}
 </x-mail::panel>
 
+{{ __('Please join the following WhatsApp groups, as we will be sharing and communicating all information related to the service with you through these groups going forward.') }}
+
+{{ __('Please make sure to join so that you don’t miss any of the latest updates and important information. Thank you!') }}
+
+- [https://chat.whatsapp.com/IHKiCvnyy5Q3fpPytkYBe8?mode=gi_t](https://chat.whatsapp.com/IHKiCvnyy5Q3fpPytkYBe8?mode=gi_t)
+- [https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t](https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t)
+
 {{ __('If you have any questions, please do not hesitate to reach out to us.') }}
 
 {{ __('We look forward to meeting you!') }}

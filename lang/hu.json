@@ -347,7 +347,6 @@
     "Ministry Details": "Szolgálati adatok",
     "Name of the person who invited you": "A meghívó személy neve",
     "Name of the school": "Iskola neve",
-    "Number of Tickets": "Jegyek száma",
     "Occupation": "Foglalkozás",
     "Personal Information": "Személyes adatok",
     "Phone Number": "Telefonszám",
@@ -664,5 +663,7 @@
     "Europe Revival 2026 and its organizers are not liable for any personal injury, loss, or damage to personal property during the event.": "A Europe Revival 2026 és annak szervezői nem vállalnak felelősséget a rendezvény során bekövetkező személyi sérülésekért, veszteségekért vagy a személyes tulajdonban keletkezett károkért.",
     "For questions about these terms, please contact us at": "Amennyiben kérdése van a jelen feltételekkel kapcsolatban, kérjük, vegye fel velünk a kapcsolatot az alábbi e-mail címen",
     "Minimum :amount": "Legalább :amount",
-    "/ person": "/ fő"
+    "/ person": "/ fő",
+    "Please join the following WhatsApp groups, as we will be sharing and communicating all information related to the service with you through these groups going forward.": "Kérlek, csatlakozz az alábbi WhatsApp-csoportokhoz, mivel a szolgálattal kapcsolatos információkat a továbbiakban ezeken a csoportokon keresztül fogjuk megosztani és kommunikálni veled.",
+    "Please make sure to join so that you don’t miss any of the latest updates and important information. Thank you!": "Kérlek, csatlakozz, hogy ne maradj le a legfrissebb információkról és fontos tudnivalókról. Köszönjük!"
 }
