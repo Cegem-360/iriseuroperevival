@@ -320,7 +320,7 @@ class HungarianContentSeeder extends Seeder
             ],
             'Is childcare available?' => [
                 'question' => 'Biztosítanak gyermekfelügyeletet?',
-                'answer' => 'Nem.',
+                'answer' => 'Nem, viszont lesz egy külön helyiség, ahová a gyermekekkel el lehet vonulni, és ahol lehetőség lesz őket megetetni vagy babakocsiba elaltatni.',
             ],
             'Are meals included?' => [
                 'question' => 'Az ár magában foglalja az étkezéseket?',
@@ -332,7 +332,7 @@ class HungarianContentSeeder extends Seeder
             ],
             'Where can I stay if I\'m coming for multiple days?' => [
                 'question' => 'Hol tudok megszállni, ha több napra érkezem?',
-                'answer' => '<p>Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Ha szeretnél segítséget kérni szállásügyben, erre az e-mail címre küld üzenetet: darainagy.judith@smart-travel.hu</p><p>A közelben az alábbi szálláshelyeket ajánljuk figyelmedbe: <a href="/downloads/accommodations-budapest-iris-2026.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Accomodations_Budapest_Iris_2026.pdf</a></p>',
+                'answer' => '<p>Budapest széles választékban kínál szálláslehetőségeket különböző árkategóriákban, a megfizethető hostelektől kezdve, az Airbnb apartmanoktól át a helyszín közelében lévő szállodákig. Ha szeretnél segítséget kérni szállásügyben, erre az e-mail címre küld üzenetet: darainagy.judith@smart-travel.hu</p><p>A közelben az alábbi szálláshelyeket ajánljuk figyelmedbe: <a href="/downloads/accommodations-budapest-iris-2026.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Accomodations_Budapest_Iris_2026.pdf</a></p><ul class="list-disc list-inside mt-2 space-y-1"><li><a href="https://www.danubiushotels.com/en/europe-revival-2026-arena" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Danubius Hotel Arena</a></li><li><a href="https://www.danubiushotels.com/en/europe-revival-2026-hungaria" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Danubius Hotel Hungaria</a></li></ul>',
             ],
             'Useful information for your stay' => [
                 'question' => 'Hasznos információk a tartózkodáshoz',

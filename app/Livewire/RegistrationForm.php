@@ -528,7 +528,6 @@ class RegistrationForm extends Component implements HasSchemas
                     ->helperText(__('Select the areas where you would like to serve (you can choose more than one)'))
                     ->required()
                     ->options([
-                        'Childcare' => __('Childcare'),
                         'Ushers' => __('Ushers'),
                         'Registration' => __('Registration'),
                         'Merch' => __('Merch'),

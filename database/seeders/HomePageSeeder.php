@@ -308,7 +308,7 @@ class HomePageSeeder extends Seeder
                 'question' => 'Where can I stay if I\'m coming for multiple days?',
                 // Client 2026-09-08: added the nearby-accommodation PDF link.
                 // Stored as HTML — faq-item.blade.php renders answers that start with "<".
-                'answer' => '<p>Budapest offers a wide range of accommodation options in different price categories, from affordable hostels and Airbnb apartments to hotels located near the venue. If you would like assistance with accommodation, please send an email to: darainagy.judith@smart-travel.hu.</p><p>We recommend the following accommodation options nearby: <a href="/downloads/accommodations-budapest-iris-2026.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Accomodations_Budapest_Iris_2026.pdf</a></p>',
+                'answer' => '<p>Budapest offers a wide range of accommodation options in different price categories, from affordable hostels and Airbnb apartments to hotels located near the venue. If you would like assistance with accommodation, please send an email to: darainagy.judith@smart-travel.hu.</p><p>We recommend the following accommodation options nearby: <a href="/downloads/accommodations-budapest-iris-2026.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Accomodations_Budapest_Iris_2026.pdf</a></p><ul class="list-disc list-inside mt-2 space-y-1"><li><a href="https://www.danubiushotels.com/en/europe-revival-2026-arena" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Danubius Hotel Arena</a></li><li><a href="https://www.danubiushotels.com/en/europe-revival-2026-hungaria" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Danubius Hotel Hungaria</a></li></ul>',
                 'category' => 'general',
                 'sort_order' => 4,
                 'is_published' => true,
@@ -329,7 +329,7 @@ class HomePageSeeder extends Seeder
             ],
             [
                 'question' => 'Is childcare available?',
-                'answer' => 'No.',
+                'answer' => 'No, however, there will be a separate room where parents can retreat with their children, with the opportunity to feed them or put them to sleep in their stroller.',
                 'category' => 'general',
                 'sort_order' => 7,
                 'is_published' => true,
