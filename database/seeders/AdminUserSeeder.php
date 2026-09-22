@@ -27,7 +27,7 @@ class AdminUserSeeder extends Seeder
         );
         User::factory()->create([
             'name' => 'Admin User',
-            'email' => 'admin@admin.com',
+            'email' => 'info@cegem360.hu',
             'role' => UserRole::Admin,
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
