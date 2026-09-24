@@ -69,4 +69,6 @@
             @endif
         </span>
     </div>
+
+    <p class="text-xs text-white/60">* {{ __('30 days before the event, the ticket price is no longer refundable.') }}</p>
 </div>

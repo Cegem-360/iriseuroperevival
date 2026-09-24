@@ -681,6 +681,7 @@
                 <p class="text-(--alt-beige-muted) mb-4">
                     <a href="#faq" class="hover:text-(--alt-beige) underline underline-offset-2 transition-colors">{{ __('You can find the accommodation options in the "Question & Answers" section.') }}</a>
                 </p>
+                <p class="text-(--alt-beige-muted) text-sm mb-4">* {{ __('30 days before the event, the ticket price is no longer refundable.') }}</p>
                 <x-cooltix-button variant="outline" size="md" />
             </div>
 
