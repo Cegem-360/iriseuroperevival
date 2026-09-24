@@ -25,7 +25,7 @@
             </div>
 
             {{-- Description --}}
-            <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
+            <p class="text-lg md:text-2xl text-neutral-700 font-bold max-w-3xl mx-auto mb-6 text-balance animate-fade-in-up drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] px-6 py-3 bg-[radial-gradient(ellipse_at_center,rgba(180,140,90,0.55)_0%,rgba(180,140,90,0.3)_45%,transparent_75%)] md:bg-none md:px-0 md:py-0">
                 {!! __('Encounter Jesus and let your passion for Him be rekindled!<br>Discover God\'s calling and carry His love across Europe.') !!}
             </p>
 
