@@ -162,12 +162,12 @@ class HungarianContentSeeder extends Seeder
                 'description' => "Isten rendkívüli erőteljesen kijelenti magát ennek a nemzedéknek. Ezen az előadáson azt vizsgáljuk, hogy hogyan lehet a mi időnkben – a káosz és az ébredés közepette – gyakorlatilag Krisztushoz hasonló életet élni.\n\nSok szív már lángra lobbant Jézusért, de a kérdés az, hogyan tudjuk ezt a lángot nemcsak megélni, hanem tovább is vinni az életünkben és küldetésünkben – úgy, hogy Isten világossága és dicsősége egyre inkább betöltse a földet?\n\nEz az előadás segít abban, hogy ne csak átélői, hanem hordozói is legyünk Isten munkájának ebben az időben.\n\nHa szeretnél egy olyan életet, hogy ne csak megtapasztald Isten munkáját, hanem te magad is aktív hordozója legyél ebben az időben, akkor itt a helyed.",
             ],
             'prophetic-ministry' => [
-                'title' => 'Prófétai hang - Tineke Bouwman',
+                'title' => 'Hogyan halld meg Isten hangját? - Tineke Bouwman',
                 'short_description' => 'Növekedj a prófétai ajándékban, és tanuld meg, hogyan szolgálj pontossággal és szeretettel.',
                 'description' => 'Tineke Bouwman tapasztalt prófétai hangja megtanít arra, hogyan halljuk tisztán Isten hangját, hogyan adjunk át prófétai szavakat pontossággal és szeretettel, és hogyan növekedjünk ebben a fontos ajándékban Krisztus testének építésére.',
             ],
             'prophetic-ministry-sunday' => [
-                'title' => 'Prófétai hang - Tineke Bouwman',
+                'title' => 'Hogyan halld meg Isten hangját? - Tineke Bouwman',
                 'short_description' => 'Növekedj a prófétai ajándékban, és tanuld meg, hogyan szolgálj pontossággal és szeretettel.',
                 'description' => 'Tineke Bouwman tapasztalt prófétai hangja megtanít arra, hogyan halljuk tisztán Isten hangját, hogyan adjunk át prófétai szavakat pontossággal és szeretettel, és hogyan növekedjünk ebben a fontos ajándékban Krisztus testének építésére.',
             ],
@@ -239,8 +239,8 @@ class HungarianContentSeeder extends Seeder
                 'description' => "15 perces személyes szolgálati alkalmak előzetes regisztrációval érhetők el. A jelentkezés a regisztrációt követően lehetséges; az esemény előtt néhány héttel e-mailben küldünk értesítést, amelyben megtalálod a jelentkezési űrlapot.\n\nFelhívjuk a figyelmed, hogy a helyek száma korlátozott, a jelentkezéseket beérkezési sorrendben fogadjuk.",
                 'location' => 'Ima szoba',
             ]],
-            ['2026-10-24', 'Prophetic Rooms', [
-                'title' => 'Ima szoba (Prófétai szolgálat)',
+            ['2026-10-24', 'Prayer Room', [
+                'title' => 'Ima szoba',
                 'description' => "15 perces személyes szolgálati alkalmak előzetes regisztrációval érhetők el. A jelentkezés a regisztrációt követően lehetséges; az esemény előtt néhány héttel e-mailben küldünk értesítést, amelyben megtalálod a jelentkezési űrlapot.\n\nFelhívjuk a figyelmed, hogy a helyek száma korlátozott, a jelentkezéseket beérkezési sorrendben fogadjuk.",
                 'location' => 'Ima szoba',
             ]],
@@ -254,12 +254,12 @@ class HungarianContentSeeder extends Seeder
             ]],
             ['2026-10-24', 'Workshops 1', [
                 'title' => 'Workshopok 1',
-                'description' => '(Szenvedély, Cél, Tűz; Evangélizáció hatalommal; Ébredés és aratás; Jézusért lángoló generáció: Élj úgy mint Jézus; Üzleti misszió; Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által; Prófétai hang; Emberkereskedelem elleni küzdelem; Találd meg az identitásod!)',
+                'description' => '(Szenvedély, Cél, Tűz; Evangélizáció hatalommal; Ébredés és aratás; Jézusért lángoló generáció: Élj úgy mint Jézus; Üzleti misszió; Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által; Hogyan halld meg Isten hangját?; Emberkereskedelem elleni küzdelem; Találd meg az identitásod!)',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-24', 'Workshops 2', [
                 'title' => 'Workshopok 2',
-                'description' => '(Szenvedély, Cél, Tűz; Evangélizáció hatalommal; Ébredés és aratás; Jézusért lángoló generáció: Élj úgy mint Jézus; Üzleti misszió; Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által; Prófétai hang; Emberkereskedelem elleni küzdelem; Találd meg az identitásod!)',
+                'description' => '(Szenvedély, Cél, Tűz; Evangélizáció hatalommal; Ébredés és aratás; Jézusért lángoló generáció: Élj úgy mint Jézus; Üzleti misszió; Jézus gyönyörű szíve: Szabadságra jutni a kreatív mozgás által; Hogyan halld meg Isten hangját?; Emberkereskedelem elleni küzdelem; Találd meg az identitásod!)',
                 'location' => 'Több helyiség',
             ]],
             ['2026-10-24', 'Saturday Evening Session', [
@@ -295,8 +295,8 @@ class HungarianContentSeeder extends Seeder
                 'title' => 'Ima szoba (Szolgálat gyógyulásért)',
                 'location' => 'Ima szoba',
             ]],
-            ['2026-10-25', 'Prophetic Rooms', [
-                'title' => 'Ima szoba (Prófétai szolgálat)',
+            ['2026-10-25', 'Prayer Room', [
+                'title' => 'Ima szoba',
                 'location' => 'Ima szoba',
             ]],
             ['2026-10-25', 'Closing Session', [

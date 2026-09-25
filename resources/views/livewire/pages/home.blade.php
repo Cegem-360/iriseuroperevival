@@ -205,7 +205,7 @@
                         ['slug' => 'baoyan-lam', 'photo' => 'images/alt-style/workshop-leaders/taslim.webp', 'topic' => 'Marketplace Missions', 'workshop' => 'marketplace-missions'],
                         ['slug' => 'dr-kate', 'photo' => 'images/alt-style/workshop-leaders/kate.webp', 'topic' => 'The Beautiful Heart of Jesus: Set Free Through Creative Movement', 'workshop' => 'prophetic-arts'],
                         ['slug' => 'brian-valerie', 'photo' => 'images/alt-style/workshop-leaders/britton.webp', 'topic' => 'The Burning Generation: Living Like Jesus', 'workshop' => 'father-heart-of-god'],
-                        ['slug' => 'tineke-bouwman', 'photo' => 'images/alt-style/workshop-leaders/tineke.webp', 'topic' => 'Prophetic Voice', 'workshop' => 'prophetic-ministry'],
+                        ['slug' => 'tineke-bouwman', 'photo' => 'images/alt-style/workshop-leaders/tineke.webp', 'topic' => 'How can you hear God’s voice?', 'workshop' => 'prophetic-ministry'],
                         ['slug' => 'katey-maddux', 'photo' => 'images/alt-style/workshop-leaders/katey.webp', 'topic' => 'Pioneering in Human Trafficking', 'workshop' => 'human-trafficking-awareness'],
                         ['slug' => 'fernando-sousa', 'photo' => 'images/alt-style/workshop-leaders/sousa.webp', 'topic' => __('Finding your identity'), 'workshop' => 'freedom-ministry'],
                     ];
