@@ -106,3 +106,27 @@ it('translates the cookie banner', function (): void {
         ->assertSee('Összes elfogadása')
         ->assertSee('Süti beállítások');
 });
+
+it('ships the production tracking ids only for the production environment', function (): void {
+    $services = fn (string $environment): array => (function () use ($environment): array {
+        $previous = $_ENV['APP_ENV'] ?? null;
+        $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = $environment;
+        putenv("APP_ENV={$environment}");
+
+        try {
+            return (require config_path('services.php'))['google'];
+        } finally {
+            $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = $previous;
+            putenv('APP_ENV=' . $previous);
+        }
+    })();
+
+    expect($services('production'))
+        ->ga4_measurement_id->toBe('G-TGJQM9FGN8')
+        ->ads_id->toBe('AW-18466287510')
+        ->ads_registration_label->toBe('AbLfCKnylYodEJbftOVE');
+
+    expect($services('local'))
+        ->ga4_measurement_id->toBeNull()
+        ->ads_id->toBeNull();
+});
