@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <x-layouts.partials.google-tag />
     <meta name="robots" content="noindex,nofollow">
 
     <title>@yield('title', 'Ministry Team — Europe Revival 2026')</title>
@@ -63,6 +65,8 @@
 
     {{-- Vision Modal — same content as the public layout, kept here so the VISION nav item works locally --}}
     @include('components.layouts.partials.vision-modal')
+
+    <x-layouts.partials.cookie-consent />
 
     @filamentScripts
     @vite('resources/js/app.js')

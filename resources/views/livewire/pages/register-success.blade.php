@@ -158,4 +158,40 @@
 
     </div>
 </div>
+@php
+    $adsId = config('services.google.ads_id');
+    $adsRegistrationLabel = config('services.google.ads_registration_label');
+    $isPurchase = $registration->is_paid && $registration->amount > 0;
+    $conversionValue = $isPurchase ? round($registration->amount / 100, 2) : 0;
+@endphp
+@if (config('services.google.ga4_measurement_id') || $adsId)
+    @push('scripts')
+    <script>
+        if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+                registration_type: @js($registration->type),
+                transaction_id: @js($registration->uuid),
+                value: @js($conversionValue),
+                currency: 'HUF'
+            });
+            @if ($isPurchase)
+            gtag('event', 'purchase', {
+                transaction_id: @js($registration->uuid),
+                value: @js($conversionValue),
+                currency: 'HUF',
+                items: [{ item_id: @js($registration->ticket_type ?? $registration->type), item_name: @js($registration->formatted_ticket_type), price: @js($conversionValue), quantity: 1 }]
+            });
+            @endif
+            @if ($isPurchase && $adsId && $adsRegistrationLabel)
+            gtag('event', 'conversion', {
+                send_to: @js($adsId.'/'.$adsRegistrationLabel),
+                transaction_id: @js($registration->uuid),
+                value: @js($conversionValue),
+                currency: 'HUF'
+            });
+            @endif
+        }
+    </script>
+    @endpush
+@endif
 </div>

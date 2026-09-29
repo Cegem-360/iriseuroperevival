@@ -49,4 +49,11 @@ return [
     'cooltix' => [
         'event_id' => env('COOLTIX_EVENT_ID'),
     ],
+
+    'google' => [
+        'ga4_measurement_id' => env('GOOGLE_GA4_MEASUREMENT_ID'),
+        'ads_id' => env('GOOGLE_ADS_ID'),
+        'ads_registration_label' => env('GOOGLE_ADS_REGISTRATION_LABEL'),
+        'ads_ticket_label' => env('GOOGLE_ADS_TICKET_LABEL'),
+    ],
 ];

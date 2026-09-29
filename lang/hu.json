@@ -666,5 +666,18 @@
     "Minimum :amount": "Legalább :amount",
     "/ person": "/ fő",
     "Please join the following WhatsApp groups, as we will be sharing and communicating all information related to the service with you through these groups going forward.": "Kérlek, csatlakozz az alábbi WhatsApp-csoportokhoz, mivel a szolgálattal kapcsolatos információkat a továbbiakban ezeken a csoportokon keresztül fogjuk megosztani és kommunikálni veled.",
-    "Please make sure to join so that you don’t miss any of the latest updates and important information. Thank you!": "Kérlek, csatlakozz, hogy ne maradj le a legfrissebb információkról és fontos tudnivalókról. Köszönjük!"
+    "Please make sure to join so that you don’t miss any of the latest updates and important information. Thank you!": "Kérlek, csatlakozz, hogy ne maradj le a legfrissebb információkról és fontos tudnivalókról. Köszönjük!",
+    "We value your privacy": "Fontos számunkra az adatvédelem",
+    "We use cookies to measure traffic and to improve our advertising. You can accept all cookies, reject non-essential ones, or choose which categories to allow.": "Sütiket használunk a látogatottság mérésére és hirdetéseink fejlesztésére. Elfogadhatod az összes sütit, elutasíthatod a nem szükségeseket, vagy kiválaszthatod, mely kategóriákat engedélyezed.",
+    "Strictly necessary": "Feltétlenül szükséges",
+    "Required for the website to work (e.g. session, security, language). Always active.": "A weboldal működéséhez szükségesek (pl. munkamenet, biztonság, nyelv). Mindig aktívak.",
+    "Analytics": "Statisztika",
+    "Google Analytics helps us understand how visitors use the website.": "A Google Analytics segít megérteni, hogyan használják a látogatók a weboldalt.",
+    "Marketing": "Marketing",
+    "Google Ads measures the effectiveness of our ads and may personalise them.": "A Google Ads méri hirdetéseink hatékonyságát, és személyre szabhatja azokat.",
+    "Customise": "Beállítások",
+    "Save preferences": "Beállítások mentése",
+    "Reject all": "Összes elutasítása",
+    "Accept all": "Összes elfogadása",
+    "Cookie Settings": "Süti beállítások"
 }

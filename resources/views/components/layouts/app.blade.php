@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <x-layouts.partials.google-tag />
+
     <title>@yield('title', 'Europe Revival 2026 - Encounter Jesus. Catch on Fire.')</title>
     <meta name="description" content="@yield('description', 'Europe Revival 2026 - A 3-day conference for everyone seeking revival. October 23-25, 2026 in Budapest, Hungary.')">
 
@@ -72,6 +74,8 @@
 
     {{-- Cooltix ticket purchase modal --}}
     <x-layouts.partials.cooltix-modal />
+
+    <x-layouts.partials.cookie-consent />
 
     @filamentScripts
     @vite('resources/js/app.js')
