@@ -1,4 +1,4 @@
-@if (config('services.google.ga4_measurement_id') || config('services.google.ads_id'))
+@if (config('services.google.gtm_container_id'))
     <div x-data="{
             open: false,
             showDetails: false,

@@ -159,38 +159,33 @@
     </div>
 </div>
 @php
-    $adsId = config('services.google.ads_id');
-    $adsRegistrationLabel = config('services.google.ads_registration_label');
     $isPurchase = $registration->is_paid && $registration->amount > 0;
     $conversionValue = $isPurchase ? round($registration->amount / 100, 2) : 0;
 @endphp
-@if (config('services.google.ga4_measurement_id') || $adsId)
+@if (config('services.google.gtm_container_id'))
     @push('scripts')
     <script>
-        if (typeof gtag === 'function') {
-            gtag('event', 'generate_lead', {
-                registration_type: @js($registration->type),
-                transaction_id: @js($registration->uuid),
-                value: @js($conversionValue),
-                currency: 'HUF'
-            });
-            @if ($isPurchase)
-            gtag('event', 'purchase', {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: 'generate_lead',
+            registration_type: @js($registration->type),
+            transaction_id: @js($registration->uuid),
+            value: @js($conversionValue),
+            currency: 'HUF'
+        });
+        @if ($isPurchase)
+        window.dataLayer.push({ ecommerce: null });
+        window.dataLayer.push({
+            event: 'purchase',
+            registration_type: @js($registration->type),
+            ecommerce: {
                 transaction_id: @js($registration->uuid),
                 value: @js($conversionValue),
                 currency: 'HUF',
                 items: [{ item_id: @js($registration->ticket_type ?? $registration->type), item_name: @js($registration->formatted_ticket_type), price: @js($conversionValue), quantity: 1 }]
-            });
-            @endif
-            @if ($isPurchase && $adsId && $adsRegistrationLabel)
-            gtag('event', 'conversion', {
-                send_to: @js($adsId.'/'.$adsRegistrationLabel),
-                transaction_id: @js($registration->uuid),
-                value: @js($conversionValue),
-                currency: 'HUF'
-            });
-            @endif
-        }
+            }
+        });
+        @endif
     </script>
     @endpush
 @endif

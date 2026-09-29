@@ -57,6 +57,8 @@
     @stack('styles')
 </head>
 <body class="bg-(--alt-navy-deeper) text-(--alt-beige) antialiased font-sans">
+    <x-layouts.partials.google-tag-noscript />
+
     {{-- Navigation --}}
     <x-layouts.partials.navigation />
 

@@ -1,12 +1,5 @@
-@php
-    $ga4MeasurementId = config('services.google.ga4_measurement_id');
-    $adsId = config('services.google.ads_id');
-    $adsTicketLabel = config('services.google.ads_ticket_label');
-    $primaryTagId = $ga4MeasurementId ?: $adsId;
-@endphp
-
-@if ($primaryTagId)
-    {{-- Google Consent Mode v2: everything non-essential is denied until the visitor decides --}}
+@if ($gtmContainerId = config('services.google.gtm_container_id'))
+    {{-- Google Consent Mode v2: everything non-essential is denied until the visitor decides. Must run before GTM loads. --}}
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -44,6 +37,7 @@
                     ad_personalization: state(preferences.marketing),
                     personalization_storage: state(preferences.marketing)
                 });
+                dataLayer.push({ event: 'cookie_consent_update', consent_analytics: preferences.analytics, consent_marketing: preferences.marketing });
             },
             save(analytics, marketing) {
                 const preferences = { version: this.version, analytics, marketing, updatedAt: new Date().toISOString() };
@@ -60,20 +54,16 @@
             window.cookieConsent.apply(storedConsent);
         }
 
-        gtag('js', new Date());
-        @if ($ga4MeasurementId)
-        gtag('config', @js($ga4MeasurementId));
-        @endif
-        @if ($adsId)
-        gtag('config', @js($adsId));
-        @endif
-
         window.addEventListener('open-cooltix-modal', () => {
-            gtag('event', 'begin_checkout', { currency: 'HUF' });
-            @if ($adsId && $adsTicketLabel)
-            gtag('event', 'conversion', { send_to: @js($adsId.'/'.$adsTicketLabel) });
-            @endif
+            dataLayer.push({ ecommerce: null });
+            dataLayer.push({ event: 'begin_checkout', ecommerce: { currency: 'HUF' } });
         });
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ urlencode($primaryTagId) }}"></script>
+
+    {{-- Google Tag Manager --}}
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer',@js($gtmContainerId));</script>
 @endif

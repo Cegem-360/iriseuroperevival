@@ -51,9 +51,6 @@ return [
     ],
 
     'google' => [
-        'ga4_measurement_id' => env('GOOGLE_GA4_MEASUREMENT_ID', env('APP_ENV') === 'production' ? 'G-TGJQM9FGN8' : null),
-        'ads_id' => env('GOOGLE_ADS_ID', env('APP_ENV') === 'production' ? 'AW-18466287510' : null),
-        'ads_registration_label' => env('GOOGLE_ADS_REGISTRATION_LABEL', env('APP_ENV') === 'production' ? 'AbLfCKnylYodEJbftOVE' : null),
-        'ads_ticket_label' => env('GOOGLE_ADS_TICKET_LABEL'),
+        'gtm_container_id' => env('GOOGLE_GTM_CONTAINER_ID', env('APP_ENV') === 'production' ? 'GTM-WXGLNB4X' : null),
     ],
 ];

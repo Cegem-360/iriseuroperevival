@@ -9,15 +9,10 @@ use Tests\TestCase;
 uses(RefreshDatabase::class);
 
 beforeEach(function (): void {
-    config()->set('services.google', [
-        'ga4_measurement_id' => 'G-TEST123',
-        'ads_id' => 'AW-987654',
-        'ads_registration_label' => 'regLabel',
-        'ads_ticket_label' => 'ticketLabel',
-    ]);
+    config()->set('services.google.gtm_container_id', 'GTM-TEST123');
 });
 
-it('sets consent mode v2 defaults before loading the google tag', function (): void {
+it('sets consent mode v2 defaults before loading google tag manager', function (): void {
     /** @var TestCase $this */
     $html = $this->get('/')->assertOk()->getContent();
 
@@ -26,12 +21,13 @@ it('sets consent mode v2 defaults before loading the google tag', function (): v
         ->toContain('ad_user_data: \'denied\'')
         ->toContain('ad_personalization: \'denied\'')
         ->toContain('analytics_storage: \'denied\'')
-        ->toContain('https://www.googletagmanager.com/gtag/js?id=G-TEST123')
-        ->toContain('gtag(\'config\', \'G-TEST123\')')
-        ->toContain('gtag(\'config\', \'AW-987654\')');
+        ->toContain('googletagmanager.com/gtm.js?id=')
+        ->toContain('\'dataLayer\',\'GTM-TEST123\'')
+        ->toContain('https://www.googletagmanager.com/ns.html?id=GTM-TEST123')
+        ->not->toContain('googletagmanager.com/gtag/js');
 
     expect(strpos($html, 'gtag(\'consent\', \'default\''))
-        ->toBeLessThan(strpos($html, 'googletagmanager.com/gtag/js'));
+        ->toBeLessThan(strpos($html, 'googletagmanager.com/gtm.js'));
 });
 
 it('renders the cookie banner and footer settings link', function (): void {
@@ -42,50 +38,45 @@ it('renders the cookie banner and footer settings link', function (): void {
         ->assertSee('Cookie Settings');
 });
 
-it('fires the ads ticket conversion when the ticket modal opens', function (): void {
+it('pushes begin_checkout when the ticket modal opens', function (): void {
     /** @var TestCase $this */
-    $this->get('/')->assertOk()->assertSeeHtml('window.addEventListener(\'open-cooltix-modal\'')->assertSeeHtml("send_to: 'AW-987654\/ticketLabel'");
+    $this->get('/')->assertOk()
+        ->assertSeeHtml('window.addEventListener(\'open-cooltix-modal\'')
+        ->assertSeeHtml('event: \'begin_checkout\'');
 });
 
 it('includes the tag on the ministry team layout', function (): void {
     /** @var TestCase $this */
-    $this->get(route('ministry-team'))->assertOk()->assertSeeHtml('gtag(\'consent\', \'default\'');
+    $this->get(route('ministry-team'))->assertOk()
+        ->assertSeeHtml('gtag(\'consent\', \'default\'')
+        ->assertSeeHtml('\'dataLayer\',\'GTM-TEST123\'');
 });
 
-it('tracks only a lead for an unpaid registration', function (): void {
+it('pushes only a lead for an unpaid registration', function (): void {
     /** @var TestCase $this */
     $registration = Registration::factory()->volunteer()->create();
 
     $this->get(route('register.success', $registration->uuid))
         ->assertOk()
-        ->assertSee('gtag(\'event\', \'generate_lead\'', false)
-        ->assertDontSee('gtag(\'event\', \'purchase\'', false)
-        ->assertDontSee('regLabel', false);
+        ->assertSeeHtml('event: \'generate_lead\'')
+        ->assertDontSeeHtml('event: \'purchase\'');
 });
 
-it('fires the purchase conversion for a paid registration', function (): void {
+it('pushes a purchase with ecommerce data for a paid registration', function (): void {
     /** @var TestCase $this */
-    config()->set('services.google.ads_id', 'AW-18466287510');
-    config()->set('services.google.ads_registration_label', 'AbLfCKnylYodEJbftOVE');
-
     $registration = Registration::factory()->attendee()->paid()->create(['amount' => 1500000]);
 
     $this->get(route('register.success', $registration->uuid))
         ->assertOk()
-        ->assertSee('gtag(\'event\', \'purchase\'', false)
-        ->assertSee('send_to: \'AW-18466287510\\/AbLfCKnylYodEJbftOVE\'', false)
-        ->assertSee("transaction_id: '{$registration->uuid}'", false)
-        ->assertSee('value: 15000', false);
+        ->assertSeeHtml('window.dataLayer.push({ ecommerce: null });')
+        ->assertSeeHtml('event: \'purchase\'')
+        ->assertSeeHtml("transaction_id: '{$registration->uuid}'")
+        ->assertSeeHtml('value: 15000');
 });
 
-it('renders no google tag or banner when nothing is configured', function (): void {
+it('renders no google tag or banner when no container is configured', function (): void {
     /** @var TestCase $this */
-    config()->set('services.google', [
-        'ga4_measurement_id' => null,
-        'ads_id' => null,
-        'ads_registration_label' => null,
-        'ads_ticket_label' => null,
-    ]);
+    config()->set('services.google.gtm_container_id', null);
 
     $this->get('/')->assertOk()->assertDontSeeHtml('googletagmanager.com')->assertDontSeeHtml('open-cookie-settings');
 });
@@ -99,7 +90,7 @@ it('translates the cookie banner', function (): void {
         ->assertSee('Süti beállítások');
 });
 
-it('ships the production tracking ids only for the production environment', function (): void {
+it('ships the production container id only for the production environment', function (): void {
     $services = fn (string $environment): array => (function () use ($environment): array {
         $previous = $_ENV['APP_ENV'] ?? null;
         $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = $environment;
@@ -113,12 +104,6 @@ it('ships the production tracking ids only for the production environment', func
         }
     })();
 
-    expect($services('production'))
-        ->ga4_measurement_id->toBe('G-TGJQM9FGN8')
-        ->ads_id->toBe('AW-18466287510')
-        ->ads_registration_label->toBe('AbLfCKnylYodEJbftOVE');
-
-    expect($services('local'))
-        ->ga4_measurement_id->toBeNull()
-        ->ads_id->toBeNull();
+    expect($services('production'))->gtm_container_id->toBe('GTM-WXGLNB4X');
+    expect($services('local'))->gtm_container_id->toBeNull();
 });

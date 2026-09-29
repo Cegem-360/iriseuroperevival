@@ -53,6 +53,8 @@
     @stack('styles')
 </head>
 <body class="bg-(--alt-navy-deeper) text-(--alt-beige) antialiased font-sans">
+    <x-layouts.partials.google-tag-noscript />
+
     {{-- Page-specific navigation (no Tickets / Volunteer items, JOIN AS A MINISTRY TEAM CTA) --}}
     <x-layouts.partials.navigation-ministry />
 

@@ -84,7 +84,7 @@
             <div class="flex items-center gap-6">
                 <a href="{{ route('privacy') }}" class="text-white/40 hover:text-white text-sm transition-colors">{{ __('Privacy Policy') }}</a>
                 <a href="{{ route('terms') }}" class="text-white/40 hover:text-white text-sm transition-colors">{{ __('Terms of Use') }}</a>
-                @if (config('services.google.ga4_measurement_id') || config('services.google.ads_id'))
+                @if (config('services.google.gtm_container_id'))
                     <button type="button" x-data x-on:click="window.dispatchEvent(new CustomEvent('open-cookie-settings'))" class="cursor-pointer text-white/40 hover:text-white text-sm transition-colors">{{ __('Cookie Settings') }}</button>
                 @endif
             </div>
