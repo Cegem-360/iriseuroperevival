@@ -1,32 +1,32 @@
 /* resources/css/app.css */
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* Required by all components */
-@import '../../vendor/filament/support/resources/css/index.css';
+@import "../../vendor/filament/support/resources/css/index.css";
 
 /* Required by actions and tables */
-@import '../../vendor/filament/actions/resources/css/index.css';
+@import "../../vendor/filament/actions/resources/css/index.css";
 
 /* Required by actions, forms and tables */
-@import '../../vendor/filament/forms/resources/css/index.css';
+@import "../../vendor/filament/forms/resources/css/index.css";
 
 /* Required by actions and infolists */
-@import '../../vendor/filament/infolists/resources/css/index.css';
+@import "../../vendor/filament/infolists/resources/css/index.css";
 
 /* Required by notifications */
-@import '../../vendor/filament/notifications/resources/css/index.css';
+@import "../../vendor/filament/notifications/resources/css/index.css";
 
 /* Required by actions, infolists, forms, schemas and tables */
-@import '../../vendor/filament/schemas/resources/css/index.css';
+@import "../../vendor/filament/schemas/resources/css/index.css";
 
 /* Required by tables */
-@import '../../vendor/filament/tables/resources/css/index.css';
+@import "../../vendor/filament/tables/resources/css/index.css";
 
 /* Required by widgets */
-@import '../../vendor/filament/widgets/resources/css/index.css';
+@import "../../vendor/filament/widgets/resources/css/index.css";
 
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 @source "../../resources/**/*.blade.php";
 @source "../../resources/**/*.js";
 @source "../../resources/**/*.vue";
@@ -39,47 +39,47 @@
     --font-sans: "azo-sans-web", system-ui, -apple-system, sans-serif;
 
     /* Primary gold accent colors (based on #F7A31D) */
-    --color-primary-50: #FEF3D6;
-    --color-primary-100: #FDEABD;
-    --color-primary-200: #FBD88A;
-    --color-primary-300: #F9C657;
-    --color-primary-400: #F7A31D;
-    --color-primary-500: #F7A31D;
-    --color-primary-600: #D88A12;
-    --color-primary-700: #B4710D;
-    --color-primary-800: #8F5A0A;
-    --color-primary-900: #6B4308;
+    --color-primary-50: #fef3d6;
+    --color-primary-100: #fdeabd;
+    --color-primary-200: #fbd88a;
+    --color-primary-300: #f9c657;
+    --color-primary-400: #f7a31d;
+    --color-primary-500: #f7a31d;
+    --color-primary-600: #d88a12;
+    --color-primary-700: #b4710d;
+    --color-primary-800: #8f5a0a;
+    --color-primary-900: #6b4308;
 
     /* Accent colors for gradients (gold to deeper orange) */
-    --color-accent-400: #F7A31D;
-    --color-accent-500: #D88A12;
-    --color-accent-600: #B4710D;
+    --color-accent-400: #f7a31d;
+    --color-accent-500: #d88a12;
+    --color-accent-600: #b4710d;
 
     /* Navy blue tones (based on #1E2D4C) */
-    --color-navy-50: #E8EBF0;
-    --color-navy-100: #C5CCD8;
-    --color-navy-200: #9FADBF;
-    --color-navy-300: #798EA7;
-    --color-navy-400: #5C7694;
-    --color-navy-500: #3F5E81;
-    --color-navy-600: #2A3D5E;
-    --color-navy-700: #1E2D4C;
-    --color-navy-800: #141F35;
-    --color-navy-900: #0F1826;
-    --color-navy-950: #0A1019;
+    --color-navy-50: #e8ebf0;
+    --color-navy-100: #c5ccd8;
+    --color-navy-200: #9fadbf;
+    --color-navy-300: #798ea7;
+    --color-navy-400: #5c7694;
+    --color-navy-500: #3f5e81;
+    --color-navy-600: #2a3d5e;
+    --color-navy-700: #1e2d4c;
+    --color-navy-800: #141f35;
+    --color-navy-900: #0f1826;
+    --color-navy-950: #0a1019;
 
     /* Palette accent colors */
-    --color-sky-400: #A5D8F0;
-    --color-sky-500: #7EC8EB;
-    --color-sky-600: #55B4E5;
-    --color-sky-700: #2DA0DF;
-    --color-sky-800: #1581B8;
-    --color-sky-900: #0A6699;
-    --color-ocean-500: #0E8BBF;
-    --color-ocean-600: #0A6A94;
-    --color-ocean-700: #074B6A;
-    --color-maroon-600: #851B1D;
-    --color-crimson-500: #BB331B;
+    --color-sky-400: #a5d8f0;
+    --color-sky-500: #7ec8eb;
+    --color-sky-600: #55b4e5;
+    --color-sky-700: #2da0df;
+    --color-sky-800: #1581b8;
+    --color-sky-900: #0a6699;
+    --color-ocean-500: #0e8bbf;
+    --color-ocean-600: #0a6a94;
+    --color-ocean-700: #074b6a;
+    --color-maroon-600: #851b1d;
+    --color-crimson-500: #bb331b;
 
     /* Animations */
     --animate-fade-in: fadeIn 0.6s ease-out forwards;
@@ -95,48 +95,95 @@
 
     /* Keyframes */
     @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 
     @keyframes fadeInUp {
-        0% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     @keyframes fadeInDown {
-        0% { opacity: 0; transform: translateY(-20px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     @keyframes slideInLeft {
-        0% { opacity: 0; transform: translateX(-30px); }
-        100% { opacity: 1; transform: translateX(0); }
+        0% {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     @keyframes slideInRight {
-        0% { opacity: 0; transform: translateX(30px); }
-        100% { opacity: 1; transform: translateX(0); }
+        0% {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     @keyframes scaleIn {
-        0% { opacity: 0; transform: scale(0.95); }
-        100% { opacity: 1; transform: scale(1); }
+        0% {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
     @keyframes glow {
-        0% { box-shadow: 0 0 20px rgba(247, 163, 29, 0.3); }
-        100% { box-shadow: 0 0 30px rgba(247, 163, 29, 0.5), 0 0 60px rgba(247, 163, 29, 0.2); }
+        0% {
+            box-shadow: 0 0 20px rgba(247, 163, 29, 0.3);
+        }
+        100% {
+            box-shadow:
+                0 0 30px rgba(247, 163, 29, 0.5),
+                0 0 60px rgba(247, 163, 29, 0.2);
+        }
     }
 
     @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
     }
 
     /* Box Shadows (using gold #F7A31D) */
-    --shadow-glow-gold: 0 0 20px rgba(247, 163, 29, 0.3), 0 0 40px rgba(247, 163, 29, 0.1);
-    --shadow-glow-gold-lg: 0 0 30px rgba(247, 163, 29, 0.4), 0 0 60px rgba(247, 163, 29, 0.2);
+    --shadow-glow-gold:
+        0 0 20px rgba(247, 163, 29, 0.3), 0 0 40px rgba(247, 163, 29, 0.1);
+    --shadow-glow-gold-lg:
+        0 0 30px rgba(247, 163, 29, 0.4), 0 0 60px rgba(247, 163, 29, 0.2);
     --shadow-inner-glow: inset 0 0 20px rgba(247, 163, 29, 0.1);
 
     /* Backdrop Blur */
@@ -168,7 +215,10 @@
     }
 
     /* Heading colors — beige instead of white */
-    h1, h2, h3, h4 {
+    h1,
+    h2,
+    h3,
+    h4 {
         color: #f5e6d0;
     }
 
@@ -321,7 +371,7 @@
     }
 
     .speaker-card::after {
-        content: '';
+        content: "";
         @apply absolute inset-0 bg-linear-to-t from-navy-950 via-navy-950/30 to-transparent;
     }
 
@@ -344,7 +394,7 @@
     }
 
     .timeline-item::before {
-        content: '';
+        content: "";
         @apply absolute -left-[9px] top-0 w-4 h-4 bg-navy-500 rounded-full
                border-4 border-navy-800;
     }
@@ -427,7 +477,7 @@
     }
 
     .animated-underline::after {
-        content: '';
+        content: "";
         @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500
                transition-all duration-300;
     }
@@ -488,8 +538,15 @@
     /* Border gradient */
     .border-gradient {
         @apply relative;
-        background: linear-gradient(var(--color-navy-800), var(--color-navy-800)) padding-box,
-                    linear-gradient(135deg, var(--color-primary-500), var(--color-primary-400)) border-box;
+        background:
+            linear-gradient(var(--color-navy-800), var(--color-navy-800))
+                padding-box,
+            linear-gradient(
+                    135deg,
+                    var(--color-primary-500),
+                    var(--color-primary-400)
+                )
+                border-box;
         border: 2px solid transparent;
     }
 
@@ -534,14 +591,30 @@
     animation: fadeInUp 0.5s ease-out forwards;
 }
 
-.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
-.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
-.stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
-.stagger-children > *:nth-child(8) { animation-delay: 0.8s; }
+.stagger-children > *:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.stagger-children > *:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.stagger-children > *:nth-child(3) {
+    animation-delay: 0.3s;
+}
+.stagger-children > *:nth-child(4) {
+    animation-delay: 0.4s;
+}
+.stagger-children > *:nth-child(5) {
+    animation-delay: 0.5s;
+}
+.stagger-children > *:nth-child(6) {
+    animation-delay: 0.6s;
+}
+.stagger-children > *:nth-child(7) {
+    animation-delay: 0.7s;
+}
+.stagger-children > *:nth-child(8) {
+    animation-delay: 0.8s;
+}
 
 /* ================================================
    THIRD-PARTY OVERRIDES
@@ -640,7 +713,10 @@
     outline-offset: -1px;
 }
 
-.fi-navy-form .fi-section:not(.fi-section-not-contained) .fi-section-header + .fi-section-content-ctn {
+.fi-navy-form
+    .fi-section:not(.fi-section-not-contained)
+    .fi-section-header
+    + .fi-section-content-ctn {
     border-color: var(--color-navy-600);
 }
 
@@ -666,7 +742,7 @@
 .fi-navy-form .fi-radio-input {
     background-color: var(--color-navy-800);
     --tw-ring-color: var(--color-navy-400);
-    --tw-ring-shadow: var(--tw-ring-inset, ) 0 0 0 1px var(--tw-ring-color);
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 1px var(--tw-ring-color);
 }
 
 .fi-navy-form .fi-radio-input:checked {
@@ -678,7 +754,7 @@
 .fi-navy-form .fi-checkbox-input {
     background-color: var(--color-navy-800);
     --tw-ring-color: var(--color-navy-400);
-    --tw-ring-shadow: var(--tw-ring-inset, ) 0 0 0 1px var(--tw-ring-color);
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 1px var(--tw-ring-color);
 }
 
 .fi-navy-form .fi-checkbox-input:checked {
@@ -698,7 +774,11 @@
 
 /* Wizard primary button (Next): gold gradient matching site CTAs */
 .fi-navy-form .fi-sc-wizard-footer .fi-btn.fi-color:not(.fi-outlined) {
-    background: linear-gradient(to right, var(--color-primary-400), var(--color-primary-600));
+    background: linear-gradient(
+        to right,
+        var(--color-primary-400),
+        var(--color-primary-600)
+    );
     color: var(--color-navy-900);
     font-weight: 700;
     --tw-ring-shadow: 0 0 #0000;
@@ -706,11 +786,18 @@
 }
 
 .fi-navy-form .fi-sc-wizard-footer .fi-btn.fi-color:not(.fi-outlined):hover {
-    background: linear-gradient(to right, var(--color-primary-500), var(--color-primary-700));
+    background: linear-gradient(
+        to right,
+        var(--color-primary-500),
+        var(--color-primary-700)
+    );
     box-shadow: 0 4px 14px rgba(247, 163, 29, 0.4);
 }
 
-.fi-navy-form .fi-sc-wizard-footer .fi-btn.fi-color:not(.fi-outlined) > .fi-icon {
+.fi-navy-form
+    .fi-sc-wizard-footer
+    .fi-btn.fi-color:not(.fi-outlined)
+    > .fi-icon {
     color: var(--color-navy-900);
 }
 

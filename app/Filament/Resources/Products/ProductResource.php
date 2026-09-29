@@ -19,7 +19,7 @@ use Filament\Tables\Table;
 use Override;
 use UnitEnum;
 
-class ProductResource extends Resource
+final class ProductResource extends Resource
 {
     use AdminOnlyResource;
 
@@ -49,6 +49,7 @@ class ProductResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

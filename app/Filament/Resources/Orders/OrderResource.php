@@ -19,7 +19,7 @@ use Filament\Tables\Table;
 use Override;
 use UnitEnum;
 
-class OrderResource extends Resource
+final class OrderResource extends Resource
 {
     use AdminOnlyResource;
 
@@ -31,7 +31,7 @@ class OrderResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        $pendingCount = static::getModel()::where('status', 'pending')->count();
+        $pendingCount = self::getModel()::query()->where('status', 'pending')->count();
 
         return $pendingCount > 0 ? (string) $pendingCount : null;
     }
@@ -61,6 +61,7 @@ class OrderResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

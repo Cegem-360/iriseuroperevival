@@ -8,10 +8,13 @@ use App\Models\Faq;
 use App\Models\ScheduleItem;
 use App\Models\Speaker;
 use App\Models\Sponsor;
+use Carbon\Month;
+use Carbon\WeekDay;
+use DateTimeInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection as SupportCollection;
+use Illuminate\Support\Facades\Date;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -88,10 +91,10 @@ class Home extends Component
             ->with('speaker')
             ->ordered()
             ->get()
-            ->groupBy(fn (ScheduleItem $item) => Carbon::parse($item->day)->format('Y-m-d'));
+            ->groupBy(fn (ScheduleItem $item): string => Date::parse($item->day)->format('Y-m-d'));
 
-        return $scheduleItems->map(function ($items, $day) {
-            $date = Carbon::parse($day);
+        return $scheduleItems->map(function ($items, DateTimeInterface|WeekDay|Month|string|int|float|null $day): array {
+            $date = Date::parse($day);
 
             return [
                 'date' => $day,

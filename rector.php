@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Madbox99\RectorFilament\Set\FilamentSetList;
 use Rector\CodeQuality\Rector\NullsafeMethodCall\CleanupUnneededNullsafeOperatorRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentImplodeRector;
 use Rector\Config\RectorConfig;
@@ -13,14 +14,13 @@ use Rector\Php70\Rector\If_\IfToSpaceshipRector;
 use Rector\Php70\Rector\Ternary\TernaryToSpaceshipRector;
 use Rector\Php70\Rector\Variable\WrapVariableVariableNameInCurlyBracesRector;
 use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
-use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use RectorLaravel\Rector\MethodCall\AvoidNegatedCollectionFilterOrRejectRector;
-use RectorLaravel\Set\LaravelLevelSetList;
 use RectorLaravel\Set\LaravelSetList;
 
 return RectorConfig::configure()
-    ->withImportNames(importShortClasses: true, removeUnusedImports: true)
+    ->withImportNames()
+    ->withComposerBased(laravel: true)
     ->withParallel()
     ->withPaths([
         __DIR__ . '/app',
@@ -44,8 +44,12 @@ return RectorConfig::configure()
         __DIR__ . '/node_modules',
         __DIR__ . '/database/migrations',
         __DIR__ . '/app/Providers/ApiServiceProvider.php',
-        RemoveUnusedPrivateMethodRector::class => [__DIR__ . '/app/Jobs/*.php',            __DIR__ . '/app/Listeners/*.php',            __DIR__ . '/Modules/**/Jobs/*.php',            __DIR__ . '/Modules/**/Listeners/*.php'],
-        DisallowedEmptyRuleFixerRector::class,
+        RemoveUnusedPrivateMethodRector::class => [
+            __DIR__ . '/app/Jobs/*.php',
+            __DIR__ . '/app/Listeners/*.php',
+            __DIR__ . '/Modules/**/Jobs/*.php',
+            __DIR__ . '/Modules/**/Listeners/*.php',
+        ],
         RemoveUselessParamTagRector::class => [
             // Keep @param tags for complex types that help with IDE support
             __DIR__ . '/app/Services',
@@ -72,11 +76,12 @@ return RectorConfig::configure()
         NullCoalescingOperatorRector::class,
     ])
     ->withSets([
-        LaravelLevelSetList::UP_TO_LARAVEL_120,
         LaravelSetList::LARAVEL_CODE_QUALITY,
         LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
         LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
         LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER,
+        FilamentSetList::FILAMENT_CODE_QUALITY,
+        FilamentSetList::FILAMENT_TESTS,
     ])
     ->withPhpSets()
     ->withAutoloadPaths([
@@ -88,7 +93,4 @@ return RectorConfig::configure()
         codingStyle: false,
         typeDeclarations: true,
         privatization: true,
-        naming: false,
-        instanceOf: true,
-        earlyReturn: true,
     );

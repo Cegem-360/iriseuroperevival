@@ -8,6 +8,7 @@ use Filament\Auth\Pages\EditProfile as BasePage;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Components\Utilities\Get;
+use Override;
 
 final class EditProfile extends BasePage
 {
@@ -26,12 +27,13 @@ final class EditProfile extends BasePage
         return 'Profil';
     }
 
+    #[Override]
     public static function getNavigationLabel(): string
     {
         return 'Profil';
     }
 
-    protected function getNameFormComponent(): Component
+    protected function getNameFormComponent(): TextInput
     {
         return TextInput::make('name')
             ->label('Név')
@@ -40,7 +42,7 @@ final class EditProfile extends BasePage
             ->autofocus();
     }
 
-    protected function getEmailFormComponent(): Component
+    protected function getEmailFormComponent(): TextInput
     {
         return TextInput::make('email')
             ->label('E-mail cím')
@@ -64,7 +66,7 @@ final class EditProfile extends BasePage
             ->visible(fn (Get $get): bool => filled($get('password')));
     }
 
-    protected function getSavedNotificationTitle(): ?string
+    protected function getSavedNotificationTitle(): string
     {
         return 'Profil sikeresen mentve';
     }

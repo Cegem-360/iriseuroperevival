@@ -5,8 +5,10 @@ declare(strict_types=1);
 use App\Models\User;
 use Laravel\Fortify\Features;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 beforeEach(function (): void {
+    /** @var TestCase $this */
     if (! Features::canManageTwoFactorAuthentication()) {
         $this->markTestSkipped('Two-factor authentication is not enabled.');
     }
@@ -18,6 +20,7 @@ beforeEach(function (): void {
 });
 
 test('two factor settings page can be rendered', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $this->actingAs($user)
@@ -29,6 +32,7 @@ test('two factor settings page can be rendered', function (): void {
 });
 
 test('two factor settings page requires password confirmation when enabled', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)
@@ -38,6 +42,7 @@ test('two factor settings page requires password confirmation when enabled', fun
 });
 
 test('two factor settings page returns forbidden response when two factor is disabled', function (): void {
+    /** @var TestCase $this */
     config(['fortify.features' => []]);
 
     $user = User::factory()->create();
@@ -50,6 +55,7 @@ test('two factor settings page returns forbidden response when two factor is dis
 });
 
 test('two factor authentication disabled when confirmation abandoned between requests', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $user->forceFill([

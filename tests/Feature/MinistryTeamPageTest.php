@@ -8,16 +8,18 @@ use App\Models\Registration;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 uses(RefreshDatabase::class);
 
-it('renders the ministry team page successfully', function () {
+it('renders the ministry team page successfully', function (): void {
+    /** @var TestCase $this */
     $this->get('/ministry-team')
         ->assertStatus(200)
         ->assertSeeLivewire(MinistryTeam::class);
 });
 
-it('displays all service area cards', function () {
+it('displays all service area cards', function (): void {
     app()->setLocale('hu');
 
     Livewire::test(MinistryTeam::class)
@@ -28,7 +30,7 @@ it('displays all service area cards', function () {
         ->assertSee('Vendégfogadás');
 });
 
-it('displays the training day schedule', function () {
+it('displays the training day schedule', function (): void {
     app()->setLocale('hu');
 
     Livewire::test(MinistryTeam::class)
@@ -37,7 +39,7 @@ it('displays the training day schedule', function () {
         ->assertSee('David Gava');
 });
 
-it('validates required form fields for ministry registration', function () {
+it('validates required form fields for ministry registration', function (): void {
     Livewire::test(MinistryTeam::class)
         ->fillForm([
             'registration_type' => 'ministry',
@@ -53,7 +55,7 @@ it('validates required form fields for ministry registration', function () {
         ]);
 });
 
-it('creates a ministry registration with valid data', function () {
+it('creates a ministry registration with valid data', function (): void {
     Mail::fake();
 
     $testimony = str_repeat('Isten megváltoztatta az életemet. ', 5);
@@ -97,7 +99,7 @@ it('creates a ministry registration with valid data', function () {
     expect($registration->status)->toBe('pending_approval');
 });
 
-it('sends confirmation email after ministry submission', function () {
+it('sends confirmation email after ministry submission', function (): void {
     Mail::fake();
 
     $testimony = str_repeat('Isten megváltoztatta az életemet. ', 5);
@@ -132,7 +134,5 @@ it('sends confirmation email after ministry submission', function () {
         ->call('submit')
         ->assertRedirect();
 
-    Mail::assertQueued(MinistryApplicationReceived::class, function ($mail) {
-        return $mail->hasTo('janos@example.com');
-    });
+    Mail::assertQueued(MinistryApplicationReceived::class, fn ($mail) => $mail->hasTo('janos@example.com'));
 });

@@ -9,7 +9,7 @@ use Filament\Widgets\ChartWidget;
 use Illuminate\Support\Facades\Date;
 use Override;
 
-class RevenueChartWidget extends ChartWidget
+final class RevenueChartWidget extends ChartWidget
 {
     protected ?string $heading = 'Revenue Over Time';
 
@@ -43,7 +43,7 @@ class RevenueChartWidget extends ChartWidget
         ];
     }
 
-    protected function getRevenuePerMonth(): array
+    private function getRevenuePerMonth(): array
     {
         $months = collect();
         $revenue = collect();

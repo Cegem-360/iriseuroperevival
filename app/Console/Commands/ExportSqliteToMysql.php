@@ -6,6 +6,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use PDO;
 
 class ExportSqliteToMysql extends Command
 {
@@ -33,7 +34,7 @@ class ExportSqliteToMysql extends Command
         $pdo = DB::connection('sqlite')->getPdo();
 
         $tables = $pdo->query('SELECT name FROM sqlite_master WHERE type=\'table\' AND name NOT LIKE \'sqlite_%\' ORDER BY name')
-            ->fetchAll(\PDO::FETCH_COLUMN);
+            ->fetchAll(PDO::FETCH_COLUMN);
 
         $sql = "-- SQLite to MySQL data export\n";
         $sql .= '-- Generated: ' . now()->toDateTimeString() . "\n";
@@ -47,7 +48,7 @@ class ExportSqliteToMysql extends Command
                 continue;
             }
 
-            $rows = $pdo->query("SELECT * FROM \"{$table}\"")->fetchAll(\PDO::FETCH_ASSOC);
+            $rows = $pdo->query("SELECT * FROM \"{$table}\"")->fetchAll(PDO::FETCH_ASSOC);
 
             if (empty($rows)) {
                 continue;
@@ -58,7 +59,7 @@ class ExportSqliteToMysql extends Command
 
             foreach ($rows as $row) {
                 $columns = array_keys($row);
-                $values = array_map(function ($value) use ($pdo) {
+                $values = array_map(function ($value) use ($pdo): string|false {
                     if ($value === null) {
                         return 'NULL';
                     }

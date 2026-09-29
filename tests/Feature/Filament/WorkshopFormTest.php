@@ -6,8 +6,10 @@ use App\Filament\Resources\Workshops\Pages\EditWorkshop;
 use App\Models\User;
 use App\Models\Workshop;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 test('admin can save translations for a workshop', function (): void {
+    /** @var TestCase $this */
     $admin = User::factory()->admin()->create();
     $workshop = Workshop::factory()->create([
         'title' => 'Original Title',

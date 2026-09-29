@@ -10,11 +10,13 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Override;
 
-class ListRegistrations extends ListRecords
+final class ListRegistrations extends ListRecords
 {
     protected static string $resource = RegistrationResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [
@@ -32,30 +34,30 @@ class ListRegistrations extends ListRecords
     {
         $tabs = [
             'all' => Tab::make('All')
-                ->badge(fn (): int => static::countRegistrations()),
+                ->badge(fn (): int => $this->countRegistrations()),
         ];
 
         if (! Auth::user()?->isLimitedToRegistrations()) {
             $tabs['attendees'] = Tab::make('Attendees')
                 ->icon('heroicon-m-ticket')
                 ->modifyQueryUsing(fn (Builder $query): Builder => $query->where('type', 'attendee'))
-                ->badge(fn (): int => static::countRegistrations(['type' => 'attendee']));
+                ->badge(fn (): int => $this->countRegistrations(['type' => 'attendee']));
         }
 
         $tabs['volunteers'] = Tab::make('Volunteers')
             ->icon('heroicon-m-hand-raised')
             ->modifyQueryUsing(fn (Builder $query): Builder => $query->where('type', 'volunteer'))
-            ->badge(fn (): int => static::countRegistrations(['type' => 'volunteer']));
+            ->badge(fn (): int => $this->countRegistrations(['type' => 'volunteer']));
 
         $tabs['ministry'] = Tab::make('Ministry Team')
             ->icon('heroicon-m-user-group')
             ->modifyQueryUsing(fn (Builder $query): Builder => $query->where('type', 'ministry'))
-            ->badge(fn (): int => static::countRegistrations(['type' => 'ministry']));
+            ->badge(fn (): int => $this->countRegistrations(['type' => 'ministry']));
 
         $tabs['pending_approval'] = Tab::make('Needs Approval')
             ->icon('heroicon-m-clock')
             ->modifyQueryUsing(fn (Builder $query): Builder => $query->where('status', 'pending_approval'))
-            ->badge(fn (): int => static::countRegistrations(['status' => 'pending_approval']))
+            ->badge(fn (): int => $this->countRegistrations(['status' => 'pending_approval']))
             ->badgeColor('warning');
 
         return $tabs;
@@ -67,7 +69,7 @@ class ListRegistrations extends ListRecords
      *
      * @param  array<string, string>  $conditions
      */
-    protected static function countRegistrations(array $conditions = []): int
+    private function countRegistrations(array $conditions = []): int
     {
         $query = RegistrationResource::getEloquentQuery();
 

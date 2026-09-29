@@ -8,13 +8,15 @@ use App\Models\Registration;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Override;
 
-class PendingApprovalsWidget extends TableWidget
+final class PendingApprovalsWidget extends TableWidget
 {
     protected static ?string $heading = 'Pending Ministry Team Approvals';
 
@@ -22,6 +24,7 @@ class PendingApprovalsWidget extends TableWidget
 
     protected int|string|array $columnSpan = 'full';
 
+    #[Override]
     public function table(Table $table): Table
     {
         return $table
@@ -51,7 +54,7 @@ class PendingApprovalsWidget extends TableWidget
             ->recordActions([
                 Action::make('approve')
                     ->label('Approve')
-                    ->icon('heroicon-o-check')
+                    ->icon(Heroicon::OutlinedCheck)
                     ->color('success')
                     ->requiresConfirmation()
                     ->visible(fn (): bool => Auth::user()?->canManageApplications() ?? false)
@@ -65,7 +68,7 @@ class PendingApprovalsWidget extends TableWidget
                     }),
                 Action::make('reject')
                     ->label('Reject')
-                    ->icon('heroicon-o-x-mark')
+                    ->icon(Heroicon::OutlinedXMark)
                     ->color('danger')
                     ->requiresConfirmation()
                     ->visible(fn (): bool => Auth::user()?->canManageApplications() ?? false)
@@ -86,13 +89,13 @@ class PendingApprovalsWidget extends TableWidget
                     }),
                 Action::make('view')
                     ->label('View')
-                    ->icon('heroicon-o-eye')
+                    ->icon(Heroicon::OutlinedEye)
                     ->url(fn (Registration $record): string => route('filament.admin.resources.registrations.edit', $record)),
             ])
             ->paginated([5, 10, 25])
             ->defaultPaginationPageOption(5)
             ->emptyStateHeading('No pending approvals')
             ->emptyStateDescription('All ministry team applications have been reviewed.')
-            ->emptyStateIcon('heroicon-o-check-circle');
+            ->emptyStateIcon(Heroicon::OutlinedCheckCircle);
     }
 }

@@ -6,8 +6,10 @@ use App\Filament\Resources\Speakers\Pages\EditSpeaker;
 use App\Models\Speaker;
 use App\Models\User;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 test('admin can save translations for a speaker', function (): void {
+    /** @var TestCase $this */
     $admin = User::factory()->admin()->create();
     $speaker = Speaker::factory()->create([
         'title' => 'Original Title',

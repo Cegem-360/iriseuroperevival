@@ -7,11 +7,13 @@ namespace App\Filament\Resources\Faqs\Pages;
 use App\Filament\Resources\Faqs\FaqResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
-class EditFaq extends EditRecord
+final class EditFaq extends EditRecord
 {
     protected static string $resource = FaqResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

@@ -7,6 +7,7 @@ use App\Models\Registration;
 use App\Services\StripeService;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 function submitAttendeeForm(bool $wantsToEvangelize): Testable
 {
@@ -29,6 +30,7 @@ function submitAttendeeForm(bool $wantsToEvangelize): Testable
 }
 
 beforeEach(function (): void {
+    /** @var TestCase $this */
     $this->mock(StripeService::class)
         ->shouldReceive('createCheckoutSession')
         ->andReturn('https://stripe.test/checkout');

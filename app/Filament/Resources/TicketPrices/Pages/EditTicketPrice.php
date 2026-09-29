@@ -7,11 +7,13 @@ namespace App\Filament\Resources\TicketPrices\Pages;
 use App\Filament\Resources\TicketPrices\TicketPriceResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
-class EditTicketPrice extends EditRecord
+final class EditTicketPrice extends EditRecord
 {
     protected static string $resource = TicketPriceResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

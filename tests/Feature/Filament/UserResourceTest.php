@@ -13,6 +13,8 @@ use Livewire\Livewire;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 
+use Tests\TestCase;
+
 test('admins can list users', function (): void {
     $admin = User::factory()->admin()->create();
     $others = User::factory()->count(3)->coordinator()->create();
@@ -24,6 +26,7 @@ test('admins can list users', function (): void {
 });
 
 test('non-admin roles cannot view the user resource', function (string $state): void {
+    /** @var TestCase $this */
     actingAs(User::factory()->{$state}()->create());
 
     $this->get(route('filament.admin.resources.users.index'))

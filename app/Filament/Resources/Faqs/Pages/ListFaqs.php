@@ -7,11 +7,13 @@ namespace App\Filament\Resources\Faqs\Pages;
 use App\Filament\Resources\Faqs\FaqResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
-class ListFaqs extends ListRecords
+final class ListFaqs extends ListRecords
 {
     protected static string $resource = FaqResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

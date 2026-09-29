@@ -24,7 +24,7 @@ class Workshops extends Component
 
         // Group by speaker + title to show one card per unique workshop,
         // combining schedule notes when same workshop runs on both days
-        $workshops = $allWorkshops->groupBy(fn ($w) => $w->speaker_id . '-' . $w->title)->map(function ($group) {
+        $workshops = $allWorkshops->groupBy(fn ($w): string => $w->speaker_id . '-' . $w->title)->map(function ($group) {
             $primary = $group->first();
             $notes = $group->pluck('schedule_note')->filter()->unique()->sort();
             $primary->schedule_note = $notes->count() > 1

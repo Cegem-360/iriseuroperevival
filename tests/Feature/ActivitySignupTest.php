@@ -8,35 +8,40 @@ use App\Models\ActivitySignup as ActivitySignupModel;
 use App\Models\Workshop;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 uses(RefreshDatabase::class);
 
-describe('activity signup pages', function () {
-    it('renders the workshop signup page', function () {
+describe('activity signup pages', function (): void {
+    it('renders the workshop signup page', function (): void {
+        /** @var TestCase $this */
         $this->get('/signup/workshops')
             ->assertStatus(200)
             ->assertSeeLivewire(ActivitySignup::class);
     });
 
-    it('renders the healing rooms signup page', function () {
+    it('renders the healing rooms signup page', function (): void {
+        /** @var TestCase $this */
         $this->get('/signup/healing-rooms')
             ->assertStatus(200)
             ->assertSeeLivewire(ActivitySignup::class);
     });
 
-    it('renders the prophetic rooms signup page', function () {
+    it('renders the prophetic rooms signup page', function (): void {
+        /** @var TestCase $this */
         $this->get('/signup/prophetic-rooms')
             ->assertStatus(200)
             ->assertSeeLivewire(ActivitySignup::class);
     });
 
-    it('renders the street evangelism signup page', function () {
+    it('renders the street evangelism signup page', function (): void {
+        /** @var TestCase $this */
         $this->get('/signup/street-evangelism')
             ->assertStatus(200)
             ->assertSeeLivewire(ActivitySignup::class);
     });
 
-    it('shows correct title for each activity type', function () {
+    it('shows correct title for each activity type', function (): void {
         Livewire::test(ActivitySignup::class, ['activity' => 'workshop'])
             ->assertSee('Workshops');
 
@@ -51,8 +56,9 @@ describe('activity signup pages', function () {
     });
 });
 
-describe('activity signup form', function () {
-    it('submits a signup successfully', function () {
+describe('activity signup form', function (): void {
+    it('submits a signup successfully', function (): void {
+        /** @var TestCase $this */
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'healing_room'])
             ->set('firstName', 'John')
             ->set('lastName', 'Doe')
@@ -72,7 +78,7 @@ describe('activity signup form', function () {
         ]);
     });
 
-    it('generates a uuid on creation', function () {
+    it('generates a uuid on creation', function (): void {
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'street_evangelism'])
             ->set('firstName', 'Jane')
             ->set('lastName', 'Smith')
@@ -83,13 +89,13 @@ describe('activity signup form', function () {
         expect($signup->uuid)->not->toBeNull();
     });
 
-    it('validates required fields', function () {
+    it('validates required fields', function (): void {
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'healing_room'])
             ->call('submit')
             ->assertHasErrors(['firstName', 'lastName', 'email']);
     });
 
-    it('validates email format', function () {
+    it('validates email format', function (): void {
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'healing_room'])
             ->set('firstName', 'John')
             ->set('lastName', 'Doe')
@@ -98,7 +104,7 @@ describe('activity signup form', function () {
             ->assertHasErrors(['email']);
     });
 
-    it('allows optional phone and notes', function () {
+    it('allows optional phone and notes', function (): void {
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'prophetic_room'])
             ->set('firstName', 'John')
             ->set('lastName', 'Doe')
@@ -108,7 +114,7 @@ describe('activity signup form', function () {
             ->assertHasNoErrors();
     });
 
-    it('shows workshop select for workshop type', function () {
+    it('shows workshop select for workshop type', function (): void {
         Workshop::factory()->create(['title' => 'Prophetic Arts']);
 
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'workshop'])
@@ -116,12 +122,13 @@ describe('activity signup form', function () {
             ->assertSee('Prophetic Arts');
     });
 
-    it('does not show workshop select for non-workshop types', function () {
+    it('does not show workshop select for non-workshop types', function (): void {
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'healing_room'])
             ->assertDontSee('Select Workshop');
     });
 
-    it('saves workshop_id when signing up for a workshop', function () {
+    it('saves workshop_id when signing up for a workshop', function (): void {
+        /** @var TestCase $this */
         $workshop = Workshop::factory()->create(['title' => 'Prayer Workshop']);
 
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'workshop'])
@@ -138,7 +145,7 @@ describe('activity signup form', function () {
         ]);
     });
 
-    it('shows success message after submission', function () {
+    it('shows success message after submission', function (): void {
         Livewire::test(ActivitySignupForm::class, ['activityType' => 'healing_room'])
             ->set('firstName', 'John')
             ->set('lastName', 'Doe')

@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Filament\Widgets;
 
 use App\Models\Registration;
+use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Support\Number;
 use Override;
 
-class RegistrationStatsWidget extends StatsOverviewWidget
+final class RegistrationStatsWidget extends StatsOverviewWidget
 {
     protected static ?int $sort = 1;
 
@@ -28,32 +29,32 @@ class RegistrationStatsWidget extends StatsOverviewWidget
         return [
             Stat::make('Total Registrations', $totalRegistrations)
                 ->description('All registration types')
-                ->descriptionIcon('heroicon-o-users')
+                ->descriptionIcon(Heroicon::OutlinedUsers)
                 ->color('primary'),
 
             Stat::make('Attendees', $attendees)
                 ->description('Paid attendees')
-                ->descriptionIcon('heroicon-o-ticket')
+                ->descriptionIcon(Heroicon::OutlinedTicket)
                 ->color('info'),
 
             Stat::make('Ministry Team', $ministryTeam)
                 ->description('Applications received')
-                ->descriptionIcon('heroicon-o-hand-raised')
+                ->descriptionIcon(Heroicon::OutlinedHandRaised)
                 ->color('warning'),
 
             Stat::make('Volunteers', $volunteers)
                 ->description('Volunteer registrations')
-                ->descriptionIcon('heroicon-o-heart')
+                ->descriptionIcon(Heroicon::OutlinedHeart)
                 ->color('success'),
 
             Stat::make('Pending Approvals', $pendingApprovals)
                 ->description('Awaiting review')
-                ->descriptionIcon('heroicon-o-clock')
+                ->descriptionIcon(Heroicon::OutlinedClock)
                 ->color($pendingApprovals > 0 ? 'warning' : 'success'),
 
             Stat::make('Total Revenue', Number::currency($totalRevenue / 100, 'HUF', app()->getLocale(), precision: 0))
                 ->description($paidRegistrations . ' paid registrations')
-                ->descriptionIcon('heroicon-o-banknotes')
+                ->descriptionIcon(Heroicon::OutlinedBanknotes)
                 ->color('success'),
         ];
     }

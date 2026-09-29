@@ -24,7 +24,7 @@ class RegisterCancel extends Component
 
     public function retryPayment(): void
     {
-        $stripeService = app(StripeService::class);
+        $stripeService = resolve(StripeService::class);
         $checkoutUrl = $stripeService->createCheckoutSession($this->registration);
 
         $this->redirect($checkoutUrl);

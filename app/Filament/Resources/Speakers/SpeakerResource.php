@@ -19,7 +19,7 @@ use Filament\Tables\Table;
 use Override;
 use UnitEnum;
 
-class SpeakerResource extends Resource
+final class SpeakerResource extends Resource
 {
     use AdminOnlyResource;
 
@@ -49,6 +49,7 @@ class SpeakerResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

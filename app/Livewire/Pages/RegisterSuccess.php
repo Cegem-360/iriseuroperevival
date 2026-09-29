@@ -23,7 +23,7 @@ class RegisterSuccess extends Component
 
         // If coming from Stripe, verify the payment
         if (request()->has('session_id')) {
-            $stripeService = app(StripeService::class);
+            $stripeService = resolve(StripeService::class);
             $session = $stripeService->retrieveSession(request()->session_id);
 
             if ($session->payment_status === 'paid' && ! $this->registration->is_paid) {

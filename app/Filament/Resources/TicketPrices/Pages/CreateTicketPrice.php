@@ -7,7 +7,7 @@ namespace App\Filament\Resources\TicketPrices\Pages;
 use App\Filament\Resources\TicketPrices\TicketPriceResource;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateTicketPrice extends CreateRecord
+final class CreateTicketPrice extends CreateRecord
 {
     protected static string $resource = TicketPriceResource::class;
 }

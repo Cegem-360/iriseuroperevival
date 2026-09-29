@@ -18,6 +18,7 @@ use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ColumnGroup;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -164,8 +165,8 @@ class RegistrationsTable
                     IconColumn::make('paid_at')
                         ->label('Paid')
                         ->boolean()
-                        ->trueIcon('heroicon-o-check-circle')
-                        ->falseIcon('heroicon-o-x-circle')
+                        ->trueIcon(Heroicon::OutlinedCheckCircle)
+                        ->falseIcon(Heroicon::OutlinedXCircle)
                         ->getStateUsing(fn (Registration $record): bool => $record->paid_at !== null)
                         ->toggleable(),
                     TextColumn::make('created_at')
@@ -411,10 +412,10 @@ class RegistrationsTable
                 EditAction::make(),
                 Action::make('send_email')
                     ->label('Send Email')
-                    ->icon('heroicon-o-envelope')
+                    ->icon(Heroicon::OutlinedEnvelope)
                     ->color('info')
                     ->visible(fn (): bool => self::canManageApplications())
-                    ->modalHeading(fn (Registration $record) => "Send Email to {$record->full_name}")
+                    ->modalHeading(fn (Registration $record): string => "Send Email to {$record->full_name}")
                     ->form([
                         TextInput::make('subject')
                             ->label('Subject')
@@ -439,7 +440,7 @@ class RegistrationsTable
                     }),
                 Action::make('approve')
                     ->label('Approve')
-                    ->icon('heroicon-o-check')
+                    ->icon(Heroicon::OutlinedCheck)
                     ->color('success')
                     ->requiresConfirmation()
                     ->modalHeading('Approve Registration')
@@ -455,7 +456,7 @@ class RegistrationsTable
                     }),
                 Action::make('reject')
                     ->label('Reject')
-                    ->icon('heroicon-o-x-mark')
+                    ->icon(Heroicon::OutlinedXMark)
                     ->color('danger')
                     ->requiresConfirmation()
                     ->modalHeading('Reject Registration')
@@ -478,7 +479,7 @@ class RegistrationsTable
                 ActionGroup::make([
                     Action::make('contact_reference_1')
                         ->label('Contact Reference 1')
-                        ->icon('heroicon-o-envelope')
+                        ->icon(Heroicon::OutlinedEnvelope)
                         ->color('info')
                         ->requiresConfirmation()
                         ->modalHeading('Contact Reference 1')
@@ -504,7 +505,7 @@ class RegistrationsTable
                         }),
                     Action::make('contact_reference_2')
                         ->label('Contact Reference 2')
-                        ->icon('heroicon-o-envelope')
+                        ->icon(Heroicon::OutlinedEnvelope)
                         ->color('info')
                         ->requiresConfirmation()
                         ->modalHeading('Contact Reference 2')
@@ -530,7 +531,7 @@ class RegistrationsTable
                         }),
                     Action::make('contact_all_references')
                         ->label('Contact Both References')
-                        ->icon('heroicon-o-envelope-open')
+                        ->icon(Heroicon::OutlinedEnvelopeOpen)
                         ->color('warning')
                         ->requiresConfirmation()
                         ->modalHeading('Contact Both References')
@@ -570,14 +571,14 @@ class RegistrationsTable
                         }),
                 ])
                     ->label('References')
-                    ->icon('heroicon-o-user-group')
+                    ->icon(Heroicon::OutlinedUserGroup)
                     ->visible(fn (Registration $record): bool => self::canManageApplications() && $record->type === 'ministry'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     BulkAction::make('send_bulk_email')
                         ->label('Send Email')
-                        ->icon('heroicon-o-envelope')
+                        ->icon(Heroicon::OutlinedEnvelope)
                         ->color('info')
                         ->visible(fn (): bool => self::canManageApplications())
                         ->modalHeading('Send Email to Selected Registrations')
@@ -610,7 +611,7 @@ class RegistrationsTable
                         ->deselectRecordsAfterCompletion(),
                     BulkAction::make('export_csv')
                         ->label('Export CSV')
-                        ->icon('heroicon-o-document-arrow-down')
+                        ->icon(Heroicon::OutlinedDocumentArrowDown)
                         ->color('gray')
                         ->action(function (Collection $records): BinaryFileResponse {
                             $filename = 'registrations-' . now()->format('Y-m-d-His') . '.csv';
@@ -624,7 +625,7 @@ class RegistrationsTable
                         ->deselectRecordsAfterCompletion(),
                     BulkAction::make('export_excel')
                         ->label('Export Excel')
-                        ->icon('heroicon-o-document-arrow-down')
+                        ->icon(Heroicon::OutlinedDocumentArrowDown)
                         ->color('success')
                         ->action(function (Collection $records): BinaryFileResponse {
                             $filename = 'registrations-' . now()->format('Y-m-d-His') . '.xlsx';
@@ -638,7 +639,7 @@ class RegistrationsTable
                         ->deselectRecordsAfterCompletion(),
                     BulkAction::make('approve_selected')
                         ->label('Approve Selected')
-                        ->icon('heroicon-o-check')
+                        ->icon(Heroicon::OutlinedCheck)
                         ->color('success')
                         ->requiresConfirmation()
                         ->visible(fn (): bool => self::canManageApplications())
@@ -663,7 +664,7 @@ class RegistrationsTable
                 ]),
                 Action::make('export_all_csv')
                     ->label('Export All (CSV)')
-                    ->icon('heroicon-o-document-arrow-down')
+                    ->icon(Heroicon::OutlinedDocumentArrowDown)
                     ->color('gray')
                     ->visible(fn (): bool => Auth::user()?->isAdmin() ?? false)
                     ->action(function (): BinaryFileResponse {
@@ -677,7 +678,7 @@ class RegistrationsTable
                     }),
                 Action::make('export_all_excel')
                     ->label('Export All (Excel)')
-                    ->icon('heroicon-o-document-arrow-down')
+                    ->icon(Heroicon::OutlinedDocumentArrowDown)
                     ->color('success')
                     ->visible(fn (): bool => Auth::user()?->isAdmin() ?? false)
                     ->action(function (): BinaryFileResponse {

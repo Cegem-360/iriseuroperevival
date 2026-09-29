@@ -27,7 +27,7 @@ class ProductCatalog extends Component
             return;
         }
 
-        app(CartService::class)->add($product);
+        resolve(CartService::class)->add($product);
 
         $this->dispatch('cart-updated');
         session()->flash('success', 'Product added to cart!');
@@ -48,7 +48,7 @@ class ProductCatalog extends Component
     #[Computed]
     public function cartCount(): int
     {
-        return app(CartService::class)->count();
+        return resolve(CartService::class)->count();
     }
 
     public function render(): Factory|View

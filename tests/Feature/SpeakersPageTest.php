@@ -8,20 +8,22 @@ use App\Models\Speaker;
 use App\Models\Workshop;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 uses(RefreshDatabase::class);
 
-beforeEach(function () {
+beforeEach(function (): void {
     Speaker::query()->delete();
 });
 
-describe('speakers listing page', function () {
-    it('is not publicly routable', function () {
+describe('speakers listing page', function (): void {
+    it('is not publicly routable', function (): void {
+        /** @var TestCase $this */
         $this->get('/speakers')
             ->assertStatus(404);
     });
 
-    it('displays featured speakers', function () {
+    it('displays featured speakers', function (): void {
         $speaker = Speaker::factory()->featured()->speaker()->create([
             'name' => 'Featured Speaker',
             'title' => 'Keynote',
@@ -36,7 +38,7 @@ describe('speakers listing page', function () {
             ->assertSee('Ministry Org');
     });
 
-    it('displays workshop leaders', function () {
+    it('displays workshop leaders', function (): void {
         $workshopLeader = Speaker::factory()->create([
             'name' => 'Workshop Person',
             'title' => 'Prophetic Arts',
@@ -50,7 +52,7 @@ describe('speakers listing page', function () {
             ->assertSee('Prophetic Arts');
     });
 
-    it('displays worship leaders', function () {
+    it('displays worship leaders', function (): void {
         $worshipLeader = Speaker::factory()->worshipLeader()->create([
             'name' => 'Worship Person',
             'title' => 'Worship Leader',
@@ -61,14 +63,15 @@ describe('speakers listing page', function () {
             ->assertSee('Worship Person');
     });
 
-    it('shows empty state when no speakers', function () {
+    it('shows empty state when no speakers', function (): void {
         Livewire::test(Speakers::class)
             ->assertSee('Speaker Announcements Coming Soon');
     });
 });
 
-describe('speaker detail page', function () {
-    it('renders speaker detail page successfully', function () {
+describe('speaker detail page', function (): void {
+    it('renders speaker detail page successfully', function (): void {
+        /** @var TestCase $this */
         $speaker = Speaker::factory()->create([
             'name' => 'Test Speaker',
             'slug' => 'test-speaker',
@@ -79,7 +82,7 @@ describe('speaker detail page', function () {
             ->assertSeeLivewire(SpeakerShow::class);
     });
 
-    it('displays speaker details', function () {
+    it('displays speaker details', function (): void {
         $speaker = Speaker::factory()->create([
             'name' => 'John Doe',
             'slug' => 'john-doe',
@@ -97,7 +100,7 @@ describe('speaker detail page', function () {
             ->assertSee('This is a bio about John Doe.');
     });
 
-    it('displays social links when available', function () {
+    it('displays social links when available', function (): void {
         $speaker = Speaker::factory()->create([
             'slug' => 'social-speaker',
             'social_links' => [
@@ -112,7 +115,7 @@ describe('speaker detail page', function () {
             ->assertSee('instagram');
     });
 
-    it('displays other speakers section', function () {
+    it('displays other speakers section', function (): void {
         $mainSpeaker = Speaker::factory()->create([
             'name' => 'Main Speaker',
             'slug' => 'main-speaker',
@@ -131,7 +134,8 @@ describe('speaker detail page', function () {
             ->assertSee('Other Speaker');
     });
 
-    it('returns 404 for non-existent speaker', function () {
+    it('returns 404 for non-existent speaker', function (): void {
+        /** @var TestCase $this */
         $this->get('/speakers/non-existent-speaker')
             ->assertStatus(404);
     });

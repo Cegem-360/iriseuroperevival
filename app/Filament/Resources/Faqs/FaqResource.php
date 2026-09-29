@@ -19,7 +19,7 @@ use Filament\Tables\Table;
 use Override;
 use UnitEnum;
 
-class FaqResource extends Resource
+final class FaqResource extends Resource
 {
     use AdminOnlyResource;
 
@@ -53,6 +53,7 @@ class FaqResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

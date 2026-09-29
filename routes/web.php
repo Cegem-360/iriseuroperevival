@@ -17,7 +17,6 @@ use App\Livewire\Pages\Shop\Cart as ShopCart;
 use App\Livewire\Pages\Shop\Checkout as ShopCheckout;
 use App\Livewire\Pages\Shop\Index as ShopIndex;
 use App\Livewire\Pages\Shop\Success as ShopSuccess;
-use App\Livewire\Pages\Speakers;
 use App\Livewire\Pages\SpeakerShow;
 use App\Livewire\Pages\Terms;
 use App\Livewire\Pages\Workshops;

@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Tests\TestCase;
 
 test('every staff role can reach the dashboard', function (string $state): void {
+    /** @var TestCase $this */
     $user = User::factory()->{$state}()->create();
 
     $this->actingAs($user)
@@ -13,6 +15,7 @@ test('every staff role can reach the dashboard', function (string $state): void 
 })->with(['admin', 'ministryManager', 'coordinator']);
 
 test('users without a role cannot reach the dashboard', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $this->actingAs($user)
@@ -21,6 +24,7 @@ test('users without a role cannot reach the dashboard', function (): void {
 });
 
 test('guests are redirected from the dashboard', function (): void {
+    /** @var TestCase $this */
     $this->get(route('filament.admin.pages.dashboard'))
         ->assertRedirect();
 });

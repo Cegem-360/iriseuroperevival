@@ -87,10 +87,11 @@ class Workshop extends Model
 
             $hours = intdiv($this->duration_minutes, 60);
             $minutes = $this->duration_minutes % 60;
-
             if ($hours > 0 && $minutes > 0) {
                 return "{$hours}h {$minutes}m";
-            } elseif ($hours > 0) {
+            }
+
+            if ($hours > 0) {
                 return "{$hours}h";
             }
 

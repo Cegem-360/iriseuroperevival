@@ -29,6 +29,7 @@ use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
@@ -105,7 +106,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Personal Information'))
             ->description(__('Tell us about yourself'))
-            ->icon('heroicon-o-user')
+            ->icon(Heroicon::OutlinedUser)
             ->schema([
                 Grid::make(2)
                     ->schema([
@@ -159,7 +160,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Ministry Details'))
             ->description(__('Tell us about your background'))
-            ->icon('heroicon-o-briefcase')
+            ->icon(Heroicon::OutlinedBriefcase)
             ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
                 TextInput::make('citizenship')
@@ -197,7 +198,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Church Information'))
             ->description(__('Tell us about your church'))
-            ->icon('heroicon-o-building-library')
+            ->icon(Heroicon::OutlinedBuildingLibrary)
             ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
                 Grid::make(2)
@@ -237,7 +238,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Spiritual Background'))
             ->description(__('Share your testimony with us'))
-            ->icon('heroicon-o-heart')
+            ->icon(Heroicon::OutlinedHeart)
             ->visible(fn (Get $get): bool => $get('registration_type') === 'ministry')
             ->schema([
                 Section::make(__('Spiritual Requirements'))
@@ -333,7 +334,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Select Your Tickets'))
             ->description(__('Choose the best option for you'))
-            ->icon('heroicon-o-ticket')
+            ->icon(Heroicon::OutlinedTicket)
             ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
             ->schema([
                 Radio::make('ticket_kind')
@@ -487,7 +488,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Street Evangelism'))
             ->description(__('Join us on the streets'))
-            ->icon('heroicon-o-megaphone')
+            ->icon(Heroicon::OutlinedMegaphone)
             ->visible(fn (Get $get): bool => $get('registration_type') === 'attendee')
             ->schema([
                 Radio::make('wants_to_evangelize')
@@ -503,7 +504,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Volunteer Details'))
             ->description(__('Tell us how you would like to serve'))
-            ->icon('heroicon-o-hand-raised')
+            ->icon(Heroicon::OutlinedHandRaised)
             ->visible(fn (Get $get): bool => $get('registration_type') === 'volunteer')
             ->schema([
                 CheckboxList::make('languages')
@@ -556,7 +557,7 @@ class RegistrationForm extends Component implements HasSchemas
     {
         return Step::make(__('Confirmation'))
             ->description(__('Review and confirm your registration'))
-            ->icon('heroicon-o-check-circle')
+            ->icon(Heroicon::OutlinedCheckCircle)
             ->schema([
                 Section::make(__('Registration Summary'))
                     ->schema([
@@ -601,7 +602,7 @@ class RegistrationForm extends Component implements HasSchemas
 
             // Attendees go through Stripe payment
             if ($this->type === 'attendee') {
-                $stripeService = app(StripeService::class);
+                $stripeService = resolve(StripeService::class);
                 $checkoutUrl = $stripeService->createCheckoutSession($registration);
 
                 return redirect($checkoutUrl);

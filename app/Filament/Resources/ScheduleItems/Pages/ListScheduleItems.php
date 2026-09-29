@@ -7,11 +7,13 @@ namespace App\Filament\Resources\ScheduleItems\Pages;
 use App\Filament\Resources\ScheduleItems\ScheduleItemResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
-class ListScheduleItems extends ListRecords
+final class ListScheduleItems extends ListRecords
 {
     protected static string $resource = ScheduleItemResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

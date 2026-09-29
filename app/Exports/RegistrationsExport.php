@@ -122,7 +122,7 @@ class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeading
 
     public function collection(): Collection
     {
-        if ($this->records) {
+        if ($this->records instanceof Collection) {
             return $this->records;
         }
 
@@ -136,7 +136,7 @@ class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeading
             $query->where('status', $this->filters['status']);
         }
 
-        return $query->orderBy('created_at', 'desc')->get();
+        return $query->latest()->get();
     }
 
     /**

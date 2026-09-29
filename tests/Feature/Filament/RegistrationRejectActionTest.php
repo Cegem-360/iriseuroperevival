@@ -9,8 +9,10 @@ use App\Models\User;
 use Filament\Actions\Testing\TestAction;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 beforeEach(function (): void {
+    /** @var TestCase $this */
     $this->actingAs(User::factory()->admin()->create());
 });
 

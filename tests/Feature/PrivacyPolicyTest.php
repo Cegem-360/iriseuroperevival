@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+use Tests\TestCase;
+
 it('shows the Hungarian data controller details', function (): void {
+    /** @var TestCase $this */
     session(['locale' => 'hu']);
 
     $this->get(route('privacy'))
@@ -16,6 +19,7 @@ it('shows the Hungarian data controller details', function (): void {
 });
 
 it('shows the full English GDPR policy with the same data controller', function (): void {
+    /** @var TestCase $this */
     session(['locale' => 'en']);
 
     $this->get(route('privacy'))

@@ -19,7 +19,7 @@ use Filament\Tables\Table;
 use Override;
 use UnitEnum;
 
-class TicketPriceResource extends Resource
+final class TicketPriceResource extends Resource
 {
     use AdminOnlyResource;
 
@@ -47,6 +47,7 @@ class TicketPriceResource extends Resource
         return [];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

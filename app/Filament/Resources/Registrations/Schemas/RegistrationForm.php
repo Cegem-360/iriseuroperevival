@@ -103,8 +103,8 @@ class RegistrationForm
                             ->label('Amount (Ft)')
                             ->numeric()
                             ->suffix('Ft')
-                            ->formatStateUsing(fn ($state) => $state ? $state / 100 : null)
-                            ->dehydrateStateUsing(fn ($state) => $state ? $state * 100 : null)
+                            ->formatStateUsing(fn ($state): int|float|null => $state ? $state / 100 : null)
+                            ->dehydrateStateUsing(fn ($state): int|float|null => $state ? $state * 100 : null)
                             ->visible(fn (Get $get): bool => $get('type') !== 'volunteer'),
                     ])
                     ->columns(2),

@@ -4,18 +4,22 @@ declare(strict_types=1);
 
 use App\Models\Registration;
 use App\Models\User;
+use Tests\TestCase;
 
 test('guests are redirected to the login page', function (): void {
+    /** @var TestCase $this */
     $this->get('/dashboard')->assertRedirect('/login');
 });
 
 test('authenticated users can visit the dashboard', function (): void {
+    /** @var TestCase $this */
     $this->actingAs($user = User::factory()->create());
 
     $this->get('/dashboard')->assertOk();
 });
 
 test('dashboard shows registrations linked to user', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
     $registration = Registration::factory()->create([
         'user_id' => $user->id,
@@ -31,6 +35,7 @@ test('dashboard shows registrations linked to user', function (): void {
 });
 
 test('dashboard shows registrations with matching email', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create(['email' => 'test@example.com']);
     $registration = Registration::factory()->create([
         'email' => 'test@example.com',
@@ -46,6 +51,7 @@ test('dashboard shows registrations with matching email', function (): void {
 });
 
 test('dashboard does not show other users registrations', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create(['email' => 'user@example.com']);
     $otherRegistration = Registration::factory()->create([
         'email' => 'other@example.com',
@@ -60,6 +66,7 @@ test('dashboard does not show other users registrations', function (): void {
 });
 
 test('dashboard shows empty state when no registrations', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $this->actingAs($user)

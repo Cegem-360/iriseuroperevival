@@ -5,14 +5,17 @@ declare(strict_types=1);
 use App\Livewire\Settings\Profile;
 use App\Models\User;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 test('profile page is displayed', function (): void {
+    /** @var TestCase $this */
     $this->actingAs($user = User::factory()->create());
 
     $this->get('/settings/profile')->assertOk();
 });
 
 test('profile information can be updated', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -32,6 +35,7 @@ test('profile information can be updated', function (): void {
 });
 
 test('email verification status is unchanged when email address is unchanged', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -47,6 +51,7 @@ test('email verification status is unchanged when email address is unchanged', f
 });
 
 test('user can delete their account', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -64,6 +69,7 @@ test('user can delete their account', function (): void {
 });
 
 test('correct password must be provided to delete account', function (): void {
+    /** @var TestCase $this */
     $user = User::factory()->create();
 
     $this->actingAs($user);

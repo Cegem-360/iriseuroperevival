@@ -12,7 +12,10 @@ use Livewire\Livewire;
 
 use function Pest\Laravel\actingAs;
 
+use Tests\TestCase;
+
 test('restricted staff cannot reach resources outside registrations', function (string $state, string $route): void {
+    /** @var TestCase $this */
     actingAs(User::factory()->{$state}()->create());
 
     $this->get(route($route))->assertForbidden();
@@ -24,12 +27,14 @@ test('restricted staff cannot reach resources outside registrations', function (
 ]);
 
 test('admins can reach resources outside registrations', function (): void {
+    /** @var TestCase $this */
     actingAs(User::factory()->admin()->create());
 
     $this->get(route('filament.admin.resources.speakers.index'))->assertOk();
 });
 
 test('restricted staff can reach the registrations resource', function (string $state): void {
+    /** @var TestCase $this */
     actingAs(User::factory()->{$state}()->create());
 
     $this->get(route('filament.admin.resources.registrations.index'))->assertOk();

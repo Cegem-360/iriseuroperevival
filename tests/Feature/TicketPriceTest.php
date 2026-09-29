@@ -9,13 +9,15 @@ use App\Models\TicketPrice;
 use App\Models\User;
 use App\Services\StripeService;
 use Livewire\Livewire;
+use Tests\TestCase;
 
-beforeEach(function () {
+beforeEach(function (): void {
+    /** @var TestCase $this */
     $this->actingAs(User::factory()->admin()->create());
     TicketPrice::query()->delete();
 });
 
-it('has correct computed attributes', function () {
+it('has correct computed attributes', function (): void {
     $ticketPrice = TicketPrice::factory()->create(['price' => 4900]);
 
     expect($ticketPrice->price_in_huf)->toEqual(49)
@@ -23,14 +25,14 @@ it('has correct computed attributes', function () {
         ->and($ticketPrice->formatted_price)->toContain('HUF');
 });
 
-it('scopes active ticket prices', function () {
+it('scopes active ticket prices', function (): void {
     TicketPrice::factory()->create(['is_active' => true, 'pricing_tier' => 'early', 'ticket_type' => 'individual']);
     TicketPrice::factory()->inactive()->create(['pricing_tier' => 'early', 'ticket_type' => 'team']);
 
     expect(TicketPrice::query()->active()->count())->toBe(1);
 });
 
-it('scopes by tier and type', function () {
+it('scopes by tier and type', function (): void {
     TicketPrice::factory()->early()->individual()->create();
     TicketPrice::factory()->regular()->team()->create();
 
@@ -38,14 +40,14 @@ it('scopes by tier and type', function () {
         ->and(TicketPrice::query()->forType('team')->count())->toBe(1);
 });
 
-it('auto-generates uuid on creation', function () {
+it('auto-generates uuid on creation', function (): void {
     $ticketPrice = TicketPrice::factory()->create(['uuid' => null]);
 
     expect($ticketPrice->uuid)->not->toBeNull()
         ->and($ticketPrice->uuid)->toBeString();
 });
 
-it('stripe service reads price from database', function () {
+it('stripe service reads price from database', function (): void {
     TicketPrice::factory()->early()->individual()->create(['price' => 5500]);
 
     $service = new StripeService();
@@ -53,13 +55,13 @@ it('stripe service reads price from database', function () {
     expect($service->getTicketPrice('individual', 'early'))->toBe(5500);
 });
 
-it('stripe service falls back to hardcoded prices when no db record', function () {
+it('stripe service falls back to hardcoded prices when no db record', function (): void {
     $service = new StripeService();
 
     expect($service->getTicketPrice('individual', 'early'))->toBe(4900);
 });
 
-it('can list ticket prices in filament', function () {
+it('can list ticket prices in filament', function (): void {
     $prices = TicketPrice::factory()->count(3)->sequence(
         ['pricing_tier' => 'early', 'ticket_type' => 'individual'],
         ['pricing_tier' => 'regular', 'ticket_type' => 'team'],
@@ -70,7 +72,8 @@ it('can list ticket prices in filament', function () {
         ->assertCanSeeTableRecords($prices);
 });
 
-it('can create a ticket price in filament', function () {
+it('can create a ticket price in filament', function (): void {
+    /** @var TestCase $this */
     Livewire::test(CreateTicketPrice::class)
         ->fillForm([
             'ticket_type' => 'individual',
@@ -91,7 +94,7 @@ it('can create a ticket price in filament', function () {
     ]);
 });
 
-it('can edit a ticket price in filament', function () {
+it('can edit a ticket price in filament', function (): void {
     $ticketPrice = TicketPrice::factory()->create([
         'price' => 4900,
         'ticket_type' => 'individual',
@@ -106,7 +109,7 @@ it('can edit a ticket price in filament', function () {
     expect($ticketPrice->fresh()->price)->toBe(5500);
 });
 
-it('validates required fields on create', function () {
+it('validates required fields on create', function (): void {
     Livewire::test(CreateTicketPrice::class)
         ->fillForm([
             'ticket_type' => null,

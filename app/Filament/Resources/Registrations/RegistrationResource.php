@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Override;
 use UnitEnum;
 
-class RegistrationResource extends Resource
+final class RegistrationResource extends Resource
 {
     protected static ?string $model = Registration::class;
 
@@ -65,7 +65,7 @@ class RegistrationResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        $pendingCount = static::getEloquentQuery()->where('status', 'pending_approval')->count();
+        $pendingCount = self::getEloquentQuery()->where('status', 'pending_approval')->count();
 
         return $pendingCount > 0 ? (string) $pendingCount : null;
     }
@@ -95,6 +95,7 @@ class RegistrationResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

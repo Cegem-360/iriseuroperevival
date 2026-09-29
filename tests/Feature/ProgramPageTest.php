@@ -7,22 +7,24 @@ use App\Models\ScheduleItem;
 use App\Models\Speaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 uses(RefreshDatabase::class);
 
-describe('program page', function () {
-    it('renders program page successfully', function () {
+describe('program page', function (): void {
+    it('renders program page successfully', function (): void {
+        /** @var TestCase $this */
         $this->get('/program')
             ->assertStatus(200)
             ->assertSeeLivewire(Program::class);
     });
 
-    it('shows empty state when no schedule items', function () {
+    it('shows empty state when no schedule items', function (): void {
         Livewire::test(Program::class)
             ->assertSee('Full Schedule Coming Soon');
     });
 
-    it('displays schedule items grouped by day', function () {
+    it('displays schedule items grouped by day', function (): void {
         ScheduleItem::factory()->create([
             'title' => 'Morning Worship',
             'day' => '2026-10-23',
@@ -46,7 +48,7 @@ describe('program page', function () {
             ->assertSee('14:00');
     });
 
-    it('displays different schedule types with badges', function () {
+    it('displays different schedule types with badges', function (): void {
         ScheduleItem::factory()->worship()->create(['title' => 'Worship Time']);
         ScheduleItem::factory()->session()->create(['title' => 'Teaching Session']);
         ScheduleItem::factory()->meal()->create(['title' => 'Lunch Break']);
@@ -57,7 +59,7 @@ describe('program page', function () {
             ->assertSee('Lunch Break');
     });
 
-    it('displays speaker information when attached', function () {
+    it('displays speaker information when attached', function (): void {
         $speaker = Speaker::factory()->create(['name' => 'John Smith']);
 
         ScheduleItem::factory()->withSpeaker($speaker)->create([
@@ -69,7 +71,7 @@ describe('program page', function () {
             ->assertSee('John Smith');
     });
 
-    it('displays location when available', function () {
+    it('displays location when available', function (): void {
         ScheduleItem::factory()->create([
             'title' => 'Session in Chapel',
             'location' => 'Main Chapel',
@@ -80,7 +82,7 @@ describe('program page', function () {
             ->assertSee('Main Chapel');
     });
 
-    it('hides unpublished schedule items', function () {
+    it('hides unpublished schedule items', function (): void {
         ScheduleItem::factory()->create([
             'title' => 'Published Session',
             'is_published' => true,
@@ -95,7 +97,7 @@ describe('program page', function () {
             ->assertDontSee('Draft Session');
     });
 
-    it('can switch between days', function () {
+    it('can switch between days', function (): void {
         ScheduleItem::factory()->create([
             'title' => 'Day 1 Session',
             'day' => '2026-10-23',
@@ -112,7 +114,7 @@ describe('program page', function () {
             ->assertSet('activeDay', '2026-10-24');
     });
 
-    it('orders schedule items by time', function () {
+    it('orders schedule items by time', function (): void {
         ScheduleItem::factory()->create([
             'title' => 'Second Session',
             'day' => '2026-10-23',

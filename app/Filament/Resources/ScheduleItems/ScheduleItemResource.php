@@ -19,7 +19,7 @@ use Filament\Tables\Table;
 use Override;
 use UnitEnum;
 
-class ScheduleItemResource extends Resource
+final class ScheduleItemResource extends Resource
 {
     use AdminOnlyResource;
 
@@ -53,6 +53,7 @@ class ScheduleItemResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

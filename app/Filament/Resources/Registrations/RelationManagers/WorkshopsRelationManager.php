@@ -12,17 +12,20 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Override;
 
-class WorkshopsRelationManager extends RelationManager
+final class WorkshopsRelationManager extends RelationManager
 {
     protected static string $relationship = 'workshops';
 
+    #[Override]
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([]);
     }
 
+    #[Override]
     public function table(Table $table): Table
     {
         return $table

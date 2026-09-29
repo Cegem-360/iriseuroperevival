@@ -6,8 +6,10 @@ use App\Livewire\RegistrationForm;
 use App\Models\Registration;
 use App\Services\StripeService;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 beforeEach(function (): void {
+    /** @var TestCase $this */
     $this->mock(StripeService::class)
         ->shouldReceive('createCheckoutSession')
         ->andReturn('https://stripe.test/checkout');

@@ -7,22 +7,24 @@ use App\Models\Speaker;
 use App\Models\Workshop;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 uses(RefreshDatabase::class);
 
-describe('workshops page', function () {
-    it('renders workshops page successfully', function () {
+describe('workshops page', function (): void {
+    it('renders workshops page successfully', function (): void {
+        /** @var TestCase $this */
         $this->get('/workshops')
             ->assertStatus(200)
             ->assertSeeLivewire(Workshops::class);
     });
 
-    it('shows empty state when no workshops', function () {
+    it('shows empty state when no workshops', function (): void {
         Livewire::test(Workshops::class)
             ->assertSee('Workshop Details Coming Soon');
     });
 
-    it('renders speaker photo from a Filament-uploaded path', function () {
+    it('renders speaker photo from a Filament-uploaded path', function (): void {
         $speaker = Speaker::factory()->create([
             'name' => 'Uploaded Speaker',
             'photo_path' => 'speakers/01KQEQW52YBDBKSVPGG0QMSAMJ.jpg',
@@ -40,7 +42,7 @@ describe('workshops page', function () {
             ->assertSee('/storage/speakers/01KQEQW52YBDBKSVPGG0QMSAMJ.jpg');
     });
 
-    it('displays workshops', function () {
+    it('displays workshops', function (): void {
         Workshop::factory()->create([
             'title' => 'Prophetic Arts Workshop',
             'short_description' => 'Learn to express worship through art.',
@@ -51,7 +53,7 @@ describe('workshops page', function () {
             ->assertSee('Learn to express worship through art.');
     });
 
-    it('displays workshop duration', function () {
+    it('displays workshop duration', function (): void {
         Workshop::factory()->create([
             'title' => 'Two Hour Workshop',
             'duration_minutes' => 120,
@@ -62,7 +64,7 @@ describe('workshops page', function () {
             ->assertSee('2h');
     });
 
-    it('displays workshop leader name', function () {
+    it('displays workshop leader name', function (): void {
         Workshop::factory()->create([
             'title' => 'Art Workshop',
             'leader_name' => 'Dr. Kate',
@@ -73,7 +75,7 @@ describe('workshops page', function () {
             ->assertSee('Dr. Kate');
     });
 
-    it('displays workshop leader with speaker link', function () {
+    it('displays workshop leader with speaker link', function (): void {
         $speaker = Speaker::factory()->create([
             'name' => 'Workshop Leader',
             'slug' => 'workshop-leader',
@@ -90,7 +92,7 @@ describe('workshops page', function () {
             ->assertSee('Workshop Leader');
     });
 
-    it('displays schedule note badge', function () {
+    it('displays schedule note badge', function (): void {
         Workshop::factory()->create([
             'title' => 'Saturday Workshop',
             'schedule_note' => 'Saturday only',
@@ -101,7 +103,7 @@ describe('workshops page', function () {
             ->assertSee('Saturday only');
     });
 
-    it('hides unpublished workshops', function () {
+    it('hides unpublished workshops', function (): void {
         Workshop::factory()->create([
             'title' => 'Published Workshop',
             'is_published' => true,
@@ -116,7 +118,7 @@ describe('workshops page', function () {
             ->assertDontSee('Draft Workshop');
     });
 
-    it('orders workshops by sort_order', function () {
+    it('orders workshops by sort_order', function (): void {
         Workshop::factory()->create([
             'title' => 'Second Workshop',
             'sort_order' => 2,
@@ -136,7 +138,7 @@ describe('workshops page', function () {
         expect($firstPosition)->toBeLessThan($secondPosition);
     });
 
-    it('shows registration call to action when workshops exist', function () {
+    it('shows registration call to action when workshops exist', function (): void {
         Workshop::factory()->create(['title' => 'Any Workshop']);
 
         Livewire::test(Workshops::class)

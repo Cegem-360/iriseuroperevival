@@ -33,7 +33,7 @@ class WebhookController extends Controller
 
         if ($event->type === 'checkout.session.completed') {
             $session = $event->data->object;
-            app(StripeService::class)->handlePaymentSuccess($session->id);
+            resolve(StripeService::class)->handlePaymentSuccess($session->id);
         }
 
         return response('', 200);

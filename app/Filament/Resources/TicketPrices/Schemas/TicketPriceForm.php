@@ -40,8 +40,8 @@ class TicketPriceForm
                             ->numeric()
                             ->suffix('Ft')
                             ->minValue(0)
-                            ->formatStateUsing(fn ($state) => $state ? $state / 100 : null)
-                            ->dehydrateStateUsing(fn ($state) => $state ? $state * 100 : null),
+                            ->formatStateUsing(fn ($state): int|float|null => $state ? $state / 100 : null)
+                            ->dehydrateStateUsing(fn ($state): int|float|null => $state ? $state * 100 : null),
                         TextInput::make('label')
                             ->required()
                             ->maxLength(255),

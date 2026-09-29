@@ -20,7 +20,7 @@ use Filament\Tables\Table;
 use Override;
 use UnitEnum;
 
-class UserResource extends Resource
+final class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
@@ -56,6 +56,7 @@ class UserResource extends Resource
         ];
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

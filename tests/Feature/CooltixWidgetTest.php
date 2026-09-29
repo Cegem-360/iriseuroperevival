@@ -3,10 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 uses(RefreshDatabase::class);
 
-it('embeds the cooltix product iframe for the configured event id', function () {
+it('embeds the cooltix product iframe for the configured event id', function (): void {
+    /** @var TestCase $this */
     config()->set('services.cooltix.event_id', 'test-event-id');
 
     $this->get('/')
@@ -14,7 +16,8 @@ it('embeds the cooltix product iframe for the configured event id', function () 
         ->assertSee('https://cooltix.com/widget/event-products/test-event-id', false);
 });
 
-it('opens the cooltix modal from the ticket buttons', function () {
+it('opens the cooltix modal from the ticket buttons', function (): void {
+    /** @var TestCase $this */
     config()->set('services.cooltix.event_id', 'test-event-id');
 
     $this->get('/')
@@ -23,8 +26,9 @@ it('opens the cooltix modal from the ticket buttons', function () {
         ->assertSee('x-on:open-cooltix-modal.window', false);
 });
 
-it('hides the cooltix widget when no event id is configured', function () {
-    config()->set('services.cooltix.event_id', null);
+it('hides the cooltix widget when no event id is configured', function (): void {
+    /** @var TestCase $this */
+    config()->set('services.cooltix.event_id');
 
     $this->get('/')
         ->assertOk()
@@ -32,7 +36,8 @@ it('hides the cooltix widget when no event id is configured', function () {
         ->assertDontSee('open-cooltix-modal', false);
 });
 
-it('is disabled by default when the COOLTIX_EVENT_ID env var is absent', function () {
+it('is disabled by default when the COOLTIX_EVENT_ID env var is absent', function (): void {
+    /** @var TestCase $this */
     expect(config('services.cooltix.event_id'))->toBeNull();
 
     $this->get('/')
@@ -41,7 +46,8 @@ it('is disabled by default when the COOLTIX_EVENT_ID env var is absent', functio
         ->assertDontSee('open-cooltix-modal', false);
 });
 
-it('translates the ticket button label', function () {
+it('translates the ticket button label', function (): void {
+    /** @var TestCase $this */
     config()->set('services.cooltix.event_id', 'test-event-id');
 
     $this->withSession(['locale' => 'hu'])

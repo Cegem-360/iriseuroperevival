@@ -8,22 +8,24 @@ use App\Models\Speaker;
 use App\Models\Sponsor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 uses(RefreshDatabase::class);
 
-beforeEach(function () {
+beforeEach(function (): void {
     Speaker::query()->delete();
     Sponsor::query()->delete();
     Faq::query()->delete();
 });
 
-it('renders home page successfully', function () {
+it('renders home page successfully', function (): void {
+    /** @var TestCase $this */
     $this->get('/')
         ->assertStatus(200)
         ->assertSeeLivewire(Home::class);
 });
 
-it('displays featured speakers from database', function () {
+it('displays featured speakers from database', function (): void {
     $speaker = Speaker::factory()->featured()->speaker()->create([
         'name' => 'Test Speaker',
         'title' => 'Keynote',
@@ -36,7 +38,7 @@ it('displays featured speakers from database', function () {
         ->assertSee('Test Org');
 });
 
-it('displays workshop leaders from database', function () {
+it('displays workshop leaders from database', function (): void {
     $workshopLeader = Speaker::factory()->create([
         'slug' => 'david-gava',
         'name' => 'Workshop Leader',
@@ -50,7 +52,7 @@ it('displays workshop leaders from database', function () {
         ->assertSee('Workshop Leader');
 });
 
-it('displays main sponsor from database', function () {
+it('displays main sponsor from database', function (): void {
     $mainSponsor = Sponsor::factory()->platinum()->create([
         'name' => 'Main Sponsor',
     ]);
@@ -59,7 +61,7 @@ it('displays main sponsor from database', function () {
         ->assertSee('Main Sponsor');
 });
 
-it('displays partner sponsors from database', function () {
+it('displays partner sponsors from database', function (): void {
     $partner = Sponsor::factory()->gold()->create([
         'name' => 'Gold Partner',
     ]);
@@ -68,7 +70,7 @@ it('displays partner sponsors from database', function () {
         ->assertSee('Gold Partner');
 });
 
-it('displays faqs from database', function () {
+it('displays faqs from database', function (): void {
     $faq = Faq::factory()->general()->create([
         'question' => 'What is the event about?',
         'answer' => 'This is a revival conference.',
@@ -79,7 +81,7 @@ it('displays faqs from database', function () {
         ->assertSee('This is a revival conference.');
 });
 
-it('does not display unpublished faqs', function () {
+it('does not display unpublished faqs', function (): void {
     $unpublishedFaq = Faq::factory()->unpublished()->create([
         'question' => 'Hidden FAQ question',
         'answer' => 'Hidden FAQ answer',
@@ -89,7 +91,7 @@ it('does not display unpublished faqs', function () {
         ->assertDontSee('Hidden FAQ question');
 });
 
-it('does not display inactive sponsors', function () {
+it('does not display inactive sponsors', function (): void {
     $inactiveSponsor = Sponsor::factory()->inactive()->create([
         'name' => 'Inactive Sponsor',
     ]);
@@ -98,7 +100,8 @@ it('does not display inactive sponsors', function () {
         ->assertDontSee('Inactive Sponsor');
 });
 
-it('does not show the removed Iris Harvest School alumni workshop', function () {
+it('does not show the removed Iris Harvest School alumni workshop', function (): void {
+    /** @var TestCase $this */
     $this->get('/')
         ->assertStatus(200)
         ->assertDontSee('iris-global-leaders')
