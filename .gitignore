@@ -29,3 +29,7 @@ yarn-error.log
 /public/build
 _ide_helper.php
 _ide_helper_models.php
+
+# Deploy scripts live on the server only (~/deploy)
+/deploy.sh
+/deploy/
