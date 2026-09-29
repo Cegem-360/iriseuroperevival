@@ -55,20 +55,20 @@ class RegistrationForm extends Component implements HasSchemas
         $this->type = $type;
 
         $duration = request()->query('duration', '1_day');
-        $price = request()->query('price', '7500');
+        $price = request()->query('price', 'standard');
         $amount = request()->query('amount');
 
         $fill = [
             'registration_type' => $type,
             'ticket_kind' => 'individual',
             'ticket_duration' => in_array($duration, ['1_day', '3_days']) ? $duration : '1_day',
-            'ticket_price_option' => in_array($price, ['7500', '15000', 'custom']) ? $price : ($duration === '3_days' ? '15000' : '7500'),
+            'ticket_price_option' => $price === 'custom' ? 'custom' : 'standard',
             'individual_quantity' => 1,
             'group_duration' => '1_day',
             'group_size' => 2,
         ];
 
-        if ($price === 'custom' && $amount && (int) $amount > 15000) {
+        if ($price === 'custom' && $amount && (int) $amount > Registration::standardPriceHuf($duration)) {
             $fill['ticket_custom_amount'] = (int) $amount;
         }
 
@@ -388,7 +388,7 @@ class RegistrationForm extends Component implements HasSchemas
                     ->default('1_day')
                     ->live()
                     ->afterStateUpdated(function (Set $set, ?string $state): void {
-                        $set('ticket_price_option', $state === '3_days' ? '15000' : '7500');
+                        $set('ticket_price_option', 'standard');
                         $set('ticket_custom_amount', null);
 
                         if ($state === '3_days') {
@@ -411,25 +411,19 @@ class RegistrationForm extends Component implements HasSchemas
                     ->label(__('Choose Your Amount'))
                     ->required()
                     ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual')
-                    ->options(fn (Get $get): array => $get('ticket_duration') === '3_days'
-                        ? [
-                            '15000' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(15000 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
+                    ->options(function (Get $get): array {
+                        $standardPrice = Registration::standardPriceHuf($get('ticket_duration'));
+
+                        return [
+                            'standard' => Number::currency($standardPrice, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency($standardPrice / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
                             'custom' => __('Custom amount'),
-                        ]
-                        : [
-                            '7500' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency(7500 / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
-                            'custom' => __('Custom amount'),
-                        ])
-                    ->descriptions(fn (Get $get): array => $get('ticket_duration') === '3_days'
-                        ? [
-                            '15000' => __('This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.'),
-                            'custom' => __('Thank you for choosing to support the event with a custom amount!'),
-                        ]
-                        : [
-                            '7500' => __('This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.'),
-                            'custom' => __('Thank you for choosing to support the event with a custom amount!'),
-                        ])
-                    ->default(fn (Get $get): string => $get('ticket_duration') === '3_days' ? '15000' : '7500')
+                        ];
+                    })
+                    ->descriptions([
+                        'standard' => __('This is the standard support price. If you would like to support the event with a higher amount, please select the custom option.'),
+                        'custom' => __('Thank you for choosing to support the event with a custom amount!'),
+                    ])
+                    ->default('standard')
                     ->live(),
 
                 TextInput::make('ticket_custom_amount')
@@ -456,8 +450,8 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
                     ->options([
-                        '1_day' => __(':price / person', ['price' => Number::currency(7500, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('1 Day'),
-                        '3_days' => __(':price / person', ['price' => Number::currency(15000, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('3 Days'),
+                        '1_day' => __(':price / person', ['price' => Number::currency(Registration::ONE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('1 Day'),
+                        '3_days' => __(':price / person', ['price' => Number::currency(Registration::THREE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('3 Days'),
                     ])
                     ->default('1_day')
                     ->live()
@@ -721,7 +715,7 @@ class RegistrationForm extends Component implements HasSchemas
      */
     protected function groupPerPersonRate(string $groupDuration): int
     {
-        return $groupDuration === '3_days' ? 15000 : 7500;
+        return Registration::standardPriceHuf($groupDuration);
     }
 
     /**
@@ -730,7 +724,7 @@ class RegistrationForm extends Component implements HasSchemas
      */
     protected function individualBaseTotal(string $ticketDuration, int $quantity): int
     {
-        return ($ticketDuration === '3_days' ? 15000 : 7500) * max(1, $quantity);
+        return Registration::standardPriceHuf($ticketDuration) * max(1, $quantity);
     }
 
     protected function calculateAmount(array $data): int
@@ -742,7 +736,7 @@ class RegistrationForm extends Component implements HasSchemas
             return $size * $rate * 100;
         }
 
-        $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
+        $priceOption = (string) ($data['ticket_price_option'] ?? 'standard');
         $ticketDuration = $data['ticket_duration'] ?? '1_day';
         $quantity = max(1, (int) ($data['individual_quantity'] ?? 1));
         $baseTotal = $this->individualBaseTotal($ticketDuration, $quantity);
@@ -758,10 +752,7 @@ class RegistrationForm extends Component implements HasSchemas
             return $customAmount * 100;
         }
 
-        return match ($priceOption) {
-            '15000' => 15000 * $quantity * 100,
-            default => 7500 * $quantity * 100,
-        };
+        return $baseTotal * 100;
     }
 
     /**
@@ -789,17 +780,13 @@ class RegistrationForm extends Component implements HasSchemas
             ];
         }
 
-        $priceOption = (string) ($data['ticket_price_option'] ?? '7500');
+        $priceOption = (string) ($data['ticket_price_option'] ?? 'standard');
         $ticketDuration = $data['ticket_duration'] ?? '1_day';
         $quantity = max(1, (int) ($data['individual_quantity'] ?? 1));
         $minCustom = $this->individualBaseTotal($ticketDuration, $quantity);
 
         /** @var int $rate Per-ticket rate; 0 for a custom amount, which is a whole-order total. */
-        $rate = match ($priceOption) {
-            '15000' => 15000,
-            'custom' => 0,
-            default => 7500,
-        };
+        $rate = $priceOption === 'custom' ? 0 : Registration::standardPriceHuf($ticketDuration);
 
         $amountHuf = $priceOption === 'custom'
             ? (($custom = (int) ($data['ticket_custom_amount'] ?? 0)) > $minCustom ? $custom : 0)

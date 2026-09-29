@@ -29,7 +29,7 @@ function submitIndividualForm(array $overrides = []): Testable
             'ticket_kind' => 'individual',
             'ticket_duration' => '1_day',
             'individual_day' => 'saturday',
-            'ticket_price_option' => '7500',
+            'ticket_price_option' => 'standard',
             'individual_quantity' => 1,
             'wants_to_evangelize' => 0,
             'accepts_terms' => true,
@@ -57,7 +57,7 @@ it('defaults to a single ticket', function (): void {
 
     expect($registration->is_group_ticket)->toBeFalse()
         ->and($registration->ticket_quantity)->toBe(1)
-        ->and((int) $registration->amount)->toBe(7500 * 100);
+        ->and((int) $registration->amount)->toBe(4900 * 100);
 });
 
 it('multiplies the 1-day price by the number of tickets', function (): void {
@@ -68,13 +68,13 @@ it('multiplies the 1-day price by the number of tickets', function (): void {
     expect($registration->is_group_ticket)->toBeFalse()
         ->and($registration->ticket_quantity)->toBe(3)
         ->and($registration->ticket_day)->toBe('saturday')
-        ->and((int) $registration->amount)->toBe(3 * 7500 * 100);
+        ->and((int) $registration->amount)->toBe(3 * 4900 * 100);
 });
 
 it('multiplies the 3-day price by the number of tickets and stores no day', function (): void {
     submitIndividualForm([
         'ticket_duration' => '3_days',
-        'ticket_price_option' => '15000',
+        'ticket_price_option' => 'standard',
         'individual_day' => null,
         'individual_quantity' => 4,
     ]);
@@ -84,7 +84,7 @@ it('multiplies the 3-day price by the number of tickets and stores no day', func
     expect($registration->ticket_type)->toBe('3_days')
         ->and($registration->ticket_quantity)->toBe(4)
         ->and($registration->ticket_day)->toBeNull()
-        ->and((int) $registration->amount)->toBe(4 * 15000 * 100);
+        ->and((int) $registration->amount)->toBe(4 * 9900 * 100);
 });
 
 it('allows 5 or more individual tickets without turning them into a group ticket', function (): void {
@@ -94,7 +94,7 @@ it('allows 5 or more individual tickets without turning them into a group ticket
 
     expect($registration->is_group_ticket)->toBeFalse()
         ->and($registration->ticket_quantity)->toBe(6)
-        ->and((int) $registration->amount)->toBe(6 * 7500 * 100);
+        ->and((int) $registration->amount)->toBe(6 * 4900 * 100);
 });
 
 it('treats a custom amount as the total for the whole order', function (): void {
@@ -113,7 +113,7 @@ it('treats a custom amount as the total for the whole order', function (): void 
 it('requires a custom amount above the standard price of all tickets', function (): void {
     submitIndividualForm([
         'ticket_price_option' => 'custom',
-        'ticket_custom_amount' => 20000,
+        'ticket_custom_amount' => 14000,
         'individual_quantity' => 3,
     ])->assertHasFormErrors(['ticket_custom_amount']);
 

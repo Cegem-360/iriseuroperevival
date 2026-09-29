@@ -20,7 +20,7 @@ function submitAttendeeForm(bool $wantsToEvangelize): Testable
             'country' => 'Hungary',
             'city' => 'Budapest',
             'ticket_duration' => '1_day',
-            'ticket_price_option' => '7500',
+            'ticket_price_option' => 'standard',
             'individual_day' => 'friday',
             // Filament's boolean radio submits the option key ("1"/"0"), matching what the browser sends.
             'wants_to_evangelize' => $wantsToEvangelize ? 1 : 0,

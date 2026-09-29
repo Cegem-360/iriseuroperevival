@@ -12,6 +12,7 @@ use App\Mail\TicketPurchaseConfirmation;
 use App\Mail\VolunteerApplicationApproved;
 use App\Mail\VolunteerApplicationRejected;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,10 @@ use Override;
 class Registration extends Model
 {
     use HasFactory;
+
+    public const int ONE_DAY_PRICE_HUF = 4900;
+
+    public const int THREE_DAY_PRICE_HUF = 9900;
 
     protected $fillable = [
         'uuid',
@@ -144,58 +149,58 @@ class Registration extends Model
      * Scope to find registrations for a user by user_id or email.
      */
     #[Scope]
-    protected function forUser($query, User $user)
+    protected function forUser(Builder $query, User $user)
     {
         return $query->where('user_id', $user->id)
             ->orWhere('email', $user->email);
     }
 
     #[Scope]
-    protected function attendees($query)
+    protected function attendees(Builder $query)
     {
-        return $query->where('type', 'attendee');
+        $query->where('type', 'attendee');
     }
 
     #[Scope]
     protected function ministryTeam($query)
     {
-        return $query->where('type', 'ministry');
+        $query->where('type', 'ministry');
     }
 
     #[Scope]
     protected function volunteers($query)
     {
-        return $query->where('type', 'volunteer');
+        $query->where('type', 'volunteer');
     }
 
     #[Scope]
     protected function pending($query)
     {
-        return $query->whereIn('status', ['pending_payment', 'pending_approval']);
+        $query->whereIn('status', ['pending_payment', 'pending_approval']);
     }
 
     #[Scope]
-    protected function pendingApproval($query)
+    protected function pendingApproval($query): void
     {
-        return $query->where('status', 'pending_approval');
+        $query->where('status', 'pending_approval');
     }
 
     #[Scope]
-    protected function approved($query)
+    protected function approved($query): void
     {
-        return $query->where('status', 'approved');
+        $query->where('status', 'approved');
     }
 
     #[Scope]
-    protected function paid($query)
+    protected function paid($query): void
     {
-        return $query->whereNotNull('paid_at');
+        $query->whereNotNull('paid_at');
     }
 
     #[Scope]
-    protected function byCountry($query, string $country)
+    protected function byCountry($query, string $country): void
     {
-        return $query->where('country', $country);
+        $query->where('country', $country);
     }
 
     protected function fullName(): Attribute
@@ -231,6 +236,14 @@ class Registration extends Model
     protected function formattedTicketType(): Attribute
     {
         return Attribute::make(get: fn (): string => self::formatTicketType($this->ticket_type));
+    }
+
+    /**
+     * Standard per-person supporter price (HUF) for a ticket duration.
+     */
+    public static function standardPriceHuf(?string $ticketDuration): int
+    {
+        return $ticketDuration === '3_days' ? self::THREE_DAY_PRICE_HUF : self::ONE_DAY_PRICE_HUF;
     }
 
     public static function formatTicketType(?string $ticketType): string

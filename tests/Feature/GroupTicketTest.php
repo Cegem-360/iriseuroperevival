@@ -35,7 +35,7 @@ function submitGroupForm(array $overrides = []): void
         ->call('submit');
 }
 
-it('prices a 1-day group of 5 at 7500 HUF per person', function (): void {
+it('prices a 1-day group of 5 at 4900 HUF per person', function (): void {
     submitGroupForm(['group_duration' => '1_day', 'group_day' => 'saturday', 'group_size' => 5]);
 
     $registration = Registration::query()->where('email', 'group@example.com')->firstOrFail();
@@ -44,7 +44,7 @@ it('prices a 1-day group of 5 at 7500 HUF per person', function (): void {
         ->and($registration->ticket_type)->toBe('1_day')
         ->and($registration->ticket_quantity)->toBe(5)
         ->and($registration->ticket_day)->toBe('saturday')
-        ->and((int) $registration->amount)->toBe(5 * 7500 * 100);
+        ->and((int) $registration->amount)->toBe(5 * 4900 * 100);
 });
 
 it('prices a larger 1-day group by the number of people', function (): void {
@@ -53,17 +53,17 @@ it('prices a larger 1-day group by the number of people', function (): void {
     $registration = Registration::query()->where('email', 'group@example.com')->firstOrFail();
 
     expect($registration->ticket_quantity)->toBe(12)
-        ->and((int) $registration->amount)->toBe(12 * 7500 * 100);
+        ->and((int) $registration->amount)->toBe(12 * 4900 * 100);
 });
 
-it('prices a 3-day group at 15000 HUF per person and stores no day', function (): void {
+it('prices a 3-day group at 9900 HUF per person and stores no day', function (): void {
     submitGroupForm(['group_duration' => '3_days', 'group_day' => null, 'group_size' => 8]);
 
     $registration = Registration::query()->where('email', 'group@example.com')->firstOrFail();
 
     expect($registration->ticket_type)->toBe('3_days')
         ->and($registration->ticket_day)->toBeNull()
-        ->and((int) $registration->amount)->toBe(8 * 15000 * 100);
+        ->and((int) $registration->amount)->toBe(8 * 9900 * 100);
 });
 
 it('rejects a group smaller than 2 people even when the hidden field is tampered with', function (): void {
@@ -99,7 +99,7 @@ it('stores the chosen day for a 1-day individual ticket', function (): void {
             'city' => 'Budapest',
             'ticket_kind' => 'individual',
             'ticket_duration' => '1_day',
-            'ticket_price_option' => '7500',
+            'ticket_price_option' => 'standard',
             'individual_day' => 'saturday',
             'wants_to_evangelize' => 0,
             'accepts_terms' => true,
@@ -111,7 +111,7 @@ it('stores the chosen day for a 1-day individual ticket', function (): void {
     expect($registration->is_group_ticket)->toBeFalse()
         ->and($registration->ticket_quantity)->toBe(1)
         ->and($registration->ticket_day)->toBe('saturday')
-        ->and((int) $registration->amount)->toBe(750000);
+        ->and((int) $registration->amount)->toBe(490000);
 });
 
 it('requires a day for a 1-day individual ticket', function (): void {
@@ -125,7 +125,7 @@ it('requires a day for a 1-day individual ticket', function (): void {
             'city' => 'Budapest',
             'ticket_kind' => 'individual',
             'ticket_duration' => '1_day',
-            'ticket_price_option' => '7500',
+            'ticket_price_option' => 'standard',
             'wants_to_evangelize' => 0,
             'accepts_terms' => true,
         ])
@@ -146,7 +146,7 @@ it('stores no day for a 3-day individual ticket', function (): void {
             'city' => 'Budapest',
             'ticket_kind' => 'individual',
             'ticket_duration' => '3_days',
-            'ticket_price_option' => '15000',
+            'ticket_price_option' => 'standard',
             'wants_to_evangelize' => 0,
             'accepts_terms' => true,
         ])
@@ -156,7 +156,7 @@ it('stores no day for a 3-day individual ticket', function (): void {
 
     expect($registration->ticket_type)->toBe('3_days')
         ->and($registration->ticket_day)->toBeNull()
-        ->and((int) $registration->amount)->toBe(1500000);
+        ->and((int) $registration->amount)->toBe(990000);
 });
 
 it('clears the individual day when switching to a 3-day ticket', function (): void {
