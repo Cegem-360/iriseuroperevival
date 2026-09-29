@@ -539,9 +539,10 @@ class RegistrationForm extends Component implements HasSchemas
                     ->boolean()
                     ->live(),
 
-                TextInput::make('previous_service_description')
+                Textarea::make('previous_service_description')
                     ->label(__('What area have you served in?'))
-                    ->maxLength(500)
+                    ->rows(3)
+                    ->maxLength(2000)
                     ->placeholder(__('Briefly describe your previous service experience'))
                     ->visible(fn (Get $get): bool => (bool) $get('has_served_before')),
             ]);
