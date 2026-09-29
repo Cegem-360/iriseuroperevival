@@ -6,29 +6,29 @@ namespace App\Models;
 
 use App\Models\Concerns\HasTranslations;
 use Database\Factories\ScheduleItemFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[Fillable([
+    'title',
+    'description',
+    'day',
+    'start_time',
+    'end_time',
+    'type',
+    'speaker_id',
+    'location',
+    'translations',
+    'is_published',
+    'sort_order',
+])]
 class ScheduleItem extends Model
 {
     /** @use HasFactory<ScheduleItemFactory> */
     use HasFactory, HasTranslations;
-
-    protected $fillable = [
-        'title',
-        'description',
-        'day',
-        'start_time',
-        'end_time',
-        'type',
-        'speaker_id',
-        'location',
-        'translations',
-        'is_published',
-        'sort_order',
-    ];
 
     protected function casts(): array
     {

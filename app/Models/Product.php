@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\ProductFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,24 +15,23 @@ use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Override;
 
+#[Fillable([
+    'uuid',
+    'name',
+    'slug',
+    'description',
+    'price',
+    'type',
+    'stock_quantity',
+    'is_active',
+    'image_path',
+    'attributes',
+    'sort_order',
+])]
 class Product extends Model
 {
     /** @use HasFactory<ProductFactory> */
     use HasFactory;
-
-    protected $fillable = [
-        'uuid',
-        'name',
-        'slug',
-        'description',
-        'price',
-        'type',
-        'stock_quantity',
-        'is_active',
-        'image_path',
-        'attributes',
-        'sort_order',
-    ];
 
     protected function casts(): array
     {

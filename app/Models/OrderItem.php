@@ -5,26 +5,26 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\OrderItemFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
 
+#[Fillable([
+    'order_id',
+    'product_id',
+    'product_name',
+    'quantity',
+    'unit_price',
+    'total',
+    'attributes',
+])]
 class OrderItem extends Model
 {
     /** @use HasFactory<OrderItemFactory> */
     use HasFactory;
-
-    protected $fillable = [
-        'order_id',
-        'product_id',
-        'product_name',
-        'quantity',
-        'unit_price',
-        'total',
-        'attributes',
-    ];
 
     protected function casts(): array
     {

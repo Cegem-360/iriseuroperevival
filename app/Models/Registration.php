@@ -11,6 +11,8 @@ use App\Mail\PaymentConfirmation;
 use App\Mail\TicketPurchaseConfirmation;
 use App\Mail\VolunteerApplicationApproved;
 use App\Mail\VolunteerApplicationRejected;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\RouteKey;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -23,6 +25,82 @@ use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Override;
 
+#[Fillable([
+    'uuid',
+    'user_id',
+    'type',
+    'status',
+
+    // Personal Info
+    'first_name',
+    'last_name',
+    'email',
+    'locale',
+    'phone',
+    'country',
+    'city',
+
+    // Ticket Info (Attendees)
+    'ticket_type',
+    'ticket_quantity',
+    'is_group_ticket',
+    'ticket_day',
+    'amount',
+    'wants_to_evangelize',
+
+    // Volunteer Service Fields
+    'service_areas',
+    'has_served_before',
+    'previous_service_description',
+
+    // Ministry Team Fields
+    'citizenship',
+    'languages',
+    'occupation',
+    'ministry_areas',
+    'church_name',
+    'church_city',
+    'pastor_name',
+    'pastor_email',
+    'is_born_again',
+    'is_spirit_filled',
+    'testimony',
+    'attended_ministry_school',
+    'ministry_school_name',
+    'reference_1_name',
+    'reference_1_email',
+    'reference_2_name',
+    'reference_2_email',
+    'invited_by',
+
+    // Reference Tracking
+    'reference_1_contacted_at',
+    'reference_1_status',
+    'reference_1_response',
+    'reference_1_responded_at',
+    'reference_2_contacted_at',
+    'reference_2_status',
+    'reference_2_response',
+    'reference_2_responded_at',
+
+    // Email Tracking
+    'confirmation_email_sent_at',
+
+    // Payment Info
+    'stripe_customer_id',
+    'stripe_session_id',
+    'stripe_payment_intent',
+    'paid_at',
+
+    // Approval Workflow
+    'approved_at',
+    'approved_by',
+    'rejected_at',
+    'rejected_by',
+    'rejection_reason',
+    'admin_notes',
+])]
+#[RouteKey('uuid')]
 class Registration extends Model
 {
     use HasFactory;
@@ -30,82 +108,6 @@ class Registration extends Model
     public const int ONE_DAY_PRICE_HUF = 4900;
 
     public const int THREE_DAY_PRICE_HUF = 9900;
-
-    protected $fillable = [
-        'uuid',
-        'user_id',
-        'type',
-        'status',
-
-        // Personal Info
-        'first_name',
-        'last_name',
-        'email',
-        'locale',
-        'phone',
-        'country',
-        'city',
-
-        // Ticket Info (Attendees)
-        'ticket_type',
-        'ticket_quantity',
-        'is_group_ticket',
-        'ticket_day',
-        'amount',
-        'wants_to_evangelize',
-
-        // Volunteer Service Fields
-        'service_areas',
-        'has_served_before',
-        'previous_service_description',
-
-        // Ministry Team Fields
-        'citizenship',
-        'languages',
-        'occupation',
-        'ministry_areas',
-        'church_name',
-        'church_city',
-        'pastor_name',
-        'pastor_email',
-        'is_born_again',
-        'is_spirit_filled',
-        'testimony',
-        'attended_ministry_school',
-        'ministry_school_name',
-        'reference_1_name',
-        'reference_1_email',
-        'reference_2_name',
-        'reference_2_email',
-        'invited_by',
-
-        // Reference Tracking
-        'reference_1_contacted_at',
-        'reference_1_status',
-        'reference_1_response',
-        'reference_1_responded_at',
-        'reference_2_contacted_at',
-        'reference_2_status',
-        'reference_2_response',
-        'reference_2_responded_at',
-
-        // Email Tracking
-        'confirmation_email_sent_at',
-
-        // Payment Info
-        'stripe_customer_id',
-        'stripe_session_id',
-        'stripe_payment_intent',
-        'paid_at',
-
-        // Approval Workflow
-        'approved_at',
-        'approved_by',
-        'rejected_at',
-        'rejected_by',
-        'rejection_reason',
-        'admin_notes',
-    ];
 
     #[Override]
     protected static function boot()
@@ -357,18 +359,6 @@ class Registration extends Model
         $this->status = 'cancelled';
 
         return $this->save();
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Route Model Binding
-    |--------------------------------------------------------------------------
-    */
-
-    #[Override]
-    public function getRouteKeyName(): string
-    {
-        return 'uuid';
     }
 
     protected function casts(): array

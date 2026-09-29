@@ -8,6 +8,8 @@ use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,35 +21,23 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 /**
  * @property ?UserRole $role
  */
+#[Fillable([
+    'name',
+    'email',
+    'email_verified_at',
+    'password',
+    'role',
+])]
+#[Hidden([
+    'password',
+    'two_factor_secret',
+    'two_factor_recovery_codes',
+    'remember_token',
+])]
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'email_verified_at',
-        'password',
-        'role',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'two_factor_secret',
-        'two_factor_recovery_codes',
-        'remember_token',
-    ];
 
     /**
      * Get the attributes that should be cast.

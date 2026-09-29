@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\OrderFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,28 +16,27 @@ use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Override;
 
+#[Fillable([
+    'uuid',
+    'email',
+    'customer_name',
+    'phone',
+    'billing_address',
+    'shipping_address',
+    'status',
+    'subtotal',
+    'discount',
+    'total',
+    'promotion_code_id',
+    'stripe_session_id',
+    'stripe_payment_intent',
+    'paid_at',
+    'notes',
+])]
 class Order extends Model
 {
     /** @use HasFactory<OrderFactory> */
     use HasFactory;
-
-    protected $fillable = [
-        'uuid',
-        'email',
-        'customer_name',
-        'phone',
-        'billing_address',
-        'shipping_address',
-        'status',
-        'subtotal',
-        'discount',
-        'total',
-        'promotion_code_id',
-        'stripe_session_id',
-        'stripe_payment_intent',
-        'paid_at',
-        'notes',
-    ];
 
     protected function casts(): array
     {

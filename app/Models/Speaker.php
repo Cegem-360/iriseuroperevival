@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Concerns\HasTranslations;
 use Database\Factories\SpeakerFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -17,26 +18,25 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Str;
 use Override;
 
+#[Fillable([
+    'uuid',
+    'slug',
+    'name',
+    'title',
+    'organization',
+    'country',
+    'bio',
+    'photo_path',
+    'type',
+    'is_featured',
+    'sort_order',
+    'social_links',
+    'translations',
+])]
 class Speaker extends Model
 {
     /** @use HasFactory<SpeakerFactory> */
     use HasFactory, HasTranslations;
-
-    protected $fillable = [
-        'uuid',
-        'slug',
-        'name',
-        'title',
-        'organization',
-        'country',
-        'bio',
-        'photo_path',
-        'type',
-        'is_featured',
-        'sort_order',
-        'social_links',
-        'translations',
-    ];
 
     protected function casts(): array
     {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\TicketPriceFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,21 +14,20 @@ use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use Override;
 
+#[Fillable([
+    'uuid',
+    'ticket_type',
+    'pricing_tier',
+    'price',
+    'label',
+    'description',
+    'is_active',
+    'sort_order',
+])]
 class TicketPrice extends Model
 {
     /** @use HasFactory<TicketPriceFactory> */
     use HasFactory;
-
-    protected $fillable = [
-        'uuid',
-        'ticket_type',
-        'pricing_tier',
-        'price',
-        'label',
-        'description',
-        'is_active',
-        'sort_order',
-    ];
 
     protected function casts(): array
     {

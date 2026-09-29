@@ -6,23 +6,23 @@ namespace App\Models;
 
 use App\Models\Concerns\HasTranslations;
 use Database\Factories\FaqFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[Fillable([
+    'question',
+    'answer',
+    'category',
+    'sort_order',
+    'is_published',
+    'translations',
+])]
 class Faq extends Model
 {
     /** @use HasFactory<FaqFactory> */
     use HasFactory, HasTranslations;
-
-    protected $fillable = [
-        'question',
-        'answer',
-        'category',
-        'sort_order',
-        'is_published',
-        'translations',
-    ];
 
     protected function casts(): array
     {

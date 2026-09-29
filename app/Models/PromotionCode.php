@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\PromotionCodeFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,23 +13,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Number;
 
+#[Fillable([
+    'code',
+    'type',
+    'value',
+    'max_uses',
+    'used_count',
+    'min_order_amount',
+    'valid_from',
+    'valid_until',
+    'is_active',
+    'description',
+])]
 class PromotionCode extends Model
 {
     /** @use HasFactory<PromotionCodeFactory> */
     use HasFactory;
-
-    protected $fillable = [
-        'code',
-        'type',
-        'value',
-        'max_uses',
-        'used_count',
-        'min_order_amount',
-        'valid_from',
-        'valid_until',
-        'is_active',
-        'description',
-    ];
 
     protected function casts(): array
     {

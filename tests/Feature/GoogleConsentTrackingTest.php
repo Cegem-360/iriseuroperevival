@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Registration;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Env;
 use Tests\TestCase;
 
 uses(RefreshDatabase::class);
@@ -79,7 +80,7 @@ it('pushes a purchase with ecommerce data for a paid registration', function ():
 
 it('renders no google tag or banner when no container is configured', function (): void {
     /** @var TestCase $this */
-    config()->set('services.google.gtm_container_id', null);
+    config()->set('services.google.gtm_container_id');
 
     $this->get('/')->assertOk()->assertDontSeeHtml('googletagmanager.com')->assertDontSeeHtml('open-cookie-settings');
 });
@@ -95,7 +96,7 @@ it('translates the cookie banner', function (): void {
 
 it('ships the production container id only for the production environment', function (): void {
     $services = fn (string $environment): array => (function () use ($environment): array {
-        $previous = $_ENV['APP_ENV'] ?? null;
+        $previous = Env::get('APP_ENV');
         $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = $environment;
         putenv("APP_ENV={$environment}");
 

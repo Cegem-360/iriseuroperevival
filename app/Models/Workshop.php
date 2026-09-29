@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Concerns\HasTranslations;
 use Database\Factories\WorkshopFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,31 +16,30 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use Override;
 
+#[Fillable([
+    'uuid',
+    'slug',
+    'title',
+    'short_description',
+    'description',
+    'benefits',
+    'speaker_id',
+    'leader_name',
+    'schedule_note',
+    'image_path',
+    'capacity',
+    'duration_minutes',
+    'difficulty_level',
+    'requirements',
+    'date',
+    'is_published',
+    'sort_order',
+    'translations',
+])]
 class Workshop extends Model
 {
     /** @use HasFactory<WorkshopFactory> */
     use HasFactory, HasTranslations;
-
-    protected $fillable = [
-        'uuid',
-        'slug',
-        'title',
-        'short_description',
-        'description',
-        'benefits',
-        'speaker_id',
-        'leader_name',
-        'schedule_note',
-        'image_path',
-        'capacity',
-        'duration_minutes',
-        'difficulty_level',
-        'requirements',
-        'date',
-        'is_published',
-        'sort_order',
-        'translations',
-    ];
 
     protected function casts(): array
     {
