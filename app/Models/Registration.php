@@ -149,56 +149,56 @@ class Registration extends Model
      * Scope to find registrations for a user by user_id or email.
      */
     #[Scope]
-    protected function forUser(Builder $query, User $user)
+    protected function forUser(Builder $query, User $user): void
     {
-        return $query->where('user_id', $user->id)
+        $query->where('user_id', $user->id)
             ->orWhere('email', $user->email);
     }
 
     #[Scope]
-    protected function attendees(Builder $query)
+    protected function attendees(Builder $query): void
     {
         $query->where('type', 'attendee');
     }
 
     #[Scope]
-    protected function ministryTeam($query)
+    protected function ministryTeam(Builder $query): void
     {
         $query->where('type', 'ministry');
     }
 
     #[Scope]
-    protected function volunteers($query)
+    protected function volunteers(Builder $query): void
     {
         $query->where('type', 'volunteer');
     }
 
     #[Scope]
-    protected function pending($query)
+    protected function pending(Builder $query): void
     {
         $query->whereIn('status', ['pending_payment', 'pending_approval']);
     }
 
     #[Scope]
-    protected function pendingApproval($query): void
+    protected function pendingApproval(Builder $query): void
     {
         $query->where('status', 'pending_approval');
     }
 
     #[Scope]
-    protected function approved($query): void
+    protected function approved(Builder $query): void
     {
         $query->where('status', 'approved');
     }
 
     #[Scope]
-    protected function paid($query): void
+    protected function paid(Builder $query): void
     {
         $query->whereNotNull('paid_at');
     }
 
     #[Scope]
-    protected function byCountry($query, string $country): void
+    protected function byCountry(Builder $query, string $country): void
     {
         $query->where('country', $country);
     }
