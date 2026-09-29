@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,8 +41,8 @@ class ActivitySignup extends Model
     }
 
     #[Scope]
-    protected function forActivity($query, string $type)
+    protected function forActivity(Builder $query, string $type): void
     {
-        return $query->where('activity_type', $type);
+        $query->where('activity_type', $type);
     }
 }

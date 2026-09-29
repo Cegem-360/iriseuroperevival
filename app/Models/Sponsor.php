@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\SponsorFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,27 +32,27 @@ class Sponsor extends Model
     }
 
     #[Scope]
-    protected function active($query)
+    protected function active(Builder $query): void
     {
-        return $query->where('is_active', true);
+        $query->where('is_active', true);
     }
 
     #[Scope]
-    protected function ofTier($query, string $tier)
+    protected function ofTier(Builder $query, string $tier): void
     {
-        return $query->where('tier', $tier);
+        $query->where('tier', $tier);
     }
 
     #[Scope]
-    protected function ordered($query)
+    protected function ordered(Builder $query): void
     {
-        return $query->orderBy('sort_order');
+        $query->orderBy('sort_order');
     }
 
     #[Scope]
-    protected function byTierPriority($query)
+    protected function byTierPriority(Builder $query): void
     {
-        return $query->orderByRaw('CASE tier
+        $query->orderByRaw('CASE tier
             WHEN \'platinum\' THEN 1
             WHEN \'gold\' THEN 2
             WHEN \'silver\' THEN 3

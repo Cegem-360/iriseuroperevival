@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -116,20 +117,20 @@ class Order extends Model
     }
 
     #[Scope]
-    protected function ofStatus($query, string $status)
+    protected function ofStatus(Builder $query, string $status): void
     {
-        return $query->where('status', $status);
+        $query->where('status', $status);
     }
 
     #[Scope]
-    protected function paid($query)
+    protected function paid(Builder $query): void
     {
-        return $query->whereNotNull('paid_at');
+        $query->whereNotNull('paid_at');
     }
 
     #[Scope]
-    protected function pending($query)
+    protected function pending(Builder $query): void
     {
-        return $query->where('status', 'pending');
+        $query->where('status', 'pending');
     }
 }

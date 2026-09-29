@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\TicketPriceFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -57,26 +58,26 @@ class TicketPrice extends Model
     }
 
     #[Scope]
-    protected function active($query)
+    protected function active(Builder $query): void
     {
-        return $query->where('is_active', true);
+        $query->where('is_active', true);
     }
 
     #[Scope]
-    protected function forTier($query, string $tier)
+    protected function forTier(Builder $query, string $tier): void
     {
-        return $query->where('pricing_tier', $tier);
+        $query->where('pricing_tier', $tier);
     }
 
     #[Scope]
-    protected function forType($query, string $type)
+    protected function forType(Builder $query, string $type): void
     {
-        return $query->where('ticket_type', $type);
+        $query->where('ticket_type', $type);
     }
 
     #[Scope]
-    protected function ordered($query)
+    protected function ordered(Builder $query): void
     {
-        return $query->orderBy('sort_order');
+        $query->orderBy('sort_order');
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Concerns\HasTranslations;
 use Database\Factories\WorkshopFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -100,20 +101,20 @@ class Workshop extends Model
     }
 
     #[Scope]
-    protected function published($query)
+    protected function published(Builder $query): void
     {
-        return $query->where('is_published', true);
+        $query->where('is_published', true);
     }
 
     #[Scope]
-    protected function ordered($query)
+    protected function ordered(Builder $query): void
     {
-        return $query->orderBy('sort_order');
+        $query->orderBy('sort_order');
     }
 
     #[Scope]
-    protected function ofDifficulty($query, string $level)
+    protected function ofDifficulty(Builder $query, string $level): void
     {
-        return $query->where('difficulty_level', $level);
+        $query->where('difficulty_level', $level);
     }
 }

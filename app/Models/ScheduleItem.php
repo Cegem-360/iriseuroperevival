@@ -6,8 +6,10 @@ namespace App\Models;
 
 use App\Models\Concerns\HasTranslations;
 use Database\Factories\ScheduleItemFactory;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -47,29 +49,29 @@ class ScheduleItem extends Model
     }
 
     #[Scope]
-    protected function ofType($query, string $type)
+    protected function ofType(Builder $query, string $type): void
     {
-        return $query->where('type', $type);
+        $query->where('type', $type);
     }
 
     #[Scope]
-    protected function onDay($query, $day)
+    protected function onDay(Builder $query, DateTimeInterface|string $day): void
     {
-        return $query->whereDate('day', $day);
+        $query->whereDate('day', $day);
     }
 
     #[Scope]
-    protected function ordered($query)
+    protected function ordered(Builder $query): void
     {
         // sort_order dominates so admin (or a seeder) can override the natural
         // time-based order for a specific block. start_time is the fallback
         // for items that share a sort_order.
-        return $query->orderBy('day')->orderBy('sort_order')->orderBy('start_time');
+        $query->orderBy('day')->orderBy('sort_order')->orderBy('start_time');
     }
 
     #[Scope]
-    protected function published($query)
+    protected function published(Builder $query): void
     {
-        return $query->where('is_published', true);
+        $query->where('is_published', true);
     }
 }

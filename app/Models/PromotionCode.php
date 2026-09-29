@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\PromotionCodeFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -104,15 +105,15 @@ class PromotionCode extends Model
     }
 
     #[Scope]
-    protected function active($query)
+    protected function active(Builder $query): void
     {
-        return $query->where('is_active', true);
+        $query->where('is_active', true);
     }
 
     #[Scope]
-    protected function valid($query)
+    protected function valid(Builder $query): void
     {
-        return $query->active()
+        $query->active()
             ->where(function ($q): void {
                 $q->whereNull('valid_from')
                     ->orWhere('valid_from', '<=', now());

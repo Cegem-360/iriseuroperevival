@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -84,29 +85,29 @@ class Product extends Model
     }
 
     #[Scope]
-    protected function active($query)
+    protected function active(Builder $query): void
     {
-        return $query->where('is_active', true);
+        $query->where('is_active', true);
     }
 
     #[Scope]
-    protected function inStock($query)
+    protected function inStock(Builder $query): void
     {
-        return $query->where(function ($q): void {
+        $query->where(function ($q): void {
             $q->whereNull('stock_quantity')
                 ->orWhere('stock_quantity', '>', 0);
         });
     }
 
     #[Scope]
-    protected function ofType($query, string $type)
+    protected function ofType(Builder $query, string $type): void
     {
-        return $query->where('type', $type);
+        $query->where('type', $type);
     }
 
     #[Scope]
-    protected function ordered($query)
+    protected function ordered(Builder $query): void
     {
-        return $query->orderBy('sort_order');
+        $query->orderBy('sort_order');
     }
 }

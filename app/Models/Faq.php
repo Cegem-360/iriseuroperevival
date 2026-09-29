@@ -8,6 +8,7 @@ use App\Models\Concerns\HasTranslations;
 use Database\Factories\FaqFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,20 +34,20 @@ class Faq extends Model
     }
 
     #[Scope]
-    protected function published($query)
+    protected function published(Builder $query): void
     {
-        return $query->where('is_published', true);
+        $query->where('is_published', true);
     }
 
     #[Scope]
-    protected function ofCategory($query, string $category)
+    protected function ofCategory(Builder $query, string $category): void
     {
-        return $query->where('category', $category);
+        $query->where('category', $category);
     }
 
     #[Scope]
-    protected function ordered($query)
+    protected function ordered(Builder $query): void
     {
-        return $query->orderBy('sort_order');
+        $query->orderBy('sort_order');
     }
 }
