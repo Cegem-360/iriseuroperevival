@@ -36,9 +36,7 @@ it('sets consent mode v2 defaults before loading the google tag', function (): v
 
 it('renders the cookie banner and footer settings link', function (): void {
     /** @var TestCase $this */
-    $this->get('/')
-        ->assertOk()
-        ->assertSee('x-on:open-cookie-settings.window', false)
+    $this->get('/')->assertOk()->assertSeeHtml('x-on:open-cookie-settings.window')
         ->assertSee('Accept all')
         ->assertSee('Reject all')
         ->assertSee('Cookie Settings');
@@ -46,20 +44,16 @@ it('renders the cookie banner and footer settings link', function (): void {
 
 it('fires the ads ticket conversion when the ticket modal opens', function (): void {
     /** @var TestCase $this */
-    $this->get('/')
-        ->assertOk()
-        ->assertSee('window.addEventListener(\'open-cooltix-modal\'', false)
-        ->assertSee("send_to: 'AW-987654\/ticketLabel'", false);
+    $this->get('/')->assertOk()->assertSeeHtml('window.addEventListener(\'open-cooltix-modal\'')->assertSeeHtml("send_to: 'AW-987654\/ticketLabel'");
 });
 
 it('includes the tag on the ministry team layout', function (): void {
     /** @var TestCase $this */
-    $this->get(route('ministry-team'))
-        ->assertOk()
-        ->assertSee('gtag(\'consent\', \'default\'', false);
+    $this->get(route('ministry-team'))->assertOk()->assertSeeHtml('gtag(\'consent\', \'default\'');
 });
 
-it('tracks only a lead for an unpaid registration', function () {
+it('tracks only a lead for an unpaid registration', function (): void {
+    /** @var TestCase $this */
     $registration = Registration::factory()->volunteer()->create();
 
     $this->get(route('register.success', $registration->uuid))
@@ -69,7 +63,8 @@ it('tracks only a lead for an unpaid registration', function () {
         ->assertDontSee('regLabel', false);
 });
 
-it('fires the purchase conversion for a paid registration', function () {
+it('fires the purchase conversion for a paid registration', function (): void {
+    /** @var TestCase $this */
     config()->set('services.google.ads_id', 'AW-18466287510');
     config()->set('services.google.ads_registration_label', 'AbLfCKnylYodEJbftOVE');
 
@@ -92,10 +87,7 @@ it('renders no google tag or banner when nothing is configured', function (): vo
         'ads_ticket_label' => null,
     ]);
 
-    $this->get('/')
-        ->assertOk()
-        ->assertDontSee('googletagmanager.com', false)
-        ->assertDontSee('open-cookie-settings', false);
+    $this->get('/')->assertOk()->assertDontSeeHtml('googletagmanager.com')->assertDontSeeHtml('open-cookie-settings');
 });
 
 it('translates the cookie banner', function (): void {

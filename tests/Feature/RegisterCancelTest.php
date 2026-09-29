@@ -6,6 +6,7 @@ use App\Livewire\Pages\RegisterCancel;
 use App\Models\Registration;
 use App\Services\StripeService;
 use Livewire\Livewire;
+use Tests\TestCase;
 
 it('renders the cancel page for a valid registration', function (): void {
     $registration = Registration::factory()->attendee()->create();
@@ -18,6 +19,7 @@ it('renders the cancel page for a valid registration', function (): void {
 });
 
 it('returns 404 for an invalid uuid', function (): void {
+    /** @var TestCase $this */
     $this->get(route('register.cancel', 'non-existent-uuid'))->assertNotFound();
 });
 

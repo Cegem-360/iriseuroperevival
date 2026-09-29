@@ -11,39 +11,28 @@ it('embeds the cooltix product iframe for the configured event id', function ():
     /** @var TestCase $this */
     config()->set('services.cooltix.event_id', 'test-event-id');
 
-    $this->get('/')
-        ->assertOk()
-        ->assertSee('https://cooltix.com/widget/event-products/test-event-id', false);
+    $this->get('/')->assertOk()->assertSeeHtml('https://cooltix.com/widget/event-products/test-event-id');
 });
 
 it('opens the cooltix modal from the ticket buttons', function (): void {
     /** @var TestCase $this */
     config()->set('services.cooltix.event_id', 'test-event-id');
 
-    $this->get('/')
-        ->assertOk()
-        ->assertSee('new CustomEvent(\'open-cooltix-modal\')', false)
-        ->assertSee('x-on:open-cooltix-modal.window', false);
+    $this->get('/')->assertOk()->assertSeeHtml('new CustomEvent(\'open-cooltix-modal\')')->assertSeeHtml('x-on:open-cooltix-modal.window');
 });
 
 it('hides the cooltix widget when no event id is configured', function (): void {
     /** @var TestCase $this */
     config()->set('services.cooltix.event_id');
 
-    $this->get('/')
-        ->assertOk()
-        ->assertDontSee('cooltix.com/widget/event-products', false)
-        ->assertDontSee('open-cooltix-modal', false);
+    $this->get('/')->assertOk()->assertDontSeeHtml('cooltix.com/widget/event-products')->assertDontSeeHtml('open-cooltix-modal');
 });
 
 it('is disabled by default when the COOLTIX_EVENT_ID env var is absent', function (): void {
     /** @var TestCase $this */
     expect(config('services.cooltix.event_id'))->toBeNull();
 
-    $this->get('/')
-        ->assertOk()
-        ->assertDontSee('cooltix.com/widget/event-products', false)
-        ->assertDontSee('open-cooltix-modal', false);
+    $this->get('/')->assertOk()->assertDontSeeHtml('cooltix.com/widget/event-products')->assertDontSeeHtml('open-cooltix-modal');
 });
 
 it('translates the ticket button label', function (): void {
@@ -51,8 +40,5 @@ it('translates the ticket button label', function (): void {
     config()->set('services.cooltix.event_id', 'test-event-id');
 
     $this->withSession(['locale' => 'hu'])
-        ->get('/')
-        ->assertOk()
-        ->assertSee('Jegyek megtekintése', false)
-        ->assertSee('locale=hu', false);
+        ->get('/')->assertOk()->assertSeeHtml('Jegyek megtekintése')->assertSeeHtml('locale=hu');
 });

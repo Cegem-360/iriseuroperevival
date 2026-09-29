@@ -70,7 +70,7 @@ final class RegistrationResource extends Resource
         return $pendingCount > 0 ? (string) $pendingCount : null;
     }
 
-    public static function getNavigationBadgeColor(): ?string
+    public static function getNavigationBadgeColor(): string
     {
         return 'warning';
     }
