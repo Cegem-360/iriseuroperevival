@@ -19,8 +19,9 @@
 
 {{ __('Please make sure to join so that you don’t miss any of the latest updates and important information. Thank you!') }}
 
-- [https://chat.whatsapp.com/IHKiCvnyy5Q3fpPytkYBe8?mode=gi_t](https://chat.whatsapp.com/IHKiCvnyy5Q3fpPytkYBe8?mode=gi_t)
-- [https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t](https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t)
+- **WhatsApp Community for Ministry Team & Volunteers:** [https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t](https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t)
+- **WhatsApp Chat for Ministry Team:** [https://chat.whatsapp.com/IHKiCvnyy5Q3fpPytkYBe8?mode=gi_t](https://chat.whatsapp.com/IHKiCvnyy5Q3fpPytkYBe8?mode=gi_t)
+- **WhatsApp Prayer Updates & Request for Europe Revival:** [https://chat.whatsapp.com/IAduJqWDKFJDxUy9gwicCJ?mode=gi_t](https://chat.whatsapp.com/IAduJqWDKFJDxUy9gwicCJ?mode=gi_t)
 
 {{ __('If you have any questions, please do not hesitate to reach out to us.') }}
 

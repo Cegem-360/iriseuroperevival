@@ -36,7 +36,7 @@ it('renders the approved email in hungarian when the locale is hu', function ():
     $mailable->assertDontSeeInHtml('Your Application Has Been Approved!');
 });
 
-it('includes both whatsapp group links in the approved email in every locale', function (string $locale, string $expectedIntro): void {
+it('includes all whatsapp group links in the approved email in every locale', function (string $locale, string $expectedIntro): void {
     App::setLocale($locale);
 
     $registration = Registration::factory()->create([
@@ -50,6 +50,7 @@ it('includes both whatsapp group links in the approved email in every locale', f
 
     $mailable->assertSeeInHtml('https://chat.whatsapp.com/IHKiCvnyy5Q3fpPytkYBe8?mode=gi_t', false);
     $mailable->assertSeeInHtml('https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t', false);
+    $mailable->assertSeeInHtml('https://chat.whatsapp.com/IAduJqWDKFJDxUy9gwicCJ?mode=gi_t', false);
     $mailable->assertSeeInHtml($expectedIntro, false);
 })->with([
     'english' => ['en', 'Please join the following WhatsApp groups'],
