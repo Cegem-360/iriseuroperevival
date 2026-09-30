@@ -36,7 +36,7 @@ it('renders the approved email in hungarian when the locale is hu', function ():
     $mailable->assertDontSeeInHtml('Your Application Has Been Approved!');
 });
 
-it('includes all whatsapp group links in the approved email in every locale', function (string $locale, string $expectedIntro): void {
+it('includes all whatsapp group links in the approved email in every locale', function (string $locale, string $expectedIntro, string $expectedPrayerLabel): void {
     App::setLocale($locale);
 
     $registration = Registration::factory()->create([
@@ -52,7 +52,8 @@ it('includes all whatsapp group links in the approved email in every locale', fu
     $mailable->assertSeeInHtml('https://chat.whatsapp.com/HWsGWl1C6oY98CNsh21B73?mode=gi_t', false);
     $mailable->assertSeeInHtml('https://chat.whatsapp.com/IAduJqWDKFJDxUy9gwicCJ?mode=gi_t', false);
     $mailable->assertSeeInHtml($expectedIntro, false);
+    $mailable->assertSeeInHtml($expectedPrayerLabel, false);
 })->with([
-    'english' => ['en', 'Please join the following WhatsApp groups'],
-    'hungarian' => ['hu', 'Kérlek, csatlakozz az alábbi WhatsApp-csoportokhoz'],
+    'english' => ['en', 'Please join the following WhatsApp groups', 'WhatsApp Prayer Updates &amp; Request for Europe Revival'],
+    'hungarian' => ['hu', 'Kérlek, csatlakozz az alábbi WhatsApp-csoportokhoz', 'WhatsApp imahírek és imakérések az Europe Revivalért'],
 ]);
