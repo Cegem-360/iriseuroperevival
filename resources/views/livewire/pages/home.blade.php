@@ -19,6 +19,13 @@
 
         {{-- Hero Content --}}
         <div class="relative z-10 flex flex-col items-center max-w-5xl mx-auto px-4 pt-28 pb-16 text-center">
+            {{-- 2-for-1 offer (client request 2026-10-05) --}}
+            <a href="{{ route('register') }}" class="block mb-8 px-6 py-4 md:px-10 md:py-5 border-2 border-(--alt-gold) bg-(--alt-navy-deeper)/70 backdrop-blur-sm rounded-2xl shadow-lg animate-fade-in transition-transform hover:scale-[1.02]">
+                <span class="block font-heading font-bold uppercase tracking-wide text-(--alt-gold) text-xl md:text-3xl text-balance">{{ __('Now you get 2 tickets for the price of 1 supporter ticket') }}</span>
+                <span class="block mt-2 font-heading font-semibold text-(--alt-beige) text-lg md:text-xl">{{ __('Invite your friends!') }}</span>
+                <span class="block mt-1 font-heading font-semibold uppercase tracking-wider text-(--alt-beige) text-sm md:text-base">{{ __('Register NOW, don\'t miss out!') }}</span>
+            </a>
+
             {{-- Date & Venue --}}
             <div class="mb-12 animate-fade-in">
                 <span class="text-[var(--alt-beige)] text-base md:text-xl font-heading font-semibold uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">{{ __('October 23-25, 2026 • Budapest, BOK Hall') }}</span>
@@ -565,9 +572,9 @@
             {{-- Section Header --}}
             <div class="text-center mb-6">
                 <span class="inline-block px-4 py-1.5 text-xs font-heading font-semibold tracking-[0.2em] uppercase text-(--alt-gold) bg-(--alt-gold)/10 border border-(--alt-gold)/30 rounded-full mb-4">
-                    {{ __('Tickets Now Available') }}
+                    {{ __('Your place is here! Don\'t miss what God is preparing.') }}
                 </span>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4">{{ __('Save Your Place') }}</h2>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-(--alt-beige) mb-4 text-balance">{{ __('Now you get 2 tickets for the price of 1 supporter ticket') }}</h2>
                 <div class="w-24 h-0.5 bg-linear-to-r from-transparent via-(--alt-gold) to-transparent mx-auto"></div>
             </div>
 
@@ -582,7 +589,10 @@
             </div> --}}
 
             @if(true) {{-- Pricing Cards --}}
-            <p class="text-center text-(--alt-beige) text-lg mb-8">{{ __('How much would you like to donate to support the event?') }}</p>
+            <div class="text-center text-(--alt-beige) mb-8">
+                <p class="font-heading text-2xl font-bold uppercase tracking-wide mb-1">{{ __('Don\'t come alone!') }}</p>
+                <p class="text-lg">{{ __('Invite your friend or acquaintance and experience together what God is preparing for you!') }}</p>
+            </div>
             <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 {{-- 1-Day Pass --}}
                 <div
@@ -594,7 +604,7 @@
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > {{ \App\Models\Registration::ONE_DAY_PRICE_HUF }});
                     } }"
                     class="bg-(--alt-navy-dark)/40 border border-(--alt-beige)/15 rounded-3xl p-8 relative overflow-hidden flex flex-col">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">{{ __('1-Day Supporter Pass') }}</h3>
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">{{ __('1-Day Supporter Pass for 2 people') }}</h3>
                     <p class="text-(--alt-beige-muted) mb-6">{{ __('Single day access') }}</p>
 
                     <div class="mb-8 grow space-y-2">
@@ -603,7 +613,7 @@
                                 :class="selected === 'standard' ? 'border-(--alt-beige) bg-(--alt-beige)' : 'border-(--alt-beige)/30 group-hover:border-(--alt-beige)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === 'standard'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'standard' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">{{ Number::currency(\App\Models\Registration::ONE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(\App\Models\Registration::ONE_DAY_PRICE_HUF / config('services.currency.eur_huf_rate'))) }}) {{ __('/ person') }}</span></span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'standard' ? 'text-(--alt-beige)' : 'text-(--alt-beige)/50'">{{ Number::currency(\App\Models\Registration::ONE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(\App\Models\Registration::ONE_DAY_PRICE_HUF / config('services.currency.eur_huf_rate'))) }}) {{ __('/ 2 people') }}</span></span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
@@ -639,7 +649,7 @@
                         return this.selected !== 'custom' || (this.custom && parseInt(this.custom) > {{ \App\Models\Registration::THREE_DAY_PRICE_HUF }});
                     } }"
                     class="bg-linear-to-br from-(--alt-gold)/15 to-(--alt-navy-dark)/70 border-2 border-(--alt-gold)/40 rounded-3xl p-8 relative overflow-hidden flex flex-col shadow-lg shadow-(--alt-gold)/10">
-                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">{{ __('3-Day Supporter Pass') }}</h3>
+                    <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">{{ __('3-Day Supporter Pass for 2 people') }}</h3>
                     <p class="text-(--alt-beige-muted) mb-6">{{ __('Full event access') }}</p>
 
                     <div class="mb-8 grow space-y-2">
@@ -648,7 +658,7 @@
                                 :class="selected === 'standard' ? 'border-(--alt-gold) bg-(--alt-gold)' : 'border-(--alt-gold)/30 group-hover:border-(--alt-gold)/60'">
                                 <span class="w-2 h-2 rounded-full bg-(--alt-navy-deeper)" x-show="selected === 'standard'"></span>
                             </span>
-                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'standard' ? 'text-(--alt-gold)' : 'text-white/50'">{{ Number::currency(\App\Models\Registration::THREE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(\App\Models\Registration::THREE_DAY_PRICE_HUF / config('services.currency.eur_huf_rate'))) }}) {{ __('/ person') }}</span></span>
+                            <span class="text-2xl font-heading font-bold transition-colors" :class="selected === 'standard' ? 'text-(--alt-gold)' : 'text-white/50'">{{ Number::currency(\App\Models\Registration::THREE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(\App\Models\Registration::THREE_DAY_PRICE_HUF / config('services.currency.eur_huf_rate'))) }}) {{ __('/ 2 people') }}</span></span>
                         </button>
                         <button type="button" @click="selected = 'custom'" class="flex items-center gap-3 w-full group">
                             <span class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
@@ -673,6 +683,16 @@
                         {{ __('Register Now') }}
                     </a>
                 </div>
+            </div>
+
+            {{-- 3-day group pass, 10 people, fixed price (client request 2026-10-05) --}}
+            <div class="max-w-md mx-auto mt-6 bg-(--alt-navy-dark)/40 border border-(--alt-beige)/15 rounded-3xl p-8 text-center flex flex-col">
+                <h3 class="font-heading text-2xl font-bold uppercase tracking-wide text-(--alt-beige) mb-2">{{ __('3-Day Group Supporter Pass') }}</h3>
+                <p class="text-(--alt-beige-muted) mb-6">{{ __('Valid for 10 people') }}</p>
+                <p class="text-2xl font-heading font-bold text-(--alt-beige) mb-8">{{ Number::currency(\App\Models\Registration::GROUP_OF_TEN_PRICE_HUF, 'HUF', app()->getLocale(), 0) }} <span class="text-base font-semibold opacity-60">(~€{{ Number::format(round(\App\Models\Registration::GROUP_OF_TEN_PRICE_HUF / config('services.currency.eur_huf_rate'))) }}) {{ __('/ 10 people') }}</span></p>
+                <a href="{{ route('register', ['kind' => 'group_of_ten']) }}" class="inline-flex items-center justify-center w-full gap-2 px-8 py-4 bg-linear-to-r from-(--alt-gold) to-(--alt-gold-light) text-(--alt-navy-deeper) font-heading font-bold uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-[1.02]">
+                    {{ __('Register Now') }}
+                </a>
             </div>
 
             {{-- Under-12 notice (client request 2026-08-28) --}}

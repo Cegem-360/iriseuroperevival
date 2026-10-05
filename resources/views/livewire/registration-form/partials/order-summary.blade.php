@@ -14,7 +14,12 @@
 
 <div class="space-y-4">
     <div class="space-y-2">
-        @if($summary['is_group'])
+        @if($summary['is_group_of_ten'])
+            <div class="flex justify-between text-sm text-white/60">
+                <span>{{ __('3-Day Group Ticket (10 people)') }}</span>
+                <span>{{ Number::currency($amountHuf, 'HUF', app()->getLocale(), precision: 0) }} / {{ __('10 people') }}</span>
+            </div>
+        @elseif($summary['is_group'])
             <div class="flex justify-between text-sm text-white/60">
                 <span>
                     {{ __('Group Ticket') }} — {{ $durationLabel }}

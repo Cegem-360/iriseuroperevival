@@ -109,6 +109,12 @@ class Registration extends Model
 
     public const int THREE_DAY_PRICE_HUF = 9900;
 
+    public const int GROUP_MAX_SIZE = 9;
+
+    public const int GROUP_OF_TEN_SIZE = 10;
+
+    public const int GROUP_OF_TEN_PRICE_HUF = 40000;
+
     #[Override]
     protected static function boot()
     {

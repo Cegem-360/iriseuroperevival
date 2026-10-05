@@ -22,6 +22,11 @@ class Register extends Component
     public function mount(string $type = 'attendee'): void
     {
         $this->type = $type;
+
+        if ($type === 'attendee') {
+            $this->title = 'Now you get 2 tickets for the price of 1 supporter ticket';
+            $this->subtitle = 'Invite your friend or acquaintance and experience together what God is preparing for you!';
+        }
     }
 
     public function render(): View

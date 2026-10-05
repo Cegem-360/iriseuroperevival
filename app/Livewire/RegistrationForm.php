@@ -57,10 +57,11 @@ class RegistrationForm extends Component implements HasSchemas
         $duration = request()->query('duration', '1_day');
         $price = request()->query('price', 'standard');
         $amount = request()->query('amount');
+        $kind = request()->query('kind', 'individual');
 
         $fill = [
             'registration_type' => $type,
-            'ticket_kind' => 'individual',
+            'ticket_kind' => in_array($kind, ['individual', 'group', 'group_of_ten']) ? $kind : 'individual',
             'ticket_duration' => in_array($duration, ['1_day', '3_days']) ? $duration : '1_day',
             'ticket_price_option' => $price === 'custom' ? 'custom' : 'standard',
             'individual_quantity' => 1,
@@ -342,11 +343,13 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->options([
                         'individual' => __('Individual Ticket'),
-                        'group' => __('Group Ticket (2+ people)'),
+                        'group' => __('Group Ticket (2–9 people)'),
+                        'group_of_ten' => __('3-Day Group Ticket (10 people)'),
                     ])
                     ->descriptions([
-                        'individual' => __('A single ticket for one person.'),
-                        'group' => __('One purchase for a group of 2 or more people.'),
+                        'individual' => __('One ticket for 2 people.'),
+                        'group' => __('One purchase for a group of 2 to 9 people.'),
+                        'group_of_ten' => __('The group ticket is valid for 10 people. Fixed price: :price / 10 people.', ['price' => Number::currency(Registration::GROUP_OF_TEN_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]),
                     ])
                     ->default('individual')
                     ->live(),
@@ -368,14 +371,15 @@ class RegistrationForm extends Component implements HasSchemas
                     ->viewData([
                         'field' => 'group_size',
                         'min' => 2,
+                        'max' => Registration::GROUP_MAX_SIZE,
                         'label' => __('Number of People'),
-                        'helper' => __('Minimum 2 people. Enter the total number of participants.'),
+                        'helper' => __('2 to 9 people. Enter the total number of participants.'),
                     ])
                     ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group'),
 
                 Hidden::make('group_size')
                     ->default(2)
-                    ->rules(['integer', 'min:2']),
+                    ->rules(['integer', 'min:2', 'max:' . Registration::GROUP_MAX_SIZE]),
 
                 Radio::make('ticket_duration')
                     ->label(__('Access Duration'))
@@ -638,13 +642,18 @@ class RegistrationForm extends Component implements HasSchemas
         ];
 
         if ($this->type === 'attendee') {
-            $isGroup = ($data['ticket_kind'] ?? 'individual') === 'group';
+            $ticketKind = $data['ticket_kind'] ?? 'individual';
 
-            if ($isGroup) {
+            if ($ticketKind === 'group_of_ten') {
+                $registrationData['ticket_type'] = '3_days';
+                $registrationData['ticket_quantity'] = Registration::GROUP_OF_TEN_SIZE;
+                $registrationData['is_group_ticket'] = true;
+                $registrationData['ticket_day'] = null;
+            } elseif ($ticketKind === 'group') {
                 $groupDuration = $data['group_duration'] ?? '1_day';
 
                 $registrationData['ticket_type'] = $groupDuration;
-                $registrationData['ticket_quantity'] = max(2, (int) ($data['group_size'] ?? 2));
+                $registrationData['ticket_quantity'] = min(Registration::GROUP_MAX_SIZE, max(2, (int) ($data['group_size'] ?? 2)));
                 $registrationData['is_group_ticket'] = true;
                 $registrationData['ticket_day'] = $groupDuration === '1_day' ? ($data['group_day'] ?? null) : null;
             } else {
@@ -730,9 +739,13 @@ class RegistrationForm extends Component implements HasSchemas
 
     protected function calculateAmount(array $data): int
     {
+        if (($data['ticket_kind'] ?? 'individual') === 'group_of_ten') {
+            return Registration::GROUP_OF_TEN_PRICE_HUF * 100;
+        }
+
         if (($data['ticket_kind'] ?? 'individual') === 'group') {
             $rate = $this->groupPerPersonRate($data['group_duration'] ?? '1_day');
-            $size = max(2, (int) ($data['group_size'] ?? 2));
+            $size = min(Registration::GROUP_MAX_SIZE, max(2, (int) ($data['group_size'] ?? 2)));
 
             return $size * $rate * 100;
         }
@@ -760,19 +773,32 @@ class RegistrationForm extends Component implements HasSchemas
      * Structured summary of the currently selected ticket, shared by the order
      * summary and confirmation partials.
      *
-     * @return array{is_group: bool, duration: string, size: int, rate: int, day: ?string, amount_huf: int}
+     * @return array{is_group: bool, is_group_of_ten: bool, duration: string, size: int, rate: int, day: ?string, amount_huf: int}
      */
     public function ticketSummary(): array
     {
         $data = $this->data ?? [];
 
+        if (($data['ticket_kind'] ?? 'individual') === 'group_of_ten') {
+            return [
+                'is_group' => true,
+                'is_group_of_ten' => true,
+                'duration' => '3_days',
+                'size' => Registration::GROUP_OF_TEN_SIZE,
+                'rate' => 0,
+                'day' => null,
+                'amount_huf' => Registration::GROUP_OF_TEN_PRICE_HUF,
+            ];
+        }
+
         if (($data['ticket_kind'] ?? 'individual') === 'group') {
             $groupDuration = $data['group_duration'] ?? '1_day';
             $rate = $this->groupPerPersonRate($groupDuration);
-            $size = max(2, (int) ($data['group_size'] ?? 2));
+            $size = min(Registration::GROUP_MAX_SIZE, max(2, (int) ($data['group_size'] ?? 2)));
 
             return [
                 'is_group' => true,
+                'is_group_of_ten' => false,
                 'duration' => $groupDuration,
                 'size' => $size,
                 'rate' => $rate,
@@ -795,6 +821,7 @@ class RegistrationForm extends Component implements HasSchemas
 
         return [
             'is_group' => false,
+            'is_group_of_ten' => false,
             'duration' => $ticketDuration,
             'size' => $quantity,
             'rate' => $rate,

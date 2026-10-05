@@ -1,6 +1,7 @@
 @php
     $field ??= 'group_size';
     $min ??= 5;
+    $max ??= null;
     $label ??= __('Number of People');
     $helper ??= __('Minimum 5 people. Enter the total number of participants.');
 @endphp
@@ -8,9 +9,10 @@
 <div
     x-data="{
         min: {{ (int) $min }},
-        get value() { return Math.max(this.min, parseInt($wire.get('data.{{ $field }}') || this.min, 10)); },
+        max: {{ $max !== null ? (int) $max : 'Infinity' }},
+        get value() { return Math.min(this.max, Math.max(this.min, parseInt($wire.get('data.{{ $field }}') || this.min, 10))); },
         set(v) {
-            const n = Math.max(this.min, parseInt(v, 10) || this.min);
+            const n = Math.min(this.max, Math.max(this.min, parseInt(v, 10) || this.min));
             $wire.set('data.{{ $field }}', n);
         },
         decrement() { this.set(this.value - 1); },
@@ -49,7 +51,8 @@
         <button
             type="button"
             @click="increment()"
-            class="w-10 flex items-center justify-center text-white/70 hover:bg-white/10 transition-colors"
+            :disabled="value >= max"
+            class="w-10 flex items-center justify-center text-white/70 hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             aria-label="{{ __('Increase') }}"
         >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
