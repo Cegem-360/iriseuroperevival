@@ -194,10 +194,9 @@ it('clears the individual day when switching to a 3-day ticket', function (): vo
 
 it('admits 2 people per ticket and 10 for the group-of-ten ticket', function (): void {
     $component = Livewire::test(RegistrationForm::class, ['type' => 'attendee'])
-        ->set('data.ticket_kind', 'individual')
-        ->set('data.individual_quantity', 3);
+        ->set('data.ticket_kind', 'individual');
 
-    expect($component->instance()->ticketSummary()['seats'])->toBe(6);
+    expect($component->instance()->ticketSummary()['seats'])->toBe(2);
 
     $component->set('data.ticket_kind', 'group')->set('data.group_size', 9);
 

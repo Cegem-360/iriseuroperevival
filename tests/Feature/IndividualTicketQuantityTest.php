@@ -30,27 +30,24 @@ function submitIndividualForm(array $overrides = []): Testable
             'ticket_duration' => '1_day',
             'individual_day' => 'saturday',
             'ticket_price_option' => 'standard',
-            'individual_quantity' => 1,
             'wants_to_evangelize' => 0,
             'accepts_terms' => true,
         ], $overrides))
         ->call('submit');
 }
 
-it('shows a ticket count stepper for both individual and group tickets', function (): void {
+it('shows a ticket count stepper only for group tickets', function (): void {
     $component = Livewire::test(RegistrationForm::class, ['type' => 'attendee']);
 
-    $component->assertSee('Number of Tickets')
-        ->assertSee('data.individual_quantity', false)
-        ->assertSee('How many tickets would you like to buy?');
+    $component->assertDontSee('Number of Tickets')
+        ->assertSee('One ticket for 2 people.');
 
     $component->set('data.ticket_kind', 'group')
         ->assertSee('Number of Tickets')
-        ->assertSee('data.group_size', false)
-        ->assertDontSee('How many tickets would you like to buy?');
+        ->assertSee('data.group_size', false);
 });
 
-it('defaults to a single ticket', function (): void {
+it('stores an individual order as a single ticket', function (): void {
     submitIndividualForm();
 
     $registration = Registration::query()->where('email', 'individual@example.com')->firstOrFail();
@@ -60,69 +57,46 @@ it('defaults to a single ticket', function (): void {
         ->and((int) $registration->amount)->toBe(4900 * 100);
 });
 
-it('multiplies the 1-day price by the number of tickets', function (): void {
-    submitIndividualForm(['individual_quantity' => 3]);
+it('ignores a tampered individual quantity and charges a single ticket', function (): void {
+    submitIndividualForm(['individual_quantity' => 29]);
 
     $registration = Registration::query()->where('email', 'individual@example.com')->firstOrFail();
 
-    expect($registration->is_group_ticket)->toBeFalse()
-        ->and($registration->ticket_quantity)->toBe(3)
-        ->and($registration->ticket_day)->toBe('saturday')
-        ->and((int) $registration->amount)->toBe(3 * 4900 * 100);
+    expect($registration->ticket_quantity)->toBe(1)
+        ->and((int) $registration->amount)->toBe(4900 * 100);
 });
 
-it('multiplies the 3-day price by the number of tickets and stores no day', function (): void {
+it('charges the 3-day price for a single ticket and stores no day', function (): void {
     submitIndividualForm([
         'ticket_duration' => '3_days',
-        'ticket_price_option' => 'standard',
         'individual_day' => null,
-        'individual_quantity' => 4,
     ]);
 
     $registration = Registration::query()->where('email', 'individual@example.com')->firstOrFail();
 
     expect($registration->ticket_type)->toBe('3_days')
-        ->and($registration->ticket_quantity)->toBe(4)
+        ->and($registration->ticket_quantity)->toBe(1)
         ->and($registration->ticket_day)->toBeNull()
-        ->and((int) $registration->amount)->toBe(4 * 9900 * 100);
+        ->and((int) $registration->amount)->toBe(9900 * 100);
 });
 
-it('allows 5 or more individual tickets without turning them into a group ticket', function (): void {
-    submitIndividualForm(['individual_quantity' => 6]);
-
-    $registration = Registration::query()->where('email', 'individual@example.com')->firstOrFail();
-
-    expect($registration->is_group_ticket)->toBeFalse()
-        ->and($registration->ticket_quantity)->toBe(6)
-        ->and((int) $registration->amount)->toBe(6 * 4900 * 100);
-});
-
-it('treats a custom amount as the total for the whole order', function (): void {
+it('accepts a custom amount above the standard price', function (): void {
     submitIndividualForm([
         'ticket_price_option' => 'custom',
         'ticket_custom_amount' => 30000,
-        'individual_quantity' => 3,
     ]);
 
     $registration = Registration::query()->where('email', 'individual@example.com')->firstOrFail();
 
-    expect($registration->ticket_quantity)->toBe(3)
+    expect($registration->ticket_quantity)->toBe(1)
         ->and((int) $registration->amount)->toBe(30000 * 100);
 });
 
-it('requires a custom amount above the standard price of all tickets', function (): void {
+it('requires a custom amount above the standard price of one ticket', function (): void {
     submitIndividualForm([
         'ticket_price_option' => 'custom',
-        'ticket_custom_amount' => 14000,
-        'individual_quantity' => 3,
+        'ticket_custom_amount' => 4900,
     ])->assertHasFormErrors(['ticket_custom_amount']);
-
-    expect(Registration::query()->where('email', 'individual@example.com')->exists())->toBeFalse();
-});
-
-it('rejects a tampered quantity below one', function (): void {
-    submitIndividualForm(['individual_quantity' => 0])
-        ->assertHasFormErrors(['individual_quantity']);
 
     expect(Registration::query()->where('email', 'individual@example.com')->exists())->toBeFalse();
 });
