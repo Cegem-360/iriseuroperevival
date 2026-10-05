@@ -37,17 +37,17 @@ function submitIndividualForm(array $overrides = []): Testable
         ->call('submit');
 }
 
-it('shows a ticket count stepper for individual tickets and a people stepper for groups', function (): void {
+it('shows a ticket count stepper for both individual and group tickets', function (): void {
     $component = Livewire::test(RegistrationForm::class, ['type' => 'attendee']);
 
     $component->assertSee('Number of Tickets')
         ->assertSee('data.individual_quantity', false)
-        ->assertDontSee('Number of People');
+        ->assertSee('How many tickets would you like to buy?');
 
     $component->set('data.ticket_kind', 'group')
-        ->assertSee('Number of People')
+        ->assertSee('Number of Tickets')
         ->assertSee('data.group_size', false)
-        ->assertDontSee('Number of Tickets');
+        ->assertDontSee('How many tickets would you like to buy?');
 });
 
 it('defaults to a single ticket', function (): void {

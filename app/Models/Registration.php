@@ -109,6 +109,9 @@ class Registration extends Model
 
     public const int THREE_DAY_PRICE_HUF = 9900;
 
+    /** Each supporter ticket admits this many people (2-for-1 offer, 2026-10-05). */
+    public const int SEATS_PER_TICKET = 2;
+
     public const int GROUP_MAX_SIZE = 9;
 
     public const int GROUP_OF_TEN_SIZE = 10;

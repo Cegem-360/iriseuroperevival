@@ -696,10 +696,14 @@
     "Valid for 10 people": "10 fő részére",
     "/ 10 people": "/ 10 fő",
     "10 people": "10 fő",
-    "Group Ticket (2–9 people)": "Csoportos jegy (2–9 fő)",
     "3-Day Group Ticket (10 people)": "Csoportos jegy 3 napra (10 fő)",
     "One ticket for 2 people.": "Egy jegy 2 főre.",
-    "One purchase for a group of 2 to 9 people.": "Egy vásárlás 2–9 fős csoportra.",
     "The group ticket is valid for 10 people. Fixed price: :price / 10 people.": "A csoportos jegy 10 főre érvényes. Fix ár: :price / 10 fő.",
-    "2 to 9 people. Enter the total number of participants.": "2–9 fő. Add meg a résztvevők teljes számát."
+    "Group Ticket (2–9 tickets)": "Csoportos jegy (2–9 jegy)",
+    "One purchase of 2 to 9 tickets. Each ticket is valid for 2 people.": "Egy vásárlás 2–9 jegyre. Minden jegy 2 főre érvényes.",
+    "How many tickets would you like to buy? Each ticket is valid for 2 people.": "Hány jegyet szeretnél megvásárolni? Minden jegy 2 főre érvényes.",
+    "2 to 9 tickets. Each ticket is valid for 2 people.": "2–9 jegy. Minden jegy 2 főre érvényes.",
+    ":price / ticket (2 people)": ":price / jegy (2 fő)",
+    ":count people": ":count fő",
+    "Admission for": "Belépés"
 }

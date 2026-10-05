@@ -343,12 +343,12 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->options([
                         'individual' => __('Individual Ticket'),
-                        'group' => __('Group Ticket (2–9 people)'),
+                        'group' => __('Group Ticket (2–9 tickets)'),
                         'group_of_ten' => __('3-Day Group Ticket (10 people)'),
                     ])
                     ->descriptions([
                         'individual' => __('One ticket for 2 people.'),
-                        'group' => __('One purchase for a group of 2 to 9 people.'),
+                        'group' => __('One purchase of 2 to 9 tickets. Each ticket is valid for 2 people.'),
                         'group_of_ten' => __('The group ticket is valid for 10 people. Fixed price: :price / 10 people.', ['price' => Number::currency(Registration::GROUP_OF_TEN_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]),
                     ])
                     ->default('individual')
@@ -358,8 +358,9 @@ class RegistrationForm extends Component implements HasSchemas
                     ->viewData([
                         'field' => 'individual_quantity',
                         'min' => 1,
+                        'seatsPerTicket' => Registration::SEATS_PER_TICKET,
                         'label' => __('Number of Tickets'),
-                        'helper' => __('How many tickets would you like to buy in this order?'),
+                        'helper' => __('How many tickets would you like to buy? Each ticket is valid for 2 people.'),
                     ])
                     ->visible(fn (Get $get): bool => ($get('ticket_kind') ?? 'individual') === 'individual'),
 
@@ -372,8 +373,9 @@ class RegistrationForm extends Component implements HasSchemas
                         'field' => 'group_size',
                         'min' => 2,
                         'max' => Registration::GROUP_MAX_SIZE,
-                        'label' => __('Number of People'),
-                        'helper' => __('2 to 9 people. Enter the total number of participants.'),
+                        'seatsPerTicket' => Registration::SEATS_PER_TICKET,
+                        'label' => __('Number of Tickets'),
+                        'helper' => __('2 to 9 tickets. Each ticket is valid for 2 people.'),
                     ])
                     ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group'),
 
@@ -419,7 +421,7 @@ class RegistrationForm extends Component implements HasSchemas
                         $standardPrice = Registration::standardPriceHuf($get('ticket_duration'));
 
                         return [
-                            'standard' => Number::currency($standardPrice, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency($standardPrice / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')',
+                            'standard' => __(':price / ticket (2 people)', ['price' => Number::currency($standardPrice, 'HUF', app()->getLocale(), precision: 0) . ' (~' . Number::currency($standardPrice / config('services.currency.eur_huf_rate'), 'EUR', app()->getLocale(), precision: 0) . ')']),
                             'custom' => __('Custom amount'),
                         ];
                     })
@@ -454,8 +456,8 @@ class RegistrationForm extends Component implements HasSchemas
                     ->required()
                     ->visible(fn (Get $get): bool => $get('ticket_kind') === 'group')
                     ->options([
-                        '1_day' => __(':price / person', ['price' => Number::currency(Registration::ONE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('1 Day'),
-                        '3_days' => __(':price / person', ['price' => Number::currency(Registration::THREE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('3 Days'),
+                        '1_day' => __(':price / ticket (2 people)', ['price' => Number::currency(Registration::ONE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('1 Day'),
+                        '3_days' => __(':price / ticket (2 people)', ['price' => Number::currency(Registration::THREE_DAY_PRICE_HUF, 'HUF', app()->getLocale(), precision: 0)]) . ' — ' . __('3 Days'),
                     ])
                     ->default('1_day')
                     ->live()
@@ -773,7 +775,7 @@ class RegistrationForm extends Component implements HasSchemas
      * Structured summary of the currently selected ticket, shared by the order
      * summary and confirmation partials.
      *
-     * @return array{is_group: bool, is_group_of_ten: bool, duration: string, size: int, rate: int, day: ?string, amount_huf: int}
+     * @return array{is_group: bool, is_group_of_ten: bool, duration: string, size: int, seats: int, rate: int, day: ?string, amount_huf: int}
      */
     public function ticketSummary(): array
     {
@@ -785,6 +787,7 @@ class RegistrationForm extends Component implements HasSchemas
                 'is_group_of_ten' => true,
                 'duration' => '3_days',
                 'size' => Registration::GROUP_OF_TEN_SIZE,
+                'seats' => Registration::GROUP_OF_TEN_SIZE,
                 'rate' => 0,
                 'day' => null,
                 'amount_huf' => Registration::GROUP_OF_TEN_PRICE_HUF,
@@ -801,6 +804,7 @@ class RegistrationForm extends Component implements HasSchemas
                 'is_group_of_ten' => false,
                 'duration' => $groupDuration,
                 'size' => $size,
+                'seats' => $size * Registration::SEATS_PER_TICKET,
                 'rate' => $rate,
                 'day' => $groupDuration === '1_day' ? ($data['group_day'] ?? null) : null,
                 'amount_huf' => $size * $rate,
@@ -824,6 +828,7 @@ class RegistrationForm extends Component implements HasSchemas
             'is_group_of_ten' => false,
             'duration' => $ticketDuration,
             'size' => $quantity,
+            'seats' => $quantity * Registration::SEATS_PER_TICKET,
             'rate' => $rate,
             'day' => $ticketDuration === '1_day' ? ($data['individual_day'] ?? null) : null,
             'amount_huf' => $amountHuf,

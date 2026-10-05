@@ -27,10 +27,10 @@
                         ({{ $dayLabels[$summary['day']] ?? '' }})
                     @endif
                 </span>
-                <span>{{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }} / {{ __('person') }}</span>
+                <span>{{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }} / {{ __('ticket') }}</span>
             </div>
             <div class="flex justify-between text-sm text-white/60">
-                <span>{{ __('Number of People') }}</span>
+                <span>{{ __('Number of Tickets') }}</span>
                 <span>{{ $summary['size'] }} × {{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }}</span>
             </div>
         @else
@@ -62,6 +62,10 @@
                 </div>
             @endif
         @endif
+        <div class="flex justify-between text-sm font-medium text-white/90">
+            <span>{{ __('Admission for') }}</span>
+            <span>{{ __(':count people', ['count' => $summary['seats']]) }}</span>
+        </div>
     </div>
 
     <div class="border-t border-navy-600 pt-3 flex justify-between text-lg font-bold">

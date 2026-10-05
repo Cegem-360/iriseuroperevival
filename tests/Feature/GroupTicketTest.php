@@ -191,3 +191,20 @@ it('clears the individual day when switching to a 3-day ticket', function (): vo
         ->set('data.ticket_duration', '3_days')
         ->assertSet('data.individual_day', null);
 });
+
+it('admits 2 people per ticket and 10 for the group-of-ten ticket', function (): void {
+    $component = Livewire::test(RegistrationForm::class, ['type' => 'attendee'])
+        ->set('data.ticket_kind', 'individual')
+        ->set('data.individual_quantity', 3);
+
+    expect($component->instance()->ticketSummary()['seats'])->toBe(6);
+
+    $component->set('data.ticket_kind', 'group')->set('data.group_size', 9);
+
+    expect($component->instance()->ticketSummary()['seats'])->toBe(18)
+        ->and($component->instance()->ticketSummary()['amount_huf'])->toBe(9 * 4900);
+
+    $component->set('data.ticket_kind', 'group_of_ten');
+
+    expect($component->instance()->ticketSummary()['seats'])->toBe(10);
+});
