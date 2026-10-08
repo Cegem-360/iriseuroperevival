@@ -33,3 +33,6 @@ _ide_helper_models.php
 # Deploy scripts live on the server only (~/deploy)
 /deploy.sh
 /deploy/
+
+# Client deliverables (local only)
+/__client/

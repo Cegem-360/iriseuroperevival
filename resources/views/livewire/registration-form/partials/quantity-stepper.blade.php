@@ -1,6 +1,8 @@
 @php
     $field ??= 'group_size';
     $min ??= 5;
+    $max ??= null;
+    $seatsPerTicket ??= null;
     $label ??= __('Number of People');
     $helper ??= __('Minimum 5 people. Enter the total number of participants.');
 @endphp
@@ -8,9 +10,10 @@
 <div
     x-data="{
         min: {{ (int) $min }},
-        get value() { return Math.max(this.min, parseInt($wire.get('data.{{ $field }}') || this.min, 10)); },
+        max: {{ $max !== null ? (int) $max : 'Infinity' }},
+        get value() { return Math.min(this.max, Math.max(this.min, parseInt($wire.get('data.{{ $field }}') || this.min, 10))); },
         set(v) {
-            const n = Math.max(this.min, parseInt(v, 10) || this.min);
+            const n = Math.min(this.max, Math.max(this.min, parseInt(v, 10) || this.min));
             $wire.set('data.{{ $field }}', n);
         },
         decrement() { this.set(this.value - 1); },
@@ -23,6 +26,7 @@
         <sup class="text-danger-400">*</sup>
     </label>
 
+    <div class="flex items-center">
     <div class="inline-flex items-stretch h-10 rounded-lg border border-white/10 bg-white/5 overflow-hidden focus-within:ring-2 focus-within:ring-primary-500/40 focus-within:border-primary-500/60">
         <button
             type="button"
@@ -49,13 +53,19 @@
         <button
             type="button"
             @click="increment()"
-            class="w-10 flex items-center justify-center text-white/70 hover:bg-white/10 transition-colors"
+            :disabled="value >= max"
+            class="w-10 flex items-center justify-center text-white/70 hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             aria-label="{{ __('Increase') }}"
         >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
             </svg>
         </button>
+    </div>
+
+    @if($seatsPerTicket)
+        <span class="ml-3 text-sm font-medium text-primary-400" x-text="'= ' + {{ Js::from(__(':count people')) }}.replace(':count', value * {{ (int) $seatsPerTicket }})"></span>
+    @endif
     </div>
 
     @error('data.' . $field)

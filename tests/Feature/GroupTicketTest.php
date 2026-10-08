@@ -47,13 +47,37 @@ it('prices a 1-day group of 5 at 4900 HUF per person', function (): void {
         ->and((int) $registration->amount)->toBe(5 * 4900 * 100);
 });
 
-it('prices a larger 1-day group by the number of people', function (): void {
-    submitGroupForm(['group_duration' => '1_day', 'group_day' => 'sunday', 'group_size' => 12]);
+it('prices the largest 1-day group of 9 by the number of people', function (): void {
+    submitGroupForm(['group_duration' => '1_day', 'group_day' => 'sunday', 'group_size' => 9]);
 
     $registration = Registration::query()->where('email', 'group@example.com')->firstOrFail();
 
-    expect($registration->ticket_quantity)->toBe(12)
-        ->and((int) $registration->amount)->toBe(12 * 4900 * 100);
+    expect($registration->ticket_quantity)->toBe(9)
+        ->and((int) $registration->amount)->toBe(9 * 4900 * 100);
+});
+
+it('rejects a group larger than 9 people', function (): void {
+    submitGroupForm(['email' => 'large@example.com', 'group_size' => 10]);
+
+    expect(Registration::query()->where('email', 'large@example.com')->exists())->toBeFalse();
+});
+
+it('charges a fixed 40000 HUF for the 3-day group ticket of 10 people', function (): void {
+    submitGroupForm(['email' => 'ten@example.com', 'ticket_kind' => 'group_of_ten', 'group_duration' => null, 'group_day' => null]);
+
+    $registration = Registration::query()->where('email', 'ten@example.com')->firstOrFail();
+
+    expect($registration->is_group_ticket)->toBeTrue()
+        ->and($registration->ticket_type)->toBe('3_days')
+        ->and($registration->ticket_quantity)->toBe(10)
+        ->and($registration->ticket_day)->toBeNull()
+        ->and((int) $registration->amount)->toBe(40000 * 100);
+});
+
+it('preselects the 10-person group ticket from the home page link', function (): void {
+    Livewire::withQueryParams(['kind' => 'group_of_ten'])
+        ->test(RegistrationForm::class, ['type' => 'attendee'])
+        ->assertSet('data.ticket_kind', 'group_of_ten');
 });
 
 it('prices a 3-day group at 9900 HUF per person and stores no day', function (): void {
@@ -166,4 +190,20 @@ it('clears the individual day when switching to a 3-day ticket', function (): vo
         ->set('data.individual_day', 'friday')
         ->set('data.ticket_duration', '3_days')
         ->assertSet('data.individual_day', null);
+});
+
+it('admits 2 people per ticket and 10 for the group-of-ten ticket', function (): void {
+    $component = Livewire::test(RegistrationForm::class, ['type' => 'attendee'])
+        ->set('data.ticket_kind', 'individual');
+
+    expect($component->instance()->ticketSummary()['seats'])->toBe(2);
+
+    $component->set('data.ticket_kind', 'group')->set('data.group_size', 9);
+
+    expect($component->instance()->ticketSummary()['seats'])->toBe(18)
+        ->and($component->instance()->ticketSummary()['amount_huf'])->toBe(9 * 4900);
+
+    $component->set('data.ticket_kind', 'group_of_ten');
+
+    expect($component->instance()->ticketSummary()['seats'])->toBe(10);
 });

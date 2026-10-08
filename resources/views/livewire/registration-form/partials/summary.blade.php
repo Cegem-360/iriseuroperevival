@@ -45,7 +45,9 @@
         <div class="border-t border-navy-600 pt-3 flex justify-between">
             <dt class="text-white/60">{{ __('Pass') }}</dt>
             <dd class="text-white font-medium">
-                @if($summary['is_group'])
+                @if($summary['is_group_of_ten'])
+                    {{ __('3-Day Group Ticket (10 people)') }}
+                @elseif($summary['is_group'])
                     {{ __('Group Ticket') }} — {{ $durationLabel }}
                     @if($summary['day'])
                         ({{ $dayLabels[$summary['day']] ?? '' }})
@@ -58,9 +60,9 @@
                 @endif
             </dd>
         </div>
-        @if($summary['is_group'])
+        @if($summary['is_group'] && ! $summary['is_group_of_ten'])
             <div class="flex justify-between">
-                <dt class="text-white/60">{{ __('Number of People') }}</dt>
+                <dt class="text-white/60">{{ __('Number of Tickets') }}</dt>
                 <dd class="text-white font-medium">{{ $summary['size'] }} × {{ Number::currency($summary['rate'], 'HUF', app()->getLocale(), precision: 0) }}</dd>
             </div>
         @elseif($summary['size'] > 1)
@@ -75,6 +77,10 @@
                 </dd>
             </div>
         @endif
+        <div class="flex justify-between">
+            <dt class="text-white/60">{{ __('Admission for') }}</dt>
+            <dd class="text-white font-medium">{{ __(':count people', ['count' => $summary['seats']]) }}</dd>
+        </div>
         <div class="flex justify-between">
             <dt class="text-white/60">{{ __('Street Evangelism') }}</dt>
             <dd class="text-white font-medium">{{ ($data['wants_to_evangelize'] ?? false) ? __('Yes') : __('No') }}</dd>
