@@ -78,6 +78,30 @@ it('pushes a purchase with ecommerce data for a paid registration', function ():
         ->assertSeeHtml('value: 15000');
 });
 
+it('sends the google ads purchase conversion for a paid registration', function (): void {
+    /** @var TestCase $this */
+    config()->set('services.google.ads_purchase_conversion', 'AW-123/TestLabel');
+    $registration = Registration::factory()->attendee()->paid()->create(['amount' => 1500000]);
+
+    $this->get(route('register.success', $registration->uuid))
+        ->assertOk()
+        ->assertSeeHtml('https://www.googletagmanager.com/gtag/js?id=AW-123')
+        ->assertSeeHtml('gtag(\'config\', \'AW-123\')')
+        ->assertSeeHtml('gtag(\'event\', \'conversion\'')
+        ->assertSeeHtml('send_to: \'AW-123\\/TestLabel\'')
+        ->assertSeeHtml("transaction_id: '{$registration->uuid}'");
+});
+
+it('does not send the google ads purchase conversion for an unpaid registration', function (): void {
+    /** @var TestCase $this */
+    config()->set('services.google.ads_purchase_conversion', 'AW-123/TestLabel');
+    $registration = Registration::factory()->volunteer()->create();
+
+    $this->get(route('register.success', $registration->uuid))
+        ->assertOk()
+        ->assertDontSeeHtml('gtag(\'event\', \'conversion\'');
+});
+
 it('renders no google tag or banner when no container is configured', function (): void {
     /** @var TestCase $this */
     config()->set('services.google.gtm_container_id');
@@ -108,6 +132,10 @@ it('ships the production container id only for the production environment', func
         }
     })();
 
-    expect($services('production'))->gtm_container_id->toBe('GTM-WXGLNB4X');
-    expect($services('local'))->gtm_container_id->toBeNull();
+    expect($services('production'))
+        ->gtm_container_id->toBe('GTM-WXGLNB4X')
+        ->ads_purchase_conversion->toBe('AW-18466287510/O722CPe0yIkdEJbftOVE');
+    expect($services('local'))
+        ->gtm_container_id->toBeNull()
+        ->ads_purchase_conversion->toBeNull();
 });

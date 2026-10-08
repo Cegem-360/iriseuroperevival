@@ -187,6 +187,19 @@
         });
         @endif
     </script>
+    @if ($isPurchase && ($adsPurchaseConversion = config('services.google.ads_purchase_conversion')))
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ urlencode(Str::before($adsPurchaseConversion, '/')) }}"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', @js(Str::before($adsPurchaseConversion, '/')));
+        gtag('event', 'conversion', {
+            send_to: @js($adsPurchaseConversion),
+            value: @js($conversionValue),
+            currency: 'HUF',
+            transaction_id: @js($registration->uuid)
+        });
+    </script>
+    @endif
     @endpush
 @endif
 </div>

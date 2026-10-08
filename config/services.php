@@ -52,5 +52,6 @@ return [
 
     'google' => [
         'gtm_container_id' => env('GOOGLE_GTM_CONTAINER_ID', env('APP_ENV') === 'production' ? 'GTM-WXGLNB4X' : null),
+        'ads_purchase_conversion' => env('GOOGLE_ADS_PURCHASE_CONVERSION', env('APP_ENV') === 'production' ? 'AW-18466287510/O722CPe0yIkdEJbftOVE' : null),
     ],
 ];
