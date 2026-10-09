@@ -112,6 +112,9 @@ class Registration extends Model
     /** Each supporter ticket admits this many people (2-for-1 offer, 2026-10-05). */
     public const int SEATS_PER_TICKET = 2;
 
+    /** Deploy time (UTC) of the 2-for-1 offer; earlier tickets admit one person each. */
+    public const string TWO_FOR_ONE_SINCE = '2026-10-05 13:15:00';
+
     public const int GROUP_MAX_SIZE = 9;
 
     public const int GROUP_OF_TEN_SIZE = 10;
@@ -247,6 +250,27 @@ class Registration extends Model
     protected function formattedTicketType(): Attribute
     {
         return Attribute::make(get: fn (): string => self::formatTicketType($this->ticket_type));
+    }
+
+    /**
+     * Number of people the order admits: 2 per ticket since the 2-for-1 offer,
+     * except the fixed-price group ticket, which admits exactly 10.
+     */
+    protected function admittedPeople(): Attribute
+    {
+        return Attribute::make(get: function (): int {
+            $quantity = max(1, (int) $this->ticket_quantity);
+
+            if ($this->created_at === null || $this->created_at->lt(self::TWO_FOR_ONE_SINCE)) {
+                return $quantity;
+            }
+
+            if ($this->is_group_ticket && $quantity === self::GROUP_OF_TEN_SIZE) {
+                return self::GROUP_OF_TEN_SIZE;
+            }
+
+            return $quantity * self::SEATS_PER_TICKET;
+        });
     }
 
     /**

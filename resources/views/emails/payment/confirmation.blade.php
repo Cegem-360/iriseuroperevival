@@ -11,6 +11,10 @@
 **{{ __('Reference Number') }}:** {{ $registration->uuid }}
 **{{ __('Name') }}:** {{ $registration->full_name }}
 **{{ __('Ticket Type') }}:** {{ $registration->formatted_ticket_type }}
+@if($registration->type === 'attendee' && $registration->ticket_type)
+**{{ __('Number of Tickets') }}:** {{ $registration->ticket_quantity }}
+**{{ __('Admission for') }}:** {{ __(':count people', ['count' => $registration->admitted_people]) }}
+@endif
 **{{ __('Total') }}:** {{ $registration->formatted_amount }}
 **{{ __('Payment Date') }}:** {{ $registration->paid_at->format('F j, Y') }}
 </x-mail::panel>

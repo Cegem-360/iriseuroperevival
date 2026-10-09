@@ -142,8 +142,10 @@ class StripeService
         $ticketName = 'Europe Revival 2026 — ' . $registration->formatted_ticket_type;
 
         if ($registration->is_group_ticket) {
-            $ticketName .= ' — ' . __('Group Ticket') . ' (' . $registration->ticket_quantity . ' ' . __('person') . ')';
+            $ticketName .= ' — ' . __('Group Ticket') . ' (' . $registration->ticket_quantity . ' × ' . __('ticket') . ')';
         }
+
+        $ticketName .= ' — ' . __('Admission for') . ' ' . __(':count people', ['count' => $registration->admitted_people]);
 
         return [
             [

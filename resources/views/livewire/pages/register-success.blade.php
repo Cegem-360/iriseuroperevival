@@ -64,7 +64,11 @@
                 @if($registration->type === 'attendee')
                     <div class="flex justify-between">
                         <dt class="text-white/60">{{ __('Tickets') }}</dt>
-                        <dd class="text-white">{{ $registration->ticket_quantity }}× {{ __(ucfirst($registration->ticket_type)) }}</dd>
+                        <dd class="text-white">{{ $registration->ticket_quantity }}× {{ $registration->formatted_ticket_type }}</dd>
+                    </div>
+                    <div class="flex justify-between">
+                        <dt class="text-white/60">{{ __('Admission for') }}</dt>
+                        <dd class="text-white">{{ __(':count people', ['count' => $registration->admitted_people]) }}</dd>
                     </div>
                     <div class="flex justify-between border-t border-navy-600 pt-3">
                         <dt class="text-white font-semibold">{{ __('Amount Paid') }}</dt>
