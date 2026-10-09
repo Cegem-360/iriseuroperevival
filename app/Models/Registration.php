@@ -249,7 +249,20 @@ class Registration extends Model
 
     protected function formattedTicketType(): Attribute
     {
-        return Attribute::make(get: fn (): string => self::formatTicketType($this->ticket_type));
+        return Attribute::make(get: fn (): string => $this->is_group_of_ten
+            ? __('3-Day Group Ticket (10 people)')
+            : self::formatTicketType($this->ticket_type));
+    }
+
+    /**
+     * Whether this is the fixed-price 3-day group ticket for 10 people (one ticket, not ten).
+     */
+    protected function isGroupOfTen(): Attribute
+    {
+        return Attribute::make(get: fn (): bool => (bool) $this->is_group_ticket
+            && (int) $this->ticket_quantity === self::GROUP_OF_TEN_SIZE
+            && $this->created_at !== null
+            && $this->created_at->gte(self::TWO_FOR_ONE_SINCE));
     }
 
     /**
@@ -265,7 +278,7 @@ class Registration extends Model
                 return $quantity;
             }
 
-            if ($this->is_group_ticket && $quantity === self::GROUP_OF_TEN_SIZE) {
+            if ($this->is_group_of_ten) {
                 return self::GROUP_OF_TEN_SIZE;
             }
 

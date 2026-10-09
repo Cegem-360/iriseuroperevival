@@ -58,3 +58,19 @@ it('shows the ticket name and admitted people on the success page', function ():
         ->assertSee('2 people')
         ->assertDontSee('3_days');
 });
+
+it('labels the group-of-ten order as one ticket for 10 people on the success page', function (): void {
+    /** @var TestCase $this */
+    $registration = Registration::factory()->attendee()->paid()->create([
+        'ticket_type' => '3_days',
+        'ticket_quantity' => 10,
+        'is_group_ticket' => true,
+    ]);
+
+    expect($registration->is_group_of_ten)->toBeTrue();
+
+    $this->get(route('register.success', $registration->uuid))
+        ->assertOk()
+        ->assertSee('1× 3-Day Group Ticket (10 people)')
+        ->assertSee('10 people');
+});

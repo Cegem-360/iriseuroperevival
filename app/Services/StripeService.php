@@ -141,7 +141,7 @@ class StripeService
     {
         $ticketName = 'Europe Revival 2026 — ' . $registration->formatted_ticket_type;
 
-        if ($registration->is_group_ticket) {
+        if ($registration->is_group_ticket && ! $registration->is_group_of_ten) {
             $ticketName .= ' — ' . __('Group Ticket') . ' (' . $registration->ticket_quantity . ' × ' . __('ticket') . ')';
         }
 

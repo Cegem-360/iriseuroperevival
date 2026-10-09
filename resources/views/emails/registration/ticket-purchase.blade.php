@@ -15,7 +15,9 @@
 **{{ __('Email') }}:** {{ $registration->email }}
 **{{ __('Ticket Type') }}:** {{ $registration->formatted_ticket_type }}
 @if($registration->type === 'attendee' && $registration->ticket_type)
+@unless($registration->is_group_of_ten)
 **{{ __('Number of Tickets') }}:** {{ $registration->ticket_quantity }}
+@endunless
 **{{ __('Admission for') }}:** {{ __(':count people', ['count' => $registration->admitted_people]) }}
 @endif
 @if($registration->amount)
