@@ -14,6 +14,7 @@ use Rector\Php70\Rector\If_\IfToSpaceshipRector;
 use Rector\Php70\Rector\Ternary\TernaryToSpaceshipRector;
 use Rector\Php70\Rector\Variable\WrapVariableVariableNameInCurlyBracesRector;
 use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
+use Rector\Privatization\Rector\ClassMethod\PrivatizeFinalClassMethodRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use RectorLaravel\Rector\MethodCall\AvoidNegatedCollectionFilterOrRejectRector;
 
@@ -30,6 +31,9 @@ return RectorConfig::configure()
         AvoidNegatedCollectionFilterOrRejectRector::class,
     ])
     ->withSkip([
+        // Filament and Livewire call hooks and rules() from their base classes,
+        // so these must stay protected even on final classes.
+        PrivatizeFinalClassMethodRector::class => [__DIR__ . '/app/Filament', __DIR__ . '/app/Livewire'],
         __DIR__ . '/config/*.php',
         __DIR__ . '/app/Providers/*.php',
         __DIR__ . '/database/migrations',
