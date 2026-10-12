@@ -16,7 +16,6 @@ use Rector\Php70\Rector\Variable\WrapVariableVariableNameInCurlyBracesRector;
 use Rector\Php74\Rector\Assign\NullCoalescingOperatorRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use RectorLaravel\Rector\MethodCall\AvoidNegatedCollectionFilterOrRejectRector;
-use RectorLaravel\Set\LaravelSetList;
 
 return RectorConfig::configure()
     ->withImportNames()
@@ -77,8 +76,6 @@ return RectorConfig::configure()
     ])
     ->withSets([
         FilamentSetList::LARAVEL_APP,
-        LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
-        LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
     ])
     ->withPhpSets()
     ->withAutoloadPaths([
