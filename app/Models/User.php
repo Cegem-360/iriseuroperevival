@@ -123,6 +123,8 @@ class User extends Authenticatable implements FilamentUser
 
     /**
      * Get registrations directly linked to this user.
+     *
+     * @return HasMany<Registration, $this>
      */
     public function registrations(): HasMany
     {

@@ -91,13 +91,13 @@ test('only admins may delete registrations', function (): void {
 test('restricted staff dashboards show only the pending approvals widget', function (string $state): void {
     actingAs(User::factory()->{$state}()->create());
 
-    expect((new Dashboard())->getWidgets())->toBe([PendingApprovalsWidget::class]);
+    expect(new Dashboard()->getWidgets())->toBe([PendingApprovalsWidget::class]);
 })->with(['ministryManager', 'coordinator']);
 
 test('admin dashboard includes the pending approvals widget among others', function (): void {
     actingAs(User::factory()->admin()->create());
 
-    $widgets = (new Dashboard())->getWidgets();
+    $widgets = new Dashboard()->getWidgets();
 
     expect($widgets)->toContain(PendingApprovalsWidget::class)
         ->and(count($widgets))->toBeGreaterThan(1);

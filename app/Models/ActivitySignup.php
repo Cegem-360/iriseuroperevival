@@ -35,11 +35,17 @@ class ActivitySignup extends Model
         });
     }
 
+    /**
+     * @return BelongsTo<Workshop, $this>
+     */
     public function workshop(): BelongsTo
     {
         return $this->belongsTo(Workshop::class);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function forActivity(Builder $query, string $type): void
     {

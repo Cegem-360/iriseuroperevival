@@ -79,7 +79,6 @@ return RectorConfig::configure()
         FilamentSetList::LARAVEL_APP,
         LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
         LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
-        LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER,
     ])
     ->withPhpSets()
     ->withAutoloadPaths([

@@ -44,6 +44,9 @@ class PromotionCode extends Model
         ];
     }
 
+    /**
+     * @return HasMany<Order, $this>
+     */
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
@@ -104,12 +107,18 @@ class PromotionCode extends Model
         });
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function active(Builder $query): void
     {
         $query->where('is_active', true);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function valid(Builder $query): void
     {

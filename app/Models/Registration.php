@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
@@ -142,12 +143,17 @@ class Registration extends Model
     | Relationships
     |--------------------------------------------------------------------------
     */
-
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return BelongsToMany<Workshop, $this, Pivot>
+     */
     public function workshops(): BelongsToMany
     {
         return $this->belongsToMany(Workshop::class)->withTimestamps();
@@ -158,9 +164,10 @@ class Registration extends Model
     | Scopes
     |--------------------------------------------------------------------------
     */
-
     /**
      * Scope to find registrations for a user by user_id or email.
+     *
+     * @param  Builder<static>  $query
      */
     #[Scope]
     protected function forUser(Builder $query, User $user): void
@@ -169,48 +176,72 @@ class Registration extends Model
             ->orWhere('email', $user->email);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function attendees(Builder $query): void
     {
         $query->where('type', 'attendee');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ministryTeam(Builder $query): void
     {
         $query->where('type', 'ministry');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function volunteers(Builder $query): void
     {
         $query->where('type', 'volunteer');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function pending(Builder $query): void
     {
         $query->whereIn('status', ['pending_payment', 'pending_approval']);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function pendingApproval(Builder $query): void
     {
         $query->where('status', 'pending_approval');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function approved(Builder $query): void
     {
         $query->where('status', 'approved');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function paid(Builder $query): void
     {
         $query->whereNotNull('paid_at');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function byCountry(Builder $query, string $country): void
     {

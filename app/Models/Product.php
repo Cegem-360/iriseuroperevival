@@ -53,6 +53,9 @@ class Product extends Model
         });
     }
 
+    /**
+     * @return HasMany<OrderItem, $this>
+     */
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
@@ -84,27 +87,39 @@ class Product extends Model
         }
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function active(Builder $query): void
     {
         $query->where('is_active', true);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function inStock(Builder $query): void
     {
-        $query->where(function ($q): void {
+        $query->where(function (\Illuminate\Contracts\Database\Query\Builder $q): void {
             $q->whereNull('stock_quantity')
                 ->orWhere('stock_quantity', '>', 0);
         });
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ofType(Builder $query, string $type): void
     {
         $query->where('type', $type);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ordered(Builder $query): void
     {

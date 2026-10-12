@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Registration;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Tests\TestCase;
 
 it('admits one person per ticket for orders placed before the 2-for-1 offer', function (): void {
@@ -11,7 +11,7 @@ it('admits one person per ticket for orders placed before the 2-for-1 offer', fu
         'ticket_type' => '3_days',
         'ticket_quantity' => 3,
         'is_group_ticket' => true,
-        'created_at' => Carbon::parse(Registration::TWO_FOR_ONE_SINCE)->subMinute(),
+        'created_at' => Date::parse(Registration::TWO_FOR_ONE_SINCE)->subMinute(),
     ]);
 
     expect($registration->admitted_people)->toBe(3);

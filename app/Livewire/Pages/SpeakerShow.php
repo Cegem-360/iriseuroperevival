@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Pages;
 
 use App\Models\Speaker;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -26,7 +27,7 @@ class SpeakerShow extends Component
         $otherSpeakers = Speaker::query()
             ->where('id', '!=', $this->speaker->id)
             ->whereNotNull('photo_path')
-            ->where(fn ($q) => $q
+            ->where(fn (Builder $q) => $q
                 ->whereHas('workshops')
                 ->orWhereHas('scheduleItems'))
             ->inRandomOrder()

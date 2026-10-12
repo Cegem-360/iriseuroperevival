@@ -43,23 +43,35 @@ class ScheduleItem extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Speaker, $this>
+     */
     public function speaker(): BelongsTo
     {
         return $this->belongsTo(Speaker::class);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ofType(Builder $query, string $type): void
     {
         $query->where('type', $type);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function onDay(Builder $query, DateTimeInterface|string $day): void
     {
         $query->whereDate('day', $day);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ordered(Builder $query): void
     {
@@ -69,6 +81,9 @@ class ScheduleItem extends Model
         $query->orderBy('day')->orderBy('sort_order')->orderBy('start_time');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function published(Builder $query): void
     {

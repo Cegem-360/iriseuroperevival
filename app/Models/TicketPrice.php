@@ -57,24 +57,36 @@ class TicketPrice extends Model
         return Attribute::make(get: fn (): string => Number::currency($this->price / 100, 'HUF', app()->getLocale(), precision: 0));
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function active(Builder $query): void
     {
         $query->where('is_active', true);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function forTier(Builder $query, string $tier): void
     {
         $query->where('pricing_tier', $tier);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function forType(Builder $query, string $type): void
     {
         $query->where('ticket_type', $type);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ordered(Builder $query): void
     {

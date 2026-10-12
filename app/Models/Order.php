@@ -57,11 +57,17 @@ class Order extends Model
         });
     }
 
+    /**
+     * @return HasMany<OrderItem, $this>
+     */
     public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class);
     }
 
+    /**
+     * @return BelongsTo<PromotionCode, $this>
+     */
     public function promotionCode(): BelongsTo
     {
         return $this->belongsTo(PromotionCode::class);
@@ -116,18 +122,27 @@ class Order extends Model
         return $this->promotionCode->calculateDiscount($this->subtotal);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ofStatus(Builder $query, string $status): void
     {
         $query->where('status', $status);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function paid(Builder $query): void
     {
         $query->whereNotNull('paid_at');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function pending(Builder $query): void
     {

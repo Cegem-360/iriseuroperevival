@@ -31,24 +31,36 @@ class Sponsor extends Model
         ];
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function active(Builder $query): void
     {
         $query->where('is_active', true);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ofTier(Builder $query, string $tier): void
     {
         $query->where('tier', $tier);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ordered(Builder $query): void
     {
         $query->orderBy('sort_order');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function byTierPriority(Builder $query): void
     {

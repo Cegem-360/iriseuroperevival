@@ -745,9 +745,7 @@ class RegistrationForm extends Component implements HasSchemas
             $customAmount = (int) ($data['ticket_custom_amount'] ?? 0);
             $minAmount = $baseTotal + 1;
 
-            if ($customAmount < $minAmount) {
-                throw new Exception("Custom amount must be at least {$minAmount} Ft.");
-            }
+            throw_if($customAmount < $minAmount, Exception::class, "Custom amount must be at least {$minAmount} Ft.");
 
             return $customAmount * 100;
         }

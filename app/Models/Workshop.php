@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Str;
 use Override;
 
@@ -62,11 +63,17 @@ class Workshop extends Model
         });
     }
 
+    /**
+     * @return BelongsTo<Speaker, $this>
+     */
     public function speaker(): BelongsTo
     {
         return $this->belongsTo(Speaker::class);
     }
 
+    /**
+     * @return BelongsToMany<Registration, $this, Pivot>
+     */
     public function registrations(): BelongsToMany
     {
         return $this->belongsToMany(Registration::class)->withTimestamps();
@@ -100,18 +107,27 @@ class Workshop extends Model
         });
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function published(Builder $query): void
     {
         $query->where('is_published', true);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ordered(Builder $query): void
     {
         $query->orderBy('sort_order');
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ofDifficulty(Builder $query, string $level): void
     {

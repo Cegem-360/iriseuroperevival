@@ -33,18 +33,27 @@ class Faq extends Model
         ];
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function published(Builder $query): void
     {
         $query->where('is_published', true);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ofCategory(Builder $query, string $category): void
     {
         $query->where('category', $category);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ordered(Builder $query): void
     {

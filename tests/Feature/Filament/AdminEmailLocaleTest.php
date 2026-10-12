@@ -10,7 +10,7 @@ it('switches the app locale to the language selected in the admin', function ():
     App::setLocale('en');
     session(['locale' => 'hu']);
 
-    (new SwitchLanguageLocale())->handle(request(), fn ($request) => $request);
+    new SwitchLanguageLocale()->handle(request(), fn ($request) => $request);
 
     expect(App::getLocale())->toBe('hu');
 });

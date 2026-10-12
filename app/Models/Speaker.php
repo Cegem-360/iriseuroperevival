@@ -77,28 +77,43 @@ class Speaker extends Model
         });
     }
 
+    /**
+     * @return HasMany<ScheduleItem, $this>
+     */
     public function scheduleItems(): HasMany
     {
         return $this->hasMany(ScheduleItem::class);
     }
 
+    /**
+     * @return HasMany<Workshop, $this>
+     */
     public function workshops(): HasMany
     {
         return $this->hasMany(Workshop::class);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function featured(Builder $query): void
     {
         $query->where('is_featured', true);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ofType(Builder $query, string $type): void
     {
         $query->where('type', $type);
     }
 
+    /**
+     * @param  Builder<static>  $query
+     */
     #[Scope]
     protected function ordered(Builder $query): void
     {
