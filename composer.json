@@ -25,7 +25,6 @@
         "livewire/flux": "^2.11.1",
         "livewire/livewire": "^4.1.2",
         "maatwebsite/excel": "^3.1.67",
-        "madbox-99/rector-filament": "^1.1",
         "nunomaduro/essentials": "^1.2",
         "stripe/stripe-php": "^17.6"
     },
@@ -38,6 +37,7 @@
         "laravel/pail": "^1.2.5",
         "laravel/pint": "^1.27",
         "laravel/sail": "^1.52",
+        "madbox-99/rector-filament": "^1.2",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.8.3",
         "pestphp/pest": "^4.3.2",
