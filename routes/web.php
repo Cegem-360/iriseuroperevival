@@ -5,6 +5,8 @@ declare(strict_types=1);
 use App\Http\Controllers\WebhookController;
 use App\Livewire\Pages\ActivitySignup;
 use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\Donate;
+use App\Livewire\Pages\DonationSuccess;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\MinistryTeam;
 use App\Livewire\Pages\Privacy;
@@ -97,6 +99,11 @@ Route::post('/newsletter/subscribe', function () {
 // Static Pages
 Route::get('/privacy', Privacy::class)->name('privacy');
 Route::get('/terms', Terms::class)->name('terms');
+
+// Donations (QR code at the venue points to /tamogatas)
+Route::get('/tamogatas', Donate::class)->name('donate');
+Route::get('/tamogatas/koszonjuk/{donation}', DonationSuccess::class)->name('donate.success');
+Route::redirect('/donate', '/tamogatas');
 
 // Language Switching
 Route::get('/lang/{locale}', function ($locale): RedirectResponse {

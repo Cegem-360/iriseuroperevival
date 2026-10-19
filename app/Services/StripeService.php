@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Models\Donation;
 use App\Models\Registration;
 use App\Models\TicketPrice;
 use Exception;
@@ -54,6 +55,58 @@ class StripeService
         ]);
 
         return $session->url;
+    }
+
+    /**
+     * Create a Stripe Checkout Session for a one-off donation.
+     */
+    public function createDonationCheckoutSession(Donation $donation): string
+    {
+        $session = $this->stripe->checkout->sessions->create([
+            'payment_method_types' => ['card'],
+            'mode' => 'payment',
+            'submit_type' => 'donate',
+            'locale' => $donation->locale === 'hu' ? 'hu' : 'en',
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'huf',
+                        'product_data' => [
+                            'name' => 'Europe Revival 2026 — ' . __('Donation'),
+                        ],
+                        'unit_amount' => $donation->amount_huf * 100,
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'success_url' => route('donate.success', ['donation' => $donation->uuid]) . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('donate'),
+            'metadata' => [
+                'donation_id' => $donation->id,
+                'donation_uuid' => $donation->uuid,
+                'type' => 'donation',
+            ],
+        ]);
+
+        $donation->update(['stripe_session_id' => $session->id]);
+
+        return $session->url;
+    }
+
+    /**
+     * Mark the donation behind a paid Checkout Session as paid (idempotent).
+     */
+    public function completeDonation(Donation $donation, Session $session): bool
+    {
+        if ($session->payment_status !== 'paid') {
+            return false;
+        }
+
+        return $donation->markAsPaid(
+            is_string($session->payment_intent) ? $session->payment_intent : null,
+            $session->customer_details?->name,
+            $session->customer_details?->email,
+        );
     }
 
     /**
@@ -284,7 +337,9 @@ class StripeService
         $registration = Registration::query()->where('stripe_session_id', $sessionId)->first();
 
         if (! $registration) {
-            return false;
+            $donation = Donation::query()->where('stripe_session_id', $sessionId)->first();
+
+            return $donation instanceof Donation && $this->completeDonation($donation, $session);
         }
 
         return $registration->markAsPaid($session->payment_intent);
