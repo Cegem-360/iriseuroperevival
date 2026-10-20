@@ -46,6 +46,18 @@ class ScheduleItem extends Model
     /**
      * @return BelongsTo<Speaker, $this>
      */
+    /**
+     * Display time: a single time for point-in-time items (start equals end,
+     * e.g. "Doors open"), otherwise "start{separator}end".
+     */
+    public function timeRange(string $separator = ' - '): string
+    {
+        $start = $this->start_time?->format('H:i') ?? '';
+        $end = $this->end_time?->format('H:i') ?? '';
+
+        return $end === '' || $end === $start ? $start : $start . $separator . $end;
+    }
+
     public function speaker(): BelongsTo
     {
         return $this->belongsTo(Speaker::class);

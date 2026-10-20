@@ -78,6 +78,10 @@ class HungarianContentSeeder extends Seeder
             'baoyan-lam' => [
                 'bio' => "Lam Baoyan és Rudy Taslim misszionáriusok, építészek, valamint a Living Oaks és a Genesis Architects alapítói. Szingapúri központtal szolgálnak világszerte. Erős építészeti, üzleti és piaci háttérrel rendelkeznek, és elkötelezettek amellett, hogy bemutassák: a szakmai kiválóság és a Királyság értékei miként járulhatnak hozzá nemzetek átalakulásához. Tervezési szemléletüket, stratégiai gondolkodásukat és társadalmi elkötelezettségüket ötvözve fenntartható megoldásokat valósítanak meg összetett, válságokkal sújtott és háborúk által érintett környezetekben.\n\nMunkájuk része kutak, iskolák, menedékhelyek és közösségi infrastruktúrák építése helyi gyülekezetekkel és vezetőkkel együttműködésben, különösen olyan térségekben, amelyeket konfliktusok és elvándorlás sújtanak. Eközben folyamatosan elkötelezetten szolgálják a szegényeket és kiszolgáltatott helyzetben lévőket, mert hisznek abban, hogy a valódi és tartós átalakulásnak egyszerre kell rendszerszintűnek és együttérzőnek lennie.\n\nNemzetközileg is elismerik őket a humanitárius építészet területén végzett vezető szerepükért, valamint azért, hogy hidat építenek az üzleti világ és a missziói szolgálat között. Munkájukon keresztül kézzelfogható reményt, méltóságot és helyreállítást visznek a rászoruló közösségekbe.",
             ],
+            'abel-carrico' => [
+                'title' => 'Misszionárius, pásztor, dalszövegíró',
+                'bio' => "Abel Carrico brazil misszionárius, pásztor, dalszerző és a Mountain People Worship dicsőítő zenekar vezetője. Eredetileg Rio de Janeiróból származik, és 17 éves korában, Isten misszióra szólító hívását követve költözött az Egyesült Államokba. Feleségével, Nicole-lal együtt részt vett az Iris Global mozambiki Harvest School képzésén, majd a Tennessee állambeli Greeneville-ben telepedtek le, hogy a kiszolgáltatott helyzetben lévő gyermekeket szolgálják.\n\nMa az Iris Greeneville missziós bázist vezetik, Abel pedig a The Rock Church pásztoraként és presbitereként szolgál. Szolgálatában a dicsőítés, a tanítványság és az emberekről való gyakorlati gondoskodás fonódik össze.\n\nSzívügye a Jézussal való egyszerű, mégis mély kapcsolat megélése, az Ő csodálatos gondviselésébe vetett bizalom és az iránta érzett, teljes szívből fakadó szeretet. Az ébredés tüzében élve hirdeti az evangéliumot börtönökben, árvaházakban és az utcákon.",
+            ],
             'fernando-sousa' => [
                 'bio' => 'Fernando Sousa az Iris Global lisszaboni gyülekezetének lelkipásztora. Szenvedélyesen szereti Jézust, örömét leli abban, hogy másokat segítsen elhívásuk felfedezésében és tanítvánnyá válásukban, és egy jó csésze kávéra sosem mond nemet.',
             ],
@@ -186,6 +190,10 @@ class HungarianContentSeeder extends Seeder
                 'short_description' => 'Különleges találkozó az Iris Global Harvest School of Missions egykori hallgatói számára. Csak azok jelentkezhetnek, akik tanultak az Iris Globalban.',
                 'description' => 'Heidi Baker és az Iris misszionáriusok különleges találkozót tartanak az Iris Global Harvest School of Missions egykori hallgatói számára. Kapcsolódj újra, oszd meg a bizonyságodat, és frissüljetek meg együtt.',
             ],
+            'abel-carrico' => [
+                'title' => 'Abel Carrico',
+                'description' => 'Missziós történetein és gyakorlati tanításain keresztül inspirál és segít abban, hogy növekedj az elhívásodban, elmélyítsd a Jézussal való kapcsolatodat, és a mindennapjaidat is az Ő dicsőítésének szenteld.',
+            ],
             'freedom-ministry' => [
                 'title' => 'Találd meg az identitásod!',
                 'short_description' => 'Identitás, elhívás, és őszinte, gyakorlatias Jézussal járás.',
@@ -210,6 +218,11 @@ class HungarianContentSeeder extends Seeder
             ]],
             // Friday (2026-10-23) — reworked 2026-08-28 per Dóri: pastors' meeting
             // removed; three new timeslots.
+            // Gate opening per day (2026-10-20 per Dóri): start = end, so the
+            // pages show a single time instead of a range.
+            ['2026-10-23', 'Doors open', ['title' => 'Kapunyitás']],
+            ['2026-10-24', 'Doors open', ['title' => 'Kapunyitás']],
+            ['2026-10-25', 'Doors open', ['title' => 'Kapunyitás']],
             ['2026-10-23', 'Opening Session', [
                 'title' => 'Nyitó alkalom',
                 'description' => 'Dicséret, Vendégelőadó, Szolgálati idő',
@@ -363,6 +376,14 @@ class HungarianContentSeeder extends Seeder
             'Useful information for your stay' => [
                 'question' => 'Hasznos információk a tartózkodáshoz',
                 'answer' => '<p><a href="/downloads/budapest-useful-information.pdf" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline">Töltsd le a hasznos információkat: BUDAPEST – USEFUL INFORMATION FOR YOUR STAY.pdf</a></p>',
+            ],
+            'Where can I sign up for the workshops, and what should I do if I would like to receive prayer for healing?' => [
+                'question' => 'Hol tudok jelentkezni a workshopokra és ha imát szeretnék kérni a gyógyulásért?',
+                'answer' => 'Amikor megérkezel, a regisztrációs pultnál fogsz tudni feliratkozni és jelentkezni.',
+            ],
+            'When will we go out onto the streets for evangelism?' => [
+                'question' => 'Mikor fogunk kimenni az utcára evangélizálni?',
+                'answer' => "Ha a regisztrációnál bejelölted, hogy szeretnél részt venni, akkor a konferencia előtt pár nappal fogsz kapni egy üzenetet, amiben elküldjük az evangélizációval kapcsolatos legfontosabb tudnivalókat.\n\nHa nem regisztráltál és helyben vásároltad a jegyed, akkor az információs pultnál tudsz érdeklődni, hogy hogyan tudsz becsatlakozni az evangélizációra.\n\nEgy felkészítő alkalom is lesz pénteken a fő alkalom előtt. Erről fogunk tájékoztatni e-mailen.",
             ],
             'How can I support the work of Iris?' => [
                 'question' => 'Hogyan támogathatom az Iris munkáját?',

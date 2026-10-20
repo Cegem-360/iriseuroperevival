@@ -142,6 +142,20 @@ class WorkshopSeeder extends Seeder
                 'sort_order' => 9,
             ],
             [
+                // Added 2026-10-20 per Dóri. She sent only a topic description, no
+                // title, so the title is the leader's name until she sends one.
+                'slug' => 'abel-carrico',
+                'title' => 'Abel Carrico',
+                'short_description' => null,
+                'description' => 'Through missionary stories and practical teachings, he inspires and helps you grow in your calling, deepen your relationship with Jesus, and dedicate your everyday life to glorifying Him.',
+                'leader_name' => 'Abel Carrico',
+                'speaker_id' => Speaker::query()->where('slug', 'abel-carrico')->value('id'),
+                'schedule_note' => 'Saturday & Sunday',
+                'duration_minutes' => 60,
+                'difficulty_level' => 'all',
+                'sort_order' => 11,
+            ],
+            [
                 // Slug kept as 'freedom-ministry' for URL/DB stability; the
                 // display title changed 2026-08-13 per client to reflect the
                 // workshop's actual focus.

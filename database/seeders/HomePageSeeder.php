@@ -174,6 +174,19 @@ class HomePageSeeder extends Seeder
                 'is_featured' => false,
                 'sort_order' => 14,
             ],
+            [
+                // Added 2026-10-20 per Dóri (irisrevival-1020.docx).
+                'name' => 'Abel Carrico',
+                'slug' => 'abel-carrico',
+                'title' => 'Missionary, pastor, songwriter',
+                'organization' => 'Iris Greeneville',
+                'country' => 'United States',
+                'bio' => 'Abel Carrico is a Brazilian missionary, pastor, songwriter, and member of Mountain People Worship. Originally from Rio de Janeiro, he moved to the United States after sensing God’s call to missions at the age of 17. Together with his wife, Nicole, he attended Iris Global’s Harvest School in Mozambique before settling in Greeneville, Tennessee, to serve vulnerable children. Today, they lead Iris Greeneville, and Abel serves as a pastor and elder at The Rock Church. His ministry brings together worship, discipleship, and practical care for people in the Appalachian region.',
+                'photo_path' => 'images/speakers/abel-carrico.webp',
+                'type' => 'workshop_leader',
+                'is_featured' => false,
+                'sort_order' => 16,
+            ],
             // Worship teams
             [
                 'name' => 'Awakening Music',
@@ -352,6 +365,21 @@ class HomePageSeeder extends Seeder
                 'answer' => 'No. We encourage everyone to attend in person so that you can experience the atmosphere of revival and have the opportunity to be personally ministered to.',
                 'category' => 'general',
                 'sort_order' => 8,
+                'is_published' => true,
+            ],
+            // Added 2026-10-20 per Dóri (irisrevival-1020.docx).
+            [
+                'question' => 'Where can I sign up for the workshops, and what should I do if I would like to receive prayer for healing?',
+                'answer' => 'When you arrive, you can sign up and register at the registration desk.',
+                'category' => 'general',
+                'sort_order' => 11,
+                'is_published' => true,
+            ],
+            [
+                'question' => 'When will we go out onto the streets for evangelism?',
+                'answer' => "If you indicated during registration that you would like to participate, you will receive a message a few days before the conference with the most important information about the outreach.\n\nIf you didn’t register in advance and purchased your ticket at the venue, you can ask at the information desk how to join the outreach.\n\nThere will also be a preparation session on Friday before the main session. We will send you more information about this by email.",
+                'category' => 'general',
+                'sort_order' => 12,
                 'is_published' => true,
             ],
         ];

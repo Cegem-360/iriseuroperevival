@@ -215,6 +215,7 @@
                         ['slug' => 'tineke-bouwman', 'photo' => 'images/alt-style/workshop-leaders/tineke.webp', 'topic' => 'How can you hear God’s voice?', 'workshop' => 'prophetic-ministry'],
                         ['slug' => 'katey-maddux', 'photo' => 'images/alt-style/workshop-leaders/katey.webp', 'topic' => 'Pioneering in Human Trafficking', 'workshop' => 'human-trafficking-awareness'],
                         ['slug' => 'fernando-sousa', 'photo' => 'images/alt-style/workshop-leaders/sousa.webp', 'topic' => __('Finding your identity'), 'workshop' => 'freedom-ministry'],
+                        ['slug' => 'abel-carrico', 'photo' => 'images/alt-style/workshop-leaders/abel.webp', 'topic' => null, 'workshop' => 'abel-carrico'],
                     ];
                     $workshopSpeakers = \App\Models\Speaker::query()
                         ->whereIn('slug', collect($workshopCards)->pluck('slug'))
@@ -448,7 +449,7 @@
                                     @foreach ($trainingDay['items'] as $item)
                                         <div class="flex gap-4 p-4 bg-(--alt-navy-deeper)/30 rounded-xl">
                                             <span class="text-(--alt-gold) font-heading font-semibold w-28 shrink-0">
-                                                {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }}–{{ \Carbon\Carbon::parse($item->end_time)->format('H:i') }}
+                                                {{ $item->timeRange('–') }}
                                             </span>
                                             <div>
                                                 <h4 class="text-(--alt-beige) font-medium">{{ $item->t('title') }}</h4>
@@ -509,8 +510,7 @@
                                         @endphp
                                         <div class="border-l-2 {{ $borderColor }} pl-4">
                                             <span class="{{ $textColor }} text-sm font-heading font-semibold">
-                                                {{ \Carbon\Carbon::parse($item->start_time)->format('H:i') }} -
-                                                {{ \Carbon\Carbon::parse($item->end_time)->format('H:i') }}
+                                                {{ $item->timeRange() }}
                                             </span>
                                             <h4 class="text-(--alt-beige) font-medium">{{ $item->t('title') }}</h4>
                                             @if ($item->speaker)

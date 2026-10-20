@@ -107,3 +107,18 @@ it('does not show the removed Iris Harvest School alumni workshop', function ():
         ->assertDontSee('iris-global-leaders')
         ->assertDontSee('Alumni Gathering');
 });
+
+it('shows the Abel Carrico workshop-leader card once his speaker record exists', function (): void {
+    Speaker::factory()->create([
+        'slug' => 'abel-carrico',
+        'name' => 'Abel Carrico',
+        'title' => 'Missionary, pastor, songwriter',
+        'type' => 'workshop_leader',
+        'is_featured' => false,
+        'photo_path' => 'images/speakers/abel-carrico.webp',
+    ]);
+
+    Livewire::test(Home::class)
+        ->assertSee('Abel Carrico')
+        ->assertSee('Missionary, pastor, songwriter');
+});
